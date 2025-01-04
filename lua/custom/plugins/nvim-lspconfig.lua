@@ -148,7 +148,7 @@ return {
             disable = { 'missing-parameter' },
           },
           workspace = {
-            library = vim.api.nvim_get_runtime_file('', true),
+            library = {},
             checkThirdParty = false,
           },
           telemetry = {
