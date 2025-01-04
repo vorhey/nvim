@@ -23,7 +23,6 @@ return {
         async_renders = true,
         animate = false,
         hl_cursorline = false,
-        border = 'none',
       },
     }
   end,
