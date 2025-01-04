@@ -2,6 +2,21 @@ return {
   'lewis6991/gitsigns.nvim',
   config = function()
     require('gitsigns').setup {
+      signs = {
+        add = { text = '▎' },
+        change = { text = '▎' },
+        delete = { text = '' },
+        topdelete = { text = '' },
+        changedelete = { text = '▎' },
+        untracked = { text = '▎' },
+      },
+      signs_staged = {
+        add = { text = '▎' },
+        change = { text = '▎' },
+        delete = { text = '' },
+        topdelete = { text = '' },
+        changedelete = { text = '▎' },
+      },
       on_attach = function(buffer)
         local gs = require 'gitsigns'
         vim.keymap.set('n', '<leader>hR', gs.reset_buffer, { desc = 'Git: Restore' })
