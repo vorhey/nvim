@@ -176,10 +176,6 @@ return {
         },
         spacing_info,
         {
-          'lsp_progress',
-          display_components = { 'lsp_client_name', 'spinner', { 'percentage' } },
-        },
-        {
           function()
             local clients = vim.lsp.get_clients()
             if next(clients) == nil then
@@ -194,6 +190,10 @@ return {
           end,
           icon = '󱇝 ',
           color = { gui = 'bold' },
+        },
+        {
+          'lsp_progress',
+          display_components = { 'spinner', { 'percentage' } },
         },
       },
     }
