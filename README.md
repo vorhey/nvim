@@ -14,8 +14,8 @@ Follow the instructions below to clone this repository into the appropriate conf
 
     ```bash
     # If using $XDG_CONFIG_HOME
-    git clone https://github.com/JorgeHerreraU/nvim $XDG_CONFIG_HOME/nvim
+    git clone https://github.com/vorhey/nvim $XDG_CONFIG_HOME/nvim
 
     # If using default location
-    git clone https://github.com/JorgeHerreraU/nvim ~/.config/nvim
+    git clone https://github.com/vorhey/nvim ~/.config/nvim
     ```
