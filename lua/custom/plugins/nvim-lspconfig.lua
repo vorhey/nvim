@@ -5,26 +5,6 @@ return {
     'nvim-flutter/flutter-tools.nvim',
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
-    {
-      'j-hui/fidget.nvim',
-      opts = {
-        progress = {
-          display = {
-            render_limit = 1,
-          },
-        },
-        notification = {
-          history_size = 1,
-          configs = {
-            default = {
-              max_messages = 1,
-              history = false,
-            },
-          },
-          window = { winblend = 0 },
-        },
-      },
-    },
     { 'seblj/roslyn.nvim', ft = { 'cs', 'axaml.cs' } },
     {
       'folke/lazydev.nvim',

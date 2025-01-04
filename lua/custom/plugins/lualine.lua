@@ -1,5 +1,8 @@
 return {
   'nvim-lualine/lualine.nvim',
+  dependencies = {
+    'arkav/lualine-lsp-progress',
+  },
   event = 'VeryLazy',
   enabled = true,
   config = function()
@@ -172,6 +175,26 @@ return {
           padding = { left = 1, right = 0 },
         },
         spacing_info,
+        {
+          'lsp_progress',
+          display_components = { 'lsp_client_name', 'spinner', { 'percentage' } },
+        },
+        {
+          function()
+            local clients = vim.lsp.get_clients()
+            if next(clients) == nil then
+              return ''
+            end
+            local buf_clients = vim.lsp.get_clients { bufnr = 0 }
+            local buf_client_names = {}
+            for _, client in pairs(buf_clients) do
+              table.insert(buf_client_names, client.name)
+            end
+            return '[' .. table.concat(buf_client_names, ', ') .. ']'
+          end,
+          icon = '󱇝 ',
+          color = { gui = 'bold' },
+        },
       },
     }
 
