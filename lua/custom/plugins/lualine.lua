@@ -1,7 +1,19 @@
 return {
   'nvim-lualine/lualine.nvim',
   dependencies = {
-    'arkav/lualine-lsp-progress',
+    {
+      'linrongbin16/lsp-progress.nvim',
+      config = function()
+        require('lsp-progress').setup {
+          format = function(client_messages)
+            if #client_messages > 0 then
+              return ' LSP ' .. table.concat(client_messages, ' ')
+            end
+            return ''
+          end,
+        }
+      end,
+    },
   },
   event = 'VeryLazy',
   enabled = true,
@@ -27,6 +39,13 @@ return {
         return 'Tabs: ' .. vim.bo.tabstop
       end
     end
+
+    vim.api.nvim_create_augroup('lualine_augroup', { clear = true })
+    vim.api.nvim_create_autocmd('User', {
+      group = 'lualine_augroup',
+      pattern = 'LspProgressStatusUpdated',
+      callback = require('lualine').refresh,
+    })
 
     M.tabline = {
       lualine_a = {
@@ -192,8 +211,9 @@ return {
           color = { gui = 'bold' },
         },
         {
-          'lsp_progress',
-          display_components = { 'spinner', { 'percentage' } },
+          function()
+            return require('lsp-progress').progress()
+          end,
         },
       },
     }
