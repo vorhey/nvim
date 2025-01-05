@@ -401,7 +401,6 @@ return {
         '-XX:+UseParallelGC',
         '-XX:GCTimeRatio=4',
         '-XX:AdaptiveSizePolicyWeight=90',
-        '-Dsun.zip.disableMemoryMapping=true',
         '--add-modules=ALL-SYSTEM',
         '--add-opens',
         'java.base/java.util=ALL-UNNAMED',
@@ -411,9 +410,10 @@ return {
     local function get_jdtls_args()
       return {
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-        '-Dosgi.bundles.defaultStartLevel=4',
         '-Declipse.product=org.eclipse.jdt.ls.core.product',
         '-Dlog.protocol=true',
+        '-Dosgi.bundles.defaultStartLevel=4',
+        '-Dsun.zip.disableMemoryMapping=true',
       }
     end
     -- Java settings
