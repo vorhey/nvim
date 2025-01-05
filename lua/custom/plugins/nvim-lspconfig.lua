@@ -395,13 +395,16 @@ return {
       return {
         '-noverify',
         '-Xmx4G',
+        '-Xms100m',
         '-XX:+UseG1GC',
         '-XX:+UseStringDeduplication',
+        '-XX:+UseParallelGC',
+        '-XX:GCTimeRatio=4',
+        '-XX:AdaptiveSizePolicyWeight=90',
+        '-Dsun.zip.disableMemoryMapping=true',
         '--add-modules=ALL-SYSTEM',
         '--add-opens',
         'java.base/java.util=ALL-UNNAMED',
-        '--add-opens',
-        'java.base/java.lang=ALL-UNNAMED',
       }
     end
     -- JDTLS specific arguments
