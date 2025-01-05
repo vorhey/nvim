@@ -38,44 +38,49 @@ return {
         Comment = { fg = '#989898', italic = false },
         Type = { fg = '#c6c6c6', italic = false },
         Folded = { fg = '#c6c6c6' },
-
         -- DAP
-        DapBreakpoint = { fg = '#f79292' }, -- Default red breakpoint
-        DapBreakpointGreen = { fg = '#82ffac' }, -- Green breakpoint
-        DapBreakpointYellow = { fg = '#ffd700' }, -- Yellow breakpoint
-        DapBreakpointRejected = { fg = '#ff9ea8' }, -- Rejected breakpoint
-        DapLogPoint = { fg = '#82ffac' }, -- Log point
-        DapStopped = { fg = '#82ffac', bg = '#214283' }, -- Stopped line
-
-        -- Virtual text colors (shown inline)
+        DapBreakpoint = { fg = '#f79292' },
+        DapBreakpointGreen = { fg = '#82ffac' },
+        DapBreakpointYellow = { fg = '#ffd700' },
+        DapBreakpointRejected = { fg = '#ff9ea8' },
+        DapLogPoint = { fg = '#82ffac' },
+        DapStopped = { fg = '#82ffac', bg = '#214283' },
+        -- Diagnostics
         DiagnosticVirtualTextError = { fg = '#ff9ea8' },
         DiagnosticUnnecessary = { fg = '#696969' },
         DiagnosticSignHint = { fg = '#c6c6c6' },
-
+        -- Telescope
+        TelescopeNormal = { bg = 'NONE' },
+        TelescopeBorder = { bg = 'NONE', fg = '#c6c6c6' },
+        TelescopePromptNormal = { bg = 'NONE' },
+        TelescopePromptBorder = { bg = 'NONE', fg = '#c6c6c6' },
+        TelescopePromptTitle = { bg = 'NONE', fg = '#c6c6c6' },
+        TelescopePreviewNormal = { bg = 'NONE' },
+        TelescopePreviewBorder = { bg = 'NONE', fg = '#c6c6c6' },
+        TelescopePreviewTitle = { bg = 'NONE', fg = '#c6c6c6' },
+        TelescopeResultsNormal = { bg = 'NONE' },
+        TelescopeResultsBorder = { bg = 'NONE', fg = '#c6c6c6' },
+        TelescopeResultsTitle = { bg = 'NONE', fg = '#c6c6c6' },
+        TelescopePromptCounter = { bg = 'NONE', fg = '#c6c6c6' },
+        -- Mode and UI
+        ModeMsg = { bg = 'NONE', fg = '#c6c6c6' },
+        DapUIPlayPauseNC = { bg = 'NONE' },
+        DapUIRestartNC = { bg = 'NONE' },
+        DapUIUnavailableNC = { bg = 'NONE', fg = '#c6c6c6' },
+        WinBar = { bg = 'NONE' },
+        WinBarNC = { bg = 'NONE' },
+        DapUIStopNC = { bg = 'NONE' },
+        DapUIStepOverNC = { bg = 'NONE' },
+        DapUIStepIntoNC = { bg = 'NONE' },
+        DapUIStepBackNC = { bg = 'NONE' },
+        DapUIStepOutNC = { bg = 'NONE' },
+        -- Syntax
         ['@boolean'] = { fg = '#E29ECA', italic = false },
         ['@tag.attribute'] = { fg = '#d7c6f7' },
-
-        ['@lsp.type.class.dart'] = { fg = '#e29eca', bold = true }, -- or your preferred style
+        ['@lsp.type.class.dart'] = { fg = '#e29eca', bold = true },
         ['@lsp.mod.constructor.dart'] = { fg = '#c6c6c6' },
       },
     }
     vim.cmd.colorscheme 'oldworld'
-    vim.cmd [[
-      hi ModeMsg guibg=NONE ctermbg=NONE guifg=#c6c6c6
-    ]]
-    vim.defer_fn(function()
-      vim.cmd [[
-        hi DapUIPlayPauseNC guibg=NONE
-        hi DapUIRestartNC guibg=NONE
-        hi DapUIUnavailableNC guibg=NONE guifg=#c6c6c6
-        hi WinBar guibg=NONE
-        hi WinBarNC guibg=NONE
-        hi DapUIStopNC guibg=NONE
-        hi DapUIStepOverNC guibg=NONE
-        hi DapUIStepIntoNC guibg=NONE
-        hi DapUIStepBackNC guibg=NONE
-        hi DapUIStepOutNC guibg=NONE
-      ]]
-    end, 1000)
   end,
 }
