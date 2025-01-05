@@ -5,9 +5,26 @@ return {
       'linrongbin16/lsp-progress.nvim',
       config = function()
         require('lsp-progress').setup {
+          -- Only show percentage if available
+          series_format = function(title, message, percentage, done)
+            if percentage then
+              return string.format('%.0f%%', percentage)
+            end
+            return ''
+          end,
+
+          -- Only show spinner and the percentage
+          client_format = function(client_name, spinner, series_messages)
+            if #series_messages > 0 then
+              return spinner .. ' ' .. table.concat(series_messages, ', ')
+            end
+            return nil
+          end,
+
+          -- Keep the format minimal
           format = function(client_messages)
             if #client_messages > 0 then
-              return ' LSP ' .. table.concat(client_messages, ' ')
+              return table.concat(client_messages, ' ')
             end
             return ''
           end,
