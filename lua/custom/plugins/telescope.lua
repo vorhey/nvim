@@ -120,9 +120,24 @@ return {
 
     local find_hidden_files = function()
       builtin.find_files {
+        prompt_title = 'Find Hiden Files',
         hidden = true,
         no_ignore = true,
-        follow = true,
+        file_ignore_patterns = {
+          'node_modules/.*',
+          '.git/.*',
+          '.vscode/.*',
+          '.idea/.*',
+          '%.o$',
+          '%.a$',
+          '%.log$',
+          '%.class$',
+          '%.pdf$',
+          '%.jpg$',
+          '%.png$',
+          '%.ttf$',
+          '%.ico$',
+        },
         sorter = require('telescope').extensions.fzf.native_fzf_sorter {
           fuzzy = true,
           override_file_sorter = true,
