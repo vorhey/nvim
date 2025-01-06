@@ -163,15 +163,17 @@ return {
 
     -- Keybindings
     vim.keymap.set('n', '<leader>fb', '<cmd>Telescope bookmarks list<cr>', { desc = 'Find: Bookmarks' })
+    vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = 'Find: String' })
     vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find: Files' })
     vim.keymap.set('n', '<leader>fF', find_hidden_files, { desc = 'Find: Hidden Files' })
     vim.keymap.set('n', '<leader>ft', builtin.builtin, { desc = 'Find: Select Telescope' })
     vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Find: Grep' })
     vim.keymap.set('n', '<leader>fd', builtin.git_status, { desc = 'Find: Git Diff' })
     vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = 'Find: Resume' })
+    vim.keymap.set('n', '<leader>fo', builtin.buffers, { desc = 'Find: Opened Buffers' })
     vim.keymap.set('n', '<leader>fu', '<cmd>Telescope undo<cr>', { desc = 'Find: Undo Tree' })
     vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = 'Find: Recent Files' })
     vim.keymap.set('n', '<leader>f/', grep_open_files, { desc = 'Find: In Open Files' })
-    vim.keymap.set('n', '<leader>fo', builtin.buffers, { desc = 'Find: Opened Buffers' })
+    vim.keymap.set('v', '<leader>f', 'y:Telescope live_grep default_text=<C-r>"<CR>', { desc = 'Find: Grep Selected Text' })
   end,
 }
