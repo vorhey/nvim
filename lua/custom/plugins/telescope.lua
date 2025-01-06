@@ -61,6 +61,7 @@ return {
       defaults = {
         file_ignore_patterns = {
           'node_modules/.*',
+          'public',
           'bin/.*',
           'obj/.*',
           'build/.*',
@@ -94,64 +95,61 @@ return {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
         },
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = 'smart_case',
+        },
       },
     }
 
-    -- Enable Telescope extensions if they are installed
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
     pcall(require('telescope').load_extension, 'undo')
     pcall(require('telescope').load_extension, 'bookmarks')
 
-    -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
 
-    -- Keys
     local grep_open_files = function()
-      -- It's also possible to pass additional configuration options.
-      --  See `:help telescope.builtin.live_grep()` for information about particular keys
       builtin.live_grep {
         grep_open_files = true,
         prompt_title = 'Live Grep in Open Files',
       }
     end
-    local find_nvim_files = function()
-      builtin.find_files { cwd = vim.fn.stdpath 'config' }
-    end
-    local grep_string_under_cursor = function()
-      local word = vim.fn.expand '<cWORD>'
-      local quoted_text = word:match '["\']([^"\']+)["\']'
-      local cleaned_word = word:match '[%w%-_]+'
-      local search_term = quoted_text or cleaned_word
-      builtin.live_grep {
-        default_text = search_term,
-        only_sort_text = true,
-        file_ignore_patterns = {
-          'node_modules/.*',
-          '%.git/.*',
-          '%.min.js',
-          '%.min.css',
-          'dist/.*',
-          'build/.*',
-          'vendor/.*',
+
+    local find_hidden_files = function()
+      builtin.find_files {
+        hidden = true,
+        no_ignore = true,
+        follow = true,
+        sorter = require('telescope').extensions.fzf.native_fzf_sorter {
+          fuzzy = true,
+          override_file_sorter = true,
+          case_mode = 'smart_case',
+          sort_function = function(a, b)
+            return require('telescope.extensions.fzf').prefilter_sort(a, b, {
+              exact = 100, -- higher weight for exact matches
+              start = 95, -- higher weight for matches at start
+              length = -20, -- shorter matches ranked higher
+              alpha = 0.1, -- factor for case sensitivity (lower is more sensitive)
+            })
+          end,
         },
       }
     end
+
     -- Keybindings
-    vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Find: Help' })
-    vim.keymap.set('n', '<leader>fs', builtin.search_history, { desc = 'Find: History' })
-    vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = 'Find: Keymaps' })
     vim.keymap.set('n', '<leader>fb', '<cmd>Telescope bookmarks list<cr>', { desc = 'Find: Bookmarks' })
     vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find: Files' })
+    vim.keymap.set('n', '<leader>fF', find_hidden_files, { desc = 'Find: Hidden Files' })
     vim.keymap.set('n', '<leader>ft', builtin.builtin, { desc = 'Find: Select Telescope' })
-    vim.keymap.set('n', '<leader>fw', grep_string_under_cursor, { desc = 'Find: Grep current Word' })
     vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Find: Grep' })
     vim.keymap.set('n', '<leader>fd', builtin.git_status, { desc = 'Find: Git Diff' })
     vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = 'Find: Resume' })
-    vim.keymap.set('n', '<leader>fn', find_nvim_files, { desc = 'Find: Neovim files' })
     vim.keymap.set('n', '<leader>fu', '<cmd>Telescope undo<cr>', { desc = 'Find: Undo Tree' })
-    vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = 'Find: Recent Files ("." for repeat)' })
+    vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = 'Find: Recent Files' })
     vim.keymap.set('n', '<leader>f/', grep_open_files, { desc = 'Find: In Open Files' })
-    vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Find: Opened Buffers' })
+    vim.keymap.set('n', '<leader>fo', builtin.buffers, { desc = 'Find: Opened Buffers' })
   end,
 }
