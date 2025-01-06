@@ -59,6 +59,7 @@ return {
 
     require('telescope').setup {
       defaults = {
+        sorting_strategy = 'ascending',
         file_ignore_patterns = {
           'node_modules/.*',
           'public',
@@ -87,6 +88,12 @@ return {
         },
         get_selection_window = custom_get_selection_window,
         layout_strategy = 'horizontal',
+        layout_config = {
+          horizontal = {
+            prompt_position = 'top',
+            height = 0.6,
+          },
+        },
         previewer = true,
       },
       extensions = {
