@@ -15,6 +15,7 @@ return {
   },
 
   config = function()
+    vim.diagnostic.config { virtual_text = false }
     -- Capabilities
     local capabilities = require('blink.cmp').get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
     capabilities.textDocument.completion.completionItem.snippetSupport = true
