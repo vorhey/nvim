@@ -3,6 +3,7 @@ local WIDTH_RATIO = 0.8 -- You can change this too
 
 return {
   'nvim-tree/nvim-tree.lua',
+  cmd = { 'NvimTreeToggle', 'NvimTreeFocus' },
   config = function()
     require('nvim-tree').setup {
       filters = {

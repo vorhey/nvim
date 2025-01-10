@@ -8,7 +8,16 @@ return {
     'jay-babu/mason-nvim-dap.nvim',
   },
   lazy = true,
-  event = { 'CmdlineEnter', 'BufReadPost' }, -- Load only on specific actions
+  keys = {
+    { '<leader>dc', desc = 'Debug: Start/Continue' },
+    { '<leader>dn', desc = 'Debug: Step Over' },
+    { '<leader>ds', desc = 'Debug: Stop' },
+    { '<leader>dt', desc = 'Debug: Terminate' },
+    { '<leader>db', desc = 'Debug: Toggle Breakpoint' },
+    { '<leader>dB', desc = 'Debug: Conditional Breakpoint' },
+    { '<leader>di', desc = 'Debug: Toggle Interface' },
+    { '<leader>dr', desc = 'Debug: Clear Breakpoints' },
+  },
   config = function()
     local dap = require 'dap'
     dap.set_log_level 'DEBUG'
