@@ -11,7 +11,6 @@ return {
           local diagnostics = MiniStatusline.section_diagnostics { trunc_width = 75 }
           local lsp = MiniStatusline.section_lsp { trunc_width = 75 }
           local filename = MiniStatusline.section_filename { trunc_width = 140 }
-          local fileinfo = MiniStatusline.section_fileinfo { trunc_width = 120 }
           local search = MiniStatusline.section_searchcount { trunc_width = 75 }
 
           return MiniStatusline.combine_groups {
@@ -20,7 +19,6 @@ return {
             '%<',
             { hl = 'MiniStatuslineFilename', strings = { filename } },
             '%=',
-            { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
             { hl = mode_hl, strings = { search } },
           }
         end,
