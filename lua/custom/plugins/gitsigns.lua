@@ -37,6 +37,13 @@ return {
           })
         end, { desc = 'Git: Previous Hunk' })
         vim.keymap.set('n', '<leader>hd', gs.diffthis, { desc = 'Git: Toggle diff' })
+        vim.keymap.set('n', '<leader>hD', function()
+          vim.ui.input({ prompt = 'Branch: ' }, function(branch)
+            if branch then
+              gs.diffthis(branch, { vertical = true })
+            end
+          end)
+        end, { desc = 'Git: Diff against branch' })
       end,
     }
   end,
