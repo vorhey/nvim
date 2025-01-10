@@ -28,9 +28,8 @@ return {
         { '<leader>c', icon = { icon = '󰅙', color = 'orange' }, desc = 'Close other buffers' },
         { '<leader>q', icon = { icon = '󰈆', color = 'orange' }, desc = 'Quit' },
         { '<leader>e', icon = { icon = '󱏒', color = 'orange' }, desc = 'Explorer' },
-        { '<leader>z', icon = { icon = '', color = 'orange' } },
+        { '<leader><leader>', icon = { icon = '', color = 'orange' } },
         { '<leader>b', group = 'Bookmark', icon = { icon = '', color = 'grey' } },
-        { '<leader>a', group = 'Harvgate', icon = { icon = '󰁤', color = 'grey' }, desc = 'Harvgate' },
         { '<leader>d', group = 'Debug', icon = { icon = '', color = 'grey' } },
         { '<leader>t', group = 'Features', icon = { icon = '', color = 'grey' } },
         { '<leader>f', group = 'Find', icon = { icon = '', color = 'grey' } },
@@ -38,7 +37,6 @@ return {
         { '<leader>l', group = 'LSP', icon = { icon = '', color = 'grey' } },
         { '<leader>m', group = 'Testing', icon = { icon = '', color = 'grey' } },
         { '<leader>/', hidden = true },
-        { '<leader><leader>', hidden = true },
       },
     }
     wk.setup {

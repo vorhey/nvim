@@ -8,6 +8,7 @@ return {
     vim.keymap.set('n', '<leader>fw', fzf.grep_cword, { desc = 'Find: Grep current Word' })
     vim.keymap.set('n', '<leader>fW', fzf.grep_cWORD, { desc = 'Find: Grep current Word' })
     vim.keymap.set('n', '<leader>f.', fzf.oldfiles, { desc = 'Find: Old files' })
+    vim.keymap.set('n', '<leader>fa', fzf.buffers, { desc = 'Find: Buffers' })
     vim.keymap.set('n', 'gr', fzf.lsp_references, { desc = 'Find: LSP References' })
     vim.keymap.set('n', 'gd', fzf.lsp_definitions, { desc = 'Find: LSP Definitions' })
     fzf.setup {
