@@ -73,11 +73,8 @@ vim.keymap.set('n', '<leader>ta', utils.toggle_autoformat, { desc = 'Toggle auto
 -- quit
 vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Quit' })
 
--- close all buffers except current
-vim.api.nvim_set_keymap('n', '<leader>c', [[:%bd|e#|bd#<CR>|'"`]], { noremap = true, silent = true, desc = 'Buffer: Keep' })
-
 -- close current buffer
-vim.api.nvim_set_keymap('n', '<leader>x', ':bd<CR>', { noremap = true, silent = true, desc = 'Buffer: Close' })
+vim.api.nvim_set_keymap('n', 'q', ':bd<CR>', { noremap = true, silent = true, desc = 'Buffer: Close' })
 
 -- remap visual block mode
 vim.keymap.set('n', '<A-v>', '<C-v>')
@@ -96,7 +93,7 @@ vim.keymap.set('n', '[b', ':bprev<CR>', { desc = 'Previous buffer' })
 
 -- next buffer
 vim.keymap.set('n', ']b', ':bnext<CR>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<leader><leader>', ':bnext<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<Tab>', ':bnext<CR>', { noremap = true, silent = true })
 
 -- copy previous line till the end of line
 vim.keymap.set('i', '<c-y>', utils.copy_line_above, { noremap = true, silent = true })
@@ -108,6 +105,3 @@ vim.keymap.set({ 'n', 'x' }, '<leader>p', function()
   vim.fn.setreg('+', cleaned)
   return '"+p'
 end, { expr = true, desc = 'Paste' })
-
--- disable recording key q
-vim.keymap.set('n', 'q', '<Nop>', { noremap = true })
