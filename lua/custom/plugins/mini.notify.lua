@@ -6,6 +6,9 @@ return {
       window = {
         winblend = 0,
       },
+      lsp_progress = {
+        enable = false,
+      },
     }
   end,
 }
