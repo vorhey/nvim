@@ -70,9 +70,6 @@ vim.keymap.set('n', '<C-Left>', ':vertical resize -5<CR>', { noremap = true, sil
 -- toggle autoformatting
 vim.keymap.set('n', '<leader>ta', utils.toggle_autoformat, { desc = 'Toggle autoformat', noremap = true, silent = true })
 
--- quit
-vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Quit' })
-
 -- close current buffer
 vim.api.nvim_set_keymap('n', 'q', ':bd<CR>', { noremap = true, silent = true, desc = 'Buffer: Close' })
 
