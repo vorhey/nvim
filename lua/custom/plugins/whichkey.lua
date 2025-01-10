@@ -25,7 +25,7 @@ return {
         { '<leader>y', icon = { icon = '', color = 'orange' } },
         { '<leader>p', icon = { icon = '', color = 'orange' } },
         { '<leader>o', icon = { icon = '󰅙', color = 'orange' }, desc = 'Close all other buffers' },
-        { '<leader>q', icon = { icon = '󰈆', color = 'orange' }, desc = 'Quit' },
+        { '<leader>Q', icon = { icon = '󰈆', color = 'orange' }, desc = 'Quit' },
         { '<leader>e', icon = { icon = '󱏒', color = 'orange' }, desc = 'Explorer' },
         { '<leader><leader>', icon = { icon = '', color = 'orange' } },
         { '<leader>a', group = 'Harvgate', icon = { icon = '󰁤', color = 'grey' }, desc = 'Harvgate' },
