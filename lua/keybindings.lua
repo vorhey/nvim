@@ -102,3 +102,6 @@ vim.keymap.set({ 'n', 'x' }, '<leader>p', function()
   vim.fn.setreg('+', cleaned)
   return '"+p'
 end, { expr = true, desc = 'Paste' })
+
+-- exit
+vim.keymap.set('n', '<leader>Q', ':qa!<CR>', { desc = 'Quit' })
