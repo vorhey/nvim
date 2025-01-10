@@ -105,3 +105,4 @@ end, { expr = true, desc = 'Paste' })
 
 -- exit
 vim.keymap.set('n', '<leader>Q', ':qa!<CR>', { desc = 'Quit' })
+vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Quit' })
