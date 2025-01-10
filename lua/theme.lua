@@ -74,6 +74,7 @@ return {
         DapUIStepIntoNC = { bg = 'NONE' },
         DapUIStepBackNC = { bg = 'NONE' },
         DapUIStepOutNC = { bg = 'NONE' },
+        MiniStatusLineModeInsert = { bg = '#d7c6f7', fg = '#000000' },
         -- Syntax
         ['@boolean'] = { fg = '#E29ECA', italic = false },
         ['@tag.attribute'] = { fg = '#d7c6f7' },
