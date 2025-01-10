@@ -2,6 +2,9 @@ return {
   'echasnovski/mini.bufremove',
   version = false,
   config = function()
+    vim.keymap.set('n', 'q', function()
+      require('mini.bufremove').delete(0, false) -- 0 means current buffer, false means don't force delete
+    end, { desc = 'Buffer: Close' })
     vim.keymap.set('n', '<leader>o', function()
       local current = vim.api.nvim_get_current_buf()
       local buffers = vim.api.nvim_list_bufs()
