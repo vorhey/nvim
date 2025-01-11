@@ -20,7 +20,7 @@ return {
   config = function() -- This is the function that runs, AFTER loading
     local wk = require 'which-key'
     wk.add {
-      mode = { 'n', 'v' },
+      mode = { 'n' },
       {
         { '<leader>y', icon = { icon = '', color = 'orange' } },
         { '<leader>p', icon = { icon = '', color = 'orange' } },
