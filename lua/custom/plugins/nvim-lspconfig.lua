@@ -184,6 +184,13 @@ return {
               end
               handlers['textDocument/publishDiagnostics'](_, result, ctx, config)
             end,
+            ['textDocument/signatureHelp'] = function(err, result, ctx, config)
+              if err then
+                -- Silently ignore signature help errors
+                return
+              end
+              vim.lsp.handlers['textDocument/signatureHelp'](err, result, ctx, config)
+            end,
           }),
           settings = {
             vtsls = {
