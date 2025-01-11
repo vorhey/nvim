@@ -9,6 +9,17 @@ return {
     'Issafalcon/neotest-dotnet',
     'marilari88/neotest-vitest',
   },
+  -- Lazy load options
+  cmd = {
+    'Neotest',
+  },
+  keys = {
+    { '<leader>mR', desc = 'Test: Run All Tests' },
+    { '<leader>mr', desc = 'Test: Run Tests' },
+    { '<leader>mt', desc = 'Test: Toggle Test Summary' },
+    { '<leader>ms', desc = 'Test: Stop Test' },
+    { '<leader>mo', desc = 'Test: Open Test Output' },
+  },
   config = function()
     require('neotest').setup {
       adapters = {
