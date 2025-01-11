@@ -123,6 +123,17 @@ return {
 
     local lspconfig = require 'lspconfig'
 
+    -- JDTLS
+    local home = os.getenv 'HOME'
+    local mason_path = home .. '/.local/share/nvim/mason'
+    local jdtls_path = mason_path .. '/packages/jdtls'
+
+    local function get_workspace_dir()
+      local workspace_path = home .. '/.local/share/nvim/jdtls-workspace/'
+      local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+      return workspace_path .. project_name
+    end
+
     -- Server Configurations
     local servers = {
       lua_ls = {
@@ -216,6 +227,52 @@ return {
           },
         },
       },
+      jdtls = {
+        cmd = {
+          'java',
+          '-noverify',
+          '-Xmx4G',
+          '-Xms100m',
+          '-XX:+UseG1GC',
+          '-XX:+UseStringDeduplication',
+          '-XX:+UseParallelGC',
+          '-XX:GCTimeRatio=4',
+          '-XX:AdaptiveSizePolicyWeight=90',
+          '--add-modules=ALL-SYSTEM',
+          '--add-opens',
+          'java.base/java.util=ALL-UNNAMED',
+          '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+          '-Declipse.product=org.eclipse.jdt.ls.core.product',
+          '-Dlog.protocol=true',
+          '-Dosgi.bundles.defaultStartLevel=4',
+          '-Dsun.zip.disableMemoryMapping=true',
+          '-javaagent:' .. jdtls_path .. '/lombok.jar',
+          '-jar',
+          vim.fn.glob(jdtls_path .. '/plugins/org.eclipse.equinox.launcher_*.jar'),
+          '-configuration',
+          jdtls_path .. '/config_linux',
+          '-data',
+          get_workspace_dir(),
+        },
+        settings = {
+          java = {
+            maven = {
+              downloadSources = true,
+            },
+            referencesCodeLens = {
+              enabled = true,
+            },
+            references = {
+              includeDecompiledSources = true,
+            },
+            inlayHints = {
+              parameterNames = {
+                enabled = 'all',
+              },
+            },
+          },
+        },
+      },
     }
 
     -- Setup servers with lazy loading
@@ -280,64 +337,6 @@ return {
           completionBudgetMilliseconds = 1000,
           diagnosticsBudgetMilliseconds = 1000,
           navigationBudgetMilliseconds = 1000,
-        },
-      },
-    }
-
-    -- JDTLS
-    local home = os.getenv 'HOME'
-    local mason_path = home .. '/.local/share/nvim/mason'
-    local jdtls_path = mason_path .. '/packages/jdtls'
-
-    local function get_workspace_dir()
-      local workspace_path = home .. '/.local/share/nvim/jdtls-workspace/'
-      local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-      return workspace_path .. project_name
-    end
-
-    lspconfig.jdtls.setup {
-      cmd = {
-        'java',
-        '-noverify',
-        '-Xmx4G',
-        '-Xms100m',
-        '-XX:+UseG1GC',
-        '-XX:+UseStringDeduplication',
-        '-XX:+UseParallelGC',
-        '-XX:GCTimeRatio=4',
-        '-XX:AdaptiveSizePolicyWeight=90',
-        '--add-modules=ALL-SYSTEM',
-        '--add-opens',
-        'java.base/java.util=ALL-UNNAMED',
-        '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-        '-Declipse.product=org.eclipse.jdt.ls.core.product',
-        '-Dlog.protocol=true',
-        '-Dosgi.bundles.defaultStartLevel=4',
-        '-Dsun.zip.disableMemoryMapping=true',
-        '-javaagent:' .. jdtls_path .. '/lombok.jar',
-        '-jar',
-        vim.fn.glob(jdtls_path .. '/plugins/org.eclipse.equinox.launcher_*.jar'),
-        '-configuration',
-        jdtls_path .. '/config_linux',
-        '-data',
-        get_workspace_dir(),
-      },
-      settings = {
-        java = {
-          maven = {
-            downloadSources = true,
-          },
-          referencesCodeLens = {
-            enabled = true,
-          },
-          references = {
-            includeDecompiledSources = true,
-          },
-          inlayHints = {
-            parameterNames = {
-              enabled = 'all',
-            },
-          },
         },
       },
     }
