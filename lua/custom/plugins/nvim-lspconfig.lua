@@ -5,7 +5,7 @@ return {
     'nvim-flutter/flutter-tools.nvim',
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
-    { 'seblj/roslyn.nvim', ft = { 'cs', 'axaml.cs' } },
+    { 'seblj/roslyn.nvim', ft = { 'cs' } },
     {
       'folke/lazydev.nvim',
       dependencies = { 'Bilal2453/luvit-meta', lazy = true },
@@ -310,12 +310,6 @@ return {
       capabilities = capabilities,
       handlers = handlers,
       filetypes = { 'sh', 'bash', 'zsh' },
-    }
-
-    lspconfig.avalonia.setup {
-      capabilities = capabilities,
-      handlers = handlers,
-      filetypes = { 'axaml', 'xaml' },
     }
 
     -- dart
