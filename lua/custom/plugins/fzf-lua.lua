@@ -2,6 +2,21 @@ return {
   'ibhagwan/fzf-lua',
   config = function()
     local fzf = require 'fzf-lua'
+    local function filtered_files()
+      fzf.files {
+        fd_opts = '--color=never --type f --hidden --follow '
+          .. '--exclude .git '
+          .. '--exclude node_modules '
+          .. '--exclude .next '
+          .. '--exclude dist '
+          .. '--exclude target '
+          .. '--exclude __pycache__ '
+          .. '--exclude .venv '
+          .. '--exclude vendor '
+          .. '--exclude .idea '
+          .. '--exclude .vscode',
+      }
+    end
     vim.keymap.set('n', '<leader>f:', fzf.command_history, { desc = 'Find: Command History' })
     vim.keymap.set('n', '<leader>ff', fzf.files, { desc = 'Find: Files (Root)' })
     vim.keymap.set('n', '<leader>fF', function()
@@ -32,6 +47,7 @@ return {
     vim.keymap.set('n', 'gI', function()
       fzf.lsp_implementations { jump_to_single_result = true, ignore_current_line = true }
     end, { desc = 'Find: LSP Definitions' })
+    vim.keymap.set('n', '<leader>fc', filtered_files, { desc = 'Find: Files (Filtered)' })
     local actions = fzf.actions
     fzf.setup {
       lsp = {
