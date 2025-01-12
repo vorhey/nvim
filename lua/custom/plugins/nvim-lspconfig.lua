@@ -3,10 +3,18 @@ return {
   'neovim/nvim-lspconfig',
   dependencies = {
     'b0o/schemastore.nvim',
-    'nvim-flutter/flutter-tools.nvim',
+    {
+      'nvim-flutter/flutter-tools.nvim',
+      lazy = true,
+      ft = { 'dart' },
+    },
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
-    { 'seblj/roslyn.nvim', ft = { 'cs' } },
+    {
+      'seblj/roslyn.nvim',
+      lazy = true,
+      ft = { 'cs' },
+    },
     {
       'folke/lazydev.nvim',
       dependencies = { 'Bilal2453/luvit-meta', lazy = true },
@@ -95,33 +103,6 @@ return {
         setup_document_highlight(client, event.buf)
       end,
     })
-
-    -- Mason setup with lazy loading
-    require('mason').setup {}
-    require('mason-lspconfig').setup {
-      ensure_installed = {
-        'gopls',
-        'lua_ls',
-        'html',
-        'cssls',
-        'angularls',
-        'jsonls',
-        'vtsls',
-        'dockerls',
-        'docker_compose_language_service',
-        'emmet_language_server',
-        'bashls',
-        'groovyls',
-        'cucumber_language_server',
-        'eslint',
-        'intelephense',
-        'clangd',
-        'basedpyright',
-        'jdtls',
-      },
-    }
-
-    local lspconfig = require 'lspconfig'
 
     -- JDTLS
     local home = os.getenv 'HOME'
@@ -275,34 +256,38 @@ return {
       },
     }
 
-    -- Setup servers with lazy loading
-    for server, config in pairs(servers) do
-      config.capabilities = capabilities
-      config.handlers = handlers
-      lspconfig[server].setup(config)
-    end
-
-    -- Simple servers
-    local simple_servers = {
-      'dockerls',
-      'docker_compose_language_service',
-      'cssls',
-      'emmet_language_server',
-      'bashls',
-      'groovyls',
-      'cucumber_language_server',
-      'eslint',
-      'intelephense',
-      'clangd',
-      'basedpyright',
+    -- Mason setup with lazy loading
+    require('mason').setup {}
+    require('mason-lspconfig').setup {
+      ensure_installed = {
+        'gopls',
+        'lua_ls',
+        'html',
+        'cssls',
+        'angularls',
+        'jsonls',
+        'vtsls',
+        'dockerls',
+        'docker_compose_language_service',
+        'emmet_language_server',
+        'bashls',
+        'groovyls',
+        'cucumber_language_server',
+        'eslint',
+        'intelephense',
+        'clangd',
+        'basedpyright',
+        'jdtls',
+      },
+      handlers = {
+        function(server_name)
+          local server_config = servers[server_name] or {}
+          server_config.capabilities = capabilities
+          server_config.handlers = handlers
+          require('lspconfig')[server_name].setup(server_config)
+        end,
+      },
     }
-
-    for _, server in ipairs(simple_servers) do
-      lspconfig[server].setup {
-        capabilities = capabilities,
-        handlers = handlers,
-      }
-    end
 
     -- C#
     require('roslyn').setup {
