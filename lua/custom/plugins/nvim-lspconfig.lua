@@ -21,10 +21,14 @@ return {
       ft = 'lua',
       opts = { library = { { path = 'luvit-meta/library', words = { 'vim%.uv' } } } },
     },
+    {
+      'mfussenegger/nvim-jdtls',
+      lazy = true,
+      ft = { 'java' },
+    },
   },
 
   config = function()
-    -- Delay LSP setup until after startup
     vim.diagnostic.config { virtual_text = false }
 
     -- Capabilities
@@ -107,12 +111,115 @@ return {
     -- JDTLS
     local home = os.getenv 'HOME'
     local mason_path = home .. '/.local/share/nvim/mason'
-    local jdtls_path = mason_path .. '/packages/jdtls'
 
     local function get_workspace_dir()
       local workspace_path = home .. '/.local/share/nvim/jdtls-workspace/'
       local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
       return workspace_path .. project_name
+    end
+
+    local java_home = os.getenv 'JAVA_DEV_HOME'
+    if not java_home then
+      vim.notify('JAVA_DEV_HOME not set. JDTLS requires Java 17+', vim.log.levels.WARN)
+      return
+    end
+
+    -- Set JAVA_HOME in the process environment so jdtls script can find it
+    vim.fn.setenv('JAVA_HOME', java_home)
+
+    local function setup_jdtls()
+      local jdtls = require 'jdtls'
+      local jdtls_config = {
+        cmd = {
+          mason_path .. '/bin/jdtls',
+          '--jvm-arg=-Xmx1g',
+          '-data',
+          get_workspace_dir(),
+        },
+
+        root_dir = require('jdtls.setup').find_root { 'gradlew', '.git', 'mvnw' },
+
+        settings = {
+          java = {
+            signatureHelp = { enabled = true },
+            contentProvider = { preferred = 'fernflower' },
+            semanticHighlighting = {
+              enabled = true,
+            },
+            completion = {
+              favoriteStaticMembers = {
+                'org.junit.Assert.*',
+                'org.junit.Assume.*',
+                'org.junit.jupiter.api.Assertions.*',
+                'org.junit.jupiter.api.Assumptions.*',
+              },
+            },
+          },
+        },
+
+        capabilities = vim.tbl_extend('keep', capabilities, {
+          textDocument = {
+            semanticTokens = {
+              dynamicRegistration = false,
+              tokenTypes = {
+                'namespace',
+                'type',
+                'class',
+                'enum',
+                'interface',
+                'struct',
+                'typeParameter',
+                'parameter',
+                'variable',
+                'property',
+                'enumMember',
+                'event',
+                'function',
+                'method',
+                'macro',
+                'keyword',
+                'modifier',
+                'comment',
+                'string',
+                'number',
+                'regexp',
+                'operator',
+              },
+              tokenModifiers = {
+                'declaration',
+                'definition',
+                'readonly',
+                'static',
+                'deprecated',
+                'abstract',
+                'async',
+                'modification',
+                'documentation',
+                'defaultLibrary',
+              },
+              formats = { 'relative' },
+            },
+          },
+        }),
+        handlers = handlers,
+
+        on_attach = function(client, bufnr)
+          -- Regular LSP keymaps
+          client.server_capabilities.semanticTokensProvider = {
+            full = true,
+            legend = {
+              tokenTypes = {},
+              tokenModifiers = {},
+            },
+            range = true,
+          }
+          setup_lsp_keymaps(bufnr)
+          setup_document_highlight(client, bufnr)
+        end,
+      }
+
+      -- Start JDTLS
+      jdtls.start_or_attach(jdtls_config)
     end
 
     -- Server Configurations
@@ -208,52 +315,6 @@ return {
           },
         },
       },
-      jdtls = {
-        cmd = {
-          'java',
-          '-noverify',
-          '-Xmx4G',
-          '-Xms100m',
-          '-XX:+UseG1GC',
-          '-XX:+UseStringDeduplication',
-          '-XX:+UseParallelGC',
-          '-XX:GCTimeRatio=4',
-          '-XX:AdaptiveSizePolicyWeight=90',
-          '--add-modules=ALL-SYSTEM',
-          '--add-opens',
-          'java.base/java.util=ALL-UNNAMED',
-          '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-          '-Declipse.product=org.eclipse.jdt.ls.core.product',
-          '-Dlog.protocol=true',
-          '-Dosgi.bundles.defaultStartLevel=4',
-          '-Dsun.zip.disableMemoryMapping=true',
-          '-javaagent:' .. jdtls_path .. '/lombok.jar',
-          '-jar',
-          vim.fn.glob(jdtls_path .. '/plugins/org.eclipse.equinox.launcher_*.jar'),
-          '-configuration',
-          jdtls_path .. '/config_linux',
-          '-data',
-          get_workspace_dir(),
-        },
-        settings = {
-          java = {
-            maven = {
-              downloadSources = true,
-            },
-            referencesCodeLens = {
-              enabled = true,
-            },
-            references = {
-              includeDecompiledSources = true,
-            },
-            inlayHints = {
-              parameterNames = {
-                enabled = 'all',
-              },
-            },
-          },
-        },
-      },
     }
 
     -- Mason setup with lazy loading
@@ -325,5 +386,11 @@ return {
         },
       },
     }
+
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = 'java',
+      callback = setup_jdtls,
+      group = vim.api.nvim_create_augroup('JavaLSP', { clear = true }),
+    })
   end,
 }
