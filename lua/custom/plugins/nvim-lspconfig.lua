@@ -118,12 +118,7 @@ return {
       return workspace_path .. project_name
     end
 
-    local java_home = os.getenv 'JAVA_DEV_HOME'
-    if not java_home then
-      vim.notify('JAVA_DEV_HOME not set. JDTLS requires Java 17+', vim.log.levels.WARN)
-      return
-    end
-
+    local java_home = os.getenv 'JAVA_DEV_HOME' or os.getenv 'JAVA_HOME' or 'java'
     -- Set JAVA_HOME in the process environment so jdtls script can find it
     vim.fn.setenv('JAVA_HOME', java_home)
 
