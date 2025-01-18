@@ -14,9 +14,9 @@ return {
           -- Custom spacing info section
           local spacing_info = ''
           if not MiniStatusline.is_truncated(120) then
-            local sw = vim.bo.shiftwidth
             local et = vim.bo.expandtab
-            spacing_info = (et and 'SP:' or 'TAB:') .. sw
+            local width = et and vim.bo.shiftwidth or vim.bo.tabstop
+            spacing_info = (et and 'SP:' or 'TAB:') .. width
           end
 
           return MiniStatusline.combine_groups {
