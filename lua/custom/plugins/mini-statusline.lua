@@ -9,16 +9,22 @@ return {
           local git = MiniStatusline.section_git { trunc_width = 40 }
           local diff = MiniStatusline.section_diff { trunc_width = 75 }
           local diagnostics = MiniStatusline.section_diagnostics { trunc_width = 75 }
-          local lsp = MiniStatusline.section_lsp { trunc_width = 75 }
-          local filename = MiniStatusline.section_filename { trunc_width = 140 }
           local search = MiniStatusline.section_searchcount { trunc_width = 75 }
+
+          -- Custom spacing info section
+          local spacing_info = ''
+          if not MiniStatusline.is_truncated(120) then
+            local sw = vim.bo.shiftwidth
+            local et = vim.bo.expandtab
+            spacing_info = (et and 'SP:' or 'TAB:') .. sw
+          end
 
           return MiniStatusline.combine_groups {
             { hl = mode_hl, strings = { mode } },
-            { hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics, lsp } },
+            { hl = 'MiniStatuslineDevinfo', strings = { git, diff } },
             '%<',
-            { hl = 'MiniStatuslineFilename', strings = { filename } },
             '%=',
+            { hl = 'MiniStatuslineFileinfo', strings = { spacing_info, diagnostics } },
             { hl = mode_hl, strings = { search } },
           }
         end,
