@@ -7,7 +7,6 @@ return {
     require('oldworld').setup {
       integrations = {
         neo_tree = true,
-        telescope = true,
       },
       styles = {
         booleans = { italic = false },
@@ -49,19 +48,6 @@ return {
         DiagnosticVirtualTextError = { fg = '#ff9ea8' },
         DiagnosticUnnecessary = { fg = '#696969' },
         DiagnosticSignHint = { fg = '#c6c6c6' },
-        -- Telescope
-        TelescopeNormal = { bg = 'NONE' },
-        TelescopeBorder = { bg = 'NONE', fg = '#c6c6c6' },
-        TelescopePromptNormal = { bg = 'NONE' },
-        TelescopePromptBorder = { bg = 'NONE', fg = '#c6c6c6' },
-        TelescopePromptTitle = { bg = 'NONE', fg = '#c6c6c6' },
-        TelescopePreviewNormal = { bg = 'NONE' },
-        TelescopePreviewBorder = { bg = 'NONE', fg = '#c6c6c6' },
-        TelescopePreviewTitle = { bg = 'NONE', fg = '#c6c6c6' },
-        TelescopeResultsNormal = { bg = 'NONE' },
-        TelescopeResultsBorder = { bg = 'NONE', fg = '#c6c6c6' },
-        TelescopeResultsTitle = { bg = 'NONE', fg = '#c6c6c6' },
-        TelescopePromptCounter = { bg = 'NONE', fg = '#c6c6c6' },
         -- Mode and UI
         ModeMsg = { bg = 'NONE', fg = '#c6c6c6' },
         DapUIPlayPauseNC = { bg = 'NONE' },
