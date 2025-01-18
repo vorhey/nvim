@@ -21,11 +21,6 @@ return {
       ft = 'lua',
       opts = { library = { { path = 'luvit-meta/library', words = { 'vim%.uv' } } } },
     },
-    {
-      'mfussenegger/nvim-jdtls',
-      lazy = true,
-      ft = { 'java' },
-    },
   },
 
   config = function()
@@ -102,6 +97,9 @@ return {
         if not client then
           return
         end
+        if client.name == 'jdtls' then
+          client.server_capabilities.semanticTokensProvider = nil
+        end
 
         setup_lsp_keymaps(event.buf)
         setup_document_highlight(client, event.buf)
@@ -109,113 +107,9 @@ return {
     })
 
     -- JDTLS
-    local home = os.getenv 'HOME'
-    local mason_path = home .. '/.local/share/nvim/mason'
-
-    local function get_workspace_dir()
-      local workspace_path = home .. '/.local/share/nvim/jdtls-workspace/'
-      local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-      return workspace_path .. project_name
-    end
-
     local java_home = os.getenv 'JAVA_DEV_HOME' or os.getenv 'JAVA_HOME' or 'java'
     -- Set JAVA_HOME in the process environment so jdtls script can find it
     vim.fn.setenv('JAVA_HOME', java_home)
-
-    local function setup_jdtls()
-      local jdtls = require 'jdtls'
-      local jdtls_config = {
-        cmd = {
-          mason_path .. '/bin/jdtls',
-          '--jvm-arg=-Xmx1g',
-          '-data',
-          get_workspace_dir(),
-        },
-
-        root_dir = require('jdtls.setup').find_root { 'gradlew', '.git', 'mvnw' },
-
-        settings = {
-          java = {
-            signatureHelp = { enabled = true },
-            contentProvider = { preferred = 'fernflower' },
-            semanticHighlighting = {
-              enabled = true,
-            },
-            completion = {
-              favoriteStaticMembers = {
-                'org.junit.Assert.*',
-                'org.junit.Assume.*',
-                'org.junit.jupiter.api.Assertions.*',
-                'org.junit.jupiter.api.Assumptions.*',
-              },
-            },
-          },
-        },
-
-        capabilities = vim.tbl_extend('keep', capabilities, {
-          textDocument = {
-            semanticTokens = {
-              dynamicRegistration = false,
-              tokenTypes = {
-                'namespace',
-                'type',
-                'class',
-                'enum',
-                'interface',
-                'struct',
-                'typeParameter',
-                'parameter',
-                'variable',
-                'property',
-                'enumMember',
-                'event',
-                'function',
-                'method',
-                'macro',
-                'keyword',
-                'modifier',
-                'comment',
-                'string',
-                'number',
-                'regexp',
-                'operator',
-              },
-              tokenModifiers = {
-                'declaration',
-                'definition',
-                'readonly',
-                'static',
-                'deprecated',
-                'abstract',
-                'async',
-                'modification',
-                'documentation',
-                'defaultLibrary',
-              },
-              formats = { 'relative' },
-            },
-          },
-        }),
-        handlers = handlers,
-
-        on_attach = function(client, bufnr)
-          -- Regular LSP keymaps
-          client.server_capabilities.semanticTokensProvider = {
-            full = true,
-            legend = {
-              tokenTypes = {},
-              tokenModifiers = {},
-            },
-            range = true,
-          }
-          setup_lsp_keymaps(bufnr)
-          setup_document_highlight(client, bufnr)
-        end,
-      }
-
-      -- Start JDTLS
-      jdtls.start_or_attach(jdtls_config)
-    end
 
     -- Server Configurations
     local servers = {
@@ -339,7 +233,7 @@ return {
         function(server_name)
           local server_config = servers[server_name] or {}
           server_config.capabilities = capabilities
-          server_config.handlers = vim.tbl_deep_extend('force', handlers, server_config.handlers or {})
+          server_config.handlers = handlers
           require('lspconfig')[server_name].setup(server_config)
         end,
       },
@@ -381,11 +275,5 @@ return {
         },
       },
     }
-
-    vim.api.nvim_create_autocmd('FileType', {
-      pattern = 'java',
-      callback = setup_jdtls,
-      group = vim.api.nvim_create_augroup('JavaLSP', { clear = true }),
-    })
   end,
 }
