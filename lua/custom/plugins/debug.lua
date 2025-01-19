@@ -34,11 +34,11 @@ return {
           layouts = {
             {
               elements = {
-                { id = 'scopes', size = 0.75 },
-                { id = 'watches', size = 0.25 },
+                { id = 'scopes', size = 0.5 },
+                { id = 'watches', size = 0.5 },
               },
-              position = 'left',
-              size = 40,
+              position = 'bottom',
+              size = 10,
             },
           },
           render = {
