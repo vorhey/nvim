@@ -32,8 +32,8 @@ vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>l', { desc = 'Save file', silent = true
 vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Explorer' })
 
 -- fterm
-vim.keymap.set('n', '<c-e>', '<CMD>lua require("FTerm").toggle()<CR>')
-vim.keymap.set('t', '<c-e>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
+vim.keymap.set('n', '<c-t>', '<CMD>lua require("FTerm").toggle()<CR>')
+vim.keymap.set('t', '<c-t>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
 
 -- center screen
 vim.keymap.set('n', '<c-d>', utils.lazy '<c-d>zz', { desc = 'Scroll down half screen' })
@@ -70,9 +70,6 @@ vim.keymap.set('n', '<C-Left>', ':vertical resize -5<CR>', { noremap = true, sil
 -- toggle autoformatting
 vim.keymap.set('n', '<leader>ta', utils.toggle_autoformat, { desc = 'Toggle autoformat', noremap = true, silent = true })
 
--- close current buffer
-vim.api.nvim_set_keymap('n', 'q', ':bd<CR>', { noremap = true, silent = true, desc = 'Buffer: Close' })
-
 -- remap visual block mode
 vim.keymap.set('n', '<A-v>', '<C-v>')
 
@@ -105,4 +102,3 @@ end, { expr = true, desc = 'Paste' })
 
 -- exit
 vim.keymap.set('n', '<leader>Q', ':qa!<CR>', { desc = 'Quit' })
-vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Quit' })
