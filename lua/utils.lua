@@ -137,4 +137,41 @@ M.is_dotnet_installed = function()
   return vim.fn.executable 'dotnet' == 1
 end
 
+M.file_info = function()
+  local indent_type = vim.bo.expandtab and 'spaces' or 'tabs'
+  local indent_size = vim.bo.shiftwidth or vim.bo.tabstop
+  local encoding = vim.bo.fileencoding ~= '' and vim.bo.fileencoding or vim.o.encoding
+  local format = vim.bo.fileformat
+  local filetype = vim.bo.filetype ~= '' and vim.bo.filetype or 'none'
+
+  local message = string.format('Indent: %s(%d) | Encoding: %s | Format: %s | Filetype: %s', indent_type, indent_size, encoding, format, filetype)
+
+  require('mini.notify').make_notify()(message, vim.log.levels.INFO)
+end
+
+M.file_diagnostics = function()
+  local diagnostics = vim.diagnostic.get()
+  local counts = {
+    errors = 0,
+    warnings = 0,
+    info = 0,
+    hints = 0,
+  }
+
+  for _, diagnostic in ipairs(diagnostics) do
+    if diagnostic.severity == vim.diagnostic.severity.ERROR then
+      counts.errors = counts.errors + 1
+    elseif diagnostic.severity == vim.diagnostic.severity.WARN then
+      counts.warnings = counts.warnings + 1
+    elseif diagnostic.severity == vim.diagnostic.severity.INFO then
+      counts.info = counts.info + 1
+    elseif diagnostic.severity == vim.diagnostic.severity.HINT then
+      counts.hints = counts.hints + 1
+    end
+  end
+
+  local message = string.format('󰅙 [%d] Errors |  [%d] Warnings', counts.errors, counts.warnings, counts.info, counts.hints)
+
+  require('mini.notify').make_notify()(message, vim.log.levels.INFO)
+end
 return M

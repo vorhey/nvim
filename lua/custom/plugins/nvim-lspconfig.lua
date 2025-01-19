@@ -59,6 +59,8 @@ return {
         vim.lsp.buf.format { async = true }
       end
 
+      local utils = require 'utils'
+
       vim.keymap.set('n', '<leader>lf', format_buffer, vim.tbl_extend('force', opts, { desc = 'LSP: Format buffer' }))
       vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, vim.tbl_extend('force', opts, { desc = 'LSP: Diagnostic messages' }))
       vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, vim.tbl_extend('force', opts, { desc = 'LSP: Rename' }))
@@ -73,44 +75,15 @@ return {
           },
         }
       end, vim.tbl_extend('force', opts, { desc = 'LSP: Range Code Action' }))
+      vim.keymap.set('n', '<leader>lD', function()
+        utils.file_diagnostics()
+      end, { desc = 'LSP: Diagnostics summary' })
+
+      vim.keymap.set('n', '<leader>li', function()
+        utils.file_info()
+      end, { desc = 'LSP: File info' })
     end
 
-    vim.keymap.set('n', '<leader>lD', function()
-      local diagnostics = vim.diagnostic.get()
-      local counts = {
-        errors = 0,
-        warnings = 0,
-        info = 0,
-        hints = 0,
-      }
-
-      for _, diagnostic in ipairs(diagnostics) do
-        if diagnostic.severity == vim.diagnostic.severity.ERROR then
-          counts.errors = counts.errors + 1
-        elseif diagnostic.severity == vim.diagnostic.severity.WARN then
-          counts.warnings = counts.warnings + 1
-        elseif diagnostic.severity == vim.diagnostic.severity.INFO then
-          counts.info = counts.info + 1
-        elseif diagnostic.severity == vim.diagnostic.severity.HINT then
-          counts.hints = counts.hints + 1
-        end
-      end
-
-      local message = string.format('󰅙 [%d] Errors |  [%d] Warnings', counts.errors, counts.warnings, counts.info, counts.hints)
-
-      require('mini.notify').make_notify()(message, vim.log.levels.INFO)
-    end, { desc = 'LSP: Diagnostics summary' })
-    vim.keymap.set('n', '<leader>li', function()
-      local indent_type = vim.bo.expandtab and 'spaces' or 'tabs'
-      local indent_size = vim.bo.shiftwidth
-      local encoding = vim.bo.fileencoding ~= '' and vim.bo.fileencoding or vim.o.encoding
-      local format = vim.bo.fileformat
-      local filetype = vim.bo.filetype ~= '' and vim.bo.filetype or 'none'
-
-      local message = string.format('Indent: %s(%d) | Encoding: %s | Format: %s | Filetype: %s', indent_type, indent_size, encoding, format, filetype)
-
-      require('mini.notify').make_notify()(message, vim.log.levels.INFO)
-    end, { desc = 'LSP: File info' })
     -- Document highlight
     local function setup_document_highlight(client, bufnr)
       if client.server_capabilities.documentHighlightProvider then
