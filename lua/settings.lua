@@ -141,3 +141,5 @@ vim.o.cmdheight = 1
 vim.opt.lazyredraw = true
 
 vim.opt.ttyfast = true
+
+vim.opt.laststatus = 0
