@@ -178,6 +178,20 @@ return {
         {
           type = 'pwa-node',
           request = 'launch',
+          name = 'Launch TypeScript File (pnpm tsx)',
+          program = '${file}',
+          runtimeExecutable = 'pnpm',
+          runtimeArgs = { 'tsx', '${file}' },
+          cwd = '${workspaceFolder}',
+          sourceMaps = true,
+          resolveSourceMapLocations = {
+            '${workspaceFolder}/**',
+            '!**/node_modules/.pnpm/**',
+          },
+        },
+        {
+          type = 'pwa-node',
+          request = 'launch',
           name = 'Launch TypeScript File (ts-node installed locally)',
           runtimeArgs = { '--require', 'ts-node/register' },
           runtimeExecutable = 'node',
