@@ -178,16 +178,18 @@ return {
         {
           type = 'pwa-node',
           request = 'launch',
-          name = 'Launch TypeScript File (pnpm tsx)',
+          name = 'Launch TypeScript File (bunx tsx)',
           program = '${file}',
-          runtimeExecutable = 'pnpm',
-          runtimeArgs = { 'tsx', '${file}' },
+          runtimeExecutable = 'bunx',
+          runtimeArgs = { 'tsx', '--no-cache', '--no-warnings', '${file}' },
           cwd = '${workspaceFolder}',
           sourceMaps = true,
-          resolveSourceMapLocations = {
-            '${workspaceFolder}/**',
-            '!**/node_modules/.pnpm/**',
+          resolveSourceMapLocations = { '${workspaceFolder}/**', '!**/node_modules/**' },
+          skipFiles = {
+            '<node_internals>/**',
+            '${workspaceFolder}/node_modules/**',
           },
+          console = 'integratedTerminal',
         },
         {
           type = 'pwa-node',
