@@ -174,4 +174,58 @@ M.file_diagnostics = function()
 
   require('mini.notify').make_notify()(message, vim.log.levels.INFO)
 end
+
+M.ignore_patterns = {
+  -- Version Control
+  '.git',
+
+  -- Node.js
+  'node_modules',
+  '.next',
+  '.npm',
+  '.yarn',
+
+  -- Build outputs
+  'dist',
+  'target',
+  'build',
+  'coverage',
+  '__snapshots__',
+
+  -- Python
+  '**pycache**',
+  '.venv',
+  '.pytest_cache',
+  '.mypy_cache',
+  '.ruff_cache',
+
+  -- .NET
+  'bin',
+  'obj',
+  'Debug',
+  'Release',
+  '.vs',
+  'packages',
+  'TestResults',
+
+  -- IDE and editors
+  '.idea',
+  '.vscode',
+
+  -- Package managers
+  'vendor',
+  '.bundle',
+  '.cargo',
+
+  -- Caches and temps
+  '.cache',
+  'tmp',
+  'temp',
+  'logs',
+
+  -- Other tools
+  '.terraform',
+  '.gradle',
+  '.DS_Store',
+}
 return M
