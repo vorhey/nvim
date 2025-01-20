@@ -17,15 +17,31 @@ return {
       default = { 'lsp', 'path' },
     },
     completion = {
+      trigger = {
+        show_on_insert_on_trigger_character = false,
+      },
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 200,
-        window = {
-          border = 'rounded',
-        },
       },
       menu = {
-        border = 'rounded',
+        scrollbar = false,
+        draw = {
+          components = {
+            kind_icon = {
+              ellipsis = false,
+              text = function(ctx)
+                local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+                return kind_icon
+              end,
+              -- Optionally, you may also use the highlights from mini.icons
+              highlight = function(ctx)
+                local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                return hl
+              end,
+            },
+          },
+        },
       },
     },
   },
