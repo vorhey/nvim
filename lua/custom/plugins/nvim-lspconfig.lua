@@ -3,18 +3,10 @@ return {
   'neovim/nvim-lspconfig',
   dependencies = {
     'b0o/schemastore.nvim',
-    {
-      'nvim-flutter/flutter-tools.nvim',
-      lazy = true,
-      ft = { 'dart' },
-    },
+    { 'nvim-flutter/flutter-tools.nvim', lazy = true, ft = { 'dart' } },
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
-    {
-      'seblj/roslyn.nvim',
-      lazy = true,
-      ft = { 'cs' },
-    },
+    { 'seblj/roslyn.nvim', lazy = true, ft = { 'cs' } },
     {
       'folke/lazydev.nvim',
       dependencies = { 'Bilal2453/luvit-meta', lazy = true },
@@ -24,6 +16,8 @@ return {
   },
 
   config = function()
+    local utils = require 'utils'
+    -- Disable virtual text
     vim.diagnostic.config { virtual_text = false }
 
     -- Capabilities
@@ -41,50 +35,35 @@ return {
     }
 
     -- Diagnostics signs
-    local signs = {
+    for _, sign in ipairs {
       { name = 'DiagnosticSignError', text = '' },
       { name = 'DiagnosticSignWarn', text = '' },
       { name = 'DiagnosticSignHint', text = '' },
       { name = 'DiagnosticSignInfo', text = '' },
-    }
-
-    for _, sign in ipairs(signs) do
+    } do
       vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = '' })
     end
 
     -- Keymaps
     local function setup_lsp_keymaps(bufnr)
       local opts = { buffer = bufnr }
+
       local function format_buffer()
         vim.lsp.buf.format { async = true }
       end
 
-      local utils = require 'utils'
-
-      vim.keymap.set('n', '<leader>lf', format_buffer, vim.tbl_extend('force', opts, { desc = 'LSP: Format buffer' }))
-      vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, vim.tbl_extend('force', opts, { desc = 'LSP: Diagnostic messages' }))
+      vim.keymap.set('n', '<leader>lf', format_buffer, vim.tbl_extend('force', opts, { desc = 'LSP: Format Buffer' }))
+      vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, vim.tbl_extend('force', opts, { desc = 'LSP: Diagnostic Messages' }))
       vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, vim.tbl_extend('force', opts, { desc = 'LSP: Rename' }))
       vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, vim.tbl_extend('force', opts, { desc = 'LSP: Code Action' }))
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, vim.tbl_extend('force', opts, { desc = 'LSP: Hover Documentation' }))
       vim.keymap.set('n', 'gR', vim.lsp.buf.references, vim.tbl_extend('force', opts, { desc = 'LSP: Native References' }))
-      vim.keymap.set('v', '<leader>la', function()
-        vim.lsp.buf.code_action {
-          range = {
-            ['start'] = vim.api.nvim_buf_get_mark(0, '<'),
-            ['end'] = vim.api.nvim_buf_get_mark(0, '>'),
-          },
-        }
-      end, vim.tbl_extend('force', opts, { desc = 'LSP: Range Code Action' }))
-      vim.keymap.set('n', '<leader>lD', function()
-        utils.file_diagnostics()
-      end, { desc = 'LSP: Diagnostics summary' })
-
-      vim.keymap.set('n', '<leader>li', function()
-        utils.file_info()
-      end, { desc = 'LSP: File info' })
+      vim.keymap.set('v', '<leader>la', utils.code_action_on_selection, vim.tbl_extend('force', opts, { desc = 'LSP: Range Code Action' }))
+      vim.keymap.set('n', '<leader>lD', utils.file_diagnostics, vim.tbl_extend('force', opts, { desc = 'LSP: Diagnostics Summary' }))
+      vim.keymap.set('n', '<leader>li', utils.file_info, vim.tbl_extend('force', opts, { desc = 'LSP: File Information' }))
     end
 
-    -- Document highlight
+    -- Autocommands
     local function setup_document_highlight(client, bufnr)
       if client.server_capabilities.documentHighlightProvider then
         vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
@@ -98,7 +77,6 @@ return {
       end
     end
 
-    -- LSP attach
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('lsp-attach-group', { clear = true }),
       callback = function(event)
@@ -109,15 +87,13 @@ return {
         if client.name == 'jdtls' then
           client.server_capabilities.semanticTokensProvider = nil
         end
-
         setup_lsp_keymaps(event.buf)
         setup_document_highlight(client, event.buf)
       end,
     })
 
-    -- JDTLS
-    local java_home = os.getenv 'JAVA_DEV_HOME' or os.getenv 'JAVA_HOME' or 'java'
     -- Set JAVA_HOME in the process environment so jdtls script can find it
+    local java_home = os.getenv 'JAVA_DEV_HOME' or os.getenv 'JAVA_HOME' or 'java'
     vim.fn.setenv('JAVA_HOME', java_home)
 
     -- Server Configurations
@@ -207,9 +183,6 @@ return {
               classMemberSnippets = { enabled = true },
             },
             suggestionActions = { enabled = true },
-            preferences = {
-              importModuleSpecifierEnding = 'js',
-            },
           },
         },
       },
@@ -218,26 +191,7 @@ return {
     -- Mason setup with lazy loading
     require('mason').setup {}
     require('mason-lspconfig').setup {
-      ensure_installed = {
-        'gopls',
-        'lua_ls',
-        'html',
-        'cssls',
-        'angularls',
-        'jsonls',
-        'vtsls',
-        'dockerls',
-        'docker_compose_language_service',
-        'emmet_language_server',
-        'bashls',
-        'groovyls',
-        'cucumber_language_server',
-        'eslint',
-        'intelephense',
-        'clangd',
-        'basedpyright',
-        'jdtls',
-      },
+      ensure_installed = utils.mason_servers,
       handlers = {
         function(server_name)
           local server_config = servers[server_name] or {}

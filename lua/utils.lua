@@ -175,6 +175,15 @@ M.file_diagnostics = function()
   require('mini.notify').make_notify()(message, vim.log.levels.INFO)
 end
 
+M.code_action_on_selection = function()
+  vim.lsp.buf.code_action {
+    range = {
+      ['start'] = vim.api.nvim_buf_get_mark(0, '<'),
+      ['end'] = vim.api.nvim_buf_get_mark(0, '>'),
+    },
+  }
+end
+
 M.ignore_patterns = {
   -- Version Control
   '.git',
@@ -227,5 +236,26 @@ M.ignore_patterns = {
   '.terraform',
   '.gradle',
   '.DS_Store',
+}
+
+M.mason_servers = {
+  'gopls',
+  'lua_ls',
+  'html',
+  'cssls',
+  'angularls',
+  'jsonls',
+  'vtsls',
+  'dockerls',
+  'docker_compose_language_service',
+  'emmet_language_server',
+  'bashls',
+  'groovyls',
+  'cucumber_language_server',
+  'eslint',
+  'intelephense',
+  'clangd',
+  'basedpyright',
+  'jdtls',
 }
 return M
