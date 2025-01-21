@@ -101,6 +101,21 @@ return {
 
     -- Server Configurations
     local servers = {
+      cucumber_language_server = {
+        handlers = vim.tbl_extend('force', handlers, {
+          ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
+            if result.diagnostics then
+              local IGNORED_DIAGNOSTIC_CODES = {
+                ['cucumber.undefined-step'] = true,
+              }
+              result.diagnostics = vim.tbl_filter(function(diagnostic)
+                return not IGNORED_DIAGNOSTIC_CODES[diagnostic.code]
+              end, result.diagnostics)
+            end
+            vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+          end,
+        }),
+      },
       lua_ls = {
         settings = {
           Lua = {
