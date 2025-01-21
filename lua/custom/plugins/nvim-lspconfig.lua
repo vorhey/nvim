@@ -87,6 +87,9 @@ return {
         if client.name == 'jdtls' then
           client.server_capabilities.semanticTokensProvider = nil
         end
+        if client.server_capabilities.inlayHintProvider then
+          vim.lsp.inlay_hint.enable()
+        end
         setup_lsp_keymaps(event.buf)
         setup_document_highlight(client, event.buf)
       end,
@@ -101,6 +104,10 @@ return {
       lua_ls = {
         settings = {
           Lua = {
+            hint = {
+              enable = true,
+              arrayIndex = 'Disable',
+            },
             runtime = {
               version = 'LuaJIT',
               path = vim.split(package.path, ';'),
@@ -134,6 +141,13 @@ return {
         cmd = { 'gopls', 'serve' },
         settings = {
           gopls = {
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              constantValues = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
             gofumpt = true,
             codelenses = {
               gc_details = false,
@@ -184,6 +198,7 @@ return {
         settings = {
           vtsls = {
             experimental = {
+              maxInlayHintLength = 20,
               completion = {
                 enableServerSideFuzzyMatch = true,
                 entriesLimit = 100,
@@ -192,6 +207,12 @@ return {
             enableMoveToFileCodeAction = true,
           },
           javascript = {
+            inlayHints = {
+              parameterTypes = { enabled = true },
+              variableTypes = { enabled = true },
+              propertyDeclarationTypes = { enabled = true },
+              functionLikeReturnTypes = { enabled = true },
+            },
             suggest = {
               enabled = true,
               completeFunctionCalls = true,
@@ -200,6 +221,14 @@ return {
               classMemberSnippets = { enabled = true },
             },
             suggestionActions = { enabled = true },
+          },
+          typescript = {
+            inlayHints = {
+              parameterTypes = { enabled = true },
+              variableTypes = { enabled = true },
+              propertyDeclarationTypes = { enabled = true },
+              functionLikeReturnTypes = { enabled = true },
+            },
           },
         },
       },
