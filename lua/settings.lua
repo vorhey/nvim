@@ -143,3 +143,50 @@ vim.opt.lazyredraw = true
 vim.opt.ttyfast = true
 
 vim.opt.laststatus = 0
+
+-- Undercurl
+vim.cmd [[let &t_Cs = "\e[4:3m"]]
+vim.cmd [[let &t_Ce = "\e[4:0m"]]
+
+-- Theme
+vim.cmd [[
+  highlight Normal guibg=NONE
+  highlight NormalFloat guibg=NONE
+  highlight NormalNC guibg=NONE
+  highlight TabLineFill guibg=NONE
+  highlight FoldColumn guibg=NONE
+  highlight Pmenu guibg=NONE
+  highlight StatusLine guibg=NONE guifg=#c6c6c6
+  highlight StatusLineNC guibg=NONE guifg=#989898
+  highlight SignColumn guibg=NONE
+  highlight FloatBorder guibg=NONE
+  highlight FloatTitle guibg=NONE
+  highlight LineNr guifg=#c6c6c6
+  highlight CursorLine guibg=NONE
+  highlight Visual guibg=#214283
+  highlight PmenuSel guibg=#82ffac guifg=#000000
+  highlight CmpBorder guifg=#c6c6c6
+  highlight Comment guifg=#989898 gui=NONE
+  highlight Type guifg=#c6c6c6 gui=NONE
+  highlight Folded guifg=#c6c6c6
+  highlight DapBreakpoint guifg=#f79292
+  highlight DapBreakpointGreen guifg=#82ffac
+  highlight DapBreakpointYellow guifg=#ffd700
+  highlight DapBreakpointRejected guifg=#ff9ea8
+  highlight DapLogPoint guifg=#82ffac
+  highlight DapStopped guifg=#82ffac guibg=#214283
+  highlight DiagnosticVirtualTextError guifg=#ff9ea8
+  highlight DiagnosticUnnecessary gui=undercurl
+  highlight DiagnosticSignHint guifg=#c6c6c6
+  highlight ModeMsg guibg=NONE guifg=#c6c6c6
+  highlight DapUIPlayPauseNC guibg=NONE
+  highlight DapUIRestartNC guibg=NONE
+  highlight DapUIUnavailableNC guibg=NONE guifg=#c6c6c6
+  highlight WinBar guibg=NONE
+  highlight WinBarNC guibg=NONE
+  highlight DapUIStopNC guibg=NONE
+  highlight DapUIStepOverNC guibg=NONE
+  highlight DapUIStepIntoNC guibg=NONE
+  highlight DapUIStepBackNC guibg=NONE
+  highlight DapUIStepOutNC guibg=NONE
+]]
