@@ -242,7 +242,7 @@ return {
         function(server_name)
           local server_config = servers[server_name] or {}
           server_config.capabilities = capabilities
-          server_config.handlers = handlers
+          server_config.handlers = vim.tbl_extend('force', handlers, server_config.handlers or {})
           require('lspconfig')[server_name].setup(server_config)
         end,
       },
