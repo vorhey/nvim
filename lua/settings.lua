@@ -142,8 +142,6 @@ vim.opt.lazyredraw = true
 
 vim.opt.ttyfast = true
 
-vim.opt.laststatus = 0
-
 -- Undercurl
 vim.cmd [[let &t_Cs = "\e[4:3m"]]
 vim.cmd [[let &t_Ce = "\e[4:0m"]]
