@@ -95,10 +95,6 @@ return {
       end,
     })
 
-    -- Set JAVA_HOME in the process environment so jdtls script can find it
-    local java_home = os.getenv 'JAVA_DEV_HOME' or os.getenv 'JAVA_HOME' or 'java'
-    vim.fn.setenv('JAVA_HOME', java_home)
-
     -- Server Configurations
     local servers = {
       cucumber_language_server = {
@@ -261,6 +257,16 @@ return {
           require('lspconfig')[server_name].setup(server_config)
         end,
       },
+    }
+
+    -- JAVA
+    local java_home = os.getenv 'JAVA_DEV_HOME' or os.getenv 'JAVA_HOME' or 'java'
+    vim.fn.setenv('JAVA_HOME', java_home)
+    local mason_registry = require 'mason-registry'
+    require('lspconfig').jdtls.setup {
+      handlers = handlers,
+      capabilities = capabilities,
+      cmd = { vim.fn.exepath 'jdtls', '--jvm-arg=-javaagent:' .. mason_registry.get_package('jdtls'):get_install_path() .. '/lombok.jar' },
     }
 
     -- C#
