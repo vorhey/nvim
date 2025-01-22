@@ -6,6 +6,7 @@ return {
     { 'nvim-flutter/flutter-tools.nvim', lazy = true, ft = { 'dart' } },
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
     { 'seblj/roslyn.nvim', lazy = true, ft = { 'cs' } },
     {
       'folke/lazydev.nvim',
@@ -260,6 +261,9 @@ return {
     }
 
     -- JAVA
+    require('mason-tool-installer').setup {
+      ensure_installed = { 'jdtls' },
+    }
     local java_home = os.getenv 'JAVA_DEV_HOME' or os.getenv 'JAVA_HOME' or 'java'
     vim.fn.setenv('JAVA_HOME', java_home)
     local mason_registry = require 'mason-registry'
