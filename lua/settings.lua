@@ -142,7 +142,7 @@ vim.opt.lazyredraw = true
 
 vim.opt.ttyfast = true
 
-vim.opt.laststatus = 1
+vim.opt.cmdheight = 0
 
 -- Undercurl
 vim.cmd [[let &t_Cs = "\e[4:3m"]]
