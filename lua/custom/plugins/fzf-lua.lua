@@ -3,6 +3,7 @@ return {
   config = function()
     -- vars
     local fzf = require 'fzf-lua'
+    local config = fzf.config
     local actions = fzf.actions
     local utils = require 'utils'
 
@@ -31,6 +32,8 @@ return {
     end
 
     -- keybindings
+    config.defaults.keymap.fzf['ctrl-u'] = 'half-page-up'
+    config.defaults.keymap.fzf['ctrl-d'] = 'half-page-down'
     vim.keymap.set('n', '<leader>f:', fzf.command_history, { desc = 'Find: Command History' })
     vim.keymap.set('n', '<leader>ff', filtered_files, { desc = 'Find: Files' })
     vim.keymap.set('n', '<leader>fd', fzf.git_status, { desc = 'Find: Git' })
@@ -57,10 +60,25 @@ return {
 
     -- fzf setup
     fzf.setup {
+      actions = {
+        files = {
+          ['enter'] = actions.file_edit_or_qf,
+          ['alt-s'] = actions.file_vsplit,
+        },
+      },
       lsp = {
         jump_to_single_result = true, -- automatically jump if there is only one result
       },
+      fzf_opts = {
+        ['--no-scrollbar'] = true,
+      },
       grep = {
+        actions = {
+          ['alt-i'] = { actions.toggle_ignore },
+          ['alt-h'] = { actions.toggle_hidden },
+        },
+      },
+      files = {
         actions = {
           ['alt-i'] = { actions.toggle_ignore },
           ['alt-h'] = { actions.toggle_hidden },
