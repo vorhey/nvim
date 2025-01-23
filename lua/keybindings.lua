@@ -87,7 +87,6 @@ vim.keymap.set('n', '[b', ':bprev<CR>', { desc = 'Previous buffer' })
 
 -- next buffer
 vim.keymap.set('n', ']b', ':bnext<CR>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<Tab>', ':bnext<CR>', { noremap = true, silent = true })
 
 -- copy previous line till the end of line
 vim.keymap.set('i', '<c-y>', utils.copy_line_above, { noremap = true, silent = true })
@@ -99,6 +98,9 @@ vim.keymap.set({ 'n', 'x' }, '<leader>p', function()
   vim.fn.setreg('+', cleaned)
   return '"+p'
 end, { expr = true, desc = 'Paste' })
+
+-- close all other buffers
+vim.keymap.set('n', '<leader>o', utils.close_all_other_buffers, { desc = 'Close all other buffers' })
 
 -- exit
 vim.keymap.set('n', '<leader>Q', ':qa!<CR>', { desc = 'Quit' })
