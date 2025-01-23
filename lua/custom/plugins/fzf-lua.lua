@@ -75,6 +75,12 @@ return {
           ['alt-h'] = { actions.toggle_hidden },
         },
       },
+      winopts = {
+        preview = {
+          vertical = 'up:40%',
+          layout = 'vertical',
+        },
+      },
     }
   end,
 }
