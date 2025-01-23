@@ -5,7 +5,7 @@ return {
     local win_config = function()
       local has_statusline = vim.o.laststatus > 0
       local bottom_space = vim.o.cmdheight + (has_statusline and 1 or 0)
-      return { anchor = 'SE', col = vim.o.columns, row = vim.o.lines - bottom_space }
+      return { anchor = 'SE', col = vim.o.columns, row = vim.o.lines - bottom_space, border = 'none' }
     end
     require('mini.notify').setup {
       content = {
