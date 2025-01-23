@@ -2,6 +2,12 @@ return {
   'echasnovski/mini.statusline',
   version = false,
   config = function()
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = { 'alpha', 'Scratch' },
+      callback = function()
+        vim.b.ministatusline_disable = true
+      end,
+    })
     require('mini.statusline').setup {
       content = {
         active = function()
