@@ -17,6 +17,7 @@ return {
           local filename = MiniStatusline.section_filename { trunc_width = 120 }
           local fileinfo = MiniStatusline.section_fileinfo { trunc_width = 120 }
           local diff = MiniStatusline.section_diff { trunc_width = 75 }
+          local lsp = MiniStatusline.section_lsp { trunc_width = 75 }
 
           -- Custom spacing info section
           local spacing_info = ''
@@ -30,7 +31,7 @@ return {
             { hl = 'MiniStatuslineDevinfo', strings = { '', filename } },
             '%<',
             '%=',
-            { hl = 'MiniStatuslineFileinfo', strings = { '', diff, fileinfo, '󱁐', spacing_info, diagnostics } },
+            { hl = 'MiniStatuslineFileinfo', strings = { lsp, '', diff, fileinfo, '󱁐', spacing_info, diagnostics } },
             { hl = mode_hl, strings = { search } },
           }
         end,
