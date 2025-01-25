@@ -9,14 +9,14 @@ return {
   },
   lazy = true,
   keys = {
-    { '<leader>dc', desc = 'Debug: Start/Continue' },
-    { '<leader>dn', desc = 'Debug: Step Over' },
-    { '<leader>ds', desc = 'Debug: Stop' },
-    { '<leader>dt', desc = 'Debug: Terminate' },
-    { '<leader>db', desc = 'Debug: Toggle Breakpoint' },
-    { '<leader>dB', desc = 'Debug: Conditional Breakpoint' },
-    { '<leader>di', desc = 'Debug: Toggle Interface' },
-    { '<leader>dr', desc = 'Debug: Clear Breakpoints' },
+    { '<leader>dc', desc = 'debug: start/continue' },
+    { '<leader>dn', desc = 'debug: step over' },
+    { '<leader>ds', desc = 'debug: stop' },
+    { '<leader>dt', desc = 'debug: terminate' },
+    { '<leader>db', desc = 'debug: toggle breakpoint' },
+    { '<leader>dB', desc = 'debug: conditional breakpoint' },
+    { '<leader>di', desc = 'debug: toggle interface' },
+    { '<leader>dr', desc = 'debug: clear breakpoints' },
   },
   config = function()
     local dap = require 'dap'
