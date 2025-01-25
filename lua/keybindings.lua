@@ -68,7 +68,7 @@ vim.keymap.set('n', '<C-Right>', ':vertical resize +5<CR>', { noremap = true, si
 vim.keymap.set('n', '<C-Left>', ':vertical resize -5<CR>', { noremap = true, silent = true })
 
 -- toggle autoformatting
-vim.keymap.set('n', '<leader>ta', utils.toggle_autoformat, { desc = 'Toggle autoformat', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>ta', utils.toggle_autoformat, { desc = 'toggle autoformat', noremap = true, silent = true })
 
 -- remap visual block mode
 vim.keymap.set('n', '<A-v>', '<C-v>')
@@ -80,7 +80,7 @@ vim.keymap.set('x', 'al', '$o0', { desc = 'Around line text object' })
 vim.keymap.set('o', 'al', ':<C-u>normal val<CR>', { desc = 'Around line text object' })
 
 -- toggle supermaven
-vim.keymap.set('n', '<leader>tm', utils.toggle_supermaven, { desc = 'Toggle supermaven' })
+vim.keymap.set('n', '<leader>tm', utils.toggle_supermaven, { desc = 'toggle supermaven' })
 
 -- previous buffer
 vim.keymap.set('n', '[b', ':bprev<CR>', { desc = 'Previous buffer' })

@@ -34,17 +34,17 @@ return {
     -- keybindings
     config.defaults.keymap.fzf['ctrl-u'] = 'half-page-up'
     config.defaults.keymap.fzf['ctrl-d'] = 'half-page-down'
-    vim.keymap.set('n', '<leader>f:', fzf.command_history, { desc = 'Find: Command History' })
-    vim.keymap.set('n', '<leader>ff', filtered_files, { desc = 'Find: Files' })
-    vim.keymap.set('n', '<leader>fd', fzf.git_status, { desc = 'Find: Git' })
-    vim.keymap.set('n', '<leader>fg', filtered_grep, { desc = 'Find: LiveGrep (root)' })
-    vim.keymap.set('n', '<leader>/', fzf.live_grep, { desc = 'Find: LiveGrep' })
-    vim.keymap.set('n', '<leader>fw', fzf.grep_cword, { desc = 'Find: Grep Current Word' })
-    vim.keymap.set('n', '<leader>fW', fzf.grep_cWORD, { desc = 'Find: Grep Current Word' })
-    vim.keymap.set('n', '<leader>f.', fzf.oldfiles, { desc = 'Find: Old files' })
-    vim.keymap.set('n', '<leader>fa', fzf.buffers, { desc = 'Find: Buffers' })
-    vim.keymap.set('n', '<leader>fr', fzf.resume, { desc = 'Find: Resume' })
-    vim.keymap.set('v', '<leader>f', fzf.grep_visual, { desc = 'Find: Grep Selection' })
+    vim.keymap.set('n', '<leader>f:', fzf.command_history, { desc = 'Find: command history' })
+    vim.keymap.set('n', '<leader>ff', filtered_files, { desc = 'find: files' })
+    vim.keymap.set('n', '<leader>fd', fzf.git_status, { desc = 'find: git' })
+    vim.keymap.set('n', '<leader>fg', filtered_grep, { desc = 'find: livegrep (root)' })
+    vim.keymap.set('n', '<leader>/', fzf.live_grep, { desc = 'find: livegrep' })
+    vim.keymap.set('n', '<leader>fw', fzf.grep_cword, { desc = 'find: grep current word' })
+    vim.keymap.set('n', '<leader>fW', fzf.grep_cWORD, { desc = 'find: grep current word' })
+    vim.keymap.set('n', '<leader>f.', fzf.oldfiles, { desc = 'find: old files' })
+    vim.keymap.set('n', '<leader>fa', fzf.buffers, { desc = 'find: buffers' })
+    vim.keymap.set('n', '<leader>fr', fzf.resume, { desc = 'find: resume' })
+    vim.keymap.set('v', '<leader>f', fzf.grep_visual, { desc = 'find: grep selection' })
 
     vim.keymap.set('n', 'gr', function()
       fzf.lsp_references { jump_to_single_result = true, ignore_current_line = true }
