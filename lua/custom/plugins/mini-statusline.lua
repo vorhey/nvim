@@ -2,12 +2,26 @@ return {
   'echasnovski/mini.statusline',
   version = false,
   config = function()
+    local utils = require 'utils'
     vim.api.nvim_create_autocmd('FileType', {
       pattern = { 'alpha', 'Scratch' },
       callback = function()
         vim.b.ministatusline_disable = true
       end,
     })
+
+    local function count_unsaved_buffers()
+      local unsaved_count = 0
+      for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_buf_is_loaded(buf) then
+          if vim.bo[buf].modified then
+            unsaved_count = unsaved_count + 1
+          end
+        end
+      end
+      return unsaved_count
+    end
+
     require('mini.statusline').setup {
       content = {
         active = function()
@@ -27,10 +41,21 @@ return {
             spacing_info = (et and 'SP:' or 'TAB:') .. width
           end
 
+          -- Count unsaved buffers
+          local unsaved_count = count_unsaved_buffers()
+          local unsaved_indicator = ''
+          if unsaved_count > 0 then
+            unsaved_indicator = string.format(' [%d unsaved]', unsaved_count)
+          end
+
+          local supermaven = utils.is_supermaven_enabled() and '' or ''
+
           return MiniStatusline.combine_groups {
             { hl = 'MiniStatuslineDevinfo', strings = { '', filename } },
             '%<',
             '%=',
+            { hl = 'WarningMsg', strings = { unsaved_indicator } },
+            { hl = 'Added', strings = { supermaven } },
             { hl = 'MiniStatuslineFileinfo', strings = { lsp, '', diff, fileinfo, '󱁐', spacing_info, diagnostics } },
             { hl = mode_hl, strings = { search } },
           }

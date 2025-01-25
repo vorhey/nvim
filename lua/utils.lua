@@ -126,6 +126,10 @@ M.toggle_supermaven = function()
   print('Supermaven ' .. (supermaven_enabled and 'enabled' or 'disabled'))
 end
 
+M.is_supermaven_enabled = function()
+  return supermaven_enabled
+end
+
 -- Copy line above
 M.copy_line_above = function()
   if vim.fn.col '.' > 1 then
