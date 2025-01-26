@@ -101,6 +101,7 @@ end, { expr = true, desc = 'Paste' })
 
 -- close all other buffers
 vim.keymap.set('n', '<leader>o', utils.close_all_other_buffers, { desc = 'Close all other buffers' })
+vim.keymap.set('n', '<leader>O', utils.close_current_buffer, { desc = 'Close current buffer' })
 
 -- exit
 vim.keymap.set('n', '<leader>Q', ':qa!<CR>', { desc = 'Quit' })
