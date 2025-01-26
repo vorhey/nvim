@@ -48,12 +48,20 @@ return {
             unsaved_indicator = string.format(' [%d unsaved]', unsaved_count)
           end
 
+          -- Macro recording indicator
+          local macro_indicator = ''
+          local recording_register = vim.fn.reg_recording()
+          if recording_register ~= '' then
+            macro_indicator = ' REC @' .. recording_register
+          end
+
           local supermaven = utils.is_supermaven_enabled() and '' or ''
 
           return MiniStatusline.combine_groups {
             { hl = 'MiniStatuslineDevinfo', strings = { '', filename } },
             '%<',
             '%=',
+            { hl = 'ErrorMsg', strings = { macro_indicator } }, -- Add macro recording indicator
             { hl = 'WarningMsg', strings = { unsaved_indicator } },
             { hl = 'Added', strings = { supermaven } },
             { hl = 'MiniStatuslineFileinfo', strings = { lsp, '', diff, fileinfo, '󱁐', spacing_info, diagnostics } },
