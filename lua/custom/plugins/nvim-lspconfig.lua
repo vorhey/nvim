@@ -56,16 +56,16 @@ return {
         vim.lsp.buf.format { range = { vim.fn.line "'<", vim.fn.line "'>" } }
       end
 
-      vim.keymap.set('n', '<leader>lf', format_buffer, vim.tbl_extend('force', opts, { desc = 'LSP: Format Buffer' }))
-      vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, vim.tbl_extend('force', opts, { desc = 'LSP: Diagnostic Messages' }))
-      vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, vim.tbl_extend('force', opts, { desc = 'LSP: Rename' }))
-      vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, vim.tbl_extend('force', opts, { desc = 'LSP: Code Action' }))
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, vim.tbl_extend('force', opts, { desc = 'LSP: Hover Documentation' }))
-      vim.keymap.set('n', 'gR', vim.lsp.buf.references, vim.tbl_extend('force', opts, { desc = 'LSP: Native References' }))
-      vim.keymap.set('n', '<leader>lD', utils.file_diagnostics, vim.tbl_extend('force', opts, { desc = 'LSP: Diagnostics Summary' }))
-      vim.keymap.set('n', '<leader>li', utils.file_info, vim.tbl_extend('force', opts, { desc = 'LSP: File Information' }))
-      vim.keymap.set('v', '<leader>la', utils.code_action_on_selection, vim.tbl_extend('force', opts, { desc = 'LSP: Range Code Action' }))
-      vim.keymap.set('v', '<leader>lf', format_selection, vim.tbl_extend('force', opts, { desc = 'LSP: Format Selection' }))
+      vim.keymap.set('n', '<leader>lf', format_buffer, vim.tbl_extend('force', opts, { desc = 'lsp: format buffer' }))
+      vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, vim.tbl_extend('force', opts, { desc = 'lsp: diagnostic messages' }))
+      vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, vim.tbl_extend('force', opts, { desc = 'lsp: rename' }))
+      vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, vim.tbl_extend('force', opts, { desc = 'lsp: code action' }))
+      vim.keymap.set('n', 'K', vim.lsp.buf.hover, vim.tbl_extend('force', opts, { desc = 'lsp: hover documentation' }))
+      vim.keymap.set('n', 'gR', vim.lsp.buf.references, vim.tbl_extend('force', opts, { desc = 'lsp: native references' }))
+      vim.keymap.set('n', '<leader>lD', utils.file_diagnostics, vim.tbl_extend('force', opts, { desc = 'lsp: diagnostics summary' }))
+      vim.keymap.set('n', '<leader>li', utils.file_info, vim.tbl_extend('force', opts, { desc = 'lsp: file information' }))
+      vim.keymap.set('v', '<leader>la', utils.code_action_on_selection, vim.tbl_extend('force', opts, { desc = 'lsp: range code action' }))
+      vim.keymap.set('v', '<leader>lf', format_selection, vim.tbl_extend('force', opts, { desc = 'lsp: format selection' }))
     end
 
     -- Autocommands
