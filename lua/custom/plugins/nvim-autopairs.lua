@@ -4,9 +4,10 @@ return {
   config = function()
     local npairs = require 'nvim-autopairs'
     local Rule = require 'nvim-autopairs.rule'
-    npairs.setup {
-      ignored_next_char = string.gsub([[ [%w%.%(%{%[%$'"`%s] ]], '%s+', ''),
-    }
+    npairs.setup {}
+    for _, i in ipairs(npairs.config.rules) do
+      i.key_map = nil
+    end
     npairs.add_rules {
       Rule('function%(.*%)%s*$', 'end', 'lua')
         :use_regex(true)
