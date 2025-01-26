@@ -201,6 +201,13 @@ M.close_all_other_buffers = function()
   end
 end
 
+M.close_current_buffer = function()
+  local current = vim.api.nvim_get_current_buf()
+  if vim.api.nvim_buf_is_valid(current) then
+    require('mini.bufremove').delete(current, false)
+  end
+end
+
 M.ignore_patterns = {
   -- Version Control
   '.git',
