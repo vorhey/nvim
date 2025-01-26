@@ -29,6 +29,7 @@ return {
         { '<leader>q', icon = { icon = '󰈆', color = 'orange' }, desc = 'quit' },
         { '<leader>Q', icon = { icon = '󰈆', color = 'orange' }, desc = 'quit all force' },
         { '<leader>e', icon = { icon = '󱏒', color = 'orange' }, desc = 'explorer' },
+        { '<leader>;', icon = { icon = '󱡁', color = 'orange' }, desc = 'arrow' },
         { '<leader><leader>', icon = { icon = '', color = 'orange' } },
         { '<leader>a', group = 'avante', icon = { icon = '󰁤', color = 'grey' } },
         { '<leader>b', group = 'bookmark', icon = { icon = '', color = 'grey' } },
