@@ -74,35 +74,35 @@ vim.keymap.set('n', '<leader>ta', utils.toggle_autoformat, { desc = 'toggle auto
 vim.keymap.set('n', '<A-v>', '<C-v>')
 
 -- line pseudo-text objects (https://gist.github.com/romainl/c0a8b57a36aec71a986f1120e1931f20#file-pseudo-text-objects-vim-L13)
-vim.keymap.set('x', 'il', 'g_o^', { desc = 'Inner line text object' })
-vim.keymap.set('o', 'il', ':<C-u>normal vil<CR>', { desc = 'Inner line text object' })
-vim.keymap.set('x', 'al', '$o0', { desc = 'Around line text object' })
-vim.keymap.set('o', 'al', ':<C-u>normal val<CR>', { desc = 'Around line text object' })
+vim.keymap.set('x', 'il', 'g_o^', { desc = 'inner line text object' })
+vim.keymap.set('o', 'il', ':<C-u>normal vil<CR>', { desc = 'inner line text object' })
+vim.keymap.set('x', 'al', '$o0', { desc = 'around line text object' })
+vim.keymap.set('o', 'al', ':<C-u>normal val<CR>', { desc = 'around line text object' })
 
 -- toggle supermaven
 vim.keymap.set('n', '<leader>tm', utils.toggle_supermaven, { desc = 'toggle supermaven' })
 
 -- previous buffer
-vim.keymap.set('n', '[b', ':bprev<CR>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '[b', ':bprev<CR>', { desc = 'previous buffer' })
 
 -- next buffer
-vim.keymap.set('n', ']b', ':bnext<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', ']b', ':bnext<CR>', { desc = 'next buffer' })
 
 -- copy previous line till the end of line
 vim.keymap.set('i', '<c-y>', utils.copy_line_above, { noremap = true, silent = true })
 
 -- copy and paste from sysclipboard
-vim.keymap.set({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'Yank' })
+vim.keymap.set({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'yank' })
 vim.keymap.set({ 'n', 'x' }, '<leader>p', function()
   local cleaned = vim.fn.substitute(vim.fn.getreg '+', '\r', '', 'g')
   vim.fn.setreg('+', cleaned)
   return '"+p'
-end, { expr = true, desc = 'Paste' })
+end, { expr = true, desc = 'paste' })
 
 -- close all other buffers
-vim.keymap.set('n', '<leader>o', utils.close_all_other_buffers, { desc = 'Close all other buffers' })
-vim.keymap.set('n', '<leader>O', utils.close_current_buffer, { desc = 'Close current buffer' })
+vim.keymap.set('n', '<leader>o', utils.close_all_other_buffers, { desc = 'close all other buffers' })
+vim.keymap.set('n', '<leader>O', utils.close_current_buffer, { desc = 'close current buffer' })
 
 -- exit
-vim.keymap.set('n', '<leader>Q', ':qa!<CR>', { desc = 'Quit' })
-vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Quit' })
+vim.keymap.set('n', '<leader>Q', ':qa!<CR>')
+vim.keymap.set('n', '<leader>q', ':q<CR>')
