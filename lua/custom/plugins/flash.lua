@@ -9,7 +9,7 @@ return {
       function()
         require('flash').jump()
       end,
-      desc = 'Flash',
+      desc = 'flash',
     },
   },
 }
