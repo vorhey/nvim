@@ -44,6 +44,7 @@ return {
     vim.keymap.set('n', '<leader>f.', fzf.oldfiles, { desc = 'find: old files' })
     vim.keymap.set('n', '<leader>fa', fzf.buffers, { desc = 'find: buffers' })
     vim.keymap.set('n', '<leader>fr', fzf.resume, { desc = 'find: resume' })
+    vim.keymap.set('n', '<leader>fm', fzf.marks, { desc = 'find: marks' })
     vim.keymap.set('v', '<leader>f', fzf.grep_visual, { desc = 'find: grep selection' })
 
     vim.keymap.set('n', 'gr', function()
