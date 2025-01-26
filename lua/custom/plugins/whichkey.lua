@@ -25,7 +25,9 @@ return {
         { '<leader>y', icon = { icon = '', color = 'orange' } },
         { '<leader>p', icon = { icon = '', color = 'orange' } },
         { '<leader>o', icon = { icon = '󰅙', color = 'orange' }, desc = 'Close all other buffers' },
-        { '<leader>Q', icon = { icon = '󰈆', color = 'orange' }, desc = 'Quit' },
+        { '<leader>O', icon = { icon = '󰅙', color = 'orange' }, desc = 'Close current buffer' },
+        { '<leader>q', icon = { icon = '󰈆', color = 'orange' }, desc = 'Quit' },
+        { '<leader>Q', icon = { icon = '󰈆', color = 'orange' }, desc = 'Quit all force' },
         { '<leader>e', icon = { icon = '󱏒', color = 'orange' }, desc = 'Explorer' },
         { '<leader><leader>', icon = { icon = '', color = 'orange' } },
         { '<leader>a', group = 'Avante', icon = { icon = '󰁤', color = 'grey' } },
@@ -36,18 +38,10 @@ return {
         { '<leader>h', group = 'Git', icon = { icon = '󰊢', color = 'grey' } },
         { '<leader>l', group = 'LSP', icon = { icon = '', color = 'grey' } },
         { '<leader>m', group = 'Testing', icon = { icon = '', color = 'grey' } },
-        { '<leader>/', hidden = true },
       },
     }
     wk.setup {
-      preset = 'modern',
-      win = {
-        height = { min = 10, max = 15 },
-      },
-      layout = {
-        width = { min = 40, max = 40 },
-        spacing = 6,
-      },
+      preset = 'helix',
       sort = { 'manual' },
     }
   end,
