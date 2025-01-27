@@ -69,6 +69,7 @@ return {
       vim.keymap.set('n', '<leader>li', utils.file_info, vim.tbl_extend('force', opts, { desc = 'lsp: file information' }))
       vim.keymap.set('v', '<leader>la', utils.code_action_on_selection, vim.tbl_extend('force', opts, { desc = 'lsp: range code action' }))
       vim.keymap.set('v', '<leader>lf', format_selection, vim.tbl_extend('force', opts, { desc = 'lsp: format selection' }))
+      vim.keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, vim.tbl_extend('force', opts, { desc = 'lsp: signature help' }))
     end
 
     -- Autocommands
