@@ -5,9 +5,6 @@ return {
   priority = 1000,
   config = function()
     require('oldworld').setup {
-      integrations = {
-        neo_tree = true,
-      },
       styles = {
         booleans = { italic = false },
         comments = { italic = false },
@@ -66,6 +63,11 @@ return {
         ['@tag.attribute'] = { fg = '#d7c6f7' },
         ['@lsp.type.class.dart'] = { fg = '#e29eca', bold = true },
         ['@lsp.mod.constructor.dart'] = { fg = '#c6c6c6' },
+        -- Avante
+        AvanteConflictCurrent = { bg = '#214283' },
+        AvanteConflictCurrentLabel = { bg = '#2e2e2e' },
+        AvanteConflictIncoming = { bg = '#2e403e' },
+        AvanteConflictIncomingLabel = { bg = '#2e2e2e' },
       },
     }
     vim.cmd.colorscheme 'oldworld'
