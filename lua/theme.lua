@@ -68,6 +68,12 @@ return {
         AvanteConflictCurrentLabel = { bg = '#2e2e2e' },
         AvanteConflictIncoming = { bg = '#2e403e' },
         AvanteConflictIncomingLabel = { bg = '#2e2e2e' },
+        -- Blink
+        BlinkCmpMenu = { bg = 'NONE' },
+        BlinkCmpDoc = { bg = 'NONE' },
+        BlinkCmpDocBorder = { bg = 'NONE' },
+        BlinkCmpMenuBorder = { bg = 'NONE' },
+        BlinkCmpDocSeparator = { bg = 'NONE' },
       },
     }
     vim.cmd.colorscheme 'oldworld'
