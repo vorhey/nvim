@@ -26,6 +26,7 @@ return {
       },
       menu = {
         scrollbar = false,
+        border = 'rounded',
         draw = {
           components = {
             kind_icon = {
