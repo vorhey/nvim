@@ -22,8 +22,6 @@ return {
     wk.add {
       mode = { 'n' },
       {
-        { '<leader>y', icon = { icon = '', color = 'orange' } },
-        { '<leader>p', icon = { icon = '', color = 'orange' } },
         { '<leader>o', icon = { icon = '󰅙', color = 'orange' }, desc = 'close all other buffers' },
         { '<leader>O', icon = { icon = '󰅙', color = 'orange' }, desc = 'close current buffer' },
         { '<leader>q', icon = { icon = '󰈆', color = 'orange' }, desc = 'quit' },

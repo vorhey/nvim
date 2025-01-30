@@ -71,7 +71,10 @@ vim.keymap.set('n', '<C-Left>', ':vertical resize -5<CR>', { noremap = true, sil
 vim.keymap.set('n', '<leader>ta', utils.toggle_autoformat, { desc = 'toggle autoformat', noremap = true, silent = true })
 
 -- remap visual block mode
-vim.keymap.set('n', '<A-v>', '<C-v>')
+-- vim.keymap.set('n', '<A-v>', '<C-v>')
+vim.keymap.set('n', '<A-v>', function()
+  vim.api.nvim_put({ vim.g.last_system_clip }, '', false, true)
+end)
 
 -- line pseudo-text objects (https://gist.github.com/romainl/c0a8b57a36aec71a986f1120e1931f20#file-pseudo-text-objects-vim-L13)
 vim.keymap.set('x', 'il', 'g_o^', { desc = 'inner line text object' })
@@ -91,14 +94,6 @@ vim.keymap.set('n', ']b', ':bnext<CR>', { desc = 'next buffer' })
 -- copy previous line till the end of line
 vim.keymap.set('i', '<c-y>', utils.copy_line_above, { noremap = true, silent = true })
 
--- copy and paste from sysclipboard
-vim.keymap.set({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'yank' })
-vim.keymap.set({ 'n', 'x' }, '<leader>p', function()
-  local cleaned = vim.fn.substitute(vim.fn.getreg '+', '\r', '', 'g')
-  vim.fn.setreg('+', cleaned)
-  return '"+p'
-end, { expr = true, desc = 'paste' })
-
 -- close all other buffers
 vim.keymap.set('n', '<leader>o', utils.close_all_other_buffers, { desc = 'close all other buffers' })
 vim.keymap.set('n', '<leader>O', utils.close_current_buffer, { desc = 'close current buffer' })
@@ -106,3 +101,9 @@ vim.keymap.set('n', '<leader>O', utils.close_current_buffer, { desc = 'close cur
 -- exit
 vim.keymap.set('n', '<leader>Q', ':qa!<CR>')
 vim.keymap.set('n', '<leader>q', ':q<CR>')
+
+-- Copy/paste with system clipboard
+vim.keymap.set({ 'n', 'x' }, 'gy', '"+y', { desc = 'Copy to system clipboard' })
+vim.keymap.set('n', 'gp', '"+p', { desc = 'Paste from system clipboard' })
+-- - Paste in Visual with `P` to not copy selected text (`:h v_P`)
+vim.keymap.set('x', 'gp', '"+P', { desc = 'Paste from system clipboard' })
