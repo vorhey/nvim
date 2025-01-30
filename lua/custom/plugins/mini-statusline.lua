@@ -3,6 +3,11 @@ return {
   version = false,
   config = function()
     local utils = require 'utils'
+
+    local function is_autoformat_enabled()
+      return vim.g.disable_autoformat ~= true
+    end
+
     vim.api.nvim_create_autocmd('FileType', {
       pattern = { 'alpha', 'Scratch' },
       callback = function()
@@ -56,6 +61,7 @@ return {
           end
 
           local supermaven = utils.is_supermaven_enabled() and '' or ''
+          local autoformat_indicator = is_autoformat_enabled() and '󰛖 [autoformat]' or '󰉥'
 
           return MiniStatusline.combine_groups {
             { hl = 'MiniStatuslineDevinfo', strings = { '', filename } },
@@ -64,7 +70,7 @@ return {
             { hl = 'ErrorMsg', strings = { macro_indicator } }, -- Add macro recording indicator
             { hl = 'WarningMsg', strings = { unsaved_indicator } },
             { hl = 'Added', strings = { supermaven } },
-            { hl = 'MiniStatuslineFileinfo', strings = { lsp, '', diff, fileinfo, '󱁐', spacing_info, diagnostics } },
+            { hl = 'MiniStatuslineFileinfo', strings = { autoformat_indicator, lsp, '', diff, fileinfo, '󱁐', spacing_info, diagnostics } },
             { hl = mode_hl, strings = { search } },
           }
         end,
