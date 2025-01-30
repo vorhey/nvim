@@ -34,7 +34,7 @@ return {
     -- keybindings
     config.defaults.keymap.fzf['ctrl-u'] = 'half-page-up'
     config.defaults.keymap.fzf['ctrl-d'] = 'half-page-down'
-    vim.keymap.set('n', '<leader>f:', fzf.command_history, { desc = 'Find: command history' })
+    vim.keymap.set('n', '<leader>f:', fzf.command_history, { desc = 'find: command history' })
     vim.keymap.set('n', '<leader>ff', filtered_files, { desc = 'find: files' })
     vim.keymap.set('n', '<leader>fd', fzf.git_status, { desc = 'find: git' })
     vim.keymap.set('n', '<leader>fg', filtered_grep, { desc = 'find: livegrep' })
