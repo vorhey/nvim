@@ -7,9 +7,6 @@ return {
       { '[', ']', alpha_after = true, newline = true },
       { '(', ')', alpha_after = true, newline = true },
       { '{', '}', alpha_after = true, newline = true },
-      { '"', '"', alpha_after = true },
-      { "'", "'", alpha_after = true },
-      { '`', '`', alpha_after = true },
     },
   },
 }
