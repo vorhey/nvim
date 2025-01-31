@@ -61,7 +61,7 @@ return {
           end
 
           local supermaven = utils.is_supermaven_enabled() and '' or ''
-          local autoformat_indicator = is_autoformat_enabled() and '󰛖 [autoformat]' or '󰉥'
+          local autoformat_indicator = is_autoformat_enabled() and '󰊄' or '󰉥'
 
           return MiniStatusline.combine_groups {
             { hl = 'MiniStatuslineDevinfo', strings = { '', filename } },
