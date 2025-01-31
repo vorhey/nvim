@@ -85,12 +85,6 @@ vim.keymap.set('o', 'al', ':<C-u>normal val<CR>', { desc = 'around line text obj
 -- toggle supermaven
 vim.keymap.set('n', '<leader>tm', utils.toggle_supermaven, { desc = 'toggle supermaven' })
 
--- previous buffer
-vim.keymap.set('n', '[b', ':bprev<CR>', { desc = 'previous buffer' })
-
--- next buffer
-vim.keymap.set('n', ']b', ':bnext<CR>', { desc = 'next buffer' })
-
 -- copy previous line till the end of line
 vim.keymap.set('i', '<c-y>', utils.copy_line_above, { noremap = true, silent = true })
 
@@ -107,3 +101,8 @@ vim.keymap.set({ 'n', 'x' }, 'gy', '"+y', { desc = 'Copy to system clipboard' })
 vim.keymap.set('n', 'gp', '"+p', { desc = 'Paste from system clipboard' })
 -- - Paste in Visual with `P` to not copy selected text (`:h v_P`)
 vim.keymap.set('x', 'gp', '"+P', { desc = 'Paste from system clipboard' })
+
+vim.keymap.set('n', 'j', 'gj', { noremap = true })
+vim.keymap.set('n', 'k', 'gk', { noremap = true })
+vim.keymap.set('n', 'j', "v:count ? 'j' : 'gj'", { noremap = true, expr = true })
+vim.keymap.set('n', 'k', "v:count ? 'k' : 'gk'", { noremap = true, expr = true })
