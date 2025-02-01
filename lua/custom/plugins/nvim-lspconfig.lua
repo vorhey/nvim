@@ -245,8 +245,8 @@ return {
             inlayHints = {
               parameterTypes = { enabled = true },
               variableTypes = { enabled = true },
-              propertyDeclarationTypes = { enabled = true },
-              functionLikeReturnTypes = { enabled = true },
+              propertyDeclarationTypes = { enabled = false },
+              functionLikeReturnTypes = { enabled = false },
             },
             suggest = {
               enabled = true,
@@ -261,8 +261,8 @@ return {
             inlayHints = {
               parameterTypes = { enabled = true },
               variableTypes = { enabled = true },
-              propertyDeclarationTypes = { enabled = true },
-              functionLikeReturnTypes = { enabled = true },
+              propertyDeclarationTypes = { enabled = false },
+              functionLikeReturnTypes = { enabled = false },
             },
           },
         },
