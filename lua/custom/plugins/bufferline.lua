@@ -9,10 +9,10 @@ return {
       },
     }
     -- Bufferline switching keymaps
-    vim.keymap.set('n', '<A-q>', '<cmd>BufferLineGoToBuffer 1<CR>', { desc = 'Switch to buffer 1', silent = true })
-    vim.keymap.set('n', '<A-w>', '<cmd>BufferLineGoToBuffer 2<CR>', { desc = 'Switch to buffer 2', silent = true })
-    vim.keymap.set('n', '<A-e>', '<cmd>BufferLineGoToBuffer 3<CR>', { desc = 'Switch to buffer 3', silent = true })
-    vim.keymap.set('n', '<A-r>', '<cmd>BufferLineGoToBuffer 4<CR>', { desc = 'Switch to buffer 4', silent = true })
+    vim.keymap.set('n', '<M-q>', '<cmd>BufferLineGoToBuffer 1<CR>', { desc = 'Switch to buffer 1', silent = true })
+    vim.keymap.set('n', '<M-w>', '<cmd>BufferLineGoToBuffer 2<CR>', { desc = 'Switch to buffer 2', silent = true })
+    vim.keymap.set('n', '<M-e>', '<cmd>BufferLineGoToBuffer 3<CR>', { desc = 'Switch to buffer 3', silent = true })
+    vim.keymap.set('n', '<M-r>', '<cmd>BufferLineGoToBuffer 4<CR>', { desc = 'Switch to buffer 4', silent = true })
     vim.keymap.set('n', '<M-h>', '<cmd>BufferLineMovePrev<CR>', { desc = 'Move buffer left', silent = true })
     vim.keymap.set('n', '<M-l>', '<cmd>BufferLineMoveNext<CR>', { desc = 'Move buffer right', silent = true })
     vim.keymap.set('n', '[b', '<cmd>BufferLineCyclePrev<CR>', { desc = 'Cycle to prev buffer', silent = true })
