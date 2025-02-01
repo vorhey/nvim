@@ -1,5 +1,8 @@
 return {
   'saghen/blink.cmp',
+  dependencies = {
+    'MeanderingProgrammer/render-markdown.nvim',
+  },
   version = '*',
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
@@ -14,7 +17,14 @@ return {
       nerd_font_variant = 'mono',
     },
     sources = {
-      default = { 'lsp', 'path' },
+      default = { 'lsp', 'path', 'markdown' },
+      providers = {
+        markdown = {
+          name = 'RenderMarkdown',
+          module = 'render-markdown.integ.blink',
+          fallbacks = { 'lsp' },
+        },
+      },
     },
     completion = {
       trigger = {
