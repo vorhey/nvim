@@ -59,14 +59,21 @@ return {
         vim.lsp.buf.format { range = { vim.fn.line "'<", vim.fn.line "'>" } }
       end
 
+      local function toggle_inlay_hints()
+        if vim.lsp.inlay_hint.is_enabled() then
+          vim.lsp.inlay_hint.enable(false)
+        else
+          vim.lsp.inlay_hint.enable()
+        end
+      end
+
       vim.keymap.set('n', '<leader>lf', format_buffer, vim.tbl_extend('force', opts, { desc = 'lsp: format buffer' }))
       vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, vim.tbl_extend('force', opts, { desc = 'lsp: diagnostic messages' }))
       vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, vim.tbl_extend('force', opts, { desc = 'lsp: rename' }))
       vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, vim.tbl_extend('force', opts, { desc = 'lsp: code action' }))
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, vim.tbl_extend('force', opts, { desc = 'lsp: hover documentation' }))
       vim.keymap.set('n', 'gR', vim.lsp.buf.references, vim.tbl_extend('force', opts, { desc = 'lsp: native references' }))
-      vim.keymap.set('n', '<leader>lD', utils.file_diagnostics, vim.tbl_extend('force', opts, { desc = 'lsp: diagnostics summary' }))
-      vim.keymap.set('n', '<leader>li', utils.file_info, vim.tbl_extend('force', opts, { desc = 'lsp: file information' }))
+      vim.keymap.set('n', '<leader>li', toggle_inlay_hints, vim.tbl_extend('force', opts, { desc = 'lsp: file information' }))
       vim.keymap.set('v', '<leader>la', utils.code_action_on_selection, vim.tbl_extend('force', opts, { desc = 'lsp: range code action' }))
       vim.keymap.set('v', '<leader>lf', format_selection, vim.tbl_extend('force', opts, { desc = 'lsp: format selection' }))
       vim.keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, vim.tbl_extend('force', opts, { desc = 'lsp: signature help' }))
@@ -95,24 +102,6 @@ return {
         end
         if client.name == 'jdtls' then
           client.server_capabilities.semanticTokensProvider = nil
-        end
-        if client.server_capabilities.inlayHintProvider then
-          vim.lsp.inlay_hint.enable()
-          local group = vim.api.nvim_create_augroup('InlayHintsControl', { clear = true })
-          vim.api.nvim_create_autocmd('InsertEnter', {
-            buffer = event.buf,
-            group = group,
-            callback = function()
-              vim.lsp.inlay_hint.enable(false)
-            end,
-          })
-          vim.api.nvim_create_autocmd('InsertLeave', {
-            buffer = event.buf,
-            group = group,
-            callback = function()
-              vim.lsp.inlay_hint.enable()
-            end,
-          })
         end
         setup_lsp_keymaps(event.buf)
         setup_document_highlight(client, event.buf)
