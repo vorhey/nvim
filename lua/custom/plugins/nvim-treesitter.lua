@@ -2,6 +2,9 @@ return {
   -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
+  dependencies = {
+    'RRethy/nvim-treesitter-endwise',
+  },
   opts = {
     ensure_installed = {
       'bash',
@@ -36,6 +39,9 @@ return {
     indent = {
       enable = true,
       disable = { 'lua' },
+    },
+    endwise = {
+      enable = true,
     },
   },
   config = function(_, opts)
