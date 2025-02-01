@@ -139,11 +139,7 @@ vim.opt.shortmess:append { W = true, I = true, c = true, C = true }
 -- Cmdheight
 vim.o.cmdheight = 1
 
-vim.opt.lazyredraw = true
-
 vim.opt.ttyfast = true
-
-vim.opt.cmdheight = 0
 
 -- Undercurl
 vim.cmd [[let &t_Cs = "\e[4:3m"]]
