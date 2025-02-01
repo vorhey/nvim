@@ -98,6 +98,21 @@ return {
         end
         if client.server_capabilities.inlayHintProvider then
           vim.lsp.inlay_hint.enable()
+          local group = vim.api.nvim_create_augroup('InlayHintsControl', { clear = true })
+          vim.api.nvim_create_autocmd('InsertEnter', {
+            buffer = event.buf,
+            group = group,
+            callback = function()
+              vim.lsp.inlay_hint.enable(false)
+            end,
+          })
+          vim.api.nvim_create_autocmd('InsertLeave', {
+            buffer = event.buf,
+            group = group,
+            callback = function()
+              vim.lsp.inlay_hint.enable()
+            end,
+          })
         end
         setup_lsp_keymaps(event.buf)
         setup_document_highlight(client, event.buf)
