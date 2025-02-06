@@ -33,7 +33,6 @@ return {
           local mode_hl = MiniStatusline.section_mode { trunc_width = 120 }
           local diagnostics = MiniStatusline.section_diagnostics { trunc_width = 75 }
           local search = MiniStatusline.section_searchcount { trunc_width = 75 }
-          local filename = MiniStatusline.section_filename { trunc_width = 120 }
           local fileinfo = MiniStatusline.section_fileinfo { trunc_width = 120 }
           local diff = MiniStatusline.section_diff { trunc_width = 75 }
           local lsp = MiniStatusline.section_lsp { trunc_width = 75 }
@@ -64,8 +63,6 @@ return {
           local autoformat_indicator = is_autoformat_enabled() and '󰊄' or '󰉥'
 
           return MiniStatusline.combine_groups {
-            { hl = 'MiniStatuslineDevinfo', strings = { '', filename } },
-            '%<',
             '%=',
             { hl = 'ErrorMsg', strings = { macro_indicator } }, -- Add macro recording indicator
             { hl = 'WarningMsg', strings = { unsaved_indicator } },
