@@ -50,7 +50,7 @@ return {
         DapUIPlayPauseNC = { bg = 'NONE' },
         DapUIRestartNC = { bg = 'NONE' },
         DapUIUnavailableNC = { bg = 'NONE', fg = '#c6c6c6' },
-        WinBar = { bg = 'NONE' },
+        WinBar = { bg = 'NONE', fg = '#c6c6c6' },
         WinBarNC = { bg = 'NONE' },
         DapUIStopNC = { bg = 'NONE' },
         DapUIStepOverNC = { bg = 'NONE' },
@@ -71,6 +71,7 @@ return {
         BlinkCmpDocSeparator = { bg = 'NONE' },
         -- Snippet
         SnippetTabStop = { bg = 'NONE' },
+        -- Winbar
       },
     }
     vim.cmd.colorscheme 'oldworld'
