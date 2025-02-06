@@ -208,6 +208,12 @@ M.close_current_buffer = function()
   end
 end
 
+M.get_root_dirname = function()
+  local root_patterns = { '.git' }
+  local root_dir = vim.fs.basename(vim.fs.dirname(vim.fs.find(root_patterns, { upward = true })[1]))
+  return root_dir
+end
+
 M.ignore_patterns = {
   -- Version Control
   '.git',
