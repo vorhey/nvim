@@ -281,5 +281,6 @@ M.mason_servers = {
   'clangd',
   'basedpyright',
   'jdtls',
+  'yamlls',
 }
 return M
