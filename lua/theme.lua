@@ -29,8 +29,8 @@ return {
         LineNr = { fg = '#c6c6c6' },
         CursorLine = { bg = 'NONE' },
         Visual = { bg = '#214283' },
-        PmenuSel = { bg = '#82ffac', fg = '#000000' },
-        CmpBorder = { fg = '#c6c6c6' },
+        PmenuSel = { bg = '#383838', fg = '#c6c6c6' },
+        CmpBorder = { fg = '#3d3d3d' },
         Comment = { fg = '#989898', italic = false },
         Type = { fg = '#c6c6c6', italic = false },
         Folded = { fg = '#c6c6c6' },
@@ -69,6 +69,8 @@ return {
         BlinkCmpDocBorder = { bg = 'NONE' },
         BlinkCmpMenuBorder = { bg = 'NONE' },
         BlinkCmpDocSeparator = { bg = 'NONE' },
+        -- Snippet
+        SnippetTabStop = { bg = 'NONE' },
       },
     }
     vim.cmd.colorscheme 'oldworld'
