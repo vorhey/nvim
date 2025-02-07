@@ -40,6 +40,7 @@ return {
       zsh = { 'shfmt' },
       groovy = { 'npm-groovy-lint' },
       python = { 'ruff_format' },
+      java = { 'spotless' },
     }
 
     if utils.is_dotnet_installed() then
@@ -48,12 +49,19 @@ return {
 
     local conform = require 'conform'
 
+    conform.formatters.spotless = {
+      command = './gradlew',
+      args = { 'spotlessApply' },
+      stdin = false,
+      inherit = false,
+      cwd = function()
+        return vim.fn.finddir('.git/..', vim.fn.expand '%:p:h' .. ';')
+      end,
+    }
+
     conform.setup {
       notify_on_error = false,
       format_on_save = function(bufnr)
-        if vim.bo[bufnr].filetype == 'java' then
-          return
-        end
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
           return
         end
