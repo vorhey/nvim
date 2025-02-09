@@ -130,8 +130,8 @@ return {
       format = function(entry, item)
         local kind = require('lspkind').cmp_format { mode = 'symbol_text', maxwidth = 50 }(entry, item)
         local strings = vim.split(kind.kind, '%s', { trimempty = true })
-        kind.kind = ' ' .. (strings[1] or '') .. ' '
-        kind.menu = '    (' .. (strings[2] or '') .. ')'
+        kind.kind = (strings[1] or '') -- Remove the spaces around kind
+        kind.menu = '(' .. (strings[2] or '') .. ')' -- Remove the spaces before menu
 
         return kind
       end,
