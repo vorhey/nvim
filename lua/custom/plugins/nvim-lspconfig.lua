@@ -73,7 +73,7 @@ return {
       vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, vim.tbl_extend('force', opts, { desc = 'lsp: code action' }))
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, vim.tbl_extend('force', opts, { desc = 'lsp: hover documentation' }))
       vim.keymap.set('n', 'gR', vim.lsp.buf.references, vim.tbl_extend('force', opts, { desc = 'lsp: native references' }))
-      vim.keymap.set('n', '<leader>li', toggle_inlay_hints, vim.tbl_extend('force', opts, { desc = 'lsp: file information' }))
+      vim.keymap.set('n', '<leader>li', toggle_inlay_hints, vim.tbl_extend('force', opts, { desc = 'lsp: toggle inlay hints' }))
       vim.keymap.set('v', '<leader>la', utils.code_action_on_selection, vim.tbl_extend('force', opts, { desc = 'lsp: range code action' }))
       vim.keymap.set('v', '<leader>lf', format_selection, vim.tbl_extend('force', opts, { desc = 'lsp: format selection' }))
       vim.keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, vim.tbl_extend('force', opts, { desc = 'lsp: signature help' }))
