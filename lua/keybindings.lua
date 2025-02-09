@@ -29,7 +29,7 @@ vim.keymap.set('n', '<C-s>', ':w!<CR>', { desc = 'Save file', silent = true })
 vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>l', { desc = 'Save file', silent = true })
 
 -- nvimtree
-vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Explorer' })
+vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'explorer' })
 
 -- fterm
 vim.keymap.set('n', '<c-t>', '<CMD>lua require("FTerm").toggle()<CR>')
@@ -89,12 +89,12 @@ vim.keymap.set('n', '<leader>tm', utils.toggle_supermaven, { desc = 'toggle supe
 vim.keymap.set('i', '<c-y>', utils.copy_line_above, { noremap = true, silent = true })
 
 -- close all other buffers
-vim.keymap.set('n', '<leader>o', utils.close_all_other_buffers, { desc = 'close all other buffers' })
-vim.keymap.set('n', '<leader>O', utils.close_current_buffer, { desc = 'close current buffer' })
+vim.keymap.set('n', '<leader>o', utils.close_all_other_buffers, { desc = 'close all others' })
+vim.keymap.set('n', '<leader>O', utils.close_current_buffer, { desc = 'close current' })
 
 -- exit
-vim.keymap.set('n', '<leader>Q', ':qa!<CR>')
-vim.keymap.set('n', '<leader>q', ':q<CR>')
+vim.keymap.set('n', '<leader>Q', ':qa!<CR>', { desc = 'exit (all)' })
+vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'exit' })
 
 -- Copy/paste with system clipboard
 vim.keymap.set({ 'n', 'x' }, 'gy', '"+y', { desc = 'Copy to system clipboard' })
