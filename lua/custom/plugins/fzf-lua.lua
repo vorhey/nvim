@@ -48,15 +48,15 @@ return {
 
     vim.keymap.set('n', 'gr', function()
       fzf.lsp_references { jump_to_single_result = true, ignore_current_line = true }
-    end, { desc = 'Find: LSP References' })
+    end, { desc = 'find: LSP References' })
 
     vim.keymap.set('n', 'gd', function()
       fzf.lsp_definitions { jump_to_single_result = true, ignore_current_line = true }
-    end, { desc = 'Find: LSP Definitions' })
+    end, { desc = 'find: LSP Definitions' })
 
     vim.keymap.set('n', 'gI', function()
       fzf.lsp_implementations { jump_to_single_result = true, ignore_current_line = true }
-    end, { desc = 'Find: LSP Definitions' })
+    end, { desc = 'find: LSP Definitions' })
 
     -- fzf setup
     fzf.setup {
