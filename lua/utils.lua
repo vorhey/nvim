@@ -15,19 +15,31 @@ end
 
 function M.expand_braces()
   local bufnr = vim.api.nvim_get_current_buf()
+  local filetype = vim.bo[bufnr].filetype
   local line_num = vim.fn.getcurpos()[2] - 1
   local line = vim.api.nvim_buf_get_lines(bufnr, line_num, line_num + 1, false)[1]
   local indent = line:match '^%s*'
 
-  if line:find '{%s*}' then
+  local new_lines
+  if filetype == 'cs' and line:find '{%s*}' then
     local trimmed_line = remove_braces(line)
-    local new_lines = create_braces_block(trimmed_line, indent)
-
-    vim.api.nvim_buf_set_lines(bufnr, line_num, line_num + 1, false, new_lines)
-    vim.api.nvim_win_set_cursor(0, { line_num + 3, #indent + 4 })
-    vim.cmd 'startinsert!'
+    new_lines = create_braces_block(trimmed_line, indent)
+  elseif filetype == 'lua' and line:match 'function%(%s*%)%s*end' then
+    new_lines = {
+      line:gsub('end$', ''),
+      indent .. '  ',
+      indent .. 'end',
+    }
+  else
+    return
   end
+
+  vim.api.nvim_buf_set_lines(bufnr, line_num, line_num + 1, false, new_lines)
+  vim.api.nvim_win_set_cursor(0, { line_num + 2, #indent + 2 })
+  vim.cmd 'startinsert!'
 end
+
+local x = function() end
 
 function M.toggle_autoformat()
   if vim.g.disable_autoformat then
