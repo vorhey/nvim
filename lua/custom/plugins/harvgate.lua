@@ -6,6 +6,6 @@ return {
   },
   config = function()
     require('harvgate').setup {}
-    vim.keymap.set('n', '<leader>a', ':HarvgateChat<CR>', { desc = 'Harvgate' })
+    vim.keymap.set('n', '<leader>a', ':HarvgateChat<CR>', { desc = 'harvgate' })
   end,
 }
