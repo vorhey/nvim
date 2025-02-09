@@ -1,4 +1,3 @@
-
 return {
   -- Autocompletion
   'hrsh7th/nvim-cmp',
@@ -123,6 +122,7 @@ return {
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
       { name = 'path' },
+      { name = 'vim-dadbod-completion' },
     }
 
     local formatting = {
