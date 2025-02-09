@@ -6,6 +6,9 @@ return {
     miniclue.setup {
       window = {
         delay = 0,
+        config = {
+          width = 45,
+        },
       },
       triggers = {
         -- Leader triggers
