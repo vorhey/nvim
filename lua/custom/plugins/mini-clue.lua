@@ -43,6 +43,8 @@ return {
         -- Enhance this by adding descriptions for <Leader> mapping groups
         { mode = 'n', keys = '<Leader>d', desc = '+debug' },
         { mode = 'n', keys = '<Leader>f', desc = '+find' },
+        { mode = 'n', keys = '<Leader>h', desc = '+git' },
+        { mode = 'n', keys = '<Leader>l', desc = '+lsp' },
         { mode = 'n', keys = '<Leader>m', desc = '+test' },
         { mode = 'n', keys = '<Leader>t', desc = '+toggle' },
 
