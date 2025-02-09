@@ -99,12 +99,6 @@ vim.o.wildignorecase = true
 vim.wo.relativenumber = true
 
 -- folding settings
--- Set folding method to 'expr' for expression-based folds
-vim.o.foldmethod = 'expr'
-
--- Use Tree-sitter as the folding mechanism
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
-
 -- Start with all folds open
 vim.o.foldlevelstart = 99
 
