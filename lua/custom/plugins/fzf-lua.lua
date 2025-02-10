@@ -3,6 +3,7 @@ return {
   config = function()
     -- vars
     local fzf = require 'fzf-lua'
+    local api = require 'nvim-tree.api'
     local config = fzf.config
     local actions = fzf.actions
     local utils = require 'utils'
@@ -57,6 +58,27 @@ return {
     vim.keymap.set('n', 'gI', function()
       fzf.lsp_implementations { jump_to_single_result = true, ignore_current_line = true }
     end, { desc = 'find: LSP Definitions' })
+
+    vim.keymap.set('n', '<leader>fe', function()
+      fzf.fzf_exec("fd -H -t f -E '.git/'", {
+        prompt = ':',
+        winopts = {
+          height = 0.45,
+          width = 0.30,
+          row = 0.5,
+          col = 0.75,
+          title = ' search tree ',
+        },
+        actions = {
+          ['default'] = {
+            fn = function(selected)
+              api.tree.find_file(selected[1])
+            end,
+            desc = 'fuzzy find in tree',
+          },
+        },
+      })
+    end, { desc = 'fuzzy find in tree' })
 
     -- fzf setup
     fzf.setup {
