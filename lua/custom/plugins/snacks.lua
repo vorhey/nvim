@@ -9,9 +9,8 @@ return {
       layout = {
         layout = {
           box = 'horizontal',
-          width = 0.8,
-          min_width = 120,
-          height = 0.8,
+          width = 0.95,
+          height = 0.7,
           {
             box = 'vertical',
             border = 'rounded',
@@ -19,7 +18,7 @@ return {
             { win = 'input', height = 1, border = 'bottom' },
             { win = 'list', border = 'none' },
           },
-          { win = 'preview', title = '{preview}', border = 'rounded', width = 0.2 },
+          { win = 'preview', title = '{preview}', border = 'rounded', width = 0.25 },
         },
       },
       win = {
