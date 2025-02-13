@@ -65,16 +65,9 @@ return {
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
           return
         end
-        if #conform.list_formatters(bufnr) == 0 then
-          vim.lsp.buf.format {
-            timeout_ms = 15000,
-            bufnr = bufnr,
-          }
-          return
-        end
         return {
           timeout_ms = 15000,
-          async = true,
+          lsp_format = 'fallback',
         }
       end,
       formatters_by_ft = formatters_by_ft,
