@@ -9,7 +9,7 @@ return {
       layout = {
         layout = {
           box = 'horizontal',
-          width = 0.95,
+          width = 0,
           height = 0.7,
           {
             box = 'vertical',
@@ -18,7 +18,7 @@ return {
             { win = 'input', height = 1, border = 'bottom' },
             { win = 'list', border = 'none' },
           },
-          { win = 'preview', title = '{preview}', border = 'rounded', width = 0.25 },
+          { win = 'preview', title = '{preview}', border = 'rounded', width = 0.3 },
         },
       },
       win = {
