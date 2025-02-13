@@ -160,7 +160,7 @@ return {
       },
       formatting = formatting,
       performance = {
-        max_view_entries = 1,
+        max_view_entries = 3,
       },
     }
 
