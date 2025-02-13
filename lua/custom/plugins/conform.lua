@@ -74,6 +74,7 @@ return {
         end
         return {
           timeout_ms = 15000,
+          async = true,
         }
       end,
       formatters_by_ft = formatters_by_ft,
