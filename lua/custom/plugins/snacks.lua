@@ -68,6 +68,13 @@ return {
       desc = 'Resume',
     },
     {
+      '<leader>f.',
+      function()
+        Snacks.picker.recent()
+      end,
+      desc = 'Recent',
+    },
+    {
       '<leader>fh',
       function()
         Snacks.picker.help()
