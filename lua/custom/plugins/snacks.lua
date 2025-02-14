@@ -25,6 +25,7 @@ return {
         input = {
           keys = {
             ['<Esc>'] = { 'close', mode = { 'n', 'i' } },
+            ['<c-s>'] = { 'edit_vsplit', mode = { 'i', 'n' } },
           },
         },
       },
