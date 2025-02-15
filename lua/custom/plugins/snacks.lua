@@ -37,49 +37,49 @@ return {
       function()
         Snacks.picker.smart { filter = { cwd = true } }
       end,
-      desc = 'Smart Find Files',
+      desc = 'smart find files',
     },
     {
       '<leader>fa',
       function()
         Snacks.picker.buffers()
       end,
-      desc = 'Buffers',
+      desc = 'buffers',
     },
     {
       '<leader>fg',
       function()
         Snacks.picker.grep()
       end,
-      desc = 'Grep',
+      desc = 'grep',
     },
     {
       '<leader>fd',
       function()
         Snacks.picker.git_status()
       end,
-      desc = 'Git Status',
+      desc = 'git status',
     },
     {
       '<leader>fr',
       function()
         Snacks.picker.resume()
       end,
-      desc = 'Resume',
+      desc = 'resume',
     },
     {
       '<leader>f.',
       function()
         Snacks.picker.recent()
       end,
-      desc = 'Recent',
+      desc = 'recent',
     },
     {
       '<leader>fh',
       function()
         Snacks.picker.help()
       end,
-      desc = 'Help Pages',
+      desc = 'help pages',
     },
     {
       'gr',
@@ -87,14 +87,14 @@ return {
         Snacks.picker.lsp_references()
       end,
       nowait = true,
-      desc = 'References',
+      desc = 'references',
     },
     {
       'gd',
       function()
         Snacks.picker.lsp_definitions()
       end,
-      desc = 'Goto Definition',
+      desc = 'goto definition',
     },
     {
       '<leader>o',
@@ -109,6 +109,13 @@ return {
         Snacks.bufdelete.delete()
       end,
       desc = 'close',
+    },
+    {
+      '<leader>fl',
+      function()
+        Snacks.picker.highlights()
+      end,
+      desc = 'highlights',
     },
   },
 }
