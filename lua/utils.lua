@@ -39,8 +39,6 @@ function M.expand_braces()
   vim.cmd 'startinsert!'
 end
 
-local x = function() end
-
 function M.toggle_autoformat()
   if vim.g.disable_autoformat then
     vim.g.disable_autoformat = false
@@ -198,26 +196,6 @@ M.code_action_on_selection = function()
       ['end'] = vim.api.nvim_buf_get_mark(0, '>'),
     },
   }
-end
-
-M.close_all_other_buffers = function()
-  local current = vim.api.nvim_get_current_buf()
-  local buffers = vim.tbl_filter(function(buf)
-    return vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buflisted
-  end, vim.api.nvim_list_bufs())
-
-  for _, buf in ipairs(buffers) do
-    if buf ~= current then
-      require('mini.bufremove').delete(buf, false)
-    end
-  end
-end
-
-M.close_current_buffer = function()
-  local current = vim.api.nvim_get_current_buf()
-  if vim.api.nvim_buf_is_valid(current) then
-    require('mini.bufremove').delete(current, false)
-  end
 end
 
 M.get_root_dirname = function()
