@@ -15,6 +15,7 @@ return {
         types = { italic = false },
       },
       highlight_overrides = {
+        String = { fg = '#BBBBBB' },
         Normal = { bg = 'NONE' },
         NormalFloat = { bg = 'NONE' },
         NormalNC = { bg = 'NONE' },
@@ -63,6 +64,7 @@ return {
         ['@tag.attribute'] = { fg = '#d7c6f7' },
         ['@lsp.type.class.dart'] = { fg = '#e29eca', bold = true },
         ['@lsp.mod.constructor.dart'] = { fg = '#c6c6c6' },
+        ['@namespace'] = { fg = '#c6c6c6' },
         -- Blink
         BlinkCmpMenu = { bg = 'NONE' },
         BlinkCmpDoc = { bg = 'NONE' },

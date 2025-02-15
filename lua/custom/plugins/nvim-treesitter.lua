@@ -3,6 +3,7 @@ return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   dependencies = {
+    'nvim-treesitter/playground',
     'RRethy/nvim-treesitter-endwise',
   },
   opts = {
@@ -27,7 +28,7 @@ return {
     auto_install = true,
     highlight = {
       enable = true,
-      disable = { 'sh', 'bash' },
+      disable = { 'sh', 'bash', 'go' },
     },
     incremental_selection = {
       enable = true,
