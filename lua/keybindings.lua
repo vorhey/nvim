@@ -84,10 +84,6 @@ vim.keymap.set('n', '<leader>tm', utils.toggle_supermaven, { desc = 'toggle supe
 -- copy previous line till the end of line
 vim.keymap.set('i', '<c-y>', utils.copy_line_above, { noremap = true, silent = true })
 
--- close all other buffers
-vim.keymap.set('n', '<leader>o', utils.close_all_other_buffers, { desc = 'close all others' })
-vim.keymap.set('n', '<leader>O', utils.close_current_buffer, { desc = 'close current' })
-
 -- exit
 vim.keymap.set('n', '<leader>Q', ':qa!<CR>', { desc = 'exit (all)' })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'exit' })
