@@ -96,5 +96,19 @@ return {
       end,
       desc = 'Goto Definition',
     },
+    {
+      '<leader>o',
+      function()
+        Snacks.bufdelete.other()
+      end,
+      desc = 'close others',
+    },
+    {
+      '<leader>O',
+      function()
+        Snacks.bufdelete.delete()
+      end,
+      desc = 'close',
+    },
   },
 }
