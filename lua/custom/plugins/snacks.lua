@@ -2,7 +2,16 @@
 return {
   'folke/snacks.nvim',
   opts = {
-    scroll = {},
+    scroll = {
+      animate = {
+        duration = { step = 25, total = 125 },
+        easing = 'linear',
+      },
+      animate_repeat = {
+        delay = 15,
+        duration = { step = 15, total = 25 },
+      },
+    },
     picker = {
       -- your picker configuration comes here
       -- or leave it empty to use the default settings
@@ -71,7 +80,7 @@ return {
     {
       '<leader>f.',
       function()
-        Snacks.picker.recent()
+        Snacks.picker.recent { filter = { cwd = true } }
       end,
       desc = 'recent',
     },
@@ -117,6 +126,28 @@ return {
         Snacks.picker.highlights()
       end,
       desc = 'highlights',
+    },
+    {
+      '<leader>fu',
+      function()
+        Snacks.picker.undo()
+      end,
+      desc = 'undo history',
+    },
+    {
+      '<leader>f:',
+      function()
+        Snacks.picker.command_history()
+      end,
+      desc = 'command history',
+    },
+    {
+      '<leader>fw',
+      function()
+        Snacks.picker.grep_word()
+      end,
+      desc = 'Visual selection or word',
+      mode = { 'n', 'x' },
     },
   },
 }
