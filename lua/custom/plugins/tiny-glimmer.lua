@@ -3,6 +3,9 @@ return {
   event = 'VeryLazy',
   opts = {
     overwrite = {
+      search = {
+        enabled = true,
+      },
       paste = {
         enabled = true,
       },
