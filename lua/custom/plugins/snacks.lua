@@ -4,6 +4,16 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    dashboard = {
+      sections = {
+        {
+          section = 'header',
+        },
+        {
+          section = 'startup',
+        },
+      },
+    },
     input = {},
     picker = {
       ui_select = true,
