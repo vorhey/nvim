@@ -2,6 +2,7 @@
 return {
   'folke/snacks.nvim',
   opts = {
+    scroll = {},
     picker = {
       -- your picker configuration comes here
       -- or leave it empty to use the default settings
