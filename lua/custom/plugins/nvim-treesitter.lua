@@ -23,6 +23,7 @@ return {
       'tsx',
       'xml',
       'dart',
+      'regex',
     },
     -- Autoinstall languages that are not installed
     auto_install = true,
