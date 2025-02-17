@@ -147,8 +147,15 @@ return {
       function()
         Snacks.picker.grep_word()
       end,
-      desc = 'Visual selection or word',
+      desc = 'visual selection or word',
       mode = { 'n', 'x' },
+    },
+    {
+      '<leader>fF',
+      function()
+        Snacks.picker.git_log_file()
+      end,
+      desc = 'git log file',
     },
   },
 }
