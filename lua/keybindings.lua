@@ -34,8 +34,8 @@ vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'explorer' 
 -- center screen
 vim.keymap.set('n', '<c-d>', utils.lazy '<c-d>zz', { desc = 'Scroll down half screen' })
 
--- expand curly braces c# style
-vim.keymap.set('n', '<C-m>', utils.expand_braces, { desc = 'Expand curly braces' })
+-- expand line
+vim.keymap.set('n', '<C-m>', utils.expand_line, { desc = 'Expand' })
 
 -- insert semicolon at the end of the line
 vim.keymap.set('i', '<M-;>', function()

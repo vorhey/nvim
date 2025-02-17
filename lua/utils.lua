@@ -4,7 +4,6 @@ local M = {}
 local function remove_braces(line)
   return line:gsub('%s*{%s*}', '')
 end
-
 local function create_braces_block(trimmed_line, indent)
   local new_lines = { trimmed_line }
   table.insert(new_lines, indent .. '{')
@@ -12,31 +11,48 @@ local function create_braces_block(trimmed_line, indent)
   table.insert(new_lines, indent .. '}')
   return new_lines
 end
-
-function M.expand_braces()
+function M.expand_braces_csharp()
   local bufnr = vim.api.nvim_get_current_buf()
-  local filetype = vim.bo[bufnr].filetype
+  local line_num = vim.fn.getcurpos()[2] - 1
+  local line = vim.api.nvim_buf_get_lines(bufnr, line_num, line_num + 1, false)[1]
+  local indent = line:match '^%s*'
+  if line:find '{%s*}' then
+    local trimmed_line = remove_braces(line)
+    local new_lines = create_braces_block(trimmed_line, indent)
+    vim.api.nvim_buf_set_lines(bufnr, line_num, line_num + 1, false, new_lines)
+    vim.api.nvim_win_set_cursor(0, { line_num + 3, #indent + 4 })
+    vim.cmd 'startinsert!'
+  end
+end
+
+-- Expand function lua
+function M.expand_function_lua()
+  local bufnr = vim.api.nvim_get_current_buf()
   local line_num = vim.fn.getcurpos()[2] - 1
   local line = vim.api.nvim_buf_get_lines(bufnr, line_num, line_num + 1, false)[1]
   local indent = line:match '^%s*'
 
-  local new_lines
-  if filetype == 'cs' and line:find '{%s*}' then
-    local trimmed_line = remove_braces(line)
-    new_lines = create_braces_block(trimmed_line, indent)
-  elseif filetype == 'lua' and line:match 'function%(%s*%)%s*end' then
-    new_lines = {
-      line:gsub('end$', ''),
+  if line:find 'function%s*%(%s*%)%s*end' then
+    local trimmed_line = line:gsub('%s*end%s*$', '')
+    local new_lines = {
+      trimmed_line,
       indent .. '  ',
       indent .. 'end',
     }
-  else
-    return
-  end
 
-  vim.api.nvim_buf_set_lines(bufnr, line_num, line_num + 1, false, new_lines)
-  vim.api.nvim_win_set_cursor(0, { line_num + 2, #indent + 2 })
-  vim.cmd 'startinsert!'
+    vim.api.nvim_buf_set_lines(bufnr, line_num, line_num + 1, false, new_lines)
+    vim.api.nvim_win_set_cursor(0, { line_num + 2, #indent + 2 })
+    vim.cmd 'startinsert!'
+  end
+end
+
+function M.expand_line()
+  if vim.bo.filetype == 'cs' then
+    M.expand_braces_csharp()
+  end
+  if vim.bo.filetype == 'lua' then
+    M.expand_function_lua()
+  end
 end
 
 function M.toggle_autoformat()
