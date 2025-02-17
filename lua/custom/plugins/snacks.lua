@@ -163,5 +163,12 @@ return {
       end,
       desc = 'git log file',
     },
+    {
+      '<leader>fs',
+      function()
+        Snacks.picker.lsp_symbols()
+      end,
+      desc = 'LSP Symbols',
+    },
   },
 }
