@@ -8,13 +8,20 @@ return {
     -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
     -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
     -- See the full "keymap" documentation for information on defining your own keymap.
-    keymap = { preset = 'super-tab' },
+    keymap = {
+      preset = 'super-tab',
+      ['<C-l>'] = {
+        function(cmp)
+          cmp.snippet_forward()
+        end,
+      },
+    },
     appearance = {
       use_nvim_cmp_as_default = true,
       nerd_font_variant = 'mono',
     },
     sources = {
-      default = { 'lsp', 'path' },
+      default = { 'lsp', 'path', 'snippets' },
     },
     completion = {
       trigger = {
