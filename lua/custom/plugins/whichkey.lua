@@ -26,6 +26,7 @@ return {
     wk.setup {
       preset = 'helix',
       sort = { 'manual' },
+      delay = 0,
     }
   end,
 }
