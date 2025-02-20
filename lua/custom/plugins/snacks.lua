@@ -30,7 +30,7 @@ return {
         layout = {
           box = 'horizontal',
           width = 0,
-          height = 0.7,
+          height = 0.95,
           {
             box = 'vertical',
             border = 'rounded',
