@@ -30,7 +30,7 @@ return {
         layout = {
           box = 'horizontal',
           width = 0,
-          height = 0.95,
+          height = 0.85,
           {
             box = 'vertical',
             border = 'rounded',
@@ -176,7 +176,7 @@ return {
     {
       '<leader>e',
       function()
-        Snacks.explorer()
+        Snacks.explorer { auto_close = true }
       end,
       desc = 'explorer',
     },
