@@ -208,6 +208,7 @@ return {
               local IGNORED_DIAGNOSTIC_CODES = {
                 [80001] = true,
                 [80006] = true,
+                [7044] = true,
               }
               result.diagnostics = vim.tbl_filter(function(diagnostic)
                 return not IGNORED_DIAGNOSTIC_CODES[diagnostic.code]
