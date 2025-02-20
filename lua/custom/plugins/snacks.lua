@@ -4,6 +4,9 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    explorer = {
+      enabled = true,
+    },
     image = {
       enabled = true,
     },
@@ -169,6 +172,13 @@ return {
         Snacks.picker.lsp_symbols()
       end,
       desc = 'LSP Symbols',
+    },
+    {
+      '<leader>e',
+      function()
+        Snacks.explorer()
+      end,
+      desc = 'explorer',
     },
   },
 }
