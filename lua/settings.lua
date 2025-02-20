@@ -143,3 +143,7 @@ vim.cmd [[let &t_Ce = "\e[4:0m"]]
 vim.opt.winbar = '%=' .. utils.get_root_dirname() .. "%{%v:lua.vim.fn.expand('%')%}%="
 
 vim.opt.inccommand = 'nosplit'
+
+vim.opt.foldmethod = 'expr'
+
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
