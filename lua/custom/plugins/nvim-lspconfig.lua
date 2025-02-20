@@ -303,6 +303,16 @@ return {
           client.handlers['textDocument/diagnostic'] = vim.lsp.with(vim.lsp.diagnostic.on_diagnostic, {
             virtual_text = { severity = vim.diagnostic.severity.ERROR },
           })
+          vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertEnter', 'InsertLeave' }, {
+            buffer = bufnr,
+            callback = function()
+              vim.lsp.codelens.refresh { bufnr = 0 }
+              -- workaround for diagnostics not being triggered
+              client.request('textDocument/diagnostic', {
+                textDocument = vim.lsp.util.make_text_document_params(),
+              }, nil, bufnr)
+            end,
+          })
         end,
         filewatching = true,
         settings = {
