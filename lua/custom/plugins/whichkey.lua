@@ -12,7 +12,6 @@ return {
         { '<leader>q', icon = { icon = '󰈆', color = 'green' } },
         { '<leader>Q', icon = { icon = '󰈆', color = 'green' } },
         { '<leader>e', icon = { icon = '󱏒', color = 'green' } },
-        { '<leader>r', icon = { icon = '', color = 'green' } },
         { '<leader><leader>', icon = { icon = '', color = 'green' } },
         { '<leader>a', group = 'harvgate', icon = { icon = '󰁤', color = 'grey' } },
         { '<leader>d', group = 'debug', icon = { icon = '', color = 'grey' } },
