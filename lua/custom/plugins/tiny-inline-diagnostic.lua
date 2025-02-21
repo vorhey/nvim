@@ -7,6 +7,7 @@ return {
       options = {
         multilines = true,
       },
+      disabled_ft = { 'cs' },
     }
   end,
 }
