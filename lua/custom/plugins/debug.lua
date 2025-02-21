@@ -92,7 +92,7 @@ return {
         name = 'console - netcoredbg',
         request = 'launch',
         program = function()
-          return utils.pick_file('*.dll', { 'obj/.*' })
+          return vim.fn.input('Entry Point: ', vim.fn.getcwd() .. '/', 'file')
         end,
       },
       {
