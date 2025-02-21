@@ -19,7 +19,8 @@ return {
       local unsaved_count = 0
       for _, buf in ipairs(vim.api.nvim_list_bufs()) do
         if vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_buf_is_loaded(buf) then
-          if vim.bo[buf].modified then
+          local filetype = vim.bo[buf].filetype
+          if vim.bo[buf].modified and filetype ~= 'dap-repl' then
             unsaved_count = unsaved_count + 1
           end
         end
@@ -64,7 +65,7 @@ return {
 
           return MiniStatusline.combine_groups {
             '%=',
-            { hl = 'ErrorMsg', strings = { macro_indicator } }, -- Add macro recording indicator
+            { hl = 'ErrorMsg', strings = { macro_indicator } },
             { hl = 'WarningMsg', strings = { unsaved_indicator } },
             { hl = 'Added', strings = { supermaven } },
             { hl = 'MiniStatuslineFileinfo', strings = { autoformat_indicator, lsp, '', diff, fileinfo, '󱁐', spacing_info, diagnostics } },
