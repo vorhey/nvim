@@ -2,13 +2,14 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    'b0o/schemastore.nvim',
+    { 'b0o/schemastore.nvim', lazy = true },
     { 'nvim-flutter/flutter-tools.nvim', lazy = true, ft = { 'dart' } },
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
+    { 'williamboman/mason.nvim', lazy = true },
+    { 'williamboman/mason-lspconfig.nvim', lazy = true },
     { 'seblj/roslyn.nvim', lazy = true, ft = { 'cs' } },
     {
       'folke/lazydev.nvim',
+      lazy = true,
       dependencies = { 'Bilal2453/luvit-meta', lazy = true },
       ft = 'lua',
       opts = { library = { { path = 'luvit-meta/library', words = { 'vim%.uv' } } } },
