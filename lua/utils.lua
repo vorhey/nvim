@@ -205,6 +205,21 @@ M.file_diagnostics = function()
   require('mini.notify').make_notify()(message, vim.log.levels.INFO)
 end
 
+M.pick_file = function(glob_pattern, ignore_patterns)
+  return coroutine.create(function(dap_run_co)
+    Snacks.picker.files {
+      cwd = vim.fn.getcwd(),
+      -- Apply any glob patterns or ignore patterns
+      glob = glob_pattern,
+      exclude = ignore_patterns,
+      confirm = function(picker, item)
+        picker:close()
+        coroutine.resume(dap_run_co, item and item.file)
+      end,
+    }
+  end)
+end
+
 M.code_action_on_selection = function()
   vim.lsp.buf.code_action {
     range = {
