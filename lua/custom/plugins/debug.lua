@@ -95,7 +95,7 @@ return {
         name = 'console - netcoredbg',
         request = 'launch',
         program = function()
-          return vim.fn.input('Entry Point: ', vim.fn.getcwd() .. '/', 'file')
+          return utils.pick_file('dll', { 'obj/.*' })
         end,
       },
       {
@@ -116,7 +116,7 @@ return {
           end,
         },
         cwd = function()
-          return utils.pick_file('*.json', { 'obj/.*' })
+          return utils.pick_file('json', { 'obj/.*' })
         end,
       },
     }
