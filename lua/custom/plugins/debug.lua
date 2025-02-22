@@ -20,7 +20,7 @@ return {
       end,
     },
   },
-  lazy = true,
+  ft = { 'cs', 'go', 'typescript', 'typescriptreact', 'javascript' }, -- Add supported filetypes here
   keys = {
     { '<leader>dc', desc = 'debug: start/continue' },
     { '<leader>dn', desc = 'debug: step over' },
