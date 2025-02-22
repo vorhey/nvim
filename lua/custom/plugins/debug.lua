@@ -2,25 +2,12 @@
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
-    'rcarriga/nvim-dap-ui',
-    'nvim-neotest/nvim-nio',
-    'williamboman/mason.nvim',
-    {
-      'jay-babu/mason-nvim-dap.nvim',
-      config = function()
-        require('mason-nvim-dap').setup {
-          automatic_installation = true,
-          handlers = {},
-          ensure_installed = {
-            'coreclr',
-            'delve',
-            'js',
-          },
-        }
-      end,
-    },
+    { 'rcarriga/nvim-dap-ui', lazy = true },
+    { 'nvim-neotest/nvim-nio', lazy = true },
+    { 'williamboman/mason.nvim', lazy = true },
+    { 'jay-babu/mason-nvim-dap.nvim', lazy = true },
   },
-  ft = { 'cs', 'go', 'typescript', 'typescriptreact', 'javascript' }, -- Add supported filetypes here
+  lazy = true,
   keys = {
     { '<leader>dc', desc = 'debug: start/continue' },
     { '<leader>dn', desc = 'debug: step over' },
@@ -33,11 +20,29 @@ return {
   },
   config = function()
     local dap = require 'dap'
-    dap.set_log_level 'DEBUG'
     local dapui
+    local mason_dap
     local utils = require 'utils'
 
+    -- DAP LOG LEVEL
+    dap.set_log_level 'DEBUG'
+
+    local function setup_mason_dap()
+      mason_dap = require 'mason-nvim-dap'
+      mason_dap.setup {
+        automatic_installation = true,
+        ensure_installed = {
+          'coreclr',
+          'delve',
+          'js',
+        },
+      }
+    end
+
     local function setup_dapui()
+      if not mason_dap then
+        setup_mason_dap()
+      end
       if not dapui then
         dapui = require 'dapui'
         dapui.setup {
