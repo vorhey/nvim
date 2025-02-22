@@ -160,13 +160,6 @@ return {
       mode = { 'n', 'x' },
     },
     {
-      '<leader>fF',
-      function()
-        Snacks.picker.git_log_file()
-      end,
-      desc = 'git log file',
-    },
-    {
       '<leader>fs',
       function()
         Snacks.picker.lsp_symbols()
