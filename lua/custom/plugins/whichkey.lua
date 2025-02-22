@@ -17,7 +17,7 @@ return {
         { '<leader>d', group = 'debug', icon = { icon = '', color = 'grey' } },
         { '<leader>t', group = 'features', icon = { icon = '', color = 'grey' } },
         { '<leader>f', group = 'find', icon = { icon = '', color = 'grey' } },
-        { '<leader>h', group = 'git', icon = { icon = '󰊢', color = 'grey' } },
+        { '<leader>g', group = 'git', icon = { icon = '󰊢', color = 'grey' } },
         { '<leader>l', group = 'lsp', icon = { icon = '', color = 'grey' } },
         { '<leader>m', group = 'testing', icon = { icon = '', color = 'grey' } },
       },
