@@ -1,4 +1,3 @@
-local default = require 'blink.cmp.sources.snippets.default'
 ---@diagnostic disable: undefined-global
 return {
   'folke/snacks.nvim',
