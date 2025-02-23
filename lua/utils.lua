@@ -208,6 +208,11 @@ end
 M.pick_file = function(pattern, ignore_patterns)
   return coroutine.create(function(dap_run_co)
     Snacks.picker.files {
+      layout = {
+        layout = {
+          width = 0.8,
+        },
+      },
       cwd = vim.fn.getcwd(),
       ft = pattern,
       exclude = ignore_patterns,
