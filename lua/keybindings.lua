@@ -101,3 +101,6 @@ vim.keymap.set('n', 'k', "v:count ? 'k' : 'gk'", { noremap = true, expr = true }
 
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gjzz' : 'jzz'", { expr = true, noremap = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gkzz' : 'kzz'", { expr = true, noremap = true })
+
+vim.keymap.set('n', '{', '{zz', { noremap = true })
+vim.keymap.set('n', '}', '}zz', { noremap = true })
