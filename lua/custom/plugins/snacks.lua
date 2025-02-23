@@ -1,3 +1,4 @@
+local default = require 'blink.cmp.sources.snippets.default'
 ---@diagnostic disable: undefined-global
 return {
   'folke/snacks.nvim',
@@ -26,20 +27,9 @@ return {
     input = {},
     picker = {
       ui_select = true,
-      layout = {
-        layout = {
-          box = 'horizontal',
-          width = 0,
-          height = 0.85,
-          {
-            box = 'vertical',
-            border = 'rounded',
-            title = '{title} {live} {flags}',
-            { win = 'input', height = 1, border = 'bottom' },
-            { win = 'list', border = 'none' },
-          },
-          { win = 'preview', title = '{preview}', border = 'rounded', width = 0.3 },
-        },
+      layouts = {
+        select = { layout = { width = 0.5 } },
+        default = { layout = { width = 0 } },
       },
       win = {
         input = {
