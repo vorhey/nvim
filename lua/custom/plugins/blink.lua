@@ -1,5 +1,8 @@
 return {
   'saghen/blink.cmp',
+  dependencies = {
+    'kristijanhusak/vim-dadbod-completion',
+  },
   version = '*',
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
@@ -25,6 +28,26 @@ return {
     },
     sources = {
       default = { 'lsp', 'path', 'snippets' },
+      per_filetype = {
+        sql = { 'snippets', 'dadbod', 'buffer' },
+      },
+      providers = {
+        dadbod = {
+          name = 'Dadbod',
+          module = 'vim_dadbod_completion.blink',
+          transform_items = function(self, items)
+            for _, item in ipairs(items) do
+              if item.label then
+                item.label = string.lower(item.label)
+              end
+              if item.insertText then
+                item.insertText = string.lower(item.insertText)
+              end
+            end
+            return items
+          end,
+        },
+      },
     },
     completion = {
       trigger = {
