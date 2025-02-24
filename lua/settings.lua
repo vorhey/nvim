@@ -12,7 +12,6 @@ vim.opt.showmode = false -- Don't show mode in command line
 vim.opt.termguicolors = true -- Enable terminal GUI colors
 vim.opt.cursorline = true -- Highlight current line
 vim.opt.signcolumn = 'yes' -- Always show sign column
-vim.opt.showmatch = true -- Show matching brackets
 vim.opt.showcmd = false -- Don't show command in status line
 vim.opt.ruler = false -- Disable ruler
 vim.opt.cmdheight = 1 -- Command line height
@@ -25,9 +24,10 @@ vim.opt.pumheight = 12 -- Maximum number of popup menu items
 
 -- Search settings
 vim.opt.hlsearch = true -- Highlight search results
+vim.opt.incsearch = true -- Jump to the first match
 vim.opt.ignorecase = true -- Case-insensitive searching
 vim.opt.smartcase = true -- Case-sensitive if search has capitals
-vim.opt.inccommand = 'nosplit' -- Preview substitutions
+vim.opt.inccommand = 'split' -- Preview substitutions
 vim.o.wildignorecase = true -- Ignore case in file/command completion
 
 -- Indentation and whitespace
@@ -47,20 +47,17 @@ vim.opt.listchars = {
 -- Text wrapping
 vim.opt.wrap = true -- Enable line wrapping
 vim.opt.linebreak = true -- Wrap at word boundaries
-vim.opt.breakindent = true -- Preserve indentation in wrapped text
 
 -- Folding configuration
-vim.o.foldenable = true -- Enable folding
-vim.o.foldlevelstart = 99 -- Start with all folds open
-vim.o.foldcolumn = '0' -- Hide fold column
-vim.o.foldlevel = 99 -- Keep folds open unless deep
+vim.opt.foldcolumn = '0' -- Hide fold column
+vim.opt.foldenable = true -- Enable folding
+vim.opt.foldlevelstart = 99 -- Start with all folds open
 vim.opt.foldmethod = 'expr' -- Use treesitter for folding
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- Performance and technical settings
 vim.opt.updatetime = 250 -- Faster completion
 vim.opt.timeoutlen = 300 -- Time to wait for mapped sequence
-vim.opt.ttyfast = true -- Faster terminal connection
 vim.opt.undofile = true -- Save undo history
 vim.opt.backupcopy = 'yes' -- Backup file copying method
 vim.opt.mouse = 'a' -- Enable mouse support
