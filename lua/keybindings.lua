@@ -3,6 +3,8 @@ local utils = require 'utils'
 -- Basic operations
 vim.keymap.set('n', '<leader>Q', ':qa!<CR>', { desc = 'exit (all)' })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'exit' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
 -- Text manipulation
 vim.keymap.set('n', '<C-m>', utils.expand_line, { desc = 'Expand' })
