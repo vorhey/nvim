@@ -15,6 +15,7 @@ return {
       'shfmt',
       'npm-groovy-lint',
       'ruff',
+      'sql-formatter',
     }
 
     if utils.is_dotnet_installed() then
@@ -41,6 +42,7 @@ return {
       groovy = { 'npm-groovy-lint' },
       python = { 'ruff_format' },
       java = { 'spotless' },
+      sql = { 'sql-formatter' },
     }
 
     if utils.is_dotnet_installed() then
