@@ -42,7 +42,7 @@ return {
       groovy = { 'npm-groovy-lint' },
       python = { 'ruff_format' },
       java = { 'spotless' },
-      sql = { 'sql-formatter' },
+      sql = { 'sql_formatter' },
     }
 
     if utils.is_dotnet_installed() then
