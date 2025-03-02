@@ -5,7 +5,17 @@ return {
     { 'rcarriga/nvim-dap-ui', lazy = true },
     { 'nvim-neotest/nvim-nio', lazy = true },
     { 'williamboman/mason.nvim', lazy = true },
-    { 'jay-babu/mason-nvim-dap.nvim', lazy = true },
+    {
+      'jay-babu/mason-nvim-dap.nvim',
+      opts = {
+        automatic_installation = true,
+        ensure_installed = {
+          'coreclr',
+          'delve',
+          'js',
+        },
+      },
+    },
   },
   lazy = true,
   keys = {
@@ -21,28 +31,12 @@ return {
   config = function()
     local dap = require 'dap'
     local dapui
-    local mason_dap
     local utils = require 'utils'
 
     -- DAP LOG LEVEL
     dap.set_log_level 'DEBUG'
 
-    local function setup_mason_dap()
-      mason_dap = require 'mason-nvim-dap'
-      mason_dap.setup {
-        automatic_installation = true,
-        ensure_installed = {
-          'coreclr',
-          'delve',
-          'js',
-        },
-      }
-    end
-
     local function setup_dapui()
-      if not mason_dap then
-        setup_mason_dap()
-      end
       if not dapui then
         dapui = require 'dapui'
         dapui.setup {
