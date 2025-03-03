@@ -2,6 +2,8 @@
 require 'settings' -- Load basic settings
 require 'keybindings' -- Load key mappings
 require 'autocmds' -- Load autocommands
+require 'cmds' -- Load autocommands
+
 -- Plugin management with `lazy.nvim`
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
