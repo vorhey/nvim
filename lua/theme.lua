@@ -51,8 +51,6 @@ return {
         DapUIPlayPauseNC = { bg = 'NONE' },
         DapUIRestartNC = { bg = 'NONE' },
         DapUIUnavailableNC = { bg = 'NONE', fg = '#c6c6c6' },
-        WinBar = { bg = 'NONE', fg = '#c6c6c6' },
-        WinBarNC = { bg = 'NONE' },
         DapUIStopNC = { bg = 'NONE' },
         DapUIStepOverNC = { bg = 'NONE' },
         DapUIStepIntoNC = { bg = 'NONE' },

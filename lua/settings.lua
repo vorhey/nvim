@@ -64,7 +64,6 @@ vim.opt.mouse = 'a' -- Enable mouse support
 
 -- Status line and window bar
 vim.opt.shortmess:append { W = true, I = true, c = true, C = true }
-vim.opt.winbar = '%=' .. utils.get_root_dirname() .. "%{%v:lua.vim.fn.expand('%')%}%="
 
 -- Remove tilde on empty lines and set fillchars
 vim.opt.fillchars = {
