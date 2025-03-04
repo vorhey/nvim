@@ -14,6 +14,7 @@ return {
       ft = 'lua',
       opts = { library = { { path = 'luvit-meta/library', words = { 'vim%.uv' } } } },
     },
+    { 'luckasRanarison/tailwind-tools.nvim', opts = {} },
   },
 
   config = function()
