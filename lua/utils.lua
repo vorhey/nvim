@@ -311,5 +311,6 @@ M.mason_servers = {
   'basedpyright',
   'jdtls',
   'yamlls',
+  'tailwindcss',
 }
 return M
