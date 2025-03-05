@@ -80,7 +80,7 @@ return {
         return nil
       end,
       format_after_save = function(bufnr)
-        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat or vim.bo[bufnr].filetype == 'java' then
           return
         end
         return {
