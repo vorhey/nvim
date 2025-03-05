@@ -162,5 +162,12 @@ return {
       end,
       desc = 'explorer',
     },
+    {
+      '<leader>fn',
+      function()
+        Snacks.picker.notifications()
+      end,
+      desc = 'Notifications',
+    },
   },
 }
