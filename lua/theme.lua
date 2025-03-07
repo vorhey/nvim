@@ -72,6 +72,8 @@ return {
         -- Snippet
         SnippetTabStop = { bg = 'NONE' },
         -- Winbar
+        WinBar = { bg = 'NONE', fg = '#c6c6c6' },
+        WinBarNC = { bg = 'NONE' },
       },
     }
     vim.cmd.colorscheme 'oldworld'

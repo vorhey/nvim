@@ -239,6 +239,16 @@ M.get_root_dirname = function()
   return root_dir ~= nil and '[' .. root_dir .. '] ' or ''
 end
 
+function M.get_relative_filename()
+  local root = M.get_root_dirname():gsub('%s+$', '')
+  if root ~= '' then
+    local full_path = vim.fn.expand '%:p'
+    local rel_path = full_path:gsub(vim.fn.getcwd() .. '/', '')
+    return rel_path
+  else
+    return vim.fn.expand '%'
+  end
+end
 M.ignore_patterns = {
   -- Version Control
   '.git',
