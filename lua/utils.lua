@@ -233,22 +233,23 @@ M.code_action_on_selection = function()
   }
 end
 
-M.get_root_dirname = function()
-  local root_patterns = { '.git' }
-  local root_dir = vim.fs.basename(vim.fs.dirname(vim.fs.find(root_patterns, { upward = true })[1]))
-  return root_dir ~= nil and '[' .. root_dir .. '] ' or ''
-end
-
 function M.get_relative_filename()
-  local root = M.get_root_dirname():gsub('%s+$', '')
-  if root ~= '' then
+  -- Find the project root directory
+  local root_patterns = { '.git' }
+  local root_path = vim.fs.dirname(vim.fs.find(root_patterns, { upward = true })[1])
+
+  if root_path then
     local full_path = vim.fn.expand '%:p'
-    local rel_path = full_path:gsub(vim.fn.getcwd() .. '/', '')
+    -- Make sure paths have consistent formatting
+    root_path = root_path:gsub('/$', '') .. '/'
+    -- Get path relative to root
+    local rel_path = full_path:gsub('^' .. vim.pesc(root_path), '')
     return rel_path
   else
     return '%f'
   end
 end
+
 M.ignore_patterns = {
   -- Version Control
   '.git',
