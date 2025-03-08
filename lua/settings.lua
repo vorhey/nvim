@@ -1,5 +1,3 @@
-local utils = require 'utils'
-
 -- Leader key configuration
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -78,4 +76,11 @@ vim.cmd [[let &t_Cs = "\e[4:3m"]] -- Enable undercurl
 vim.cmd [[let &t_Ce = "\e[4:0m"]]
 
 -- Winbar
-vim.opt.winbar = '%=' .. "%{%v:lua.require('utils').get_relative_filename()%}%="
+_G.get_file_icon = function()
+  local extension = vim.fn.expand '%:e'
+  local icon, _ = require('nvim-web-devicons').get_icon_by_filetype(extension, { default = true })
+  return icon .. ' '
+end
+
+-- Then use it in your winbar
+vim.opt.winbar = "%=%{%v:lua.get_file_icon()%}%{%v:lua.require('utils').get_relative_filename()%}%="

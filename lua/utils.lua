@@ -246,7 +246,7 @@ function M.get_relative_filename()
     local rel_path = full_path:gsub(vim.fn.getcwd() .. '/', '')
     return rel_path
   else
-    return vim.fn.expand '%'
+    return '%f'
   end
 end
 M.ignore_patterns = {
