@@ -37,7 +37,7 @@ vim.opt.smartindent = true -- Smart autoindenting
 vim.opt.breakindent = true -- Maintain indent when wrapping
 vim.opt.list = true -- Show whitespace characters
 vim.opt.listchars = {
-  tab = '» ',
+  tab = '  ',
   trail = '·',
   nbsp = '␣',
 }
