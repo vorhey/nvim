@@ -24,7 +24,6 @@ return {
         { '<leader>g', group = 'git', icon = { icon = '󰊢', color = 'grey' } },
         { '<leader>l', group = 'lsp', icon = { icon = '', color = 'grey' } },
         { '<leader>m', group = 'testing', icon = { icon = '', color = 'grey' } },
-        { '<leader>0', group = 'doing', icon = { icon = '', color = 'grey' } },
       },
     }
     wk.setup {
