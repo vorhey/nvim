@@ -280,6 +280,23 @@ return {
           less = { validate = true, lint = { unknownAtRules = 'ignore' } },
         },
       },
+      basedpyright = {
+        settings = {
+          basedpyright = {
+            analysis = {
+              typeCheckingMode = 'off',
+            },
+          },
+        },
+      },
+      ruff = {
+        enabled = false,
+        settings = {
+          ruff = {
+            enabled = false,
+          },
+        },
+      },
     }
 
     -- Mason setup with lazy loading
