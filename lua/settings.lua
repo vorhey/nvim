@@ -78,6 +78,9 @@ vim.cmd [[let &t_Ce = "\e[4:0m"]]
 -- Winbar
 _G.get_file_icon = function()
   local extension = vim.fn.expand '%:e'
+  if extension == '' then
+    return ''
+  end
   local icon, _ = require('nvim-web-devicons').get_icon_by_filetype(extension, { default = true })
   return icon .. ' '
 end
