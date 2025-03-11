@@ -7,6 +7,7 @@ return {
     { 'williamboman/mason.nvim', lazy = true },
     { 'williamboman/mason-lspconfig.nvim', lazy = true },
     { 'seblj/roslyn.nvim', lazy = true, ft = { 'cs' } },
+    { 'luckasRanarison/tailwind-tools.nvim', lazy = true, ft = { 'js', 'jsx', 'ts', 'tsx' } },
     {
       'folke/lazydev.nvim',
       lazy = true,
@@ -14,7 +15,6 @@ return {
       ft = 'lua',
       opts = { library = { { path = 'luvit-meta/library', words = { 'vim%.uv' } } } },
     },
-    { 'luckasRanarison/tailwind-tools.nvim', opts = {} },
   },
 
   config = function()
