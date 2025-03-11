@@ -34,7 +34,6 @@ return {
           local mode_hl = MiniStatusline.section_mode { trunc_width = 120 }
           local diagnostics = MiniStatusline.section_diagnostics { trunc_width = 75 }
           local search = MiniStatusline.section_searchcount { trunc_width = 75 }
-          local fileinfo = MiniStatusline.section_fileinfo { trunc_width = 120 }
           local diff = MiniStatusline.section_diff { trunc_width = 75 }
           local lsp = MiniStatusline.section_lsp { trunc_width = 75 }
 
@@ -68,7 +67,7 @@ return {
             { hl = 'ErrorMsg', strings = { macro_indicator } },
             { hl = 'WarningMsg', strings = { unsaved_indicator } },
             { hl = 'Added', strings = { supermaven } },
-            { hl = 'MiniStatuslineFileinfo', strings = { autoformat_indicator, lsp, '', diff, fileinfo, '󱁐', spacing_info, diagnostics } },
+            { hl = 'MiniStatuslineFileinfo', strings = { autoformat_indicator, lsp, '', diff, '󱁐', spacing_info, diagnostics } },
             { hl = mode_hl, strings = { search } },
           }
         end,
