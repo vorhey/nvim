@@ -38,6 +38,15 @@ return {
           })
         end, { desc = 'git: previous hunk' })
         vim.keymap.set('n', '<leader>gd', gs.diffthis, { desc = 'git: toggle diff' })
+        Snacks.toggle({
+          name = 'Diffview',
+          get = function()
+            return require('diffview.lib').get_current_view() ~= nil
+          end,
+          set = function(state)
+            vim.cmd('Diffview' .. (state and 'Open' or 'Close'))
+          end,
+        }):map '<leader>gt'
         vim.keymap.set('n', '<leader>gD', function()
           vim.ui.input({ prompt = 'Branch: ' }, function(branch)
             if branch then
@@ -45,6 +54,15 @@ return {
             end
           end)
         end, { desc = 'git: diff against branch' })
+        vim.opt.diffopt = {
+          'internal',
+          'filler',
+          'closeoff',
+          'context:12',
+          'algorithm:histogram',
+          'linematch:200',
+          'indent-heuristic',
+        }
       end,
     }
   end,
