@@ -29,4 +29,3 @@ end)
 
 -- Toggle features
 vim.keymap.set('n', '<leader>ta', utils.toggle_autoformat, { desc = 'toggle autoformat', noremap = true, silent = true })
-vim.keymap.set('n', '<leader>tm', utils.toggle_supermaven, { desc = 'toggle supermaven' })

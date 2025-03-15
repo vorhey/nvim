@@ -2,8 +2,6 @@ return {
   'echasnovski/mini.statusline',
   version = false,
   config = function()
-    local utils = require 'utils'
-
     local function is_autoformat_enabled()
       return vim.g.disable_autoformat ~= true
     end
@@ -59,14 +57,19 @@ return {
             macro_indicator = ' REC @' .. recording_register
           end
 
-          local supermaven = utils.is_supermaven_enabled() and '' or ''
           local autoformat_indicator = is_autoformat_enabled() and '󰊄' or '󰉥'
+
+          local is_copilot_enabled = function()
+            return vim.g.copilot_enabled == true
+          end
+
+          local copilot = is_copilot_enabled() and '' or ''
 
           return MiniStatusline.combine_groups {
             '%=',
             { hl = 'ErrorMsg', strings = { macro_indicator } },
             { hl = 'WarningMsg', strings = { unsaved_indicator } },
-            { hl = 'Added', strings = { supermaven } },
+            { hl = 'MiniStatuslineFileInfo', strings = { copilot } },
             { hl = 'MiniStatuslineFileinfo', strings = { autoformat_indicator, lsp, '', diff, '󱁐', spacing_info, diagnostics } },
             { hl = mode_hl, strings = { search } },
           }

@@ -138,24 +138,6 @@ function M.parse_hex(int_color)
   return string.format('#%x', int_color)
 end
 
---- Toggle supermaven
-local supermaven_enabled = false
-M.toggle_supermaven = function()
-  local api = require 'supermaven-nvim.api'
-  supermaven_enabled = not supermaven_enabled
-  api.toggle()
-  if supermaven_enabled then
-    api.start()
-  else
-    api.stop()
-  end
-  print('Supermaven ' .. (supermaven_enabled and 'enabled' or 'disabled'))
-end
-
-M.is_supermaven_enabled = function()
-  return supermaven_enabled
-end
-
 -- Copy line above
 M.copy_line_above = function()
   if vim.fn.col '.' > 1 then
