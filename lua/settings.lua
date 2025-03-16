@@ -50,8 +50,7 @@ vim.opt.linebreak = true -- Wrap at word boundaries
 vim.opt.foldcolumn = '0' -- Hide fold column
 vim.opt.foldenable = true -- Enable folding
 vim.opt.foldlevelstart = 99 -- Start with all folds open
-vim.opt.foldmethod = 'expr' -- Use treesitter for folding
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldenable = true
 
 -- Performance and technical settings
 vim.opt.updatetime = 250 -- Faster completion
