@@ -24,5 +24,6 @@ return {
         vim.keymap.set('i', '<CR>', '<CR>', { buffer = true })
       end,
     })
+    vim.keymap.set('n', '<leader>td', ':DBUIToggle<CR>', { desc = 'toggle db ui' })
   end,
 }
