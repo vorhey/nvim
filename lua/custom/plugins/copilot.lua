@@ -15,7 +15,6 @@ return {
     local toggle_copilot = function()
       vim.g.copilot_enabled = not vim.g.copilot_enabled
     end
-
-    vim.keymap.set('n', '<leader>tc', toggle_copilot, { silent = true, noremap = true })
+    vim.keymap.set('n', '<leader>tc', toggle_copilot, { silent = true, noremap = true, desc = 'toggle copilot' })
   end,
 }
