@@ -1,6 +1,7 @@
 ---@diagnostic disable: missing-fields
 return {
   'neovim/nvim-lspconfig',
+  event = 'VeryLazy',
   dependencies = {
     { 'b0o/schemastore.nvim', lazy = true },
     { 'nvim-flutter/flutter-tools.nvim', lazy = true, ft = { 'dart' } },
@@ -300,7 +301,7 @@ return {
     }
 
     -- Mason setup with lazy loading
-    require('mason').setup {}
+    require('mason').setup { ui = { delay = 1000 } }
     require('mason-lspconfig').setup {
       ensure_installed = utils.mason_servers,
       handlers = {
