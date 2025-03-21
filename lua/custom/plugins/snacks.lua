@@ -94,6 +94,13 @@ return {
   },
   keys = {
     {
+      '<leader>/',
+      function()
+        Snacks.picker.lines()
+      end,
+      desc = 'find current buffer',
+    },
+    {
       '<leader>ff',
       function()
         Snacks.picker.smart { filter = { cwd = true } }
