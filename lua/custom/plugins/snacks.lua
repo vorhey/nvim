@@ -39,6 +39,9 @@ return {
         },
       },
     },
+    lazygit = {
+      enabled = true,
+    },
   },
   keys = {
     {
@@ -168,6 +171,13 @@ return {
         Snacks.picker.notifications()
       end,
       desc = 'Notifications',
+    },
+    {
+      '<leader>gl',
+      function()
+        Snacks.lazygit()
+      end,
+      desc = 'lazy git',
     },
   },
 }
