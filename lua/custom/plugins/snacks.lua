@@ -3,6 +3,52 @@ return {
   'folke/snacks.nvim',
   priority = 1000,
   lazy = false,
+  init = function()
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'VeryLazy',
+      callback = function()
+        Snacks.toggle.option('spell', { name = 'Spelling' }):map '<leader>ts'
+        Snacks.toggle.inlay_hints():map '<leader>th'
+        Snacks.toggle.diagnostics():map '<leader>tD'
+        Snacks.toggle
+          .new({
+            id = 'format_on_save',
+            name = 'Format on Save',
+            get = function()
+              return not vim.g.disable_autoformat
+            end,
+            set = function(state)
+              vim.g.disable_autoformat = not state
+            end,
+          })
+          :map '<leader>tf'
+        Snacks.toggle
+          .new({
+            id = 'copilot',
+            name = 'Copilot',
+            get = function()
+              return vim.g.copilot_enabled
+            end,
+            set = function()
+              vim.g.copilot_enabled = not vim.g.copilot_enabled
+            end,
+          })
+          :map '<leader>tc'
+        Snacks.toggle
+          .new({
+            id = 'db_ui',
+            name = 'DB UI',
+            get = function()
+              return vim.g.db_ui_open
+            end,
+            set = function()
+              vim.cmd 'DBUIToggle'
+            end,
+          })
+          :map '<leader>td'
+      end,
+    })
+  end,
   opts = {
     explorer = {
       enabled = true,

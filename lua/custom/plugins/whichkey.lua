@@ -18,7 +18,7 @@ return {
         { '<leader>S', icon = { icon = '󰆿', color = 'green' } },
         { '<leader><leader>', icon = { icon = '', color = 'green' } },
         { '<leader>d', group = 'debug', icon = { icon = '', color = 'grey' } },
-        { '<leader>t', group = 'features', icon = { icon = '', color = 'grey' } },
+        { '<leader>t', group = 'toggle', icon = { icon = '', color = 'grey' } },
         { '<leader>f', group = 'find', icon = { icon = '', color = 'grey' } },
         { '<leader>g', group = 'git', icon = { icon = '󰊢', color = 'grey' } },
         { '<leader>h', group = 'harvgate', icon = { icon = '󰁤', color = 'grey' } },

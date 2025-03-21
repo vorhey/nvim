@@ -24,19 +24,5 @@ return {
         vim.keymap.set('i', '<CR>', '<CR>', { buffer = true })
       end,
     })
-    -- Helper function to close scratch buffer if exists
-    local close_scratch_buffer = function()
-      for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.bo[bufnr].buftype == 'nofile' then
-          vim.api.nvim_buf_delete(bufnr, { force = true })
-        end
-      end
-    end
-
-    local toggle_db_ui = function()
-      close_scratch_buffer()
-      vim.cmd 'DBUIToggle'
-    end
-    vim.keymap.set('n', '<leader>td', toggle_db_ui, { desc = 'toggle db ui' })
   end,
 }
