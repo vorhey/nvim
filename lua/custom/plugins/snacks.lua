@@ -42,6 +42,9 @@ return {
     lazygit = {
       enabled = true,
     },
+    scope = {
+      enabled = true,
+    },
   },
   keys = {
     {
