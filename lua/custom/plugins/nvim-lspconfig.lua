@@ -210,9 +210,9 @@ return {
           ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
             if result.diagnostics then
               local IGNORED_DIAGNOSTIC_CODES = {
-                [80001] = true,
-                [80006] = true,
-                [7044] = true,
+                [80001] = true, -- Import can be automatically included
+                [80006] = true, -- This may be converted to an async function
+                [7044] = true, -- Parameter has implicitly 'any' type
               }
               result.diagnostics = vim.tbl_filter(function(diagnostic)
                 return not IGNORED_DIAGNOSTIC_CODES[diagnostic.code]
@@ -230,6 +230,7 @@ return {
         }),
         settings = {
           vtsls = {
+            enableMoveToFileCodeAction = true,
             experimental = {
               maxInlayHintLength = 20,
               completion = {
@@ -237,14 +238,16 @@ return {
                 entriesLimit = 100,
               },
             },
-            enableMoveToFileCodeAction = true,
           },
           javascript = {
+            updateImportsOnFileMove = { enabled = 'always' },
             inlayHints = {
               parameterTypes = { enabled = true },
               variableTypes = { enabled = true },
-              propertyDeclarationTypes = { enabled = false },
-              functionLikeReturnTypes = { enabled = false },
+              propertyDeclarationTypes = { enabled = true },
+              functionLikeReturnTypes = { enabled = true },
+              enumMemberValues = { enabled = true },
+              parameterNames = { enabled = 'literals' },
             },
             suggest = {
               enabled = true,
@@ -254,13 +257,24 @@ return {
               classMemberSnippets = { enabled = true },
             },
             suggestionActions = { enabled = true },
+            preferences = {
+              importModuleSpecifier = 'shortest',
+            },
           },
           typescript = {
+            updateImportsOnFileMove = { enabled = 'always' },
             inlayHints = {
               parameterTypes = { enabled = true },
               variableTypes = { enabled = true },
               propertyDeclarationTypes = { enabled = false },
               functionLikeReturnTypes = { enabled = false },
+            },
+            referencesCodeLens = {
+              enabled = true,
+              showOnAllFunctions = false,
+            },
+            implementationsCodeLens = {
+              enabled = true,
             },
           },
         },
