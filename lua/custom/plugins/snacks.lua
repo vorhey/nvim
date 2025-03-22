@@ -212,7 +212,7 @@ return {
       function()
         Snacks.picker.lsp_symbols()
       end,
-      desc = 'LSP Symbols',
+      desc = 'lsp symbols',
     },
     {
       '<leader>e',
@@ -226,7 +226,7 @@ return {
       function()
         Snacks.picker.notifications()
       end,
-      desc = 'Notifications',
+      desc = 'notifications',
     },
     {
       '<leader>gl',
