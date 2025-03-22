@@ -158,6 +158,13 @@ return {
       desc = 'goto definition',
     },
     {
+      'gi',
+      function()
+        Snacks.picker.lsp_implementations()
+      end,
+      desc = 'goto implementation',
+    },
+    {
       '<leader>o',
       function()
         Snacks.bufdelete.other()
