@@ -226,7 +226,7 @@ return {
       function()
         Snacks.lazygit()
       end,
-      desc = 'lazy git',
+      desc = 'git: lazy git',
     },
   },
 }
