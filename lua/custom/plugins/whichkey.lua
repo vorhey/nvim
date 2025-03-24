@@ -24,6 +24,7 @@ return {
         { '<leader>h', group = 'harvgate', icon = { icon = '󰁤', color = 'grey' } },
         { '<leader>l', group = 'lsp', icon = { icon = '', color = 'grey' } },
         { '<leader>m', group = 'testing', icon = { icon = '', color = 'grey' } },
+        { '<leader>R', group = 'kulala', icon = { icon = '󰏚', color = 'grey' } },
       },
     }
     wk.setup {
