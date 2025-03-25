@@ -42,7 +42,7 @@ vim.keymap.set('n', '<Plug>(ScrollRightCenter)', function()
 
   -- Make dot-repeatable with repeat.vim
   vim.cmd 'silent! call repeat#set("\\<Plug>(ScrollRightCenter)", v:count)'
-end, { silent = true, noremap = true, desc = 'Scroll right and center cursor in visible window' })
+end, { silent = true, noremap = true, desc = 'Scroll right' })
 
--- Map z. to the <Plug> mapping
 vim.keymap.set('n', 'z.', '<Plug>(ScrollRightCenter)', { silent = true })
+vim.keymap.set('n', 'zH', '<Cmd>normal! zH<CR><Cmd>silent! call repeat#set("zH", v:count)<CR>', { silent = true, desc = 'Scroll left' })
