@@ -27,10 +27,7 @@ vim.keymap.set('i', '<M-:>', function()
   end
 end)
 
-vim.keymap.set('n', '<Plug>(ScrollRightCenter)', function()
-  -- First scroll right
-  vim.cmd 'silent! normal! zL'
-
+local center_cursor = function()
   -- Get dimensions, view and position
   local win_width = vim.api.nvim_win_get_width(0)
   local left_col = vim.fn.winsaveview().leftcol
@@ -39,10 +36,23 @@ vim.keymap.set('n', '<Plug>(ScrollRightCenter)', function()
 
   -- Set cursor to new position
   vim.api.nvim_win_set_cursor(0, { cursor_row, new_col })
+end
 
+vim.keymap.set('n', '<Plug>(ScrollRightCenter)', function()
+  -- First scroll right
+  vim.cmd 'silent! normal! zL'
+  center_cursor()
   -- Make dot-repeatable with repeat.vim
   vim.cmd 'silent! call repeat#set("\\<Plug>(ScrollRightCenter)", v:count)'
 end, { silent = true, noremap = true, desc = 'Scroll right horizontally' })
 
-vim.keymap.set('n', 'z.', '<Plug>(ScrollRightCenter)', { silent = true, desc = 'Scroll right' })
-vim.keymap.set('n', 'zH', '<Cmd>normal! zH<CR><Cmd>silent! call repeat#set("zH", v:count)<CR>', { silent = true, desc = 'Scroll left horizontally' })
+vim.keymap.set('n', '<Plug>(ScrollLeftCenter)', function()
+  -- First scroll left
+  vim.cmd 'silent! normal! zH'
+  center_cursor()
+  -- Make dot-repeatable with repeat.vim
+  vim.cmd 'silent! call repeat#set("\\<Plug>(ScrollLeftCenter)", v:count)'
+end, { silent = true, noremap = true, desc = 'Scroll left horizontally' })
+
+vim.keymap.set('n', 'zL', '<Plug>(ScrollRightCenter)', { silent = true, desc = 'Scroll right' })
+vim.keymap.set('n', 'zH', '<Plug>(ScrollLeftCenter)', { silent = true, desc = 'Scroll right' })
