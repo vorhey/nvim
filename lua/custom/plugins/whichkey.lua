@@ -17,6 +17,7 @@ return {
         { '<leader>s', icon = { icon = '󰇀', color = 'green' } },
         { '<leader>S', icon = { icon = '󰆿', color = 'green' } },
         { '<leader><leader>', icon = { icon = '', color = 'green' } },
+        { '<leader>a', group = 'avante', icon = { icon = '󰬈', color = 'grey' } },
         { '<leader>d', group = 'debug', icon = { icon = '', color = 'grey' } },
         { '<leader>t', group = 'toggle', icon = { icon = '', color = 'grey' } },
         { '<leader>f', group = 'find', icon = { icon = '', color = 'grey' } },
@@ -29,7 +30,6 @@ return {
     }
     wk.setup {
       preset = 'helix',
-      sort = { 'manual' },
       delay = 0,
     }
   end,
