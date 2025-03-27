@@ -1,6 +1,6 @@
 return {
   'stevearc/conform.nvim',
-  lazy = false,
+  event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     'williamboman/mason.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
