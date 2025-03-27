@@ -3,7 +3,6 @@ return {
   'williamboman/mason.nvim',
   event = 'VeryLazy',
   dependencies = {
-    { 'aznhe21/actions-preview.nvim', lazy = true },
     { 'b0o/schemastore.nvim', lazy = true },
     { 'williamboman/mason.nvim', lazy = true },
     { 'williamboman/mason-lspconfig.nvim', lazy = true },
@@ -15,6 +14,11 @@ return {
       dependencies = { 'Bilal2453/luvit-meta', lazy = true },
       ft = 'lua',
       opts = { library = { { path = 'luvit-meta/library', words = { 'vim%.uv' } } } },
+    },
+    {
+      'Chaitanyabsprip/fastaction.nvim',
+      ---@type FastActionConfig
+      opts = {},
     },
   },
   lazy = true,
@@ -221,7 +225,7 @@ return {
       vim.lsp.buf.format { async = true }
     end
 
-    vim.keymap.set({ 'v', 'n' }, '<leader>la', require('actions-preview').code_actions, { desc = 'lsp: code actions' })
+    vim.keymap.set({ 'v', 'n' }, '<leader>la', '<cmd>lua require("fastaction").code_action()<CR>', { desc = 'lsp: code actions' })
     vim.keymap.set('n', '<leader>lf', format_buffer, { desc = 'lsp: format buffer' })
     vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, { desc = 'lsp: diagnostic messages' })
     vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = 'lsp: rename' })
