@@ -1,0 +1,235 @@
+---@diagnostic disable: missing-fields
+return {
+  'williamboman/mason.nvim',
+  event = 'VeryLazy',
+  dependencies = {
+    { 'aznhe21/actions-preview.nvim', lazy = true },
+    { 'b0o/schemastore.nvim', lazy = true },
+    { 'williamboman/mason.nvim', lazy = true },
+    { 'williamboman/mason-lspconfig.nvim', lazy = true },
+    { 'seblj/roslyn.nvim', lazy = true, ft = { 'cs' } },
+    { 'luckasRanarison/tailwind-tools.nvim', lazy = true, ft = { 'js', 'jsx', 'ts', 'tsx' } },
+    {
+      'folke/lazydev.nvim',
+      lazy = true,
+      dependencies = { 'Bilal2453/luvit-meta', lazy = true },
+      ft = 'lua',
+      opts = { library = { { path = 'luvit-meta/library', words = { 'vim%.uv' } } } },
+    },
+  },
+  lazy = true,
+  config = function()
+    -- Mason configuration
+    require('mason').setup { ui = { delay = 1000 } }
+
+    -- Mason LSP configuration
+    require('mason-lspconfig').setup {
+      ensure_installed = {
+        'lua_ls',
+        'vtsls',
+        'cssls',
+        'jsonls',
+        'gopls',
+      },
+    }
+
+    -- Use default capabilities instead of custom module
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+    -- Set default LSP configuration
+    vim.lsp.config('*', {
+      capabilities = capabilities,
+      root_markers = { '.git' },
+    })
+
+    -- Configure Lua language server
+    vim.lsp.config('lua_ls', {
+      cmd = { 'lua-language-server' },
+      filetypes = { 'lua' },
+      settings = {
+        Lua = {
+          hint = {
+            enable = true,
+            arrayIndex = 'Disable',
+          },
+          runtime = {
+            version = 'LuaJIT',
+            path = vim.split(package.path, ';'),
+          },
+          diagnostics = {
+            globals = { 'vim', 'use' },
+            disable = { 'missing-parameter' },
+          },
+          workspace = {
+            library = {},
+            checkThirdParty = false,
+          },
+          telemetry = {
+            enable = false,
+          },
+          completion = {
+            callSnippet = 'Replace',
+          },
+        },
+      },
+    })
+
+    -- Configure vtsls
+    vim.lsp.config('vtsls', {
+      cmd = { 'vtsls', '--stdio' },
+      filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
+      settings = {
+        vtsls = {
+          enableMoveToFileCodeAction = true,
+          experimental = {
+            maxInlayHintLength = 20,
+            completion = {
+              enableServerSideFuzzyMatch = true,
+              entriesLimit = 100,
+            },
+          },
+        },
+        javascript = {
+          updateImportsOnFileMove = { enabled = 'always' },
+          inlayHints = {
+            parameterTypes = { enabled = true },
+            variableTypes = { enabled = true },
+            propertyDeclarationTypes = { enabled = true },
+            functionLikeReturnTypes = { enabled = true },
+            enumMemberValues = { enabled = true },
+            parameterNames = { enabled = 'literals' },
+          },
+          suggest = {
+            enabled = true,
+            completeFunctionCalls = true,
+            includeCompletionsForImportStatements = true,
+            includeAutomaticOptionalChainCompletions = true,
+            classMemberSnippets = { enabled = true },
+          },
+          suggestionActions = { enabled = true },
+          preferences = {
+            importModuleSpecifier = 'shortest',
+          },
+        },
+        typescript = {
+          updateImportsOnFileMove = { enabled = 'always' },
+          inlayHints = {
+            parameterTypes = { enabled = true },
+            variableTypes = { enabled = true },
+            propertyDeclarationTypes = { enabled = false },
+            functionLikeReturnTypes = { enabled = false },
+          },
+          referencesCodeLens = {
+            enabled = true,
+            showOnAllFunctions = false,
+          },
+          implementationsCodeLens = {
+            enabled = true,
+          },
+        },
+      },
+    })
+
+    -- Configure JSON language server
+    vim.lsp.config('jsonls', {
+      cmd = { 'vscode-json-language-server', '--stdio' },
+      filetypes = { 'json' },
+      settings = {
+        json = {
+          schemas = require('schemastore').json.schemas(),
+          validate = { enable = true },
+        },
+      },
+    })
+
+    -- Configure Go language server
+    vim.lsp.config('gopls', {
+      cmd = { 'gopls' },
+      root_markers = { '.git', 'go.mod', 'go.work', vim.uv.cwd() },
+      filetypes = { 'go', 'gotempl', 'gowork', 'gomod' },
+      settings = {
+        gopls = {
+          completeUnimported = true,
+          usePlaceholders = true,
+          analyses = {
+            unusedparams = true,
+          },
+          ['ui.inlayhint.hints'] = {
+            compositeLiteralFields = true,
+            constantValues = true,
+            parameterNames = true,
+            rangeVariableTypes = true,
+          },
+        },
+      },
+    })
+
+    -- Configure CSS language server
+    vim.lsp.config('cssls', {
+      cmd = { 'vscode-css-language-server', '--stdio' },
+      filetypes = { 'css', 'scss', 'less' },
+      settings = {
+        css = { validate = true, lint = { unknownAtRules = 'ignore' } },
+        scss = { validate = true, lint = { unknownAtRules = 'ignore' } },
+        less = { validate = true, lint = { unknownAtRules = 'ignore' } },
+      },
+    })
+
+    -- Configure Roslyn language server
+    require('roslyn').setup {
+      config = {
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+          vim.bo[bufnr].tabstop = 4
+          vim.bo[bufnr].shiftwidth = 4
+          vim.bo[bufnr].expandtab = true
+          vim.bo[bufnr].softtabstop = 4
+          vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertEnter', 'InsertLeave' }, {
+            buffer = bufnr,
+            callback = function()
+              vim.lsp.codelens.refresh { bufnr = 0 }
+              -- workaround for diagnostics not being triggered
+              client:request('textDocument/diagnostic', {
+                textDocument = vim.lsp.util.make_text_document_params(),
+              }, nil, bufnr)
+            end,
+          })
+        end,
+        filewatching = true,
+        settings = {
+          ['csharp|inlay_hints'] = {
+            csharp_enable_inlay_hints_for_implicit_object_creation = true,
+            csharp_enable_inlay_hints_for_implicit_variable_types = true,
+            csharp_enable_inlay_hints_for_lambda_parameter_types = true,
+            csharp_enable_inlay_hints_for_types = true,
+            dotnet_enable_inlay_hints_for_indexer_parameters = true,
+            dotnet_enable_inlay_hints_for_literal_parameters = true,
+            dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+            dotnet_enable_inlay_hints_for_other_parameters = true,
+            dotnet_enable_inlay_hints_for_parameters = true,
+            dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
+            dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+            dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
+          },
+          ['csharp|code_lens'] = {
+            dotnet_enable_references_code_lens = true,
+          },
+        },
+      },
+    }
+    local function format_buffer()
+      vim.lsp.buf.format { async = true }
+    end
+
+    vim.keymap.set({ 'v', 'n' }, '<leader>la', require('actions-preview').code_actions, { desc = 'lsp: code actions' })
+    vim.keymap.set('n', '<leader>lf', format_buffer, { desc = 'lsp: format buffer' })
+    vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, { desc = 'lsp: diagnostic messages' })
+    vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = 'lsp: rename' })
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'lsp: hover documentation' })
+    vim.keymap.set('n', 'gR', vim.lsp.buf.references, { desc = 'lsp: native references' })
+    vim.keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, { desc = 'lsp: signature help' })
+
+    -- Enable the server
+    vim.lsp.enable { 'lua_ls', 'vtsls', 'cssls', 'gopls' }
+  end,
+}

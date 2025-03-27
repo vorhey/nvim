@@ -17,6 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   { import = 'custom.plugins' },
   { import = 'theme' },
+  { import = 'lsp' },
 }, {
   change_detection = { enabled = false },
   ui = {
