@@ -82,6 +82,21 @@ return {
     vim.lsp.config('vtsls', {
       cmd = { 'vtsls', '--stdio' },
       filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
+      handlers = {
+        ['textDocument/publishDiagnostics'] = function(err, result, ctx, config)
+          if result.diagnostics then
+            local IGNORED_DIAGNOSTIC_CODES = {
+              [80001] = true, -- Import can be automatically included
+              [80006] = true, -- This may be converted to an async function
+              [7044] = true, -- Parameter has implicitly 'any' type
+            }
+            result.diagnostics = vim.tbl_filter(function(diagnostic)
+              return not IGNORED_DIAGNOSTIC_CODES[diagnostic.code]
+            end, result.diagnostics)
+          end
+          return vim.lsp.handlers['textDocument/publishDiagnostics'](err, result, ctx, config)
+        end,
+      },
       settings = {
         vtsls = {
           enableMoveToFileCodeAction = true,
