@@ -61,9 +61,6 @@ return {
     image = {
       enabled = true,
     },
-    notifier = {
-      enabled = true,
-    },
     dashboard = {
       sections = {
         {
