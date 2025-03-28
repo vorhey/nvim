@@ -55,6 +55,9 @@ return {
     })
   end,
   opts = {
+    words = {
+      enabled = true,
+    },
     explorer = {
       enabled = true,
     },
