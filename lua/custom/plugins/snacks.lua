@@ -62,13 +62,62 @@ return {
       enabled = true,
     },
     dashboard = {
+      preset = {
+        header = [[
+                                                                                                                                            
+                                .. .;>?>]I                                                                                                            
+                      .. ..':;. <:xbd\({+^`^.  ..   .  .                                                                                              
+                  '`nx'+f_[Yc[CXnX\v\vULj>'+nuvux1{||_'`'                                                                                             
+                  .'!MJ,cLqopCdp#kJjbp/qu|UJtLOZUuQJitC?.'' !?'.                                                                                      
+                  ..|*U{dp{OpLJwzL<<Ibv,uC_uZ/zUOjQo#*qOLOL+C>_".                                                                                     
+                  .':h}l,`"_hhqi . `^.'`}mC_-n[m!ZCmoL[ckboZU\/".']-                                                                                  
+                  ':t';~+']!:!)|''   ' .l]XfjxXfkJ]_|tJtUoohmLCLmwt'"'                                                                                
+                '^;"'.`l|-(+l<(<+(>'..'' '.'.I;"!i<{10l\/JkduzX{kc--['                                                                                
+                ,J'`;cYOhxZ;;X#dfxj]/>)!';.'  '`!"`'"^/1{U(kamwhoZv?^.                                                                                
+               '!I'[a<i'\i  'IznwhhOU1fvc+`?     .    ''^[|(?1th`':ii<;.                                                                              
+             '.lI ."`.''.    ]pOO/+foM^[fi^~I+!          '1';!+[(x\.                                                                                  
+             'j, .;cwm:'   '?OppqO]t/^Uf!:"dc|+fi"!"'^.        l|{_<:.                                                                                
+            :1l';|j[1 .~_",;zc< .^(mUh":"!,YtQ<1`.             ,.;i!1(+'                                                                              
+          '"I' .[tI'' ;\?_\_[.   ''`(dqxf)nJY\".         '."^;"1|I,'  :t>'                                                                            
+          _QJ_,ii_{.;{U[]l'         .'(Zvxc|{_",~'' ";_!^`..   .,>l.   ."+j\                                                                          
+          :mxCwuY(uj~"''             `.{wbd-n{l^'. .ri`.        .."?}`:.  .`?j{C01'                                                                   
+          '[moqmOu`'                  .iLkakt.    '. .     'I1-1{[//;.      ''''^`!\t?wdn,                                                            
+          '''`IuL".                     rh#vi'    ^I<"'''  .'::':,^`'.             '..''`:{)fnmZlI`'.                                                 
+               .                 .'';:`''|aOc"`.i:-/z`.      .'' ''.                      '.`.''[1cj?;l~_-+i'  '                                      
+                              . `>|_(j"}\ftnrx{Lqz(?^'   ..'.!?{;..                        '!l...'I)(jkwXYJvxC}(>.                                    
+                              .,cv`~maod/}'`I})LYz{~,'  ';10qQ};.                          .l[l'  .l~)0cQvt;J//Cjt\_..                                
+                              'OOZXXb#hkkQ((cUtj;?'. . `thOav-`                             .<1"'' . ^)-n]-Jt+zn/0dwhmf''.                            
+                            ''!vki|jO*qcpaoZbdoh`''`'[:tpJJ,]_.                              ")|^'..  I\>uqC|\Uu"chbfoMWQl''                          
+                            .'ip~^~!   ''[Zpdapkbkn?\*hM*Yj;)?;'                          'I>.}O!,^    '\Xz)zvtvlQXQqaqjh#fxf.   '.                   
+                              'L{~j'        .^|xzfz0k*kZpbmt|]!!`.''                      {+{,jq"/}'   .`"jJOb{]j-?uhooJCq*Cpt[(i)-1|~                
+                            .'(v.+b/^             ."{/QkqQxLCX\x;/l",.'"^`;i'.  '..   `:<?v))'{OUf{^.    .~{p##Ctvz/(cwmdzJqmh*aZr|~^,''              
+                            .,L<:~czQ>'               `'!]jaZpO?Zu1uru/]f)/-<:i+/~,iI?<1LUnc~]0md~->'      UkQd*jJcz{LJjUcq|qoqh0+\v\<.'              
+                             'XkfxC+)aY~t]n_               .`I!|p*pUO0ZLQmXxJrYnt\uYZpow0(}{jjUaoc-+<\.   'dXZo*|U0f!qunxzn1v_LzYdu~]c,I|-'           
+                              'n-^''u'O``+bIz.                  ''....'`^</XLJJX\}>^.'<#dh#boOzmkbJ-lrf   `[0#MnocC(hjIwLUr~xQur". '''Yn_'z^          
+                              '^axjj"omaLOq1I'                                        .+Qdophda#Znf}`nn^'.`?+p{Y/awmObprjr)oQQ)z+~Xx>^''}_'`          
+                              .'^cwO>^ ~x\}>i.                                        ..:zn\UoaaLbUf!ll^^`~"vX{'MzbmhxUzwLQQjjLL{p[>:f\~'''           
+                                .':|/     .'..                                          . 1{-fUuOoowYC'"<>i>{/<..0C*dvpaJJYb+YrQ/ufnrf^:l             
+                                 .''.                                                     .',~{c}ak**{xJzc;<<>|,',r/mpxdv}zx?Y|)<[)q)|]/`.            
+                                                                                            .',Ui<XOO*kr}["j;,/I..1fYfZrr|O|I_L\(wu_/><-?l.           
+                                                                                               .'L`Iwk*bUf;v~-^ZX'[{.  ?n,`''(n:`!Zm)>..,x;           
+                                                                                                  -|luYmmdL>;'..Xb|,.    '.}I. '_>`IfkX' .).          
+                                                                                                   .1(j/JuJOcff-.Xxj\^.          ";''ih{'.            
+                                                                                                      lt_:(doadq,!kUO"'               ,x..            
+                                                                                                       ';Y\Xco)YLr+Q\{'               ^?'             
+                                                                                                         "q}<qJ;I0z:rb'               .'.             
+                                                                                                         '.hn)u" iX~lcp'                              
+                                                                                                           ,Ul?Q`'?vz^,l                              
+                                                                                                           `n_;/X`.]O>,/..                            
+                                                                                                            ;u0![J''1v._|'.                           
+                                                                                                            .iQ{.?Y>-q{.If,'                          
+                                                                                                              zah,fa}un\(C_''                         
+                                                                                                                "0CZi);Jt>I`<!`                       
+                                                                                                                 'lvuk\f{pYi{Q-'                      
+        ]],
+      },
       sections = {
-        {
-          section = 'header',
-        },
-        {
-          section = 'startup',
-        },
+        { section = 'header' },
+        { section = 'startup' },
       },
     },
     input = {},
