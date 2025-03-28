@@ -17,7 +17,15 @@ return {
           return { notif_arr[1] }
         end,
         format = function(notify)
-          return notify.msg
+          local icons = {
+            ['ERROR'] = '  ',
+            ['WARN'] = '  ',
+            ['INFO'] = '  ',
+            ['DEBUG'] = '  ',
+            ['TRACE'] = '»  ',
+          }
+          local icon = icons[notify.level] or ''
+          return icon .. notify.msg
         end,
       },
       window = {
