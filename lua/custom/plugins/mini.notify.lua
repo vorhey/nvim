@@ -7,6 +7,7 @@ return {
       local bottom_space = vim.o.cmdheight + (has_statusline and 1 or 0)
       return { anchor = 'SE', col = vim.o.columns, row = vim.o.lines - bottom_space, border = 'none' }
     end
+
     require('mini.notify').setup {
       content = {
         sort = function(notif_arr)
@@ -24,5 +25,7 @@ return {
         winblend = 0,
       },
     }
+
+    vim.notify = require('mini.notify').make_notify()
   end,
 }
