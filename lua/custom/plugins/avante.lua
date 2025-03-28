@@ -11,6 +11,9 @@ return {
       -- max_completion_tokens = 16384, -- Increase this to include reasoning tokens (for reasoning models)
       --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
     },
+    hints = {
+      enabled = false, -- Set this to false to disable the hints
+    },
   },
   build = 'make',
   dependencies = {
