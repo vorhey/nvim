@@ -1,5 +1,6 @@
 return {
   'sindrets/diffview.nvim',
+  lazy = true,
   config = function()
     require('diffview').setup {
       enhanced_diff_hl = true,
