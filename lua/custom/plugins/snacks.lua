@@ -55,6 +55,9 @@ return {
     })
   end,
   opts = {
+    statuscolumn = {
+      enabled = true,
+    },
     words = {
       enabled = true,
     },

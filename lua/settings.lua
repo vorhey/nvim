@@ -47,9 +47,12 @@ vim.opt.wrap = true -- Enable line wrapping
 vim.opt.linebreak = true -- Wrap at word boundaries
 
 -- Folding configuration
-vim.opt.foldcolumn = '0' -- Hide fold column
-vim.opt.foldenable = true -- Enable folding
-vim.opt.foldlevelstart = 99 -- Start with all folds open
+vim.o.foldenable = true
+vim.o.foldlevel = 99
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.o.foldtext = ''
+vim.opt.foldcolumn = 'auto:1'
 
 -- Performance and technical settings
 vim.opt.updatetime = 250 -- Faster completion
@@ -60,14 +63,6 @@ vim.opt.mouse = 'a' -- Enable mouse support
 
 -- Status line and window bar
 vim.opt.shortmess:append { W = true, I = true, c = true, C = true }
-
--- Remove tilde on empty lines and set fillchars
-vim.opt.fillchars = {
-  eob = ' ', -- Empty lines at the end of buffer
-  fold = ' ', -- Filling fold lines
-  foldsep = ' ', -- Separator between folds
-  diff = '╱', -- Deleted lines in diff
-}
 
 -- Terminal specific settings
 vim.cmd [[let &t_Cs = "\e[4:3m"]] -- Enable undercurl
