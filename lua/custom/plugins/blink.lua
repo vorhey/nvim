@@ -13,6 +13,11 @@ return {
     -- See the full "keymap" documentation for information on defining your own keymap.
     keymap = {
       preset = 'super-tab',
+      ['<C-h>'] = {
+        function(cmp)
+          cmp.snippet_backward()
+        end,
+      },
       ['<C-l>'] = {
         function(cmp)
           cmp.snippet_forward()
