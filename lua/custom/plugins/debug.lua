@@ -70,14 +70,14 @@ return {
     end
     -- Keymaps
     vim.keymap.set('n', '<leader>dc', dap.continue, { desc = 'debug: start/continue' })
-    vim.keymap.set('n', '<F5>', dap.continue, { desc = 'debug: start/continue' })
+    vim.keymap.set('n', '<F5>', dap.continue, { desc = 'debug: start/continue (F5)' })
     vim.keymap.set('n', '<leader>dn', dap.step_over, { desc = 'debug: step over' })
-    vim.keymap.set('n', '<F10>', dap.step_over, { desc = 'debug: step over' })
+    vim.keymap.set('n', '<F10>', dap.step_over, { desc = 'debug: step over (F10)' })
     vim.keymap.set('n', '<leader>ds', dap.close, { desc = 'debug: stop' })
     vim.keymap.set('n', '<leader>dt', dap.terminate, { desc = 'debug: terminate' })
-    vim.keymap.set('n', '<F6>', dap.terminate, { desc = 'debug: terminate' })
+    vim.keymap.set('n', '<F6>', dap.terminate, { desc = 'debug: terminate (F6)' })
     vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'debug: toggle breakpoint' })
-    vim.keymap.set('n', '<F9>', dap.toggle_breakpoint, { desc = 'debug: toggle breakpoint' })
+    vim.keymap.set('n', '<F9>', dap.toggle_breakpoint, { desc = 'debug: toggle breakpoint (F9)' })
     vim.keymap.set('n', '<leader>dB', breakpoint_condition, { desc = 'debug: conditional breakpoint' })
     vim.keymap.set('n', '<leader>di', toggle_dap_ui, { desc = 'debug: toggle interface' })
     vim.keymap.set('n', '<leader>dr', dap.clear_breakpoints, { desc = 'debug: clear breakpoints' })
