@@ -24,16 +24,16 @@ return {
       mc.skipCursor '*'
     end)
 
-    vim.keymap.set({ 'n', 'x' }, '<leader>n', function()
+    vim.keymap.set({ 'n', 'x' }, '<leader>mn', function()
       mc.matchAddCursor(1)
     end, { desc = 'add cursor forward' })
-    vim.keymap.set({ 'n', 'x' }, '<leader>s', function()
+    vim.keymap.set({ 'n', 'x' }, '<leader>ms', function()
       mc.matchSkipCursor(1)
     end, { desc = 'skip cursor forward' })
-    vim.keymap.set({ 'n', 'x' }, '<leader>N', function()
+    vim.keymap.set({ 'n', 'x' }, '<leader>mN', function()
       mc.matchAddCursor(-1)
     end, { desc = 'add cursor backward' })
-    vim.keymap.set({ 'n', 'x' }, '<leader>S', function()
+    vim.keymap.set({ 'n', 'x' }, '<leader>mS', function()
       mc.matchSkipCursor(-1)
     end, { desc = 'skip cursor backward' })
 

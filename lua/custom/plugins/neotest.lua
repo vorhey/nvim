@@ -14,11 +14,11 @@ return {
     'Neotest',
   },
   keys = {
-    { '<leader>mR', desc = 'test: run all tests' },
-    { '<leader>mr', desc = 'test: run tests' },
-    { '<leader>mt', desc = 'test: toggle test summary' },
-    { '<leader>ms', desc = 'test: stop test' },
-    { '<leader>mo', desc = 'test: open test output' },
+    { '<leader>nR', desc = 'test: run all tests' },
+    { '<leader>nr', desc = 'test: run tests' },
+    { '<leader>nt', desc = 'test: toggle test summary' },
+    { '<leader>ns', desc = 'test: stop test' },
+    { '<leader>no', desc = 'test: open test output' },
   },
   config = function()
     require('neotest').setup {
