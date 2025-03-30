@@ -26,6 +26,7 @@ return {
 
     vim.keymap.set({ 'n', 'x' }, '<leader>mn', function()
       mc.matchAddCursor(1)
+      vim.fn['repeat#set'](vim.api.nvim_replace_termcodes('<leader>mn', true, true, true), -1)
     end, { desc = 'add cursor forward' })
     vim.keymap.set({ 'n', 'x' }, '<leader>ms', function()
       mc.matchSkipCursor(1)
