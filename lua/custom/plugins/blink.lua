@@ -32,7 +32,7 @@ return {
       nerd_font_variant = 'mono',
     },
     sources = {
-      default = { 'lsp', 'path', 'snippets' },
+      default = { 'lsp', 'path', 'snippets', 'lazydev' },
       per_filetype = {
         sql = { 'snippets', 'dadbod', 'buffer' },
       },
@@ -80,6 +80,7 @@ return {
               end,
             },
           },
+          treesitter = { 'lsp' },
         },
       },
     },
