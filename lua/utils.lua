@@ -55,16 +55,6 @@ function M.expand_line()
   end
 end
 
-function M.toggle_autoformat()
-  if vim.g.disable_autoformat then
-    vim.g.disable_autoformat = false
-    print 'Autoformat enabled'
-  else
-    vim.g.disable_autoformat = true
-    print 'Autoformat disabled'
-  end
-end
-
 -- Helper to scroll down half a screen
 function M.lazy(keys)
   keys = vim.api.nvim_replace_termcodes(keys, true, false, true)
