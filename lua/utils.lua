@@ -32,8 +32,8 @@ function M.expand_function_lua()
   local line = vim.api.nvim_buf_get_lines(bufnr, line_num, line_num + 1, false)[1]
   local indent = line:match '^%s*'
 
-  if line:find 'function%s*%(%s*%)%s*end' then
-    local trimmed_line = line:gsub('%s*end%s*$', '')
+  if line:find 'function%s*%(.-%)%s*end' then
+    local trimmed_line = line:gsub('(function%s*%(.-%)%s*)end(%s*[,;]?%s*)', '%1')
     local new_lines = {
       trimmed_line,
       indent .. '  ',
