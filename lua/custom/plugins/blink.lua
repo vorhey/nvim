@@ -7,6 +7,18 @@ return {
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
+    fuzzy = {
+      sorts = {
+        'exact',
+        'score',
+        'sort_text',
+      },
+      implementation = 'prefer_rust',
+      use_proximity = true,
+      max_typos = function(keyword)
+        return math.floor(#keyword / 4)
+      end,
+    },
     -- 'default' for mappings similar to built-in completion
     -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
     -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
@@ -66,6 +78,9 @@ return {
       },
     },
     completion = {
+      accept = {
+        create_undo_point = true,
+      },
       trigger = {
         show_on_insert_on_trigger_character = false,
       },
