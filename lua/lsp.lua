@@ -35,6 +35,7 @@ return {
         'jsonls',
         'gopls',
         'tailwindcss',
+        'eslint',
       },
     }
 
@@ -150,6 +151,44 @@ return {
       },
     })
 
+    -- Configure ESLint language server
+    vim.lsp.config('eslint', {
+      cmd = { 'vscode-eslint-language-server', '--stdio' },
+      filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'vue', 'svelte', 'astro' },
+      root_markers = { '.git', '.eslintrc.js', '.eslintrc.cjs', '.eslintrc.json', 'package.json' }, -- Added package.json
+      settings = {
+        codeAction = {
+          disableRuleComment = {
+            enable = true,
+            location = 'separateLine',
+          },
+          showDocumentation = {
+            enable = true,
+          },
+        },
+        codeActionOnSave = {
+          enable = false,
+          mode = 'all',
+        },
+        experimental = {
+          useFlatConfig = false,
+        },
+        format = true,
+        nodePath = '',
+        onIgnoredFiles = 'off',
+        problems = {
+          shortenToSingleLine = false,
+        },
+        quiet = false,
+        rulesCustomizations = {},
+        run = 'onType',
+        useESLintClass = false,
+        validate = 'on',
+        workingDirectory = {
+          mode = 'location',
+        },
+      },
+    })
     -- Configure JSON language server
     vim.lsp.config('jsonls', {
       cmd = { 'vscode-json-language-server', '--stdio' },
@@ -307,6 +346,6 @@ return {
     vim.keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, { desc = 'lsp: signature help' })
 
     -- Enable the server
-    vim.lsp.enable { 'lua_ls', 'vtsls', 'cssls', 'gopls', 'tailwindcss' }
+    vim.lsp.enable { 'lua_ls', 'vtsls', 'cssls', 'gopls', 'tailwindcss', 'eslint', 'jsonls' }
   end,
 }
