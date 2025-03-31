@@ -35,5 +35,8 @@ return {
     }
 
     vim.notify = require('mini.notify').make_notify()
+    vim.keymap.set('n', '<leader>fn', function()
+      require('mini.notify').show_history()
+    end, { desc = 'Show notification history' })
   end,
 }
