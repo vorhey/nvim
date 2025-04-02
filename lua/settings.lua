@@ -42,10 +42,6 @@ vim.opt.listchars = {
   nbsp = '␣',
 }
 
--- Text wrapping
-vim.opt.wrap = true -- Enable line wrapping
-vim.opt.linebreak = true -- Wrap at word boundaries
-
 -- Folding configuration
 vim.o.foldenable = true
 vim.o.foldlevel = 99
