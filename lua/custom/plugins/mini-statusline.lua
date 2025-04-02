@@ -66,16 +66,13 @@ return {
 
           local copilot = is_copilot_enabled() and '' or ''
 
-          local arrow = require 'arrow.statusline'
-          local arrow_text = arrow.text_for_statusline_with_icons()
-
           return MiniStatusline.combine_groups {
             { hl = 'MiniStatuslineFileInfo', strings = { filename } },
             '%=',
             { hl = 'ErrorMsg', strings = { macro_indicator } },
             { hl = 'WarningMsg', strings = { unsaved_indicator } },
             { hl = 'MiniStatuslineFileInfo', strings = { copilot } },
-            { hl = 'MiniStatuslineFileinfo', strings = { arrow_text, autoformat_indicator, lsp, '', diff, '󱁐', spacing_info, diagnostics } },
+            { hl = 'MiniStatuslineFileinfo', strings = { autoformat_indicator, lsp, '', diff, '󱁐', spacing_info, diagnostics } },
             { hl = mode_hl, strings = { search } },
           }
         end,
