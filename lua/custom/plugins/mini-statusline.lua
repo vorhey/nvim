@@ -34,6 +34,7 @@ return {
           local search = MiniStatusline.section_searchcount { trunc_width = 75 }
           local diff = MiniStatusline.section_diff { trunc_width = 75 }
           local lsp = MiniStatusline.section_lsp { trunc_width = 75 }
+          local filename = MiniStatusline.section_filename { trunc_width = 140 }
 
           -- Custom spacing info section
           local spacing_info = ''
@@ -69,6 +70,7 @@ return {
           local arrow_text = arrow.text_for_statusline_with_icons()
 
           return MiniStatusline.combine_groups {
+            { hl = 'MiniStatuslineFileInfo', strings = { filename } },
             '%=',
             { hl = 'ErrorMsg', strings = { macro_indicator } },
             { hl = 'WarningMsg', strings = { unsaved_indicator } },
