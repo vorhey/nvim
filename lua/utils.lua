@@ -1,5 +1,15 @@
 local M = {}
 
+-- Winbar
+_G.get_file_icon = function()
+  local extension = vim.fn.expand '%:e'
+  if extension == '' then
+    return ''
+  end
+  local icon, _ = require('nvim-web-devicons').get_icon_by_filetype(extension, { default = true })
+  return icon .. ' '
+end
+
 -- Expand curly braces c# style
 local function remove_braces(line)
   return line:gsub('%s*{%s*}', '')
