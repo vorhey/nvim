@@ -64,9 +64,6 @@ return {
     explorer = {
       enabled = true,
     },
-    image = {
-      enabled = true,
-    },
     dashboard = {
       preset = {
         header = [[
