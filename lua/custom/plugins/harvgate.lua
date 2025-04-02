@@ -1,5 +1,6 @@
 return {
   'vorhey/harvgate',
+  lazy = true,
   dependencies = {
     'nvim-lua/plenary.nvim',
   },
