@@ -39,6 +39,16 @@ return {
       },
     }
 
+    vim.diagnostic.config {
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = '󰅗',
+          [vim.diagnostic.severity.WARN] = '󰩳',
+          [vim.diagnostic.severity.HINT] = '',
+        },
+      },
+    }
+
     -- Use default capabilities instead of custom module
     local capabilities = require('blink.cmp').get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 
