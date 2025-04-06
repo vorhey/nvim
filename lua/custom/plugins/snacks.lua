@@ -61,9 +61,6 @@ return {
     words = {
       enabled = true,
     },
-    explorer = {
-      enabled = true,
-    },
     dashboard = {
       preset = {
         header = [[
@@ -234,13 +231,6 @@ return {
         Snacks.picker.lsp_symbols()
       end,
       desc = 'lsp symbols',
-    },
-    {
-      '<leader>e',
-      function()
-        Snacks.explorer { auto_close = true }
-      end,
-      desc = 'explorer',
     },
     {
       '<leader>fn',
