@@ -219,6 +219,7 @@ return {
       filetypes = { 'go', 'gotempl', 'gowork', 'gomod' },
       settings = {
         gopls = {
+          semanticTokens = true,
           completeUnimported = true,
           usePlaceholders = true,
           analyses = {
