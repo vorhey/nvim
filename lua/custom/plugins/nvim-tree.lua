@@ -145,6 +145,6 @@ return {
         vim.api.nvim_buf_set_keymap(0, 'n', '<Esc>', ':NvimTreeClose<CR>', { noremap = true, silent = true })
       end,
     })
-    vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { desc = 'explorer', noremap = true })
+    vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { desc = 'explorer', noremap = true, silent = true })
   end,
 }
