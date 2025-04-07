@@ -79,7 +79,7 @@ end
 -- check wsl
 function M.is_wsl()
   local output = vim.fn.systemlist 'uname -r'
-  return not not string.find(output[1] or '', 'WSL')
+  return output[1] and string.find(output[1], 'WSL') ~= nil
 end
 
 --- Get highlight properties for a given highlight name
