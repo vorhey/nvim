@@ -26,6 +26,8 @@ return {
           -- if it's a closed node, open it
           if node_at_cursor.nodes and not node_at_cursor.open then
             api.node.open.edit()
+          elseif not node_at_cursor.nodes then
+            api.node.open.edit()
           end
         end
         vim.keymap.set('n', 'h', lefty, opts)
