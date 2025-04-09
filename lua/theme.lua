@@ -6,9 +6,9 @@ return {
   config = function()
     require('oldworld').setup {
       styles = {
-        booleans = { italic = false },
+        booleans = { italic = true },
         comments = { italic = false },
-        keywords = { italic = false },
+        keywords = { italic = true },
         functions = { italic = false },
         strings = { italic = false },
         variables = { italic = false },
@@ -58,7 +58,7 @@ return {
         DapUIStepOutNC = { bg = 'NONE' },
         MiniStatusLineModeInsert = { bg = '#d7c6f7', fg = '#000000' },
         -- Syntax
-        ['@boolean'] = { fg = '#E29ECA', italic = false },
+        ['@boolean'] = { fg = '#E29ECA', italic = true },
         ['@tag.attribute'] = { fg = '#d7c6f7' },
         ['@lsp.type.class.dart'] = { fg = '#e29eca', bold = true },
         ['@lsp.mod.constructor.dart'] = { fg = '#c6c6c6' },
