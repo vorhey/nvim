@@ -1,4 +1,5 @@
 ---@diagnostic disable: undefined-global
+local utils = require 'utils'
 return {
   'folke/snacks.nvim',
   priority = 1000,
@@ -55,6 +56,9 @@ return {
     })
   end,
   opts = {
+    image = {
+      enabled = not utils.is_wsl(),
+    },
     statuscolumn = {
       enabled = true,
     },
