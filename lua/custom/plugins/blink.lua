@@ -75,6 +75,20 @@ return {
             return items
           end,
         },
+        path = {
+          transform_items = function(self, items)
+            local line = vim.api.nvim_get_current_line()
+            if line:match 'require%([\'"]' then
+              -- Prioritize non-extension versions by adjusting their score
+              for _, item in ipairs(items) do
+                if item.label:match '%.js$' or (item.insertText and item.insertText:match '%.js$') then
+                  item.score_offset = -10 -- Lower priority for .js extensions
+                end
+              end
+            end
+            return items
+          end,
+        },
       },
     },
     completion = {
