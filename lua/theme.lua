@@ -15,7 +15,7 @@ return {
         types = { italic = false },
       },
       highlight_overrides = {
-        String = { fg = '#f5f5df' },
+        String = { fg = '#c6c6c6' },
         Normal = { bg = 'NONE' },
         NormalFloat = { bg = 'NONE' },
         NormalNC = { bg = 'NONE' },
