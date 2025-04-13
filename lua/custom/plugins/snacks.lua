@@ -62,9 +62,6 @@ return {
     statuscolumn = {
       enabled = true,
     },
-    words = {
-      enabled = true,
-    },
     dashboard = {
       preset = {
         header = [[
