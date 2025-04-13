@@ -56,3 +56,7 @@ end, { silent = true, noremap = true, desc = 'Scroll left horizontally' })
 
 vim.keymap.set('n', 'zL', '<Plug>(ScrollRightCenter)', { silent = true, desc = 'Scroll right' })
 vim.keymap.set('n', 'zH', '<Plug>(ScrollLeftCenter)', { silent = true, desc = 'Scroll right' })
+
+if not utils.is_wsl() then
+  vim.keymap.set({ 'n', 'v' }, '<C-c>', '"+y', { silent = true, desc = 'Copy to system clipboard' })
+end
