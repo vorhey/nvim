@@ -48,6 +48,11 @@ return {
           [vim.diagnostic.severity.INFO] = '',
         },
       },
+      underline = {
+        severity = {
+          [vim.diagnostic.severity.INFO] = { underline = false },
+        },
+      },
     }
 
     -- Use default capabilities instead of custom module
