@@ -23,6 +23,7 @@ return {
         { '<leader>n', group = 'neotest', icon = { icon = '', color = 'grey' } },
         { '<leader>R', group = 'kulala', icon = { icon = '󰏚', color = 'grey' } },
         { '<leader>m', group = 'multicursor', icon = { icon = '󰇀', color = 'grey' } },
+        { '<leader>s', group = 'sessions', icon = { icon = '', color = 'grey' } },
       },
     }
     wk.setup {
