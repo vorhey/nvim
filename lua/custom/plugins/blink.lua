@@ -2,6 +2,7 @@ return {
   'saghen/blink.cmp',
   dependencies = {
     'kristijanhusak/vim-dadbod-completion',
+    'rafamadriz/friendly-snippets',
   },
   version = '*',
   ---@module 'blink.cmp'
