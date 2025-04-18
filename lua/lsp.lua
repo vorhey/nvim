@@ -53,6 +53,9 @@ return {
           [vim.diagnostic.severity.INFO] = { underline = false },
         },
       },
+      float = {
+        border = 'rounded',
+      },
     }
 
     -- Use default capabilities instead of custom module
