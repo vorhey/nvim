@@ -12,50 +12,53 @@ return {
         Snacks.toggle.inlay_hints():map '<leader>th'
         Snacks.toggle.diagnostics():map '<leader>tD'
         Snacks.toggle
-          .new({
-            id = 'format_on_save',
-            name = 'Format on Save',
-            get = function()
-              return not vim.g.disable_autoformat
-            end,
-            set = function(state)
-              vim.g.disable_autoformat = not state
-            end,
-          })
-          :map '<leader>tf'
+            .new({
+              id = 'format_on_save',
+              name = 'Format on Save',
+              get = function()
+                return not vim.g.disable_autoformat
+              end,
+              set = function(state)
+                vim.g.disable_autoformat = not state
+              end,
+            })
+            :map '<leader>tf'
         Snacks.toggle
-          .new({
-            id = 'copilot',
-            name = 'Copilot',
-            get = function()
-              return vim.g.copilot_enabled
-            end,
-            set = function()
-              vim.g.copilot_enabled = not vim.g.copilot_enabled
-            end,
-          })
-          :map '<leader>tc'
+            .new({
+              id = 'copilot',
+              name = 'Copilot',
+              get = function()
+                return vim.g.copilot_enabled
+              end,
+              set = function()
+                vim.g.copilot_enabled = not vim.g.copilot_enabled
+              end,
+            })
+            :map '<leader>tc'
         Snacks.toggle
-          .new({
-            id = 'db_ui',
-            name = 'DB UI',
-            get = function()
-              return vim.g.db_ui_open
-            end,
-            set = function()
-              for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-                if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) == '' then
-                  vim.api.nvim_buf_delete(buf, { force = true })
+            .new({
+              id = 'db_ui',
+              name = 'DB UI',
+              get = function()
+                return vim.g.db_ui_open
+              end,
+              set = function()
+                for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+                  if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) == '' then
+                    vim.api.nvim_buf_delete(buf, { force = true })
+                  end
                 end
-              end
-              vim.cmd 'DBUIToggle'
-            end,
-          })
-          :map '<leader>td'
+                vim.cmd 'DBUIToggle'
+              end,
+            })
+            :map '<leader>td'
       end,
     })
   end,
   opts = {
+    explorer = {
+      enabled = true,
+    },
     image = {
       enabled = not utils.is_wsl(),
     },
@@ -246,6 +249,12 @@ return {
         Snacks.lazygit()
       end,
       desc = 'git: lazy git',
+    },
+    {
+      '<leader>e',
+      function()
+        Snacks.explorer { auto_close = true }
+      end,
     },
   },
 }
