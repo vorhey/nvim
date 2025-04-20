@@ -106,6 +106,22 @@ return {
           },
         },
       },
+      sources = {
+        buffers = {
+          preview = false,
+          format = 'buffer',
+          layout = {
+            preset = 'dropdown',
+            hidden = { 'preview' },
+          },
+          formatters = {
+            file = {
+              filename_only = true,
+              truncate = 0,
+            },
+          },
+        },
+      },
     },
     lazygit = {
       enabled = true,
