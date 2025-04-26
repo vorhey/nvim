@@ -66,15 +66,6 @@ return {
           })
         end, { desc = 'git: help for diff keybindings' })
         vim.keymap.set('n', '<leader>gd', gs.diffthis, { desc = 'git: toggle diff' })
-        Snacks.toggle({
-          name = 'Diffview',
-          get = function()
-            return require('diffview.lib').get_current_view() ~= nil
-          end,
-          set = function(state)
-            vim.cmd('Diffview' .. (state and 'Open' or 'Close'))
-          end,
-        }):map '<leader>gt'
         vim.keymap.set('n', '<leader>gD', function()
           vim.ui.input({ prompt = 'Branch: ' }, function(branch)
             if branch then
