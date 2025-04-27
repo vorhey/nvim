@@ -33,7 +33,7 @@ return {
           local diagnostics = MiniStatusline.section_diagnostics { trunc_width = 75 }
           local search = MiniStatusline.section_searchcount { trunc_width = 75 }
           local diff = MiniStatusline.section_diff { trunc_width = 75 }
-          local lsp = MiniStatusline.section_lsp { trunc_width = 75 }
+          local lsp = #vim.lsp.get_clients { bufnr = 0 } > 0 and '󰬓 ' or ' '
           local filename = MiniStatusline.section_filename { trunc_width = 140 }
 
           -- Custom spacing info section
@@ -41,7 +41,7 @@ return {
           if not MiniStatusline.is_truncated(120) then
             local et = vim.bo.expandtab
             local width = et and vim.bo.shiftwidth or vim.bo.tabstop
-            spacing_info = (et and 'SP:' or 'TAB:') .. width
+            spacing_info = (et and '󱁐 :' or '󰌒 :') .. width
           end
 
           -- Count unsaved buffers
@@ -58,21 +58,20 @@ return {
             macro_indicator = ' REC @' .. recording_register
           end
 
-          local autoformat_indicator = is_autoformat_enabled() and '󰊄' or '󰉥'
+          local autoformat_indicator = is_autoformat_enabled() and '󰗴 ' or '󰉥 '
 
           local is_copilot_enabled = function()
             return vim.g.copilot_enabled == true
           end
 
-          local copilot = is_copilot_enabled() and '' or ''
+          local copilot = is_copilot_enabled() and '  ' or '  '
 
           return MiniStatusline.combine_groups {
             { hl = 'MiniStatuslineFileInfo', strings = { filename } },
             '%=',
             { hl = 'ErrorMsg', strings = { macro_indicator } },
             { hl = 'WarningMsg', strings = { unsaved_indicator } },
-            { hl = 'MiniStatuslineFileInfo', strings = { copilot } },
-            { hl = 'MiniStatuslineFileinfo', strings = { autoformat_indicator, lsp, '', diff, '󱁐', spacing_info, diagnostics } },
+            { hl = 'MiniStatuslineFileinfo', strings = { copilot, autoformat_indicator, lsp, spacing_info, diagnostics } },
             { hl = mode_hl, strings = { search } },
           }
         end,
