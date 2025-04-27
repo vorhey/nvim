@@ -73,7 +73,10 @@ return {
             '%=',
             { hl = 'ErrorMsg', strings = { macro_indicator } },
             { hl = 'WarningMsg', strings = { unsaved_indicator } },
-            { hl = 'MiniStatuslineFileinfo', strings = { copilot, separator, autoformat_indicator, lsp, separator, diff, spacing_info, diagnostics } },
+            {
+              hl = 'MiniStatuslineFileinfo',
+              strings = { copilot, separator, autoformat_indicator, lsp, separator, diff, separator, spacing_info, separator, diagnostics },
+            },
             { hl = mode_hl, strings = { search } },
           }
         end,
