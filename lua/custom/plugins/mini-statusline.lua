@@ -34,7 +34,6 @@ return {
           local search = MiniStatusline.section_searchcount { trunc_width = 75 }
           local diff = MiniStatusline.section_diff { trunc_width = 75 }
           local lsp = #vim.lsp.get_clients { bufnr = 0 } > 0 and '󰬓' or ''
-          local filename = MiniStatusline.section_filename { trunc_width = 140 }
 
           -- Custom spacing info section
           local spacing_info = ''
@@ -69,7 +68,6 @@ return {
           local separator = ''
 
           return MiniStatusline.combine_groups {
-            { hl = 'MiniStatuslineFileInfo', strings = { filename } },
             '%=',
             { hl = 'ErrorMsg', strings = { macro_indicator } },
             { hl = 'WarningMsg', strings = { unsaved_indicator } },
