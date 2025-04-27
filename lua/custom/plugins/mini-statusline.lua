@@ -33,7 +33,7 @@ return {
           local diagnostics = MiniStatusline.section_diagnostics { trunc_width = 75 }
           local search = MiniStatusline.section_searchcount { trunc_width = 75 }
           local diff = MiniStatusline.section_diff { trunc_width = 75 }
-          local lsp = #vim.lsp.get_clients { bufnr = 0 } > 0 and '󰬓 ' or ' '
+          local lsp = #vim.lsp.get_clients { bufnr = 0 } > 0 and '󰬓' or ''
           local filename = MiniStatusline.section_filename { trunc_width = 140 }
 
           -- Custom spacing info section
@@ -58,20 +58,22 @@ return {
             macro_indicator = ' REC @' .. recording_register
           end
 
-          local autoformat_indicator = is_autoformat_enabled() and '󰗴 ' or '󰉥 '
+          local autoformat_indicator = is_autoformat_enabled() and '󰗴' or '󰉥'
 
           local is_copilot_enabled = function()
             return vim.g.copilot_enabled == true
           end
 
-          local copilot = is_copilot_enabled() and '  ' or '  '
+          local copilot = is_copilot_enabled() and '' or ''
+
+          local separator = ''
 
           return MiniStatusline.combine_groups {
             { hl = 'MiniStatuslineFileInfo', strings = { filename } },
             '%=',
             { hl = 'ErrorMsg', strings = { macro_indicator } },
             { hl = 'WarningMsg', strings = { unsaved_indicator } },
-            { hl = 'MiniStatuslineFileinfo', strings = { copilot, autoformat_indicator, lsp, spacing_info, diagnostics } },
+            { hl = 'MiniStatuslineFileinfo', strings = { copilot, separator, autoformat_indicator, lsp, separator, diff, spacing_info, diagnostics } },
             { hl = mode_hl, strings = { search } },
           }
         end,
