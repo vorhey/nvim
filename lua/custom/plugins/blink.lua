@@ -41,6 +41,8 @@ return {
         'show_documentation',
         'hide_documentation',
       },
+      ['<C-k>'] = { 'select_prev', 'fallback' },
+      ['<C-j>'] = { 'select_next', 'fallback' },
     },
     cmdline = {
       enabled = false,
