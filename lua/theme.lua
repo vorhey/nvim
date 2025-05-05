@@ -44,7 +44,7 @@ return {
         DapStopped = { fg = '#82ffac', bg = '#214283' },
         -- Diagnostics
         DiagnosticVirtualTextError = { fg = '#ff9ea8' },
-        DiagnosticUnnecessary = { undercurl = true },
+        DiagnosticUnnecessary = { undercurl = true, fg = '#989898' },
         DiagnosticSignHint = { fg = '#c6c6c6' },
         -- Mode and UI
         ModeMsg = { bg = 'NONE', fg = '#c6c6c6' },

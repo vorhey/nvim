@@ -50,7 +50,8 @@ return {
       },
       underline = {
         severity = {
-          [vim.diagnostic.severity.INFO] = { underline = false },
+          min = vim.diagnostic.severity.HINT,
+          max = vim.diagnostic.severity.WARN,
         },
       },
       float = {
