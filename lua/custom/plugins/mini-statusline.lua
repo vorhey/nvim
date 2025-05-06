@@ -31,9 +31,11 @@ return {
         active = function()
           local mode_hl = MiniStatusline.section_mode { trunc_width = 120 }
           local diagnostics = MiniStatusline.section_diagnostics { trunc_width = 75 }
+          local has_diagnostics = diagnostics == '' and '' or ''
           local search = MiniStatusline.section_searchcount { trunc_width = 75 }
-          local diff = MiniStatusline.section_diff { trunc_width = 75 }
           local lsp = #vim.lsp.get_clients { bufnr = 0 } > 0 and '󰬓' or ''
+          local git_status = vim.b.minidiff_summary_string or vim.b.gitsigns_status
+          local has_diff = git_status == '' and '' or ''
 
           -- Custom spacing info section
           local spacing_info = ''
@@ -63,9 +65,7 @@ return {
             return vim.g.copilot_enabled == true
           end
 
-          local copilot = is_copilot_enabled() and '' or ''
-
-          local separator = ''
+          local copilot = is_copilot_enabled() and '  ' or '  '
 
           return MiniStatusline.combine_groups {
             '%=',
@@ -73,7 +73,7 @@ return {
             { hl = 'WarningMsg', strings = { unsaved_indicator } },
             {
               hl = 'MiniStatuslineFileinfo',
-              strings = { copilot, separator, autoformat_indicator, lsp, separator, diff, separator, spacing_info, separator, diagnostics },
+              strings = { autoformat_indicator, lsp, spacing_info, has_diff, has_diagnostics, copilot },
             },
             { hl = mode_hl, strings = { search } },
           }
