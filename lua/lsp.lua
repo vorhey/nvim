@@ -313,47 +313,46 @@ return {
     })
 
     -- Configure Roslyn language server
+    vim.lsp.config('roslyn', {})
     require('roslyn').setup {
-      config = {
-        capabilities = capabilities,
-        on_attach = function(client, bufnr)
-          vim.bo[bufnr].tabstop = 4
-          vim.bo[bufnr].shiftwidth = 4
-          vim.bo[bufnr].expandtab = true
-          vim.bo[bufnr].softtabstop = 4
-          vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertEnter', 'InsertLeave' }, {
-            buffer = bufnr,
-            callback = function()
-              vim.lsp.codelens.refresh { bufnr = 0 }
-              -- workaround for diagnostics not being triggered
-              client:request('textDocument/diagnostic', {
-                textDocument = vim.lsp.util.make_text_document_params(),
-              }, nil, bufnr)
-            end,
-          })
-        end,
-        filewatching = true,
-        settings = {
-          ['csharp|inlay_hints'] = {
-            csharp_enable_inlay_hints_for_implicit_object_creation = true,
-            csharp_enable_inlay_hints_for_implicit_variable_types = true,
-            csharp_enable_inlay_hints_for_lambda_parameter_types = true,
-            csharp_enable_inlay_hints_for_types = true,
-            dotnet_enable_inlay_hints_for_indexer_parameters = true,
-            dotnet_enable_inlay_hints_for_literal_parameters = true,
-            dotnet_enable_inlay_hints_for_object_creation_parameters = true,
-            dotnet_enable_inlay_hints_for_other_parameters = true,
-            dotnet_enable_inlay_hints_for_parameters = true,
-            dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
-            dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
-            dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
-          },
-          ['csharp|code_lens'] = {
-            dotnet_enable_references_code_lens = true,
-          },
+      on_attach = function(client, bufnr)
+        vim.bo[bufnr].tabstop = 4
+        vim.bo[bufnr].shiftwidth = 4
+        vim.bo[bufnr].expandtab = true
+        vim.bo[bufnr].softtabstop = 4
+        vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertEnter', 'InsertLeave' }, {
+          buffer = bufnr,
+          callback = function()
+            vim.lsp.codelens.refresh { bufnr = 0 }
+            -- workaround for diagnostics not being triggered
+            client:request('textDocument/diagnostic', {
+              textDocument = vim.lsp.util.make_text_document_params(),
+            }, nil, bufnr)
+          end,
+        })
+      end,
+      filewatching = true,
+      settings = {
+        ['csharp|inlay_hints'] = {
+          csharp_enable_inlay_hints_for_implicit_object_creation = true,
+          csharp_enable_inlay_hints_for_implicit_variable_types = true,
+          csharp_enable_inlay_hints_for_lambda_parameter_types = true,
+          csharp_enable_inlay_hints_for_types = true,
+          dotnet_enable_inlay_hints_for_indexer_parameters = true,
+          dotnet_enable_inlay_hints_for_literal_parameters = true,
+          dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+          dotnet_enable_inlay_hints_for_other_parameters = true,
+          dotnet_enable_inlay_hints_for_parameters = true,
+          dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
+          dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+          dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
+        },
+        ['csharp|code_lens'] = {
+          dotnet_enable_references_code_lens = true,
         },
       },
     }
+
     local function format_buffer()
       vim.lsp.buf.format { async = true }
     end
