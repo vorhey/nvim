@@ -63,6 +63,7 @@ return {
         ['@lsp.type.class.dart'] = { fg = '#e29eca', bold = true },
         ['@lsp.mod.constructor.dart'] = { fg = '#c6c6c6' },
         ['@namespace'] = { fg = '#c6c6c6' },
+        ['@property'] = { fg = '#E29ECA' },
         -- Blink
         BlinkCmpMenu = { bg = 'NONE' },
         BlinkCmpDoc = { bg = 'NONE' },

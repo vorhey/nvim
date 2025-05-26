@@ -353,6 +353,25 @@ return {
       },
     }
 
+    vim.lsp.config('yamlls', {
+      cmd = { 'yaml-language-server', '--stdio' },
+      filetypes = { 'yaml', 'yaml.docker-compose', 'yaml.gitlab' },
+      settings = {
+        yaml = {
+          schemas = {
+            ['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*',
+            ['../path/relative/to/file.yml'] = '/.github/workflows/*',
+            ['/path/from/root/of/project'] = '/.github/workflows/*',
+          },
+        },
+      },
+    })
+
+    vim.lsp.config('dockerls', {
+      cmd = { 'docker-langserver', '--stdio' },
+      filetypes = { 'dockerfile' },
+    })
+
     local function format_buffer()
       vim.lsp.buf.format { async = true }
     end
