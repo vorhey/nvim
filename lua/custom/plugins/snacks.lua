@@ -126,12 +126,21 @@ return {
     scope = {
       enabled = true,
     },
+    words = {
+      enabled = true,
+    },
   },
   keys = {
     {
       '<leader>ff',
       function()
-        Snacks.picker.smart { filter = { cwd = true } }
+        Snacks.picker.smart {
+          filter = { cwd = true },
+          layout = {
+            preset = 'dropdown',
+            hidden = { 'preview' },
+          },
+        }
       end,
       desc = 'smart find files',
     },
