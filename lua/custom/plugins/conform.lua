@@ -35,6 +35,7 @@ return {
       javascript = { 'prettierd' },
       typescript = { 'prettierd' },
       typescriptreact = { 'prettierd' },
+      javascriptreact = { 'prettierd' },
       json = { 'prettierd' },
       scss = { 'prettierd' },
       sh = { 'shfmt' },
