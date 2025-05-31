@@ -3,31 +3,9 @@ return {
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     'williamboman/mason.nvim',
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
   },
   config = function()
-    -- Configure tools based on dotnet availability
     local utils = require 'utils'
-    local ensure_installed = {
-      'stylua',
-      'goimports',
-      'prettier',
-      'prettierd',
-      'shfmt',
-      'npm-groovy-lint',
-      'ruff',
-      'sql-formatter',
-    }
-
-    if utils.is_dotnet_installed() then
-      table.insert(ensure_installed, 'csharpier')
-    end
-
-    require('mason-tool-installer').setup {
-      ensure_installed = ensure_installed,
-    }
-
-    -- Configure formatters based on dotnet availability
     local formatters_by_ft = {
       lua = { 'stylua' },
       html = { 'prettier' },

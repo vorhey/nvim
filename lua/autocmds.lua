@@ -14,3 +14,9 @@ vim.api.nvim_create_autocmd('Bufenter', {
   group = general,
   desc = 'Disable new line comment',
 })
+vim.api.nvim_create_user_command('MasonInstallAll', function()
+  require('lazy').load({ plugins = { 'mason-tool-installer.nvim' } })
+  vim.cmd('MasonToolsInstall')
+end, {
+  desc = 'Install all Mason tools from ensure_installed list'
+})

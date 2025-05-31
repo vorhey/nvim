@@ -2,22 +2,10 @@
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
-    { 'rcarriga/nvim-dap-ui', lazy = true },
-    { 'nvim-neotest/nvim-nio', lazy = true },
-    { 'williamboman/mason.nvim', lazy = true },
-    {
-      'jay-babu/mason-nvim-dap.nvim',
-      opts = {
-        automatic_installation = true,
-        ensure_installed = {
-          'coreclr',
-          'delve',
-          'js',
-        },
-      },
-    },
+    { 'williamboman/mason.nvim' },
+    { 'rcarriga/nvim-dap-ui' },
+    { 'nvim-neotest/nvim-nio' },
   },
-  lazy = true,
   keys = {
     { '<leader>dc', desc = 'debug: start/continue <F5>' },
     { '<leader>dn', desc = 'debug: step over <F10>' },
