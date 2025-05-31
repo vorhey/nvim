@@ -4,7 +4,6 @@ return {
   event = 'VeryLazy',
   dependencies = {
     { 'b0o/schemastore.nvim', lazy = true },
-    { 'williamboman/mason.nvim', lazy = true },
     { 'williamboman/mason-lspconfig.nvim', lazy = true },
     { 'seblj/roslyn.nvim', lazy = true, ft = { 'cs' } },
     { 'luckasRanarison/tailwind-tools.nvim', lazy = true, ft = { 'js', 'jsx', 'ts', 'tsx' } },
