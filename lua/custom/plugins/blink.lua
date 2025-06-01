@@ -60,7 +60,6 @@ return {
         lazydev = {
           name = 'LazyDev',
           module = 'lazydev.integrations.blink',
-          -- make lazydev completions top priority (see `:h blink.cmp`)
           score_offset = 100,
         },
         dadbod = {
@@ -102,6 +101,7 @@ return {
         show_on_insert_on_trigger_character = false,
       },
       documentation = {
+        auto_show = true,
         auto_show_delay_ms = 200,
         window = { border = 'rounded' },
       },
@@ -109,17 +109,14 @@ return {
         scrollbar = false,
         border = 'rounded',
         draw = {
+          columns = { { 'kind_icon' }, { 'label', gap = 1 } },
           components = {
-            kind_icon = {
-              ellipsis = false,
+            label = {
               text = function(ctx)
-                local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
-                return kind_icon
+                return require('colorful-menu').blink_components_text(ctx)
               end,
-              -- Optionally, you may also use the highlights from mini.icons
               highlight = function(ctx)
-                local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
-                return hl
+                return require('colorful-menu').blink_components_highlight(ctx)
               end,
             },
           },
