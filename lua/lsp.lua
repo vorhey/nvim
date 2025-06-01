@@ -28,13 +28,15 @@ return {
     -- Mason LSP configuration
     require('mason-lspconfig').setup {
       ensure_installed = {
-        'lua_ls',
-        'vtsls',
         'cssls',
-        'jsonls',
-        'gopls',
-        'tailwindcss',
+        'dockerls',
         'eslint',
+        'gopls',
+        'jsonls',
+        'lua_ls',
+        'tailwindcss',
+        'vtsls',
+        'yamlls',
       },
     }
 
@@ -354,7 +356,7 @@ return {
 
     vim.lsp.config('yamlls', {
       cmd = { 'yaml-language-server', '--stdio' },
-      filetypes = { 'yaml', 'yaml.docker-compose', 'yaml.gitlab' },
+      filetypes = { 'yml', 'yaml', 'yaml.docker-compose', 'yaml.gitlab' },
       settings = {
         yaml = {
           schemas = {
@@ -384,6 +386,16 @@ return {
     vim.keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, { desc = 'lsp: signature help' })
 
     -- Enable the server
-    vim.lsp.enable { 'lua_ls', 'vtsls', 'cssls', 'gopls', 'tailwindcss', 'eslint', 'jsonls' }
+    vim.lsp.enable {
+      'cssls',
+      'dockerls',
+      'eslint',
+      'gopls',
+      'jsonls',
+      'lua_ls',
+      'tailwindcss',
+      'vtsls',
+      'yamlls',
+    }
   end,
 }
