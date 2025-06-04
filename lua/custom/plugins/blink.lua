@@ -101,7 +101,7 @@ return {
         show_on_insert_on_trigger_character = false,
       },
       documentation = {
-        auto_show = true,
+        auto_show = false,
         auto_show_delay_ms = 200,
         window = { border = 'rounded' },
       },
