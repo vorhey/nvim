@@ -1,12 +1,12 @@
 local M = {}
-local theme = require('penumbra_light.theme')
+local theme = require 'penumbra_light.theme'
 
 M.setup = function()
-  vim.cmd('hi clear')
+  vim.cmd 'hi clear'
 
-  vim.o.background = 'dark'
-  if vim.fn.exists('syntax_on') then
-    vim.cmd('syntax reset')
+  vim.o.background = 'light'
+  if vim.fn.exists 'syntax_on' then
+    vim.cmd 'syntax reset'
   end
 
   vim.o.termguicolors = true
@@ -16,3 +16,4 @@ M.setup = function()
 end
 
 return M
+
