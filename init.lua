@@ -1,8 +1,8 @@
 -- Load basic configurations
-require 'settings' -- Load basic settings
+require 'settings'    -- Load basic settings
 require 'keybindings' -- Load key mappings
-require 'autocmds' -- Load autocommands
-require 'cmds' -- Load autocommands
+require 'autocmds'    -- Load autocommands
+require 'cmds'        -- Load autocommands
 
 -- Plugin management with `lazy.nvim`
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -16,7 +16,6 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   { import = 'custom.plugins' },
-  { import = 'theme' },
   { import = 'lsp' },
 }, {
   change_detection = { enabled = false },
@@ -40,3 +39,5 @@ require('lazy').setup({
     },
   },
 })
+
+vim.cmd('colorscheme penumbra_light')

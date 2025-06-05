@@ -7,11 +7,11 @@ return {
     wk.add {
       mode = { 'n' },
       {
-        { '<leader>o', icon = { icon = '󰅙', color = 'green' } },
-        { '<leader>O', icon = { icon = '󰅙', color = 'green' } },
-        { '<leader>q', icon = { icon = '󰈆', color = 'green' } },
-        { '<leader>Q', icon = { icon = '󰈆', color = 'green' } },
-        { '<leader>e', icon = { icon = '󱏒', color = 'green' } },
+        { '<leader>o', icon = { icon = '󰅙', color = 'azure' } },
+        { '<leader>O', icon = { icon = '󰅙', color = 'azure' } },
+        { '<leader>q', icon = { icon = '󰈆', color = 'azure' } },
+        { '<leader>Q', icon = { icon = '󰈆', color = 'azure' } },
+        { '<leader>e', icon = { icon = '󱏒', color = 'azure' } },
         { '<leader>a', group = 'avante', icon = { icon = '󰬈', color = 'grey' } },
         { '<leader>d', group = 'debug', icon = { icon = '', color = 'grey' } },
         { '<leader>t', group = 'toggle', icon = { icon = '', color = 'grey' } },
