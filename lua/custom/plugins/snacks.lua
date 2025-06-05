@@ -166,6 +166,13 @@ return {
       desc = 'git status',
     },
     {
+      '<leader>fs',
+      function()
+        Snacks.picker.lsp_symbols()
+      end,
+      desc = 'lsp symbols',
+    },
+    {
       '<leader>fr',
       function()
         Snacks.picker.resume()
