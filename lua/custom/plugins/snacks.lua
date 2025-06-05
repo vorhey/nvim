@@ -204,9 +204,21 @@ return {
     {
       'gd',
       function()
-        Snacks.picker.lsp_definitions()
+        local current_word = vim.fn.expand '<cword>'
+        -- Try LSP definitions first
+        Snacks.picker.lsp_definitions {
+          on_close = function(picker)
+            -- Check if picker had any results when closed
+            if picker:count() == 0 then
+              -- Fallback to grep for the word under cursor
+              vim.schedule(function()
+                Snacks.picker.grep { search = current_word }
+              end)
+            end
+          end,
+        }
       end,
-      desc = 'goto definition',
+      desc = 'goto definition (with grep fallback)',
     },
     {
       'gi',
