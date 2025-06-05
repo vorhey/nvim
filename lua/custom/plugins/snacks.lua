@@ -252,13 +252,6 @@ return {
       mode = { 'n', 'x' },
     },
     {
-      '<leader>fs',
-      function()
-        Snacks.picker.lsp_symbols()
-      end,
-      desc = 'lsp symbols',
-    },
-    {
       '<leader>fn',
       function()
         Snacks.picker.notifications()
