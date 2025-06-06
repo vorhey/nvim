@@ -41,7 +41,7 @@ theme.set_highlights = function()
   hl(0, 'CursorLine', { fg = 'NONE', bg = c.black2 })
   hl(0, 'CursorColumn', { fg = 'NONE', bg = c.black2 })
   hl(0, 'ColorColumn', { fg = 'NONE', bg = c.black2 })
-  hl(0, 'NormalFloat', { fg = 'NONE', bg = c.darker_black })
+  hl(0, 'NormalFloat', { fg = 'NONE', bg = c.base00 })
   hl(0, 'Visual', { fg = 'NONE', bg = c.base02 })
   hl(0, 'VisualNOS', { fg = c.base08, bg = 'NONE' })
   hl(0, 'WarningMsg', { fg = c.base08, bg = 'NONE' })
@@ -53,7 +53,7 @@ theme.set_highlights = function()
   hl(0, 'PmenuThumb', { fg = 'NONE', bg = c.grey })
   hl(0, 'MatchWord', { fg = c.white, bg = c.grey })
   hl(0, 'MatchParen', { link = 'MatchWord' })
-  hl(0, 'Cursor', { fg = c.base00, bg = c.base05 })
+  hl(0, 'Cursor', { fg = c.base00, bg = c.green })
   hl(0, 'Conceal', { fg = 'NONE', bg = 'NONE' })
   hl(0, 'Directory', { fg = c.base0D, bg = 'NONE' })
   hl(0, 'SpecialKey', { fg = c.base03, bg = 'NONE' })
@@ -348,6 +348,14 @@ theme.set_highlights = function()
 
   -- Illuminate
   hl(0, 'IlluminatedWordText', { fg = 'NONE', bg = c.base02, sp = 'NONE' })
+
+  -- Whichkey
+  hl(0, 'WhichKey', { fg = c.blue, bg = c.base00 })
+  hl(0, 'WhichKeySeperator', { fg = c.light_grey, bg = 'NONE' })
+  hl(0, 'WhichKeyDesc', { fg = c.red, bg = 'NONE' })
+  hl(0, 'WhichKeyGroup', { fg = c.green, bg = 'NONE' })
+  hl(0, 'WhichKeyValue', { fg = c.green, bg = 'NONE' })
+  hl(0, 'WhichKeyFloat', { link = 'NormalFloat', bg = c.base00 })
 end
 
 return theme
