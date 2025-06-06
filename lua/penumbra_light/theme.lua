@@ -28,7 +28,7 @@ theme.set_highlights = function()
   hl(0, 'SpellLocal', { fg = 'NONE', bg = 'NONE', sp = c.base0C, undercurl = true })
   hl(0, 'SpellRare', { fg = 'NONE', bg = 'NONE', sp = c.base0D, undercurl = true })
   hl(0, 'NormalNC', { fg = c.base05, bg = c.base00 })
-  hl(0, 'Pmenu', { fg = 'NONE', bg = c.one_bg })
+  hl(0, 'Pmenu', { fg = 'NONE', bg = c.base00 })
   hl(0, 'PmenuSel', { fg = c.black, bg = c.pmenu_bg })
   hl(0, 'WildMenu', { fg = c.base08, bg = c.base0A })
   hl(0, 'CursorLineNr', { fg = c.white, bg = 'NONE' })
@@ -356,6 +356,9 @@ theme.set_highlights = function()
   hl(0, 'WhichKeyGroup', { fg = c.green, bg = 'NONE' })
   hl(0, 'WhichKeyValue', { fg = c.green, bg = 'NONE' })
   hl(0, 'WhichKeyFloat', { link = 'NormalFloat', bg = c.base00 })
+
+  -- Snacks
+  hl(0, 'SnacksPickerDir', { fg = c.base04 })
 end
 
 return theme
