@@ -5,7 +5,6 @@ return {
     'williamboman/mason.nvim',
   },
   config = function()
-    local utils = require 'utils'
     local formatters_by_ft = {
       lua = { 'stylua' },
       html = { 'prettier' },
@@ -24,10 +23,6 @@ return {
       java = { 'spotless' },
       sql = { 'sql_formatter' },
     }
-
-    if utils.is_dotnet_installed() then
-      formatters_by_ft.cs = { 'csharpier' }
-    end
 
     local conform = require 'conform'
 
