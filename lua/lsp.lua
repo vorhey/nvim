@@ -5,7 +5,7 @@ return {
   dependencies = {
     { 'b0o/schemastore.nvim', lazy = true },
     { 'williamboman/mason-lspconfig.nvim', lazy = true },
-    { 'seblj/roslyn.nvim', lazy = true, ft = { 'cs' } },
+    { 'seblj/roslyn.nvim', lazy = true, ft = { 'cs' }, opts = {} },
     { 'luckasRanarison/tailwind-tools.nvim', lazy = true, ft = { 'js', 'jsx', 'ts', 'tsx' } },
     {
       'folke/lazydev.nvim',
@@ -23,7 +23,13 @@ return {
   lazy = true,
   config = function()
     -- Mason configuration
-    require('mason').setup { ui = { delay = 1000 } }
+    require('mason').setup {
+      ui = { delay = 1000 },
+      registries = {
+        'github:mason-org/mason-registry',
+        'github:Crashdummyy/mason-registry',
+      },
+    }
 
     -- Mason LSP configuration
     require('mason-lspconfig').setup {
@@ -45,17 +51,13 @@ return {
       signs = {
         text = {
           [vim.diagnostic.severity.ERROR] = '󰅗',
-          [vim.diagnostic.severity.WARN] = '󰩳',
+          [vim.diagnostic.severity.WARN] = '',
           [vim.diagnostic.severity.HINT] = '',
-          [vim.diagnostic.severity.INFO] = '',
+          [vim.diagnostic.severity.INFO] = '󰅺',
         },
       },
-      underline = {
-        severity = {
-          min = vim.diagnostic.severity.HINT,
-          max = vim.diagnostic.severity.WARN,
-        },
-      },
+      underline = false,
+      severity_sort = true,
       float = {
         border = 'rounded',
       },
@@ -315,8 +317,7 @@ return {
     })
 
     -- Configure Roslyn language server
-    vim.lsp.config('roslyn', {})
-    require('roslyn').setup {
+    vim.lsp.config('roslyn', {
       on_attach = function(client, bufnr)
         vim.bo[bufnr].tabstop = 4
         vim.bo[bufnr].shiftwidth = 4
@@ -333,7 +334,6 @@ return {
           end,
         })
       end,
-      filewatching = true,
       settings = {
         ['csharp|inlay_hints'] = {
           csharp_enable_inlay_hints_for_implicit_object_creation = true,
@@ -353,7 +353,7 @@ return {
           dotnet_enable_references_code_lens = true,
         },
       },
-    }
+    })
 
     vim.lsp.config('yamlls', {
       cmd = { 'yaml-language-server', '--stdio' },
