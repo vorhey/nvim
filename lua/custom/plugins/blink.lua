@@ -60,24 +60,73 @@ return {
         snippets = {
           min_keyword_length = 2,
           should_show_items = function(ctx)
-            -- Only apply this logic to JavaScript/TypeScript files
+            -- Handle JavaScript/TypeScript files
             local js_filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' }
-            if not vim.tbl_contains(js_filetypes, vim.bo.filetype) then
-              return true
+            if vim.tbl_contains(js_filetypes, vim.bo.filetype) then
+              local line = vim.api.nvim_get_current_line()
+              local col = vim.api.nvim_win_get_cursor(0)[2]
+              local before_cursor = line:sub(1, col)
+
+              local js_keywords = { 'const', 'let', 'var', 'function', 'class', 'import', 'export' }
+
+              for _, keyword in ipairs(js_keywords) do
+                if before_cursor:match(keyword .. '%s+%w*$') then
+                  return false
+                end
+              end
             end
 
-            -- Get the current line up to the cursor position
-            local line = vim.api.nvim_get_current_line()
-            local col = vim.api.nvim_win_get_cursor(0)[2]
-            local before_cursor = line:sub(1, col)
+            -- Handle C# files
+            local cs_filetypes = { 'cs' }
+            if vim.tbl_contains(cs_filetypes, vim.bo.filetype) then
+              local line = vim.api.nvim_get_current_line()
+              local col = vim.api.nvim_win_get_cursor(0)[2]
+              local before_cursor = line:sub(1, col)
 
-            -- Keywords !snippets
-            local keywords = { 'const', 'let', 'var', 'function', 'class', 'import', 'export' }
+              -- C# keywords where you're likely naming identifiers
+              local cs_keywords = {
+                'class',
+                'interface',
+                'struct',
+                'enum',
+                'namespace',
+                'public',
+                'private',
+                'protected',
+                'internal',
+                'static',
+                'readonly',
+                'const',
+                'var',
+                'int',
+                'string',
+                'bool',
+                'double',
+                'float',
+                'decimal',
+                'List',
+                'Dictionary',
+                'IEnumerable',
+                'void',
+                'async',
+                'await',
+              }
 
-            for _, keyword in ipairs(keywords) do
-              -- Check if we're typing after one of these keywords
-              -- Pattern matches: keyword + one or more spaces + any word characters
-              if before_cursor:match(keyword .. '%s+%w*$') then
+              for _, keyword in ipairs(cs_keywords) do
+                -- Check if we're typing after one of these keywords
+                if before_cursor:match(keyword .. '%s+%w*$') then
+                  return false
+                end
+              end
+
+              -- Also check for method/property declarations
+              -- Pattern for method signatures: access_modifier return_type method_name
+              if
+                before_cursor:match 'public%s+%w+%s+%w*$'
+                or before_cursor:match 'private%s+%w+%s+%w*$'
+                or before_cursor:match 'protected%s+%w+%s+%w*$'
+                or before_cursor:match 'internal%s+%w+%s+%w*$'
+              then
                 return false
               end
             end
