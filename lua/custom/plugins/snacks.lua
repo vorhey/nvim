@@ -117,7 +117,7 @@ return {
           },
         }
       end,
-      desc = 'smart find files',
+      desc = 'files',
     },
     {
       '<leader>fa',
