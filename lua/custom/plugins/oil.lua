@@ -2,7 +2,11 @@ return {
   'stevearc/oil.nvim',
   config = function()
     ---@type oil.SetupOpts
-    require('oil').setup {}
+    require('oil').setup {
+      float = {
+        padding = 0,
+      },
+    }
     vim.keymap.set('n', '<leader>e', function()
       require('oil').open_float()
     end, { desc = 'Open Oil in float' })
