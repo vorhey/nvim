@@ -5,6 +5,7 @@ return {
     require('oil').setup {
       float = {
         padding = 0,
+        max_height = 0.99,
       },
     }
     vim.keymap.set('n', '<leader>e', function()
