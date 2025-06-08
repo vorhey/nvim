@@ -63,14 +63,4 @@ vim.opt.shortmess:append { W = true, I = true, c = true, C = true }
 vim.cmd [[let &t_Cs = "\e[4:3m"]] -- Enable undercurl
 vim.cmd [[let &t_Ce = "\e[4:0m"]]
 
--- Cursor
-vim.opt.guicursor = {
-  'n-v-c:block-Cursor',
-  'i-ci-ve:ver25-Cursor',
-  'r-cr:hor20-Cursor',
-  'o:hor50-Cursor',
-  'a:blinkwait175-blinkoff150-blinkon175-Cursor',
-  'sm:block-blinkwait175-blinkoff150-blinkon175-Cursor',
-}
-
 vim.opt.winbar = "%=%{%v:lua.get_file_icon()%}%{%v:lua.require('utils').get_relative_filename()%}%="
