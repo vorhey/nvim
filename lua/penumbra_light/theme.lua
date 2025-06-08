@@ -359,6 +359,15 @@ theme.set_highlights = function()
 
   -- Snacks
   hl(0, 'SnacksPickerDir', { fg = c.base04 })
+
+  -- Flash
+  hl(0, 'FlashBackdrop', { fg = c.coal, bg = 'NONE' })
+  hl(0, 'FlashMatch', { fg = c.base01, bg = c.base0A })
+  hl(0, 'FlashCurrent', { fg = c.base01, bg = c.base09 })
+  hl(0, 'FlashLabel', { fg = c.base01, bg = c.vibrant_green, sp = 'NONE' })
+  hl(0, 'FlashPrompt', { fg = c.base05, bg = c.cyan })
+  hl(0, 'FlashPromptIcon', { fg = c.base0C, bg = 'NONE' })
+  hl(0, 'FlashCursor', { fg = c.base00, bg = c.green })
 end
 
 return theme
