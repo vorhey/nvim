@@ -57,6 +57,34 @@ return {
         sql = { 'snippets', 'dadbod', 'buffer' },
       },
       providers = {
+        snippets = {
+          min_keyword_length = 2,
+          should_show_items = function(ctx)
+            -- Only apply this logic to JavaScript/TypeScript files
+            local js_filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' }
+            if not vim.tbl_contains(js_filetypes, vim.bo.filetype) then
+              return true
+            end
+
+            -- Get the current line up to the cursor position
+            local line = vim.api.nvim_get_current_line()
+            local col = vim.api.nvim_win_get_cursor(0)[2]
+            local before_cursor = line:sub(1, col)
+
+            -- Keywords !snippets
+            local keywords = { 'const', 'let', 'var', 'function', 'class', 'import', 'export' }
+
+            for _, keyword in ipairs(keywords) do
+              -- Check if we're typing after one of these keywords
+              -- Pattern matches: keyword + one or more spaces + any word characters
+              if before_cursor:match(keyword .. '%s+%w*$') then
+                return false
+              end
+            end
+
+            return true
+          end,
+        },
         lazydev = {
           name = 'LazyDev',
           module = 'lazydev.integrations.blink',
