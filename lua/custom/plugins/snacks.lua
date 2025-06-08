@@ -1,5 +1,4 @@
 ---@diagnostic disable: undefined-global
-local utils = require 'utils'
 return {
   'folke/snacks.nvim',
   priority = 1000,
