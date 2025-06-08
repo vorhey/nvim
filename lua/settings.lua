@@ -17,7 +17,6 @@ vim.opt.cmdheight = 1 -- Command line height
 -- Window and split behavior
 vim.opt.splitright = true -- Open new splits to the right
 vim.opt.splitbelow = true -- Open new splits below
-vim.opt.scrolloff = 999 -- Lines of context above/below cursor
 vim.opt.pumheight = 12 -- Maximum number of popup menu items
 
 -- Search settings
