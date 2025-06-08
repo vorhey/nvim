@@ -104,6 +104,9 @@ return {
     scope = {
       enabled = true,
     },
+    words = {
+      enabled = true,
+    },
   },
   keys = {
     {
