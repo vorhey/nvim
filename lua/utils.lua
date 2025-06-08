@@ -76,11 +76,10 @@ function M.lazy(keys)
   end
 end
 
--- check wsl
-function M.is_wsl()
+vim.g.is_wsl = (function()
   local output = vim.fn.systemlist 'uname -r'
   return output[1] and string.find(output[1], 'WSL') ~= nil
-end
+end)()
 
 --- Get highlight properties for a given highlight name
 --- @param name string The highlight group name
@@ -286,24 +285,4 @@ M.ignore_patterns = {
   '.DS_Store',
 }
 
-M.mason_servers = {
-  'gopls',
-  'lua_ls',
-  'html',
-  'cssls',
-  'jsonls',
-  'vtsls',
-  'dockerls',
-  'docker_compose_language_service',
-  'emmet_language_server',
-  'bashls',
-  'groovyls',
-  'cucumber_language_server',
-  'eslint',
-  'intelephense',
-  'basedpyright',
-  'jdtls',
-  'yamlls',
-  'tailwindcss',
-}
 return M

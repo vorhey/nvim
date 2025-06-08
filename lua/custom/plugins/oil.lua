@@ -9,7 +9,7 @@ return {
     }
     vim.keymap.set('n', '<leader>e', function()
       require('oil').open_float()
-    end, { desc = 'Open Oil in float' })
+    end, { desc = 'explorer' })
   end,
   -- Optional dependencies
   dependencies = { { 'echasnovski/mini.icons', opts = {} } },
