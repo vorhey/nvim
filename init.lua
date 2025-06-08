@@ -1,4 +1,5 @@
 -- Load basic configurations
+require 'utils'
 require 'settings' -- Load basic settings
 require 'keybindings' -- Load key mappings
 require 'autocmds' -- Load autocommands
