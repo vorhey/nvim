@@ -12,7 +12,6 @@ return {
         { '<leader>q', icon = { icon = '󰈆', color = 'azure' } },
         { '<leader>Q', icon = { icon = '󰈆', color = 'azure' } },
         { '<leader>e', icon = { icon = '󱏒', color = 'azure' } },
-        { '<leader>a', group = 'avante', icon = { icon = '󰬈', color = 'grey' } },
         { '<leader>d', group = 'debug', icon = { icon = '', color = 'grey' } },
         { '<leader>t', group = 'toggle', icon = { icon = '', color = 'grey' } },
         { '<leader>f', group = 'find', icon = { icon = '', color = 'grey' } },
@@ -20,9 +19,8 @@ return {
         { '<leader>h', group = 'harvgate', icon = { icon = '󰁤', color = 'grey' } },
         { '<leader>l', group = 'lsp', icon = { icon = '', color = 'grey' } },
         { '<leader>n', group = 'neotest', icon = { icon = '', color = 'grey' } },
-        { '<leader>R', group = 'kulala', icon = { icon = '󰏚', color = 'grey' } },
         { '<leader>m', group = 'multicursor', icon = { icon = '󰇀', color = 'grey' } },
-        { '<leader>s', group = 'sessions', icon = { icon = '', color = 'grey' } },
+        { '<leader>x', group = 'trouble', icon = { icon = '󰗶', color = 'grey' } },
       },
     }
     wk.setup {

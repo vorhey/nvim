@@ -6,9 +6,9 @@ return {
   config = function()
     require('oldworld').setup {
       styles = {
-        booleans = { italic = true },
+        booleans = { italic = false },
         comments = { italic = false },
-        keywords = { italic = true },
+        keywords = { italic = false },
         functions = { italic = false },
         strings = { italic = false },
         variables = { italic = false },
