@@ -60,3 +60,5 @@ vim.keymap.set('n', 'zH', '<Plug>(ScrollLeftCenter)', { silent = true, desc = 'S
 if not utils.is_wsl() then
   vim.keymap.set({ 'n', 'v' }, '<C-c>', '"+y', { silent = true, desc = 'Copy to system clipboard' })
 end
+
+vim.keymap.set('i', '<C-r>"', '<C-r><C-p>"', { desc = 'Paste default register with indent' })
