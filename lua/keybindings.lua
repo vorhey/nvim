@@ -8,4 +8,4 @@ end
 
 vim.keymap.set('i', '<C-r>"', '<C-r><C-p>"', { desc = 'paste default register with indent' })
 
-vim.keymap.set('n', '<C-m>', 'f{a<cr><esc>O', { desc = 'grow braces' })
+vim.keymap.set('n', '<C-m>', '0f{a<cr><esc>O', { desc = 'grow braces' })
