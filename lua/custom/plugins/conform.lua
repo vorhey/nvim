@@ -22,6 +22,7 @@ return {
       python = { 'ruff_format' },
       java = { 'spotless' },
       sql = { 'sql_formatter' },
+      cs = { 'csharpier' },
     }
 
     local conform = require 'conform'
@@ -34,6 +35,13 @@ return {
       cwd = function()
         return vim.fn.finddir('.git/..', vim.fn.expand '%:p:h' .. ';')
       end,
+    }
+
+    -- Configure csharpier
+    conform.formatters.csharpier = {
+      command = 'csharpier',
+      args = { 'format', '$FILENAME' },
+      stdin = false,
     }
 
     conform.setup {
