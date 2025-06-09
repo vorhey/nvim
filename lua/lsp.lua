@@ -64,7 +64,7 @@ return {
     }
 
     -- Use default capabilities instead of custom module
-    local capabilities = require('blink.cmp').get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('cmp_nvim_lsp').default_capabilities())
 
     -- Set default LSP configuration
     vim.lsp.config('*', {
