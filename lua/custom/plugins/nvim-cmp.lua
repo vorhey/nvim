@@ -31,6 +31,8 @@ return {
     require('luasnip.loaders.from_vscode').lazy_load()
 
     luasnip.filetype_extend('javascript', { 'jsdoc' })
+    luasnip.filetype_extend('typescript', { 'jsdoc' })
+
     luasnip.config.setup { enable_autosnippets = true }
 
     -- Variable to track documentation window state
