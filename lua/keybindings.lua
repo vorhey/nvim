@@ -7,3 +7,5 @@ if not vim.g.is_wsl then
 end
 
 vim.keymap.set('i', '<C-r>"', '<C-r><C-p>"', { desc = 'Paste default register with indent' })
+
+vim.keymap.set('n', '<C-m>', 'f{a<cr><esc>O', { desc = 'grow braces' })
