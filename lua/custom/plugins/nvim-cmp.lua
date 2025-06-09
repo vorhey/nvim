@@ -33,6 +33,21 @@ return {
     luasnip.filetype_extend('javascript', { 'jsdoc' })
     luasnip.config.setup { enable_autosnippets = true }
 
+    -- Variable to track documentation window state
+    local docs_enabled = false
+
+    -- Function to toggle documentation
+    local function toggle_docs()
+      docs_enabled = not docs_enabled
+      if docs_enabled then
+        if cmp.visible() then
+          cmp.open_docs()
+        end
+      else
+        cmp.close_docs()
+      end
+    end
+
     -- Keymaps
     local keybinds = {
       ['<C-Space>'] = cmp.mapping.complete {},
@@ -42,6 +57,7 @@ return {
       ['<C-k>'] = cmp.mapping.select_prev_item(),
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-d>'] = cmp.mapping(toggle_docs), -- Toggle documentation
 
       ['<CR>'] = cmp.mapping.confirm { select = true },
 
@@ -100,7 +116,14 @@ return {
       formatting = formatting,
       window = {
         completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+        -- Remove documentation window from default setup
+        -- documentation = cmp.config.window.bordered(),
+      },
+      -- Disable automatic documentation
+      view = {
+        docs = {
+          auto_open = false,
+        },
       },
     }
 
