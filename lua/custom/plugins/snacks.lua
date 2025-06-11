@@ -123,6 +123,22 @@ return {
       desc = 'files',
     },
     {
+      '<leader>fv',
+      function()
+        local search_term = vim.fn.getreg 'v'
+        Snacks.picker.files {
+          filter = { cwd = true },
+          search = search_term,
+          layout = {
+            preset = 'dropdown',
+            hidden = { 'preview' },
+          },
+        }
+      end,
+      desc = 'files with selection',
+      mode = { 'n', 'v' },
+    },
+    {
       '<leader>fa',
       function()
         Snacks.picker.buffers()
