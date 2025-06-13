@@ -34,23 +34,6 @@ return {
             end,
           })
           :map '<leader>tc'
-        Snacks.toggle
-          .new({
-            id = 'db_ui',
-            name = 'DB UI',
-            get = function()
-              return vim.g.db_ui_open
-            end,
-            set = function()
-              for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-                if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) == '' then
-                  vim.api.nvim_buf_delete(buf, { force = true })
-                end
-              end
-              vim.cmd 'DBUIToggle'
-            end,
-          })
-          :map '<leader>td'
       end,
     })
   end,
