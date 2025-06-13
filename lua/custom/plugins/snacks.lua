@@ -125,7 +125,10 @@ return {
     {
       '<leader>fv',
       function()
-        local search_term = vim.fn.getreg 'v'
+        local start_pos = vim.fn.getpos 'v'
+        local end_pos = vim.fn.getpos '.'
+        local lines = vim.fn.getregion(start_pos, end_pos, { type = vim.fn.mode() })
+        local search_term = table.concat(lines, '\n')
         Snacks.picker.files {
           filter = { cwd = true },
           search = search_term,
@@ -136,7 +139,7 @@ return {
         }
       end,
       desc = 'files with selection',
-      mode = { 'n', 'v' },
+      mode = { 'v' },
     },
     {
       '<leader>fa',
