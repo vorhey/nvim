@@ -277,7 +277,7 @@ return {
     {
       '<leader>gl',
       function()
-        Snacks.lazygit()
+        Snacks.picker.git_log_file()
       end,
       desc = 'git: lazy git',
     },
