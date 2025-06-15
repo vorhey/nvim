@@ -23,6 +23,7 @@ return {
       java = { 'spotless' },
       sql = { 'sql_formatter' },
       cs = { 'csharpier' },
+      xml = { 'xaml_styler' },
     }
 
     local conform = require 'conform'
@@ -42,6 +43,12 @@ return {
       command = 'csharpier',
       args = { 'format', '$FILENAME' },
       stdin = false,
+    }
+
+    conform.formatters.xaml_styler = {
+      command = 'xaml-styler',
+      args = { '--write-to-stdout', '--take-pipe' },
+      stdin = true,
     }
 
     conform.setup {
