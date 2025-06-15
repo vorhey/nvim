@@ -26,6 +26,9 @@ return {
     wk.setup {
       preset = 'helix',
       delay = 0,
+      filter = function(mapping)
+        return mapping.desc and mapping.desc ~= ''
+      end,
     }
   end,
 }
