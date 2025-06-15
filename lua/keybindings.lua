@@ -39,3 +39,12 @@ end, { silent = true, noremap = true, desc = 'Scroll left horizontally' })
 
 vim.keymap.set('n', 'zL', '<Plug>(ScrollRightCenter)', { silent = true, desc = 'Scroll right' })
 vim.keymap.set('n', 'zH', '<Plug>(ScrollLeftCenter)', { silent = true, desc = 'Scroll right' })
+
+vim.keymap.set('n', '<C-U>', '11kzz')
+vim.keymap.set('n', '<C-D>', '11jzz')
+vim.keymap.set('n', 'j', 'jzz')
+vim.keymap.set('n', 'k', 'kzz')
+vim.keymap.set('n', '#', '#zz')
+vim.keymap.set('n', '*', '*zz')
+vim.keymap.set('n', 'n', 'nzz')
+vim.keymap.set('n', 'N', 'Nzz')
