@@ -1,5 +1,15 @@
 return {
   'stevearc/oil.nvim',
+  dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+  keys = {
+    {
+      '<leader>e',
+      function()
+        require('oil').open_float()
+      end,
+      desc = 'explorer',
+    },
+  },
   config = function()
     ---@type oil.SetupOpts
     require('oil').setup {
@@ -23,12 +33,6 @@ return {
         },
       },
     }
-    vim.keymap.set('n', '<leader>e', function()
-      require('oil').open_float()
-    end, { desc = 'explorer' })
   end,
-  -- Optional dependencies
-  dependencies = { { 'echasnovski/mini.icons', opts = {} } },
-  -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
   lazy = false,
 }
