@@ -81,9 +81,6 @@ return {
         },
       },
     },
-    lazygit = {
-      enabled = true,
-    },
     scope = {
       enabled = true,
     },
@@ -262,7 +259,7 @@ return {
       function()
         Snacks.picker.git_log_file()
       end,
-      desc = 'git: lazy git',
+      desc = 'git: log file',
     },
   },
 }
