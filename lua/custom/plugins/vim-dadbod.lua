@@ -1,7 +1,20 @@
 return {
   'kristijanhusak/vim-dadbod-completion',
   dependencies = { { 'tpope/vim-dadbod', cmd = 'DB' }, 'kristijanhusak/vim-dadbod-ui', 'hrsh7th/nvim-cmp' },
-  keys = { { '<leader>td', '<cmd>DBUIToggle<cr>', desc = 'Toggle DB UI' } },
+  keys = {
+    {
+      '<leader>td',
+      function()
+        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+          if vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buftype == 'nofile' then
+            vim.api.nvim_buf_delete(buf, { force = true })
+          end
+        end
+        vim.cmd 'DBUIToggle'
+      end,
+      desc = 'Toggle DB UI',
+    },
+  },
   init = function()
     vim.g.db_ui_use_nerd_fonts = 1
   end,
