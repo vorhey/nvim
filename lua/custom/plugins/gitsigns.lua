@@ -27,12 +27,12 @@ return {
           gs.blame_line { full = true }
         end, { desc = 'git: blame line' })
         vim.keymap.set('n', '<leader>gB', gs.toggle_current_line_blame, { desc = 'git: toggle blame' })
-        vim.keymap.set('n', ']c', function()
+        vim.keymap.set('n', ']h', function()
           gs.nav_hunk('next', {
             target = 'all',
           })
         end, { desc = 'git: next hunk' })
-        vim.keymap.set('n', '[c', function()
+        vim.keymap.set('n', '[h', function()
           gs.nav_hunk('prev', {
             target = 'all',
           })
@@ -41,8 +41,8 @@ return {
           local diff_keys = {
             { 'do', 'Get changes from other window into current window (diff obtain)' },
             { 'dp', 'Put changes from current window into other window (diff put)' },
-            { ']c', 'Jump to next change' },
-            { '[c', 'Jump to previous change' },
+            { ']h', 'Jump to next change' },
+            { '[h', 'Jump to previous change' },
             { 'ga', 'Accept inline edit (codecompanion)' },
             { 'gr', 'Reject inline edit (codecompanion)' },
             { 'zc', 'Fold unchanged text' },
