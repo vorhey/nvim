@@ -7,6 +7,7 @@ return {
     { 'williamboman/mason-lspconfig.nvim', lazy = true },
     { 'seblj/roslyn.nvim', lazy = true, ft = { 'cs' }, opts = {} },
     { 'luckasRanarison/tailwind-tools.nvim', lazy = true, ft = { 'js', 'jsx', 'ts', 'tsx' } },
+    { 'yioneko/nvim-vtsls', lazy = true, ft = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' } },
     {
       'folke/lazydev.nvim',
       lazy = true,
@@ -106,6 +107,7 @@ return {
     })
 
     -- Configure vtsls
+    require('vtsls').config { refactor_auto_rename = true }
     vim.lsp.config('vtsls', {
       cmd = { 'vtsls', '--stdio' },
       filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
