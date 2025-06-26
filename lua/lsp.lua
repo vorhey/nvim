@@ -424,7 +424,7 @@ return {
       'intelephense',
       'jsonls',
       'lua_ls',
-      'rust_analyer',
+      'rust_analyzer',
       'tailwindcss',
       'vtsls',
       'yamlls',
