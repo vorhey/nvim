@@ -20,6 +20,14 @@ return {
       ---@type FastActionConfig
       opts = {},
     },
+    {
+      'nvim-flutter/flutter-tools.nvim',
+      lazy = false,
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+      },
+      config = true,
+    },
   },
   lazy = true,
   config = function()
@@ -399,10 +407,12 @@ return {
       end,
     })
 
-    vim.lsp.config('dartls', {
-      cmd = { 'dart', 'language-server', '--protocol=lsp' },
-      filetypes = { 'dart' },
-    })
+    -- Configure flutter
+    require('flutter-tools').setup {}
+    -- vim.lsp.config('dartls', {
+    --   cmd = { 'dart', 'language-server', '--protocol=lsp' },
+    --   filetypes = { 'dart' },
+    -- })
 
     local function format_buffer()
       vim.lsp.buf.format { async = true }
@@ -430,7 +440,7 @@ return {
       'tailwindcss',
       'vtsls',
       'yamlls',
-      'dartls',
+      -- 'dartls',
     }
   end,
 }
