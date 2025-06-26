@@ -49,7 +49,14 @@ return {
         { section = 'startup' },
       },
     },
-    input = {},
+    input = {
+      win = {
+        relative = 'cursor',
+        row = -3,
+        col = 0,
+        position = 'float',
+      },
+    },
     picker = {
       ui_select = true,
       layouts = {
