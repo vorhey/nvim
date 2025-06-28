@@ -35,7 +35,7 @@ vim.keymap.set('n', '<Plug>(ScrollLeftCenter)', function()
   center_cursor()
   -- Make dot-repeatable with repeat.vim
   vim.cmd 'silent! call repeat#set("\\<Plug>(ScrollLeftCenter)", v:count)'
-end, { silent = true, noremap = true, desc = 'Scroll left horizontally' })
+end, { silent = true, noremap = true, desc = 'scroll left horizontally' })
 
 vim.keymap.set('n', 'zL', '<Plug>(ScrollRightCenter)', { silent = true, desc = 'Scroll right' })
 vim.keymap.set('n', 'zH', '<Plug>(ScrollLeftCenter)', { silent = true, desc = 'Scroll right' })
@@ -50,3 +50,7 @@ vim.keymap.set('n', 'n', 'nzz')
 vim.keymap.set('n', 'N', 'Nzz')
 vim.keymap.set('n', '<C-o>', '<C-o>zz')
 vim.keymap.set('n', '<C-i>', '<C-i>zz')
+vim.keymap.set('i', '<M-;>', function()
+  local line = vim.api.nvim_get_current_line()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-o>A' .. (line:match ';%s*$' and '' or ';') .. '<CR>', true, false, true), 'n', false)
+end, { desc = 'append semicolon and new line' })
