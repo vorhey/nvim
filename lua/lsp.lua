@@ -408,11 +408,6 @@ return {
 
     -- Configure flutter
     require('flutter-tools').setup {}
-    -- vim.lsp.config('dartls', {
-    --   cmd = { 'dart', 'language-server', '--protocol=lsp' },
-    --   filetypes = { 'dart' },
-    -- })
-
     local function format_buffer()
       vim.lsp.buf.format { async = true }
     end
@@ -438,7 +433,6 @@ return {
       'tailwindcss',
       'vtsls',
       'yamlls',
-      -- 'dartls',
     }
   end,
 }
