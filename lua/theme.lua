@@ -60,8 +60,6 @@ return {
         -- Syntax
         ['@boolean'] = { fg = '#E29ECA', italic = true },
         ['@tag.attribute'] = { fg = '#d7c6f7' },
-        ['@lsp.type.class.dart'] = { fg = '#e29eca', bold = true },
-        ['@lsp.mod.constructor.dart'] = { fg = '#c6c6c6' },
         ['@namespace'] = { fg = '#c6c6c6' },
         ['@property'] = { fg = '#c6c6c6' },
         -- Snippet
@@ -69,6 +67,10 @@ return {
         -- Winbar
         WinBar = { bg = 'NONE', fg = '#c6c6c6' },
         WinBarNC = { bg = 'NONE' },
+        -- Dart
+        ['@lsp.type.class.dart'] = { fg = '#e29eca', bold = true },
+        ['@lsp.mod.constructor.dart'] = { fg = '#c6c6c6' },
+        ['@lsp.typemod.parameter.label.dart'] = { fg = '#e29eca' },
       },
     }
     vim.cmd.colorscheme 'oldworld'
