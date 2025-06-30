@@ -64,12 +64,6 @@ return {
         ['@lsp.mod.constructor.dart'] = { fg = '#c6c6c6' },
         ['@namespace'] = { fg = '#c6c6c6' },
         ['@property'] = { fg = '#c6c6c6' },
-        -- Blink
-        BlinkCmpMenu = { bg = 'NONE' },
-        BlinkCmpDoc = { bg = 'NONE' },
-        BlinkCmpDocBorder = { bg = 'NONE' },
-        BlinkCmpMenuBorder = { bg = 'NONE' },
-        BlinkCmpDocSeparator = { bg = 'NONE' },
         -- Snippet
         SnippetTabStop = { bg = 'NONE' },
         -- Winbar
