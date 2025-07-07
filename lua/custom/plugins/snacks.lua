@@ -268,5 +268,12 @@ return {
       end,
       desc = 'git: log file',
     },
+    {
+      '<leader>fm',
+      function()
+        Snacks.picker.marks()
+      end,
+      desc = 'marks',
+    },
   },
 }
