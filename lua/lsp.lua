@@ -53,6 +53,7 @@ return {
         'tailwindcss',
         'vtsls',
         'yamlls',
+        'jdtls',
       },
     }
 
@@ -411,6 +412,103 @@ return {
     local function format_buffer()
       vim.lsp.buf.format { async = true }
     end
+
+    -- Configure Java
+    vim.lsp.config('jdtls', {
+      cmd = {
+        'jdtls',
+        '--jvm-arg=-javaagent:' .. vim.fn.expand '~/.local/share/nvim/mason/packages/jdtls/lombok.jar',
+        '--add-modules=ALL-SYSTEM',
+        '--add-opens',
+        'java.base/java.util=ALL-UNNAMED',
+        '--add-opens',
+        'java.base/java.lang=ALL-UNNAMED',
+      },
+      filetypes = { 'java' },
+      root_markers = { '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle', 'build.gradle.kts' },
+      init_options = {
+        jvm_args = {},
+        workspace = vim.fn.expand '~/.cache/jdtls/workspace/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t'),
+      },
+      settings = {
+        java = {
+          home = vim.env.JAVA_DEV_HOME or vim.env.JAVA_HOME,
+          eclipse = {
+            downloadSources = true,
+          },
+          configuration = {
+            updateBuildConfiguration = 'interactive',
+            runtimes = vim.env.JAVA_DEV_HOME and {
+              {
+                name = 'JavaSE-17',
+                path = vim.env.JAVA_DEV_HOME,
+              },
+            } or {},
+          },
+          maven = {
+            downloadSources = true,
+          },
+          implementationsCodeLens = {
+            enabled = true,
+          },
+          referencesCodeLens = {
+            enabled = true,
+          },
+          references = {
+            includeDecompiledSources = true,
+          },
+          format = {
+            enabled = false,
+            settings = {
+              url = vim.fn.stdpath 'config' .. '/lang-servers/intellij-java-google-style.xml',
+              profile = 'GoogleStyle',
+            },
+          },
+          signatureHelp = { enabled = true },
+          sources = {
+            organizeImports = {
+              starThreshold = 9999,
+              staticStarThreshold = 9999,
+            },
+          },
+          codeGeneration = {
+            toString = {
+              template = '${object.className}{${member.name()}=${member.value}, ${otherMembers}}',
+            },
+            useBlocks = true,
+          },
+          completion = {
+            favoriteStaticMembers = {
+              'org.hamcrest.MatcherAssert.assertThat',
+              'org.hamcrest.Matchers.*',
+              'org.hamcrest.CoreMatchers.*',
+              'org.junit.jupiter.api.Assertions.*',
+              'java.util.Objects.requireNonNull',
+              'java.util.Objects.requireNonNullElse',
+              'org.mockito.Mockito.*',
+            },
+            importOrder = {
+              'java',
+              'javax',
+              'com',
+              'org',
+            },
+          },
+          contentProvider = { preferred = 'fernflower' },
+          extendedClientCapabilities = {
+            progressReportsSupport = true,
+            classFileContentsSupport = true,
+            generateToStringPromptSupport = true,
+            hashCodeEqualsPromptSupport = true,
+            advancedExtractRefactoringSupport = true,
+            advancedOrganizeImportsSupport = true,
+            generateConstructorsPromptSupport = true,
+            generateDelegateMethodsPromptSupport = true,
+            moveRefactoringSupport = true,
+          },
+        },
+      },
+    })
 
     vim.keymap.set({ 'v', 'n' }, '<leader>la', '<cmd>lua require("fastaction").code_action()<CR>', { desc = 'lsp: code actions' })
     vim.keymap.set('n', '<leader>lf', format_buffer, { desc = 'lsp: format buffer' })
