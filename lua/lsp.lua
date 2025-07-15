@@ -417,6 +417,7 @@ return {
     vim.lsp.config('jdtls', {
       cmd = {
         'jdtls',
+        '--java-executable=' .. (vim.env.JAVA_DEV_HOME or vim.env.JAVA_HOME) .. '/bin/java',
         '--jvm-arg=-javaagent:' .. vim.fn.expand '~/.local/share/nvim/mason/packages/jdtls/lombok.jar',
         '--add-modules=ALL-SYSTEM',
         '--add-opens',
@@ -440,7 +441,7 @@ return {
             updateBuildConfiguration = 'interactive',
             runtimes = vim.env.JAVA_DEV_HOME and {
               {
-                name = 'JavaSE-17',
+                name = 'JavaSE-21',
                 path = vim.env.JAVA_DEV_HOME,
               },
             } or {},
