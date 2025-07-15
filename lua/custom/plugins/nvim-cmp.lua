@@ -126,8 +126,7 @@ return {
       formatting = formatting,
       window = {
         completion = cmp.config.window.bordered(),
-        -- Remove documentation window from default setup
-        -- documentation = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
       },
       -- Disable automatic documentation
       view = {
