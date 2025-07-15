@@ -520,7 +520,7 @@ return {
 
     -- Enable the server
     vim.lsp.enable {
-      'avalonia',
+      -- 'avalonia',
       'cssls',
       'dockerls',
       'eslint',
