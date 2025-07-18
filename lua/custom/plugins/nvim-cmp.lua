@@ -54,9 +54,7 @@ return {
     local keybinds = {
       ['<C-Space>'] = cmp.mapping.complete {},
       ['<C-n>'] = cmp.mapping.select_next_item(),
-      ['<C-j>'] = cmp.mapping.select_next_item(),
       ['<C-p>'] = cmp.mapping.select_prev_item(),
-      ['<C-k>'] = cmp.mapping.select_prev_item(),
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-d>'] = cmp.mapping(toggle_docs), -- Toggle documentation
