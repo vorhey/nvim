@@ -517,7 +517,7 @@ return {
     vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = 'lsp: rename' })
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'lsp: hover documentation' })
     vim.keymap.set('n', 'gR', vim.lsp.buf.references, { desc = 'lsp: native references' })
-    vim.keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, { desc = 'lsp: signature help' })
+    vim.keymap.set({ 'v', 'n' }, '<c-k>', vim.lsp.buf.signature_help, { desc = 'lsp: signature help' })
 
     -- Enable the server
     vim.lsp.enable {
