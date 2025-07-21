@@ -102,8 +102,13 @@ return {
         Snacks.picker.smart {
           filter = { cwd = true },
           layout = {
-            preset = 'dropdown',
+            preset = 'vertical',
             hidden = { 'preview' },
+            layout = {
+              height = 0.5,
+              min_height = 15,
+              width = 0.3,
+            },
           },
         }
       end,
