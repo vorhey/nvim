@@ -3,7 +3,7 @@ return {
   event = 'VeryLazy',
   -- stylua: ignore
   keys = {
-    { "<CR>", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
   },
   config = function()
     require('flash').setup {
