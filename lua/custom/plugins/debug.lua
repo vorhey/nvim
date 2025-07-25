@@ -83,6 +83,18 @@ return {
     dap.configurations.cs = {
       {
         type = 'coreclr',
+        name = 'debug - leetcode',
+        request = 'launch',
+        program = '${workspaceFolder}/bin/Debug/net9.0/csharp.dll',
+        args = function()
+          local exercise = vim.fn.input 'Exercise number: '
+          return { 'debug', exercise }
+        end,
+        cwd = '${workspaceFolder}',
+        stopAtEntry = false,
+      },
+      {
+        type = 'coreclr',
         name = 'console - netcoredbg',
         request = 'launch',
         program = function()
