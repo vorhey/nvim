@@ -8,6 +8,7 @@ return {
       pattern = 'VeryLazy',
       callback = function()
         Snacks.toggle.option('spell', { name = 'Spelling' }):map '<leader>ts'
+        Snacks.toggle.zen():map '<leader>tz'
         Snacks.toggle.inlay_hints():map '<leader>th'
         Snacks.toggle.diagnostics():map '<leader>tD'
         Snacks.toggle
