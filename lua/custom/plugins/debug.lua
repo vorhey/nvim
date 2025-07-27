@@ -135,7 +135,13 @@ return {
     dap.configurations.go = {
       {
         type = 'go',
-        name = 'Debug',
+        name = 'Debug workspace',
+        request = 'launch',
+        program = '${workspaceFolder}',
+      },
+      {
+        type = 'go',
+        name = 'Debug file',
         request = 'launch',
         program = '${file}',
       },
