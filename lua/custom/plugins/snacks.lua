@@ -77,8 +77,13 @@ return {
           preview = false,
           format = 'buffer',
           layout = {
-            preset = 'dropdown',
+            preset = 'vertical',
             hidden = { 'preview' },
+            layout = {
+              height = 0.5,
+              min_height = 15,
+              width = 0.3,
+            },
           },
           formatters = {
             file = {
