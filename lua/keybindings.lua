@@ -59,23 +59,23 @@ end, { desc = 'append semicolon and new line' })
 local tagged_files = { nil, nil, nil, nil }
 
 local function tag_file(slot)
-  local current_file = vim.fn.expand('%:p')
+  local current_file = vim.fn.expand '%:p'
   if current_file == '' then
-    vim.notify("No file to tag", vim.log.levels.WARN)
+    vim.notify('No file to tag', vim.log.levels.WARN)
     return
   end
   tagged_files[slot] = current_file
-  vim.notify("Tagged " .. vim.fn.expand('%:t') .. " to slot " .. slot, vim.log.levels.INFO)
+  vim.notify('Tagged ' .. vim.fn.expand '%:t' .. ' to slot ' .. slot, vim.log.levels.INFO)
 end
 
 local function goto_file(slot)
   local file = tagged_files[slot]
   if not file then
-    vim.notify("No file tagged in slot " .. slot, vim.log.levels.WARN)
+    vim.notify('No file tagged in slot ' .. slot, vim.log.levels.WARN)
     return
   end
   if vim.fn.filereadable(file) == 0 then
-    vim.notify("File no longer exists: " .. file, vim.log.levels.ERROR)
+    vim.notify('File no longer exists: ' .. file, vim.log.levels.ERROR)
     tagged_files[slot] = nil
     return
   end
@@ -83,13 +83,29 @@ local function goto_file(slot)
 end
 
 -- Tag files (leader + number)
-vim.keymap.set('n', '<leader>1', function() tag_file(1) end, { desc = 'tag file to slot 1' })
-vim.keymap.set('n', '<leader>2', function() tag_file(2) end, { desc = 'tag file to slot 2' })
-vim.keymap.set('n', '<leader>3', function() tag_file(3) end, { desc = 'tag file to slot 3' })
-vim.keymap.set('n', '<leader>4', function() tag_file(4) end, { desc = 'tag file to slot 4' })
+vim.keymap.set('n', '<leader>1', function()
+  tag_file(1)
+end, { desc = 'tag file to slot 1' })
+vim.keymap.set('n', '<leader>2', function()
+  tag_file(2)
+end, { desc = 'tag file to slot 2' })
+vim.keymap.set('n', '<leader>3', function()
+  tag_file(3)
+end, { desc = 'tag file to slot 3' })
+vim.keymap.set('n', '<leader>4', function()
+  tag_file(4)
+end, { desc = 'tag file to slot 4' })
 
 -- Navigate to tagged files (Alt + q/w/e/r)
-vim.keymap.set('n', '<M-q>', function() goto_file(1) end, { desc = 'go to tagged file 1' })
-vim.keymap.set('n', '<M-w>', function() goto_file(2) end, { desc = 'go to tagged file 2' })
-vim.keymap.set('n', '<M-e>', function() goto_file(3) end, { desc = 'go to tagged file 3' })
-vim.keymap.set('n', '<M-r>', function() goto_file(4) end, { desc = 'go to tagged file 4' })
+vim.keymap.set({ 'n', 'i' }, '<M-q>', function()
+  goto_file(1)
+end, { desc = 'go to tagged file 1' })
+vim.keymap.set({ 'n', 'i' }, '<M-w>', function()
+  goto_file(2)
+end, { desc = 'go to tagged file 2' })
+vim.keymap.set({ 'n', 'i' }, '<M-e>', function()
+  goto_file(3)
+end, { desc = 'go to tagged file 3' })
+vim.keymap.set({ 'n', 'i' }, '<M-r>', function()
+  goto_file(4)
+end, { desc = 'go to tagged file 4' })
