@@ -43,6 +43,7 @@ return {
     -- Mason LSP configuration
     require('mason-lspconfig').setup {
       ensure_installed = {
+        'clangd',
         'cssls',
         'dockerls',
         'eslint',
@@ -511,6 +512,33 @@ return {
       },
     })
 
+    -- Configure C/C++ language server
+    vim.lsp.config('clangd', {
+      cmd = { 'clangd' },
+      filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
+      root_markers = {
+        '.clangd',
+        '.clang-tidy',
+        '.clang-format',
+        'compile_commands.json',
+        'compile_flags.txt',
+        'configure.ac',
+        '.git',
+      },
+      settings = {
+        clangd = {
+          arguments = {
+            '--background-index',
+            '--clang-tidy',
+            '--header-insertion=iwyu',
+            '--completion-style=detailed',
+            '--function-arg-placeholders',
+            '--fallback-style=llvm',
+          },
+        },
+      },
+    })
+
     vim.keymap.set({ 'v', 'n' }, '<leader>la', '<cmd>lua require("fastaction").code_action()<CR>', { desc = 'lsp: code actions' })
     vim.keymap.set('n', '<leader>lf', format_buffer, { desc = 'lsp: format buffer' })
     vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, { desc = 'lsp: diagnostic messages' })
@@ -522,6 +550,7 @@ return {
     -- Enable the server
     vim.lsp.enable {
       -- 'avalonia',
+      'clangd',
       'cssls',
       'dockerls',
       'eslint',
