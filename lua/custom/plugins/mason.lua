@@ -18,6 +18,7 @@ return {
       'delve',
       'netcoredbg',
       'js-debug-adapter',
+      'codelldb',
     },
   },
   config = function(_, opts)
