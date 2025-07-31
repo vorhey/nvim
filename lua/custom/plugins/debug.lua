@@ -185,6 +185,79 @@ return {
       },
     }
 
+    -- C/C++ (clang/gcc) debugger using lldb or gdb
+    dap.adapters.codelldb = {
+      type = 'server',
+      port = '${port}',
+      executable = {
+        command = vim.fn.stdpath 'data' .. '/mason/bin/codelldb',
+        args = { '--port', '${port}' },
+      },
+    }
+
+    -- C/C++ configurations
+    dap.configurations.c = {
+      {
+        name = 'Launch (codelldb)',
+        type = 'codelldb',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        args = {},
+      },
+      {
+        name = 'Launch with args (codelldb)',
+        type = 'codelldb',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        args = function()
+          local args_string = vim.fn.input 'Arguments: '
+          return vim.split(args_string, ' ')
+        end,
+      },
+      {
+        name = 'Attach to process (codelldb)',
+        type = 'codelldb',
+        request = 'attach',
+        pid = function()
+          return tonumber(vim.fn.input 'Process ID: ')
+        end,
+      },
+      {
+        name = 'Build and Launch (codelldb)',
+        type = 'codelldb',
+        request = 'launch',
+        program = function()
+          local source_file = vim.fn.expand '%:p'
+          local executable = vim.fn.expand '%:p:r' -- removes extension
+
+          -- Compile with debug symbols
+          local compile_cmd = string.format('clang++ -g -O0 -o "%s" "%s"', executable, source_file)
+          local result = vim.fn.system(compile_cmd)
+
+          if vim.v.shell_error ~= 0 then
+            vim.notify('Compilation failed: ' .. result, vim.log.levels.ERROR)
+            return nil
+          end
+
+          return executable
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        args = {},
+      },
+    }
+
+    -- Copy C configurations to C++
+    dap.configurations.cpp = dap.configurations.c
+
     for _, lang in ipairs { 'typescript', 'typescriptreact', 'javascript' } do
       dap.configurations[lang] = {
         {

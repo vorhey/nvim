@@ -18,6 +18,7 @@ return {
     { 'hrsh7th/cmp-buffer', event = 'InsertEnter' },
     { 'hrsh7th/cmp-path', event = 'InsertEnter' },
     { 'hrsh7th/cmp-cmdline', event = 'CmdlineEnter' },
+    { 'hrsh7th/cmp-nvim-lsp-signature-help', event = 'InsertEnter' },
     { 'onsails/lspkind.nvim', event = 'InsertEnter' },
   },
   config = function()
@@ -95,6 +96,7 @@ return {
       { name = 'luasnip' },
       { name = 'buffer' },
       { name = 'path' },
+      { name = 'nvim_lsp_signature_help' },
     }
 
     local formatting = {
@@ -129,7 +131,7 @@ return {
       -- Disable automatic documentation
       view = {
         docs = {
-          auto_open = false,
+          auto_open = true,
         },
       },
     }
