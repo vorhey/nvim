@@ -11,6 +11,12 @@ return {
           local char_before = col > 0 and line:sub(col, col) or ''
           local char_after = col < #line and line:sub(col + 1, col + 1) or ''
 
+          -- Allow flyout when next character is a closing bracket
+          if char_after == ')' or char_after == ']' or char_after == '}' then
+            return true
+          end
+
+          -- Block insertion when adjacent to word characters
           if char_before:match '%w' or char_after:match '%w' then
             return false
           end
