@@ -87,6 +87,20 @@ return {
           name = 'vim-dadbod-completion',
         })
         cmp.setup.buffer(config)
+
+        -- Add dadbod whichkey keymaps for this buffer
+        local wk = require 'which-key'
+        wk.add({
+          mode = { 'n' },
+          buffer = vim.api.nvim_get_current_buf(),
+          {
+            { '<leader>ss', desc = 'Execute current SQL statement', icon = { icon = '󰜎', color = 'blue' } },
+            { '<leader>S', desc = 'Execute SQL buffer', icon = { icon = '󰌵', color = 'blue' } },
+            { '<leader>W', desc = 'Save SQL buffer', icon = { icon = '󰈙', color = 'blue' } },
+            { '<leader>R', desc = 'Toggle result layout', icon = { icon = '󰒲', color = 'blue' } },
+            { '<leader>E', desc = 'Edit bind parameters', icon = { icon = '󰅛', color = 'blue' } },
+          },
+        })
       end,
     })
   end,

@@ -21,18 +21,7 @@ return {
         { '<leader>n', group = 'neotest', icon = { icon = '', color = 'grey' } },
         { '<leader>m', group = 'multicursor', icon = { icon = '󰇀', color = 'grey' } },
         { '<leader>x', group = 'trouble', icon = { icon = '󰗶', color = 'grey' } },
-      },
-    }
-
-    -- Add dadbod keybindings
-    wk.add {
-      mode = { 'n' },
-      {
-        { '<leader>S', desc = 'Execute SQL buffer', icon = { icon = '󰌵', color = 'blue' } },
-        { '<leader>ss', desc = 'Execute current SQL statement', icon = { icon = '󰆼', color = 'blue' } },
-        { '<leader>W', desc = 'Save SQL buffer', icon = { icon = '󰈙', color = 'blue' } },
-        { '<leader>R', desc = 'Toggle result layout', icon = { icon = '󰒲', color = 'blue' } },
-        { '<leader>E', desc = 'Edit bind parameters', icon = { icon = '󰅛', color = 'blue' } },
+        { '<leader>s', group = 'dadbod', icon = { icon = '󰆼', color = 'grey' } },
       },
     }
 
