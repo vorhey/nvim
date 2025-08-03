@@ -23,6 +23,25 @@ return {
         { '<leader>x', group = 'trouble', icon = { icon = '󰗶', color = 'grey' } },
       },
     }
+
+    -- Add dadbod keybindings
+    wk.add {
+      mode = { 'n' },
+      {
+        { '<leader>S', desc = 'Execute SQL buffer', icon = { icon = '󰌵', color = 'blue' } },
+        { '<leader>ss', desc = 'Execute current SQL statement', icon = { icon = '󰆼', color = 'blue' } },
+        { '<leader>W', desc = 'Save SQL buffer', icon = { icon = '󰈙', color = 'blue' } },
+        { '<leader>R', desc = 'Toggle result layout', icon = { icon = '󰒲', color = 'blue' } },
+        { '<leader>E', desc = 'Edit bind parameters', icon = { icon = '󰅛', color = 'blue' } },
+      },
+    }
+
+    wk.add {
+      mode = { 'v' },
+      {
+        { '<leader>S', desc = 'Execute selected SQL' },
+      },
+    }
     wk.setup {
       preset = 'helix',
       delay = 0,
