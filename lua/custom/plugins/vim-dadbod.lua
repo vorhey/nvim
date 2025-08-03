@@ -69,6 +69,7 @@ return {
   },
   init = function()
     vim.g.db_ui_use_nerd_fonts = 1
+    vim.g.vim_dadbod_completion_lowercase_keywords = 1
   end,
   config = function()
     local data_path = vim.fn.stdpath 'data'
@@ -84,15 +85,6 @@ return {
         local config = cmp.get_config()
         table.insert(config.sources, 1, {
           name = 'vim-dadbod-completion',
-          entry_filter = function(entry, _)
-            if entry.completion_item.label then
-              entry.completion_item.label = entry.completion_item.label:lower()
-            end
-            if entry.completion_item.insertText then
-              entry.completion_item.insertText = entry.completion_item.insertText:lower()
-            end
-            return true
-          end,
         })
         cmp.setup.buffer(config)
       end,
