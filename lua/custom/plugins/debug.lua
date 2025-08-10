@@ -236,10 +236,8 @@ return {
         request = 'launch',
         program = function()
           local source_file = vim.fn.expand '%:p'
-          local executable = vim.fn.expand '%:p:r' -- removes extension
-
-          -- Compile with debug symbols
-          local compile_cmd = string.format('clang++ -g -O0 -o "%s" "%s"', executable, source_file)
+          local executable = vim.fn.expand '%:p:r'
+          local compile_cmd = string.format('clang++ -std=c++20 -g -O0 -o "%s" "%s"', executable, source_file)
           local result = vim.fn.system(compile_cmd)
 
           if vim.v.shell_error ~= 0 then
