@@ -35,6 +35,19 @@ return {
             end,
           })
           :map '<leader>tc'
+        Snacks.toggle
+          .new({
+            id = 'gitsigns_column',
+            name = 'Git Signs Column',
+            get = function()
+              local gitsigns_config = require('gitsigns.config').config
+              return gitsigns_config.signcolumn
+            end,
+            set = function()
+              require('gitsigns').toggle_signs()
+            end,
+          })
+          :map '<leader>tg'
       end,
     })
   end,
