@@ -12,7 +12,7 @@ return {
           local char_after = col < #line and line:sub(col + 1, col + 1) or ''
 
           -- Allow flyout when next character is a closing bracket
-          if char_after == ')' or char_after == ']' or char_after == '}' then
+          if char_after == ')' or char_after == ']' or char_after == '}' or char_after == '>' then
             return true
           end
 
@@ -29,6 +29,7 @@ return {
       { '[', ']', fly = true, dosuround = true, suround = true, newline = true, space = true },
       { '(', ')', fly = true, dosuround = true, suround = true, newline = true, space = true },
       { '{', '}', fly = true, dosuround = true, suround = true, newline = true, space = true },
+      { '<', '>', fly = true, dosuround = true, suround = true, newline = true, space = true },
     },
   },
 }
