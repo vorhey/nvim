@@ -515,7 +515,15 @@ return {
 
     -- Configure C/C++ language server
     vim.lsp.config('clangd', {
-      cmd = { 'clangd' },
+      cmd = {
+        'clangd',
+        '--background-index',
+        '--clang-tidy',
+        '--header-insertion=iwyu',
+        '--completion-style=detailed',
+        '--function-arg-placeholders=false',
+        '--fallback-style=llvm',
+      },
       filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
       root_markers = {
         '.clangd',
@@ -525,18 +533,6 @@ return {
         'compile_flags.txt',
         'configure.ac',
         '.git',
-      },
-      settings = {
-        clangd = {
-          arguments = {
-            '--background-index',
-            '--clang-tidy',
-            '--header-insertion=iwyu',
-            '--completion-style=detailed',
-            '--function-arg-placeholders',
-            '--fallback-style=llvm',
-          },
-        },
       },
     })
 
