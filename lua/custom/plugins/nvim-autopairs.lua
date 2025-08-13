@@ -12,6 +12,9 @@ return {
     npairs.add_rule(Rule('"', '"'):with_move(function(opts)
       return opts.char == '"'
     end))
+    npairs.add_rule(Rule('>', '>'):with_move(function(opts)
+      return opts.char == '>'
+    end))
     npairs.add_rule(Rule('(', ')', 'lua'))
     npairs.add_rule(Rule('[', ']', 'lua'))
     npairs.add_rule(Rule('{', '}', 'lua'))

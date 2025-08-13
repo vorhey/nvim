@@ -29,7 +29,6 @@ return {
       { '[', ']', fly = true, dosuround = true, suround = true, newline = true, space = true },
       { '(', ')', fly = true, dosuround = true, suround = true, newline = true, space = true },
       { '{', '}', fly = true, dosuround = true, suround = true, newline = true, space = true },
-      { '<', '>', fly = true, dosuround = true, suround = true, newline = true, space = true },
     },
   },
 }
