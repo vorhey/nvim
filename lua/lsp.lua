@@ -28,7 +28,7 @@ return {
       },
       config = true,
     },
-    { 'p00f/clangd_extensions.nvim', opts = {} },
+    { 'p00f/clangd_extensions.nvim', opts = {}, lazy = true },
   },
   lazy = true,
   config = function()
