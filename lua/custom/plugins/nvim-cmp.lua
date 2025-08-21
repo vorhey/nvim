@@ -146,6 +146,18 @@ return {
           auto_open = false,
         },
       },
+      completion = {
+        keyword_length = 2,
+      },
+      performance = {
+        debounce = 100,
+        throttle = 50,
+        fetching_timeout = 500,
+        confirm_resolve_timeout = 80,
+        async_budget = 1,
+        max_view_entries = 5,
+        filtering_context_budget = 3, -- Lines of context for filtering
+      },
     }
 
     -- Cmdline setup for search
