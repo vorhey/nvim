@@ -163,6 +163,7 @@ return {
             includeCompletionsForImportStatements = true,
             includeAutomaticOptionalChainCompletions = true,
             classMemberSnippets = { enabled = true },
+            names = false,
           },
           suggestionActions = { enabled = true },
           preferences = {
