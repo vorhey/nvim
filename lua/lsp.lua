@@ -520,9 +520,10 @@ return {
         '--background-index',
         '--clang-tidy',
         '--header-insertion=iwyu',
-        '--completion-style=detailed',
+        '--completion-style=bundled',
         '--function-arg-placeholders=false',
         '--fallback-style=llvm',
+        '--ranking-model=decision_forest',
       },
       filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
       root_markers = {
