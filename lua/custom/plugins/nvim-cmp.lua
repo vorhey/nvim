@@ -20,7 +20,7 @@ return {
     { 'hrsh7th/cmp-cmdline', event = 'CmdlineEnter' },
     { 'hrsh7th/cmp-nvim-lsp-signature-help', event = 'InsertEnter' },
     { 'onsails/lspkind.nvim', event = 'InsertEnter' },
-    { 'Jezda1337/nvim-html-css', opts = { enable_on = { 'html', 'jsx', 'tsx' } } },
+    { 'vorhey/nvim-html-css', opts = { enable_on = { 'html', 'jsx', 'tsx' } } },
   },
   config = function()
     -- Set vim options that cmp expects
