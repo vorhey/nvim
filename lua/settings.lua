@@ -62,3 +62,4 @@ vim.cmd [[let &t_Cs = "\e[4:3m"]] -- Enable undercurl
 vim.cmd [[let &t_Ce = "\e[4:0m"]]
 
 vim.opt.winbar = "%=%{%v:lua.get_file_icon()%}%{%v:lua.require('utils').get_relative_filename()%}%="
+vim.o.winborder = 'rounded'
