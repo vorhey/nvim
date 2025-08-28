@@ -17,7 +17,6 @@ return {
     { 'hrsh7th/cmp-nvim-lsp', event = 'InsertEnter' },
     { 'hrsh7th/cmp-buffer', event = 'InsertEnter' },
     { 'hrsh7th/cmp-path', event = 'InsertEnter' },
-    { 'hrsh7th/cmp-cmdline', event = 'CmdlineEnter' },
     { 'hrsh7th/cmp-nvim-lsp-signature-help', event = 'InsertEnter' },
     { 'onsails/lspkind.nvim', event = 'InsertEnter' },
     { 'vorhey/nvim-html-css', opts = { enable_on = { 'html', 'jsx', 'tsx' } } },
@@ -161,24 +160,5 @@ return {
         filtering_context_budget = 3, -- Lines of context for filtering
       },
     }
-
-    -- Cmdline setup for search
-    cmp.setup.cmdline({ '/', '?' }, {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = {
-        { name = 'buffer' },
-      },
-    })
-
-    -- Cmdline setup for commands
-    cmp.setup.cmdline(':', {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({
-        { name = 'path' },
-      }, {
-        { name = 'cmdline' },
-      }),
-      matching = { disallow_symbol_nonprefix_matching = false },
-    })
   end,
 }
