@@ -27,6 +27,10 @@ vim.opt.smartcase = true -- Case-sensitive if search has capitals
 vim.opt.inccommand = 'split' -- Preview substitutions
 vim.o.wildignorecase = true -- Ignore case in file/command completion
 
+-- Command-line completion improvements
+vim.opt.wildmode = 'longest:full,full' -- Better command completion
+vim.opt.wildoptions = 'pum' -- Use popup menu for command completion
+
 -- Indentation and whitespace
 vim.opt.shiftwidth = 2 -- Size of indent
 vim.opt.tabstop = 2 -- Size of tab
