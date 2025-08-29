@@ -24,6 +24,7 @@ return {
       sql = { 'sql_formatter' },
       cs = { 'csharpier' },
       xml = { 'xaml_styler' },
+      cpp = { 'clang-format' },
     }
 
     local conform = require 'conform'

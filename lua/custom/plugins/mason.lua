@@ -19,6 +19,7 @@ return {
       'netcoredbg',
       'js-debug-adapter',
       'codelldb',
+      'clang-format',
     },
   },
   config = function(_, opts)
