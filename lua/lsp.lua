@@ -52,6 +52,7 @@ return {
         'intelephense',
         'jsonls',
         'lua_ls',
+        'ruff',
         'tailwindcss',
         'vtsls',
         'yamlls',
@@ -535,6 +536,25 @@ return {
         'compile_flags.txt',
         'configure.ac',
         '.git',
+      },
+    })
+
+    -- Configure Ruff (Python linter/formatter)
+    vim.lsp.config('ruff', {
+      cmd = { 'ruff', 'server' },
+      filetypes = { 'python' },
+      root_markers = {
+        '.git',
+        'pyproject.toml',
+        'ruff.toml',
+        '.ruff.toml',
+        'setup.py',
+        'setup.cfg',
+        'requirements.txt',
+      },
+      settings = {
+        organizeImports = true,
+        fixAll = true,
       },
     })
 
