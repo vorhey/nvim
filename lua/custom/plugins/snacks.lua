@@ -299,5 +299,12 @@ return {
       end,
       desc = 'marks',
     },
+    {
+      '<leader>fk',
+      function()
+        Snacks.picker.keymaps()
+      end,
+      desc = 'keymaps',
+    },
   },
 }
