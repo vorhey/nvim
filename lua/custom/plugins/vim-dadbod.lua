@@ -90,15 +90,13 @@ return {
         }
         local wk = require 'which-key'
         wk.add {
-          mode = { 'n' },
           buffer = vim.api.nvim_get_current_buf(),
-          {
-            { '<leader>ss', desc = 'Execute current SQL statement', icon = { icon = '󰜎', color = 'blue' } },
-            { '<leader>S', desc = 'Execute SQL buffer', icon = { icon = '󰌵', color = 'blue' } },
-            { '<leader>W', desc = 'Save SQL buffer', icon = { icon = '󰈙', color = 'blue' } },
-            { '<leader>R', desc = 'Toggle result layout', icon = { icon = '󰒲', color = 'blue' } },
-            { '<leader>E', desc = 'Edit bind parameters', icon = { icon = '󰅛', color = 'blue' } },
-          },
+          { '<leader>ss', desc = 'Execute current SQL statement', icon = { icon = '󰜎', color = 'blue' }, mode = 'n' },
+          { '<leader>S', desc = 'Execute SQL buffer', icon = { icon = '󰌵', color = 'blue' }, mode = 'n' },
+          { '<leader>W', desc = 'Save SQL buffer', icon = { icon = '󰈙', color = 'blue' }, mode = 'n' },
+          { '<leader>R', desc = 'Toggle result layout', icon = { icon = '󰒲', color = 'blue' }, mode = 'n' },
+          { '<leader>E', desc = 'Edit bind parameters', icon = { icon = '󰅛', color = 'blue' }, mode = 'n' },
+          { '<leader>S', desc = 'Execute selected SQL', mode = 'v' },
         }
       end,
     })

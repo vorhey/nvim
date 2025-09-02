@@ -24,13 +24,6 @@ return {
         { '<leader>s', group = 'dadbod', icon = { icon = '󰆼', color = 'grey' } },
       },
     }
-
-    wk.add {
-      mode = { 'v' },
-      {
-        { '<leader>S', desc = 'Execute selected SQL' },
-      },
-    }
     wk.setup {
       preset = 'helix',
       delay = 0,
