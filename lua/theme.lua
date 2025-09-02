@@ -71,6 +71,8 @@ return {
         ['@lsp.type.class.dart'] = { fg = '#e29eca', bold = true },
         ['@lsp.mod.constructor.dart'] = { fg = '#c6c6c6' },
         ['@lsp.typemod.parameter.label.dart'] = { fg = '#e29eca' },
+        -- Java
+        ['@lsp.typemod.class.public.java'] = { fg = '#54d6a2', bold = true },
       },
     }
     vim.cmd.colorscheme 'oldworld'
