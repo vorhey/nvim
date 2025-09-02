@@ -82,15 +82,14 @@ return {
       pattern = { 'sql', 'mysql', 'plsql', 'dbui' },
       callback = function()
         local cmp = require 'cmp'
-        local config = cmp.get_config()
-        table.insert(config.sources, 1, {
-          name = 'vim-dadbod-completion',
-        })
-        cmp.setup.buffer(config)
-
-        -- Add dadbod whichkey keymaps for this buffer
+        cmp.setup.buffer {
+          sources = { { name = 'vim-dadbod-completion' } },
+          ---@diagnostic disable-next-line: missing-fields
+          performance = { max_view_entries = 25 },
+          completion = { keyword_length = 1 },
+        }
         local wk = require 'which-key'
-        wk.add({
+        wk.add {
           mode = { 'n' },
           buffer = vim.api.nvim_get_current_buf(),
           {
@@ -100,7 +99,7 @@ return {
             { '<leader>R', desc = 'Toggle result layout', icon = { icon = '󰒲', color = 'blue' } },
             { '<leader>E', desc = 'Edit bind parameters', icon = { icon = '󰅛', color = 'blue' } },
           },
-        })
+        }
       end,
     })
   end,
