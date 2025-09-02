@@ -1,6 +1,16 @@
 return {
   'kristijanhusak/vim-dadbod-completion',
-  dependencies = { { 'tpope/vim-dadbod', cmd = 'DB' }, 'kristijanhusak/vim-dadbod-ui', 'hrsh7th/nvim-cmp' },
+  dependencies = {
+    { 'tpope/vim-dadbod', cmd = 'DB' },
+    'kristijanhusak/vim-dadbod-ui',
+    'hrsh7th/nvim-cmp',
+    {
+      'davesavic/dadbod-ui-yank',
+      config = function()
+        require('dadbod-ui-yank').setup()
+      end,
+    },
+  },
   keys = {
     {
       '<leader>td',
