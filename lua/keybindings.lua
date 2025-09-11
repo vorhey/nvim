@@ -8,7 +8,7 @@ end
 
 vim.keymap.set('i', '<C-r>"', '<C-r><C-p>"', { desc = 'paste default register with indent' })
 
-vim.keymap.set('n', '<C-m>', '0f{a<cr><esc>O', { desc = 'grow braces' })
+
 
 local center_cursor = function()
   -- Get dimensions, view and position
