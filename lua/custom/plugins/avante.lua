@@ -7,14 +7,15 @@ return {
   ---@type avante.Config
   opts = {
     provider = 'copilot',
+    selection = {
+      hint_display = 'none',
+    },
   },
   dependencies = {
     'nvim-lua/plenary.nvim',
     'MunifTanjim/nui.nvim',
-    'hrsh7th/nvim-cmp', -- autocompletion for avante commands and mentions
-    'stevearc/dressing.nvim', -- for input provider dressing
-    'folke/snacks.nvim', -- for input provider snacks
-    'zbirenbaum/copilot.lua', -- for providers='copilot'
+    'hrsh7th/nvim-cmp',
+    'folke/snacks.nvim',
     {
       -- support for image pasting
       'HakonHarnes/img-clip.nvim',
