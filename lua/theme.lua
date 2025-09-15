@@ -16,6 +16,8 @@ return {
       },
       highlight_overrides = {
         String = { fg = '#c9c1d4' },
+        Whitespace = { bg = 'NONE' },
+        NonText = { bg = 'NONE' },
         Normal = { bg = 'NONE' },
         NormalFloat = { bg = 'NONE' },
         NormalNC = { bg = 'NONE' },
