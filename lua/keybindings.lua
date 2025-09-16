@@ -8,8 +8,6 @@ end
 
 vim.keymap.set('i', '<C-r>"', '<C-r><C-p>"', { desc = 'paste default register with indent' })
 
-
-
 local center_cursor = function()
   -- Get dimensions, view and position
   local win_width = vim.api.nvim_win_get_width(0)
@@ -85,16 +83,16 @@ end
 -- Tag files (leader + number)
 vim.keymap.set('n', '<leader>1', function()
   tag_file(1)
-end, { desc = 'tag file to slot 1' })
+end)
 vim.keymap.set('n', '<leader>2', function()
   tag_file(2)
-end, { desc = 'tag file to slot 2' })
+end)
 vim.keymap.set('n', '<leader>3', function()
   tag_file(3)
-end, { desc = 'tag file to slot 3' })
+end)
 vim.keymap.set('n', '<leader>4', function()
   tag_file(4)
-end, { desc = 'tag file to slot 4' })
+end)
 
 -- Navigate to tagged files (Alt + q/w/e/r)
 vim.keymap.set({ 'n', 'i' }, '<M-q>', function()
