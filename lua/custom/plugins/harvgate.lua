@@ -1,6 +1,5 @@
 return {
   'vorhey/harvgate',
-  branch = 'multiple-providers',
   enabled = true,
   lazy = true,
   event = 'VeryLazy',
