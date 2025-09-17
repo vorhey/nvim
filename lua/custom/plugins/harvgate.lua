@@ -20,7 +20,7 @@ return {
         claude = {
           cookie = os.getenv 'CLAUDE_COOKIE',
           organization_id = nil,
-          model = nil,
+          model = 'claude-opus-4-1-20250805',
         },
         copilot = {
           -- authentication is resolved via copilot.lua; override if you need to
