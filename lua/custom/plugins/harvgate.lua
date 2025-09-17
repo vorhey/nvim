@@ -33,5 +33,6 @@ return {
     vim.keymap.set('n', '<leader>hh', ':HarvgateChat<CR>', { desc = 'harvgate toggle chat', silent = true })
     vim.keymap.set('n', '<leader>hc', ':HarvgateListChats<CR>', { desc = 'harvgate open chats', silent = true })
     vim.keymap.set('n', '<leader>ha', ':HarvgateAddBuffer<CR>', { desc = 'harvgate add buffer', silent = true })
+    vim.keymap.set('v', '<leader>ha', ':HarvgateSendSelection<CR>', { desc = 'harvgate send selection', silent = true })
   end,
 }
