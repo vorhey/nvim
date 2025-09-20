@@ -6,6 +6,11 @@ return {
   opts = {
     mode = 'legacy',
     provider = 'gemini',
+    providers = {
+      gemini = {
+        model = 'gemini-2.5-flash',
+      },
+    },
     selection = { hint_display = 'none' },
     selector = { provider = 'snacks' },
     input = { provider = 'snacks', provider_opts = { title = 'Avante Input', icon = ' ' } },
