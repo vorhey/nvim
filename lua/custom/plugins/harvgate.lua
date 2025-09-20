@@ -1,6 +1,6 @@
 return {
   'vorhey/harvgate',
-  enabled = true,
+  enabled = false,
   lazy = true,
   event = 'VeryLazy',
   dependencies = {
