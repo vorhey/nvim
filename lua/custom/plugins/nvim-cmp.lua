@@ -103,6 +103,7 @@ return {
     local formatting = {
       fields = { 'kind', 'abbr', 'menu' },
       format = function(entry, item)
+        item.dup = 0
         local kind = require('lspkind').cmp_format {
           mode = 'symbol_text',
           maxwidth = 50,
