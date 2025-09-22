@@ -6,5 +6,6 @@ return {
     }
     vim.keymap.set('n', '<leader><leader>', ':CodeBridgeAddContext<CR>', { desc = 'add file' })
     vim.keymap.set('v', '<leader><leader>', ':CodeBridgeAddContext<CR>', { desc = 'add selection' })
+    vim.keymap.set('n', '<leader>c', ':CodeBridgeUse<CR>')
   end,
 }
