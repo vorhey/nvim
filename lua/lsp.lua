@@ -22,11 +22,14 @@ return {
     },
     {
       'nvim-flutter/flutter-tools.nvim',
-      lazy = false,
+      lazy = true,
+      ft = { 'dart' }, -- Load only for Dart filetypes
       dependencies = {
         'nvim-lua/plenary.nvim',
       },
-      config = true,
+      config = function()
+        require('flutter-tools').setup {}
+      end,
     },
     { 'p00f/clangd_extensions.nvim', opts = {}, lazy = true },
   },
