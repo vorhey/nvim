@@ -11,7 +11,7 @@ return {
         { '<leader>O', icon = { icon = '󰅙', color = 'azure' } },
         { '<leader>q', icon = { icon = '󰈆', color = 'azure' } },
         { '<leader>Q', icon = { icon = '󰈆', color = 'azure' } },
-        { '<leader>e', icon = { icon = '󱏒', color = 'azure' } },
+        { '<leader>e', '<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>', desc = 'explorer', icon = { icon = '󱏒', color = 'azure' } },
         { '<leader>a', group = 'avante', icon = { icon = '󰬈', color = 'grey' } },
         { '<leader>d', group = 'debug', icon = { icon = '', color = 'grey' } },
         { '<leader>t', group = 'toggle', icon = { icon = '', color = 'grey' } },
