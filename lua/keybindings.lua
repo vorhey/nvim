@@ -1,5 +1,5 @@
 -- Basic operations
-vim.keymap.set('n', '<leader>Q', ':qa!<CR>', { desc = 'exit (all)' })
+vim.keymap.set('n', '<leader>Q', ':qa!<CR>', { desc = 'exit all' })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'exit' })
 
 if not vim.g.is_wsl then

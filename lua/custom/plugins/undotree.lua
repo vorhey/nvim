@@ -9,5 +9,10 @@ return {
       winblend = 0,
     },
   },
-  keys = { { '<leader>u', "<cmd>lua require('undotree').toggle()<cr>" } },
+  keys = {
+    {
+      '<leader>u',
+      "<cmd>lua require('undotree').toggle()<cr>",
+    },
+  },
 }
