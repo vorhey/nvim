@@ -103,7 +103,11 @@ return {
     local formatting = {
       fields = { 'kind', 'abbr', 'menu' },
       format = function(entry, item)
-        item.dup = 0
+        -- Only deduplicate buffer completions, not snippets or LSP
+        if entry.source.name == 'path' then
+          item.dup = 0
+        end
+
         local kind = require('lspkind').cmp_format {
           mode = 'symbol_text',
           maxwidth = 50,
