@@ -1,5 +1,7 @@
 return {
   'vorhey/sigbuddy.nvim',
+  cmd = 'Sigbuddy',
+  lazy = true,
   dependencies = {
     'nvim-lua/plenary.nvim',
   },
