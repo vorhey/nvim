@@ -21,6 +21,7 @@ return {
         endpoint = 'https://ollama.com',
         model = 'gpt-oss:120b',
         api_key_name = 'OLLAMA_API_KEY',
+        disable_tools = true,
       },
     },
     selection = { hint_display = 'none' },
