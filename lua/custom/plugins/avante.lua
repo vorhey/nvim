@@ -11,7 +11,7 @@ return {
         },
       },
     },
-    mode = 'legacy',
+    -- mode = 'legacy',
     provider = 'ollama',
     providers = {
       gemini = {
@@ -35,10 +35,10 @@ return {
     },
   },
   config = function(_, opts)
-    local PromptInput = require 'avante.ui.prompt_input'
-    if not PromptInput._no_hint then
-      local original_open = PromptInput.open
-      function PromptInput:open()
+    local prompt = require 'avante.ui.prompt_input'
+    if not prompt._no_hint then
+      local original_open = prompt.open
+      function prompt:open()
         original_open(self)
         if self.winid and vim.api.nvim_win_is_valid(self.winid) then
           vim.api.nvim_set_option_value('winblend', 0, { win = self.winid })
@@ -48,9 +48,9 @@ return {
           self.shortcuts_hints_winid = nil
         end
       end
-      function PromptInput:show_shortcuts_hints() end
+      function prompt:show_shortcuts_hints() end
       ---@diagnostic disable-next-line: inject-field
-      PromptInput._no_hint = true
+      prompt._no_hint = true
     end
 
     require('avante').setup(opts)
