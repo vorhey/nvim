@@ -2,7 +2,7 @@ return {
   -- Autocompletion
   'hrsh7th/nvim-cmp',
   event = { 'InsertEnter', 'CmdlineEnter' },
-  enabled = true,
+  enabled = false,
   dependencies = {
     { 'hrsh7th/cmp-nvim-lsp', event = 'InsertEnter' },
     { 'hrsh7th/cmp-buffer', event = 'InsertEnter' },
@@ -50,7 +50,7 @@ return {
       end, { 'i', 's' }),
 
       ['<C-h>'] = cmp.mapping(function(fallback)
-        if vim.snippet.active({ direction = -1 }) then
+        if vim.snippet.active { direction = -1 } then
           vim.snippet.jump(-1)
         else
           fallback()
@@ -58,7 +58,7 @@ return {
       end, { 'i', 's' }),
 
       ['<C-l>'] = cmp.mapping(function(fallback)
-        if vim.snippet.active({ direction = 1 }) then
+        if vim.snippet.active { direction = 1 } then
           vim.snippet.jump(1)
         else
           fallback()

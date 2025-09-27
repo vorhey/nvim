@@ -3,7 +3,7 @@ return {
   dependencies = {
     { 'tpope/vim-dadbod', cmd = 'DB' },
     'kristijanhusak/vim-dadbod-ui',
-    'hrsh7th/nvim-cmp',
+    'saghen/blink.cmp',
     {
       'davesavic/dadbod-ui-yank',
       config = function()
@@ -91,12 +91,26 @@ return {
     vim.api.nvim_create_autocmd('FileType', {
       pattern = { 'sql', 'mysql', 'plsql', 'dbui' },
       callback = function()
-        local cmp = require 'cmp'
-        cmp.setup.buffer {
-          sources = { { name = 'vim-dadbod-completion' } },
-          ---@diagnostic disable-next-line: missing-fields
-          performance = { max_view_entries = 25 },
-          completion = { keyword_length = 1 },
+        -- Configure vim-dadbod-completion for blink.cmp via compat layer
+        require('blink.cmp').setup_buffer {
+          sources = {
+            default = { 'dadbod' },
+            providers = {
+              dadbod = {
+                name = 'Dadbod',
+                module = 'blink.compat.source',
+                opts = {
+                  name = 'vim-dadbod-completion',
+                },
+              },
+            },
+          },
+          completion = {
+            keyword_length = 1,
+            list = {
+              max_items = 25,
+            },
+          },
         }
         local wk = require 'which-key'
         wk.add {

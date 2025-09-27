@@ -79,8 +79,8 @@ return {
       },
     }
 
-    -- Use default capabilities instead of custom module
-    local capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('cmp_nvim_lsp').default_capabilities())
+    -- Use blink.cmp capabilities instead of nvim-cmp
+    local capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('blink.cmp').get_lsp_capabilities())
 
     -- Set default LSP configuration
     vim.lsp.config('*', {
