@@ -11,7 +11,7 @@ return {
         },
       },
     },
-    -- mode = 'legacy',
+    mode = 'legacy',
     provider = 'ollama',
     providers = {
       gemini = {
