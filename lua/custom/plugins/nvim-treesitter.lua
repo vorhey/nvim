@@ -2,10 +2,16 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
+      {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        lazy = true,
+        event = 'VeryLazy',
+        after = 'nvim-treesitter',
+      },
     },
     branch = 'master',
-    lazy = false,
+    lazy = vim.fn.argc(-1) == 0,
+    event = 'VeryLazy',
     build = ':TSUpdate',
     opts = {
       auto_install = true,
