@@ -5,10 +5,15 @@ return {
   version = false,
   opts = {
     mode = 'legacy',
-    provider = 'gemini',
+    provider = 'ollama',
     providers = {
       gemini = {
         model = 'gemini-2.5-flash',
+      },
+      ollama = {
+        endpoint = 'https://ollama.com',
+        model = 'gpt-oss:120b',
+        api_key_name = 'OLLAMA_API_KEY',
       },
     },
     selection = { hint_display = 'none' },
