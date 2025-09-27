@@ -4,6 +4,13 @@ return {
   event = 'VeryLazy',
   version = false,
   opts = {
+    mappings = {
+      sidebar = {
+        close_from_input = {
+          normal = '<Esc>',
+        },
+      },
+    },
     mode = 'legacy',
     provider = 'ollama',
     providers = {
