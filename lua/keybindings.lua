@@ -107,3 +107,12 @@ end, { desc = 'go to tagged file 3' })
 vim.keymap.set({ 'n', 'i' }, '<M-r>', function()
   goto_file(4)
 end, { desc = 'go to tagged file 4' })
+
+vim.keymap.set('n', '[p', function()
+  vim.cmd 'put!'
+end, { desc = 'Put line above' })
+
+-- Put a line **below** the current one and auto‑indent it
+vim.keymap.set('n', ']p', function()
+  vim.cmd 'put'
+end, { desc = 'Put line below' })
