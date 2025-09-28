@@ -4,7 +4,9 @@ return {
     require('mini.basics').setup {
       mappings = {
         windows = true,
+        option_toggle_prefix = '',
       },
+      silent = true,
     }
   end,
 }
