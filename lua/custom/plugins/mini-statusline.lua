@@ -82,7 +82,7 @@ return {
 
         -- Highlight current buffer with different symbol and color
         if buf == current_buf then
-          local symbol = tag_letter and ('■' .. tag_letter) or '■'
+          local symbol = tag_letter and ('●' .. tag_letter .. '°') or '●°'
           table.insert(dots, { hl = 'Title', strings = { symbol } })
         else
           local symbol = tag_letter and ('●' .. tag_letter) or '●'
