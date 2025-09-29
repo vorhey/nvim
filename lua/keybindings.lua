@@ -54,7 +54,7 @@ vim.keymap.set('i', '<M-;>', function()
 end, { desc = 'append semicolon and new line' })
 
 -- File tagging system (harpoon-like)
-local tagged_files = { nil, nil, nil, nil }
+_G.tagged_files = { nil, nil, nil, nil }
 
 local function tag_file(slot)
   local current_file = vim.fn.expand '%:p'
@@ -62,19 +62,19 @@ local function tag_file(slot)
     vim.notify('No file to tag', vim.log.levels.WARN)
     return
   end
-  tagged_files[slot] = current_file
+  _G.tagged_files[slot] = current_file
   vim.notify('Tagged ' .. vim.fn.expand '%:t' .. ' to slot ' .. slot, vim.log.levels.INFO)
 end
 
 local function goto_file(slot)
-  local file = tagged_files[slot]
+  local file = _G.tagged_files[slot]
   if not file then
     vim.notify('No file tagged in slot ' .. slot, vim.log.levels.WARN)
     return
   end
   if vim.fn.filereadable(file) == 0 then
     vim.notify('File no longer exists: ' .. file, vim.log.levels.ERROR)
-    tagged_files[slot] = nil
+    _G.tagged_files[slot] = nil
     return
   end
   vim.cmd('edit ' .. vim.fn.fnameescape(file))

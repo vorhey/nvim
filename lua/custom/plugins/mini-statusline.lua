@@ -26,6 +26,73 @@ return {
       return unsaved_count
     end
 
+    -- Rainbow buffer dots section
+    local function section_buffers(args)
+      if MiniStatusline.is_truncated(args.trunc_width) then
+        return ''
+      end
+
+      local rainbow_colors = {
+        'DiagnosticError', -- Red
+        'DiagnosticWarn', -- Yellow/Orange
+        'DiagnosticInfo', -- Blue
+        'DiagnosticHint', -- Cyan/Light blue
+        'String', -- Green
+        'Function', -- Purple/Magenta
+      }
+
+      local buffers = {}
+      for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_buf_is_loaded(buf) then
+          local buftype = vim.bo[buf].buftype
+          local buflisted = vim.bo[buf].buflisted
+          local name = vim.api.nvim_buf_get_name(buf)
+
+          -- Use the recommended approach: check buflisted and buftype
+          -- buflisted controls if buffer appears in buffer list (:ls)
+          -- buftype == '' means normal file buffer (not terminal, quickfix, etc.)
+          if buflisted and buftype == '' and name ~= '' then
+            table.insert(buffers, buf)
+          end
+        end
+      end
+
+      if #buffers == 0 then
+        return ''
+      end
+
+      local current_buf = vim.api.nvim_get_current_buf()
+      local dots = {}
+      for i, buf in ipairs(buffers) do
+        local color_index = ((i - 1) % #rainbow_colors) + 1
+        local hl_group = rainbow_colors[color_index]
+        local buf_name = vim.api.nvim_buf_get_name(buf)
+
+        -- Check if this buffer is tagged (access global tagged_files)
+        local tag_letter = nil
+        local jump_letters = { 'q', 'w', 'e', 'r' }
+        if _G.tagged_files then
+          for slot = 1, 4 do
+            if _G.tagged_files[slot] == buf_name then
+              tag_letter = '[' .. jump_letters[slot] .. ']'
+              break
+            end
+          end
+        end
+
+        -- Highlight current buffer with different symbol and color
+        if buf == current_buf then
+          local symbol = tag_letter and ('■' .. tag_letter) or '■'
+          table.insert(dots, { hl = 'Title', strings = { symbol } })
+        else
+          local symbol = tag_letter and ('●' .. tag_letter) or '●'
+          table.insert(dots, { hl = hl_group, strings = { symbol } })
+        end
+      end
+
+      return dots
+    end
+
     -- Simple visual selection section following mini.statusline patterns
     local function section_selection(args)
       if MiniStatusline.is_truncated(args.trunc_width) then
@@ -47,6 +114,7 @@ return {
           local has_diagnostics = diagnostics == '' and '' or ''
           local search = MiniStatusline.section_searchcount { trunc_width = 75 }
           local selection = section_selection { trunc_width = 75 }
+          local buffer_indicator = section_buffers { trunc_width = 120 }
           local lsp = #vim.lsp.get_clients { bufnr = 0 } > 0 and '󰬓' or ''
           local git_status = vim.b.minidiff_summary_string or vim.b.gitsigns_status
           local has_diff = git_status == '' and '' or ''
@@ -81,16 +149,26 @@ return {
 
           local copilot = is_copilot_enabled() and '  ' or '  '
 
-          return MiniStatusline.combine_groups {
-            '%=',
-            { hl = 'ErrorMsg', strings = { macro_indicator } },
-            { hl = 'WarningMsg', strings = { unsaved_indicator } },
-            {
-              hl = 'MiniStatuslineFileinfo',
-              strings = { autoformat_indicator, lsp, spacing_info, has_diff, has_diagnostics, copilot },
-            },
-            { hl = mode_hl, strings = { search, selection } },
-          }
+          local groups = {}
+
+          -- Add buffer dots
+          if type(buffer_indicator) == 'table' then
+            for _, dot in ipairs(buffer_indicator) do
+              table.insert(groups, dot)
+            end
+          end
+
+          -- Add spacer and right-aligned content
+          table.insert(groups, '%=')
+          table.insert(groups, { hl = 'ErrorMsg', strings = { macro_indicator } })
+          table.insert(groups, { hl = 'WarningMsg', strings = { unsaved_indicator } })
+          table.insert(groups, {
+            hl = 'MiniStatuslineFileinfo',
+            strings = { autoformat_indicator, lsp, spacing_info, has_diff, has_diagnostics, copilot },
+          })
+          table.insert(groups, { hl = mode_hl, strings = { search, selection } })
+
+          return MiniStatusline.combine_groups(groups)
         end,
       },
     }
