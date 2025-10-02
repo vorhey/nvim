@@ -13,6 +13,18 @@ return {
         Snacks.toggle.diagnostics():map '<leader>tD'
         Snacks.toggle
           .new({
+            id = 'nes',
+            name = 'NES',
+            get = function()
+              return vim.g.sidekick_nes ~= false and vim.b.sidekick_nes ~= false
+            end,
+            set = function()
+              require('sidekick.nes').toggle()
+            end,
+          })
+          :map '<leader>tn'
+        Snacks.toggle
+          .new({
             id = 'format_on_save',
             name = 'Format on Save',
             get = function()

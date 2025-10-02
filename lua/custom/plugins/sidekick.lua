@@ -58,17 +58,5 @@ return {
       mode = { "n", "x" },
       desc = "Sidekick Select Prompt",
     },
-    {
-      "<c-.>",
-      function() require("sidekick.cli").focus() end,
-      mode = { "n", "x", "i", "t" },
-      desc = "Sidekick Switch Focus",
-    },
-    -- Example of a keybinding to open Claude directly
-    {
-      "<leader>ac",
-      function() require("sidekick.cli").toggle({ name = "claude", focus = true }) end,
-      desc = "Sidekick Toggle Claude",
-    },
   },
 }
