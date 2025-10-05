@@ -61,14 +61,9 @@ return {
           },
         },
       },
-
       signature = {
-        enabled = true,
-        window = {
-          border = 'rounded',
-        },
+        enabled = false,
       },
-
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
         providers = {
