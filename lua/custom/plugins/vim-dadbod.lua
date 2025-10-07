@@ -92,7 +92,7 @@ return {
       pattern = { 'sql', 'mysql', 'plsql', 'dbui' },
       callback = function()
         -- Configure vim-dadbod-completion for blink.cmp via compat layer
-        require('blink.cmp').setup_buffer {
+        require('blink.cmp').setup {
           sources = {
             default = { 'dadbod' },
             providers = {
