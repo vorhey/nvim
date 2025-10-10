@@ -13,3 +13,15 @@ vim.api.nvim_create_user_command('MasonInstallAll', function()
 end, {
   desc = 'Install all Mason tools from ensure_installed list',
 })
+
+local resize = vim.api.nvim_create_augroup('ResizeSplits', { clear = true })
+
+vim.api.nvim_create_autocmd('VimResized', {
+  group = resize,
+  desc = 'Keep splits at half-width after window resize',
+  callback = function()
+    if #vim.api.nvim_tabpage_list_wins(0) > 1 then
+      vim.cmd 'wincmd ='
+    end
+  end,
+})
