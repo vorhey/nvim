@@ -3,7 +3,6 @@ return {
   event = { 'InsertEnter', 'CmdlineEnter' },
   enabled = true,
   dependencies = {
-    'rafamadriz/friendly-snippets',
     'onsails/lspkind.nvim',
     {
       'saghen/blink.compat',
@@ -65,7 +64,7 @@ return {
         enabled = false,
       },
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        default = { 'lsp', 'path' },
         providers = {
           lsp = {
             name = 'LSP',
