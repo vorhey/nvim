@@ -4,12 +4,13 @@ return {
     dependencies = {
       {
         'nvim-treesitter/nvim-treesitter-textobjects',
+        branch = 'main',
         lazy = true,
         event = 'VeryLazy',
         after = 'nvim-treesitter',
       },
     },
-    branch = 'master',
+    branch = 'main',
     lazy = vim.fn.argc(-1) == 0,
     event = 'VeryLazy',
     build = ':TSUpdate',
@@ -71,8 +72,5 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      require('nvim-treesitter.configs').setup(opts)
-    end,
   },
 }
