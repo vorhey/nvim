@@ -16,6 +16,7 @@ return {
         ['"'] = { escape = true, close = true, pair = '""' },
         ["'"] = { escape = true, close = true, pair = "''" },
         ['`'] = { escape = true, close = true, pair = '``' },
+        [';'] = { escape = true, close = false, pair = ';' },
       },
       options = {
         disabled_filetypes = { 'text' },
