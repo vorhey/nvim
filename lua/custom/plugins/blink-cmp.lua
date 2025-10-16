@@ -41,13 +41,13 @@ return {
           },
         },
         menu = {
+          scrollbar = false,
           border = 'rounded',
           draw = {
             treesitter = { 'lsp' },
             columns = {
               { 'kind_icon' },
               { 'label', 'label_description', gap = 1 },
-              { 'source_name' },
             },
           },
         },
@@ -74,15 +74,6 @@ return {
             name = 'Path',
             module = 'blink.cmp.sources.path',
             score_offset = -3,
-          },
-          snippets = {
-            name = 'Snippets',
-            module = 'blink.cmp.sources.snippets',
-          },
-          buffer = {
-            name = 'Buffer',
-            module = 'blink.cmp.sources.buffer',
-            max_items = 5,
           },
           -- Using compat layer for html-css
           ['html-css'] = {
@@ -118,33 +109,6 @@ return {
       appearance = {
         use_nvim_cmp_as_default = false,
         nerd_font_variant = 'mono',
-        kind_icons = {
-          Text = '󰉿',
-          Method = '󰆧',
-          Function = '󰊕',
-          Constructor = '',
-          Field = '󰜢',
-          Variable = '󰀫',
-          Class = '󰠱',
-          Interface = '',
-          Module = '',
-          Property = '󰜢',
-          Unit = '󰑭',
-          Value = '󰎠',
-          Enum = '',
-          Keyword = '󰌋',
-          Snippet = '',
-          Color = '󰏘',
-          File = '󰈙',
-          Reference = '󰈇',
-          Folder = '󰉋',
-          EnumMember = '',
-          Constant = '󰏿',
-          Struct = '󰙅',
-          Event = '',
-          Operator = '󰆕',
-          TypeParameter = '',
-        },
       },
 
       fuzzy = {
