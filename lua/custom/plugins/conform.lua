@@ -13,6 +13,7 @@ return {
       typescript = { 'prettierd' },
       typescriptreact = { 'prettierd' },
       javascriptreact = { 'prettierd' },
+      css = { 'prettierd' },
       json = { 'prettierd' },
       scss = { 'prettierd' },
       sh = { 'shfmt' },
