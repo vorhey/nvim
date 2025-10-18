@@ -32,6 +32,24 @@ return {
       end,
     },
     { 'p00f/clangd_extensions.nvim', opts = {}, lazy = true },
+    {
+      'Jezda1337/nvim-html-css',
+      opts = {
+        enable_on = {
+          'html',
+          'htmldjango',
+          'tsx',
+          'jsx',
+          'erb',
+          'svelte',
+          'vue',
+          'blade',
+          'php',
+          'templ',
+          'astro',
+        },
+      },
+    },
   },
   lazy = true,
   config = function()
