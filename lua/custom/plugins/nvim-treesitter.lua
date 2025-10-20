@@ -5,20 +5,21 @@ return {
       {
         'nvim-treesitter/nvim-treesitter-textobjects',
         branch = 'main',
-        lazy = true,
-        event = 'VeryLazy',
-        after = 'nvim-treesitter',
       },
     },
     branch = 'main',
-    lazy = vim.fn.argc(-1) == 0,
-    event = 'VeryLazy',
+    lazy = false,
+    version = false,
     build = ':TSUpdate',
     opts = {
-      auto_install = true,
-      highlight = { enable = true },
-      indent = { enable = true },
-      ensure_installed = {
+      install_dir = vim.fn.stdpath('data') .. '/site',
+    },
+    config = function(_, opts)
+      -- Setup nvim-treesitter
+      require('nvim-treesitter').setup(opts)
+
+      -- Install parsers
+      require('nvim-treesitter').install({
         'bash',
         'c',
         'css',
@@ -48,15 +49,10 @@ return {
         'vimdoc',
         'xml',
         'yaml',
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          node_incremental = 'v',
-          node_decremental = 'V',
-        },
-      },
-      textobjects = {
+      })
+
+      -- Setup textobjects using the correct module
+      require('nvim-treesitter-textobjects').setup({
         select = {
           enable = true,
           lookahead = true,
@@ -70,7 +66,40 @@ return {
             ['aa'] = { query = '@parameter.outer', desc = 'select around parameter (with commas)' },
           },
         },
-      },
-    },
+      })
+
+      -- Enable treesitter features via autocommand (only for valid filetypes)
+      vim.api.nvim_create_autocmd('FileType', {
+        group = vim.api.nvim_create_augroup('treesitter_features', { clear = true }),
+        callback = function(ev)
+          local buf = ev.buf
+          local ft = ev.match
+
+          -- Skip special/internal filetypes
+          if ft == '' or ft:match('^%w+_') or not vim.bo[buf].modifiable then
+            return
+          end
+
+          -- Check if a parser exists for this filetype
+          local lang = vim.treesitter.language.get_lang(ft)
+          if not lang then
+            return
+          end
+
+          -- Try to enable highlighting
+          local ok = pcall(vim.treesitter.start, buf)
+          if not ok then
+            return
+          end
+
+          -- Enable folding
+          vim.wo[0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+          vim.wo[0].foldmethod = 'expr'
+
+          -- Enable indentation (experimental)
+          vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
+    end,
   },
 }
