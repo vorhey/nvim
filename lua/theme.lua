@@ -17,6 +17,7 @@ return {
         },
         highlight_overrides = {
           String = { fg = '#897e96' },
+          Statement = { fg = '#747991' },
           Whitespace = { bg = 'NONE' },
           NonText = { bg = 'NONE' },
           Normal = { bg = 'NONE', fg = '#747991' },
@@ -35,7 +36,7 @@ return {
           LineNr = { fg = '#747991' },
           CursorLine = { bg = 'NONE' },
           Visual = { bg = '#e3e4ff' },
-          PmenuSel = { bg = '#383838', fg = '#747991' },
+          PmenuSel = { bg = '#e3e4ff', fg = '#747991' },
           CmpBorder = { fg = '#3d3d3d' },
           -- blink.cmp transparency
           BlinkCmpMenu = { bg = 'NONE' },
@@ -114,7 +115,7 @@ return {
           ['@lsp.typemod.parameter.label.dart'] = { fg = '#e29eca' },
           -- Java
           ['@lsp.typemod.class.public.java'] = { fg = '#54d6a2', bold = true },
-          ['@lsp.typemod.variable.declaration'] = { fg = '#747991' }
+          ['@lsp.typemod.variable.declaration'] = { fg = '#747991' },
         },
       }
       vim.cmd.colorscheme 'oldworld'
