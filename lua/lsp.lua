@@ -461,82 +461,82 @@ return {
         settings = {
           java = {
             home = java_home,
-          eclipse = {
-            downloadSources = true,
-          },
-          configuration = {
-            updateBuildConfiguration = 'interactive',
-            runtimes = vim.env.JAVA_DEV_HOME and {
-              {
-                name = 'JavaSE-21',
-                path = vim.env.JAVA_DEV_HOME,
+            eclipse = {
+              downloadSources = true,
+            },
+            configuration = {
+              updateBuildConfiguration = 'interactive',
+              runtimes = vim.env.JAVA_DEV_HOME and {
+                {
+                  name = 'JavaSE-21',
+                  path = vim.env.JAVA_DEV_HOME,
+                },
+              } or {},
+            },
+            maven = {
+              downloadSources = true,
+            },
+            implementationsCodeLens = {
+              enabled = true,
+            },
+            referencesCodeLens = {
+              enabled = true,
+            },
+            references = {
+              includeDecompiledSources = true,
+            },
+            format = {
+              enabled = false,
+              settings = {
+                url = vim.fn.stdpath 'config' .. '/lang-servers/intellij-java-google-style.xml',
+                profile = 'GoogleStyle',
               },
-            } or {},
-          },
-          maven = {
-            downloadSources = true,
-          },
-          implementationsCodeLens = {
-            enabled = true,
-          },
-          referencesCodeLens = {
-            enabled = true,
-          },
-          references = {
-            includeDecompiledSources = true,
-          },
-          format = {
-            enabled = false,
-            settings = {
-              url = vim.fn.stdpath 'config' .. '/lang-servers/intellij-java-google-style.xml',
-              profile = 'GoogleStyle',
             },
-          },
-          signatureHelp = { enabled = true },
-          sources = {
-            organizeImports = {
-              starThreshold = 9999,
-              staticStarThreshold = 9999,
+            signatureHelp = { enabled = true },
+            sources = {
+              organizeImports = {
+                starThreshold = 9999,
+                staticStarThreshold = 9999,
+              },
             },
-          },
-          codeGeneration = {
-            toString = {
-              template = '${object.className}{${member.name()}=${member.value}, ${otherMembers}}',
+            codeGeneration = {
+              toString = {
+                template = '${object.className}{${member.name()}=${member.value}, ${otherMembers}}',
+              },
+              useBlocks = true,
             },
-            useBlocks = true,
-          },
-          completion = {
-            favoriteStaticMembers = {
-              'org.hamcrest.MatcherAssert.assertThat',
-              'org.hamcrest.Matchers.*',
-              'org.hamcrest.CoreMatchers.*',
-              'org.junit.jupiter.api.Assertions.*',
-              'java.util.Objects.requireNonNull',
-              'java.util.Objects.requireNonNullElse',
-              'org.mockito.Mockito.*',
+            completion = {
+              favoriteStaticMembers = {
+                'org.hamcrest.MatcherAssert.assertThat',
+                'org.hamcrest.Matchers.*',
+                'org.hamcrest.CoreMatchers.*',
+                'org.junit.jupiter.api.Assertions.*',
+                'java.util.Objects.requireNonNull',
+                'java.util.Objects.requireNonNullElse',
+                'org.mockito.Mockito.*',
+              },
+              importOrder = {
+                'java',
+                'javax',
+                'com',
+                'org',
+              },
             },
-            importOrder = {
-              'java',
-              'javax',
-              'com',
-              'org',
+            contentProvider = { preferred = 'fernflower' },
+            extendedClientCapabilities = {
+              progressReportsSupport = true,
+              classFileContentsSupport = true,
+              generateToStringPromptSupport = true,
+              hashCodeEqualsPromptSupport = true,
+              advancedExtractRefactoringSupport = true,
+              advancedOrganizeImportsSupport = true,
+              generateConstructorsPromptSupport = true,
+              generateDelegateMethodsPromptSupport = true,
+              moveRefactoringSupport = true,
             },
-          },
-          contentProvider = { preferred = 'fernflower' },
-          extendedClientCapabilities = {
-            progressReportsSupport = true,
-            classFileContentsSupport = true,
-            generateToStringPromptSupport = true,
-            hashCodeEqualsPromptSupport = true,
-            advancedExtractRefactoringSupport = true,
-            advancedOrganizeImportsSupport = true,
-            generateConstructorsPromptSupport = true,
-            generateDelegateMethodsPromptSupport = true,
-            moveRefactoringSupport = true,
           },
         },
-      },
-    })
+      })
     else
       vim.notify('JAVA_HOME or JAVA_DEV_HOME not set. jdtls will not be configured.', vim.log.levels.WARN)
     end
