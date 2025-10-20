@@ -1,5 +1,6 @@
 return {
   'echasnovski/mini.basics',
+  event = 'VeryLazy',
   config = function()
     require('mini.basics').setup {
       mappings = {

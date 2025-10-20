@@ -1,5 +1,6 @@
 return {
   'nvim-mini/mini.hipatterns',
+  event = 'VeryLazy',
   config = function()
     local hipatterns = require 'mini.hipatterns'
     hipatterns.setup {

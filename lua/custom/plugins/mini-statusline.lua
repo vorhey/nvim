@@ -1,5 +1,6 @@
 return {
   'echasnovski/mini.statusline',
+  event = 'VeryLazy',
   version = false,
   config = function()
     local function is_autoformat_enabled()
