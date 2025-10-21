@@ -95,7 +95,10 @@ return {
         DapUIStepIntoNC = { bg = 'NONE' },
         DapUIStepBackNC = { bg = 'NONE' },
         DapUIStepOutNC = { bg = 'NONE' },
+        -- Mini
         MiniStatusLineModeInsert = { bg = '#d7c6f7', fg = '#000000' },
+        MiniFilesFile = { fg = '#827182' },
+        MiniFilesDirectory = { fg = '#7677B7' },
         -- Syntax
         ['@boolean'] = { fg = '#E29ECA', italic = true },
         ['@tag.attribute'] = { fg = '#d7c6f7' },
