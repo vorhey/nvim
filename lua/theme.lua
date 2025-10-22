@@ -105,7 +105,7 @@ return {
         MiniFilesDirectory = { fg = '#7677B7' },
         -- Syntax
         ['@boolean'] = { fg = '#E29ECA', italic = true },
-        ['@tag.attribute'] = { fg = '#d7c6f7' },
+        ['@tag.attribute'] = { fg = '#AAA4E5' },
         ['@namespace'] = { fg = '#747991' },
         ['@property'] = { fg = '#747991' },
         ['@variable'] = { fg = '#747991' },
@@ -138,6 +138,7 @@ return {
         -- Render Markdown Markup (Treesitter)
         RenderMarkdownCode = { bg = '#f5f5f5', fg = '#747991' },
         RenderMarkdownCodeInline = { bg = '#f5f5f5', fg = '#747991' },
+        -- Markup
         ['@markup.raw.block'] = { bg = '#f5f5f5', fg = '#747991' },
         ['@markup.raw.inline'] = { bg = '#f5f5f5', fg = '#747991' },
         ['@markup.raw'] = { bg = '#f5f5f5', fg = '#747991' },
