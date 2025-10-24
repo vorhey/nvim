@@ -67,6 +67,9 @@ return {
     image = {
       enabled = not vim.g.is_wsl,
     },
+    gitbrowse = {
+      enabled = true,
+    },
     statuscolumn = {
       enabled = true,
     },
@@ -317,6 +320,13 @@ return {
         Snacks.picker.keymaps()
       end,
       desc = 'keymaps',
+    },
+    {
+      '<leader>gu',
+      function()
+        Snacks.gitbrowse()
+      end,
+      desc = 'browse',
     },
   },
 }
