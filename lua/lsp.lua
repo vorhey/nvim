@@ -307,7 +307,6 @@ return {
         'django-html',
         'htmldjango',
         'edge',
-        'eelixir',
         'elixir',
         'ejs',
         'erb',
