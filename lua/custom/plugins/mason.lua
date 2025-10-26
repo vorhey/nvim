@@ -12,6 +12,7 @@ return {
       'prettier',
       'prettierd',
       'shfmt',
+      'shellcheck',
       'npm-groovy-lint',
       'ruff',
       'sql-formatter',

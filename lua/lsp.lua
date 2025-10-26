@@ -65,6 +65,7 @@ return {
     -- Mason LSP configuration
     require('mason-lspconfig').setup {
       ensure_installed = {
+        'bashls',
         'clangd',
         'cssls',
         'dockerls',
@@ -567,6 +568,19 @@ return {
       },
     })
 
+    -- Configure Bash language server
+    vim.lsp.config('bashls', {
+      cmd = { 'bash-language-server', 'start' },
+      filetypes = { 'bash', 'sh' },
+      root_markers = { '.git' },
+      settings = {
+        bashIde = {
+          shellcheckPath = 'shellcheck',
+          shellcheckArguments = '',
+        },
+      },
+    })
+
     -- Configure Ruff (Python linter/formatter)
     vim.lsp.config('ruff', {
       cmd = { 'ruff', 'server' },
@@ -597,6 +611,7 @@ return {
     -- Enable the server
     vim.lsp.enable {
       -- 'avalonia',
+      'bashls',
       'clangd',
       'cssls',
       'dockerls',
