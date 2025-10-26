@@ -358,6 +358,9 @@ return {
         vim.bo[bufnr].shiftwidth = 4
         vim.bo[bufnr].expandtab = true
         vim.bo[bufnr].softtabstop = 4
+        vim.bo[bufnr].autoindent = true
+        vim.bo[bufnr].smartindent = true
+        vim.bo[bufnr].indentexpr = ''
         vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertEnter', 'InsertLeave' }, {
           buffer = bufnr,
           callback = function()
