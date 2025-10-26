@@ -6,7 +6,7 @@ return {
   ---@type render.md.UserConfig
   opts = {
     code = {
-      highlight = 'Normal',
+      highlight = 'RenderMarkdownCode',
       border = 'none',
     },
   },

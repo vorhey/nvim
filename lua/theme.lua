@@ -136,7 +136,7 @@ return {
         RenderMarkdownH5 = { fg = '#e65100', bold = true },
         RenderMarkdownH6 = { fg = '#558b2f', bold = true },
         -- Render Markdown Markup (Treesitter)
-        RenderMarkdownCode = { bg = '#f5f5f5', fg = '#747991' },
+        RenderMarkdownCode = { bg = '#f5f5f5' },
         RenderMarkdownCodeInline = { bg = '#f5f5f5', fg = '#747991' },
         -- Markup
         ['@markup.raw.block'] = { bg = '#f5f5f5', fg = '#747991' },
