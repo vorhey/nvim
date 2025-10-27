@@ -116,8 +116,10 @@ return {
           vim.wo[0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
           vim.wo[0].foldmethod = 'expr'
 
-          -- Enable indentation (experimental)
-          vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          -- Enable indentation (experimental) except for filetypes where it misbehaves
+          if ft ~= 'cs' and ft ~= 'csharp' then
+            vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
         end,
       })
     end,
