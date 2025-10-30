@@ -16,6 +16,7 @@ return {
       },
       highlight_overrides = {
         String = { fg = '#897e96' },
+        Identifier = { fg = '#be93c2' },
         Statement = { fg = '#747991' },
         Whitespace = { bg = 'NONE' },
         NonText = { bg = 'NONE' },
@@ -96,16 +97,16 @@ return {
         DapUIStepBackNC = { bg = 'NONE' },
         DapUIStepOutNC = { bg = 'NONE' },
         -- Flash
-        FlashLabel = { bg = '#FFF3CC' },
-        Search = { bg = '#FFF3CC' },
-        Substitute = { bg = '#FFF3CC' },
+        FlashLabel = { bg = '#fff3cc' },
+        Search = { bg = '#fff3cc' },
+        Substitute = { bg = '#fff3cc' },
         -- Mini
         MiniStatusLineModeInsert = { bg = '#d7c6f7', fg = '#000000' },
         MiniFilesFile = { fg = '#827182' },
-        MiniFilesDirectory = { fg = '#7677B7' },
+        MiniFilesDirectory = { fg = '#7677b7' },
         -- Syntax
-        ['@boolean'] = { fg = '#E29ECA', italic = true },
-        ['@tag.attribute'] = { fg = '#AAA4E5' },
+        ['@boolean'] = { fg = '#e29eca', italic = true },
+        ['@tag.attribute'] = { fg = '#aaa4e5' },
         ['@namespace'] = { fg = '#747991' },
         ['@property'] = { fg = '#747991' },
         ['@variable'] = { fg = '#747991' },
@@ -115,13 +116,15 @@ return {
         -- Winbar
         WinBar = { bg = 'NONE', fg = '#747991' },
         WinBarNC = { bg = 'NONE' },
+        -- LSP
+        ['@lsp.typemod.variable.declaration'] = { fg = '#747991' },
+        ['@lsp.typemod.property'] = { fg = '#747991' },
         -- Dart
         ['@lsp.type.class.dart'] = { fg = '#e29eca', bold = true },
         ['@lsp.mod.constructor.dart'] = { fg = '#747991' },
         ['@lsp.typemod.parameter.label.dart'] = { fg = '#e29eca' },
         -- Java
         ['@lsp.typemod.class.public.java'] = { fg = '#54d6a2', bold = true },
-        ['@lsp.typemod.variable.declaration'] = { fg = '#747991' },
         -- Render Markdown
         RenderMarkdownH1Bg = { bg = '#fce4ec', fg = '#c2185b' },
         RenderMarkdownH2Bg = { bg = '#f3e5f5', fg = '#7b1fa2' },
