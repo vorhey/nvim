@@ -18,6 +18,7 @@ return {
         String = { fg = '#897e96' },
         Identifier = { fg = '#be93c2' },
         Statement = { fg = '#747991' },
+        Delimiter = { fg = '#747991' },
         Whitespace = { bg = 'NONE' },
         NonText = { bg = 'NONE' },
         Normal = { bg = 'NONE', fg = '#747991' },
