@@ -359,14 +359,19 @@ return {
         vim.bo[bufnr].shiftwidth = 4
         vim.bo[bufnr].expandtab = true
         vim.bo[bufnr].softtabstop = 4
-        vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertEnter', 'InsertLeave' }, {
+        vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertLeave' }, {
           buffer = bufnr,
           callback = function()
-            vim.lsp.codelens.refresh { bufnr = 0 }
-            -- workaround for diagnostics not being triggered
-            client:request('textDocument/diagnostic', {
-              textDocument = vim.lsp.util.make_text_document_params(),
-            }, nil, bufnr)
+            vim.defer_fn(function()
+              if vim.api.nvim_get_mode().mode == 'i' then
+                return
+              end
+              vim.lsp.codelens.refresh { bufnr = bufnr }
+              -- workaround for diagnostics not being triggered
+              client:request('textDocument/diagnostic', {
+                textDocument = vim.lsp.util.make_text_document_params(),
+              }, nil, bufnr)
+            end, 20)
           end,
         })
       end,
