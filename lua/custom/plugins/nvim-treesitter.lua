@@ -94,7 +94,7 @@ return {
           enable = true,
         },
         highlight = {
-          enable = false,
+          enable = true, -- keep TS highlighter active so render-markdown can reuse it
         },
         indent = {
           enable = true,
