@@ -13,8 +13,6 @@ return {
               { 'dp', 'Put changes from current window into other window (diff put)' },
               { ']h', 'Jump to next change' },
               { '[h', 'Jump to previous change' },
-              { 'ga', 'Accept inline edit (codecompanion)' },
-              { 'gr', 'Reject inline edit (codecompanion)' },
               { 'zc', 'Fold unchanged text' },
               { 'zo', 'Open fold of unchanged text' },
               { 'zM', 'Close all folds' },
