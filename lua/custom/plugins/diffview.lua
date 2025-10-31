@@ -4,6 +4,14 @@ return {
     keymaps = {
       view = {
         { 'n', '<C-c>', '<cmd>DiffviewClose<cr>', { desc = 'Close diffview' } },
+        { 'n', '<leader>co', false },
+        { 'n', '<leader>ct', false },
+        { 'n', '<leader>cb', false },
+        { 'n', '<leader>ca', false },
+        { 'n', '<leader>Go', '<Cmd>DiffviewConflictChooseOurs<CR>', { desc = 'Choose OURS (conflict)' } },
+        { 'n', '<leader>Gt', '<Cmd>DiffviewConflictChooseTheirs<CR>', { desc = 'Choose THEIRS (conflict)' } },
+        { 'n', '<leader>Gb', '<Cmd>DiffviewConflictChooseBase<CR>', { desc = 'Choose BASE (conflict)' } },
+        { 'n', '<leader>Ga', '<Cmd>DiffviewConflictChooseAll<CR>', { desc = 'Choose ALL (conflict)' } },
         {
           'n',
           '<leader>gH',
@@ -50,5 +58,15 @@ return {
     { '<leader>gv', ":'<,'>DiffviewFileHistory<cr>", desc = 'git: history (visual)', mode = 'v' },
     { '<leader>gc', '<cmd>DiffviewFileHistory --follow %<cr>', desc = 'git: commits (follow)' },
     { '<leader>gL', '<cmd>DiffviewFileHistory --all<cr>', desc = 'git: Log (all branches)' },
+    {
+      '<leader>gC',
+      function()
+        local commit = vim.fn.input 'Commit hash: '
+        if commit ~= '' then
+          vim.cmd('DiffviewOpen ' .. commit .. ' -- %')
+        end
+      end,
+      desc = 'git: compare commit vs current',
+    },
   },
 }

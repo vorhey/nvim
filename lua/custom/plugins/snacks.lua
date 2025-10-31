@@ -326,7 +326,7 @@ return {
       function()
         Snacks.gitbrowse()
       end,
-      desc = 'browse',
+      desc = 'git: browse',
     },
   },
 }
