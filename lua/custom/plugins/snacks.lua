@@ -301,13 +301,6 @@ return {
       desc = 'notifications',
     },
     {
-      '<leader>gl',
-      function()
-        Snacks.picker.git_log_file()
-      end,
-      desc = 'git: log file',
-    },
-    {
       '<leader>fm',
       function()
         Snacks.picker.marks()

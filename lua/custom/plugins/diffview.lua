@@ -53,13 +53,12 @@ return {
     },
   },
   keys = {
-    { '<leader>gh', '<cmd>DiffviewFileHistory %<cr>', desc = 'git: history (file)' },
+    { '<leader>gh', '<cmd>DiffviewFileHistory %<cr>', desc = 'git: file history (file)' },
     { '<leader>gf', '<cmd>DiffviewFileHistory<cr>', desc = 'git: file history (repo)' },
     { '<leader>gv', ":'<,'>DiffviewFileHistory<cr>", desc = 'git: history (visual)', mode = 'v' },
-    { '<leader>gc', '<cmd>DiffviewFileHistory --follow %<cr>', desc = 'git: commits (follow)' },
-    { '<leader>gL', '<cmd>DiffviewFileHistory --all<cr>', desc = 'git: Log (all branches)' },
+    { '<leader>gL', '<cmd>DiffviewFileHistory --all<cr>', desc = 'git: log (all branches)' },
     {
-      '<leader>gC',
+      '<leader>gc',
       function()
         local commit = vim.fn.input 'Commit hash: '
         if commit ~= '' then
