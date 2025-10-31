@@ -29,6 +29,12 @@ return {
       },
 
       completion = {
+        accept = {
+          auto_brackets = {
+            enabled = true,
+            blocked_filetypes = { 'cs' },
+          },
+        },
         trigger = {
           prefetch_on_insert = true,
           show_on_insert_on_trigger_character = true,

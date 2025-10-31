@@ -124,6 +124,9 @@ return {
         ['@lsp.type.class.dart'] = { fg = '#e29eca', bold = true },
         ['@lsp.mod.constructor.dart'] = { fg = '#747991' },
         ['@lsp.typemod.parameter.label.dart'] = { fg = '#e29eca' },
+        -- CS
+        ['@lsp.type.namespace.cs'] = { fg = '#E8879D' },
+        ['@lsp.type.interface.cs'] = { fg = '#C799B6' },
         -- Java
         ['@lsp.typemod.class.public.java'] = { fg = '#54d6a2', bold = true },
         -- Render Markdown
