@@ -6,7 +6,6 @@ return {
     'onsails/lspkind.nvim',
     {
       'saghen/blink.compat',
-      optional = true,
       opts = {},
       version = '*',
     },
