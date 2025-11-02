@@ -23,19 +23,24 @@ return {
       -- Setup textobjects using the correct module
       require('nvim-treesitter-textobjects').setup {
         select = {
-          enable = true,
           lookahead = true,
-          keymaps = {
-            ['af'] = { query = '@function.outer', desc = 'select around function' },
-            ['if'] = { query = '@function.inner', desc = 'select inner function' },
-            ['ac'] = { query = '@class.outer', desc = 'select around class' },
-            ['ic'] = { query = '@class.inner', desc = 'select inner part of a class region' },
-            ['as'] = { query = '@local.scope', query_group = 'locals', desc = 'select language scope' },
-            ['ia'] = { query = '@parameter.inner', desc = 'select inner parameter' },
-            ['aa'] = { query = '@parameter.outer', desc = 'select around parameter (with commas)' },
+          selection_modes = {
+            ['@parameter.inner'] = 'v',
+            ['@parameter.outer'] = 'v',
           },
         },
       }
+      local select = require 'nvim-treesitter-textobjects.select'
+
+      for _, mode in ipairs { 'x', 'o' } do
+        vim.keymap.set(mode, 'i,', function()
+          select.select_textobject('@parameter.inner', 'textobjects')
+        end, { desc = 'TS inner parameter' })
+
+        vim.keymap.set(mode, 'a,', function()
+          select.select_textobject('@parameter.outer', 'textobjects')
+        end, { desc = 'TS around parameter (incl. comma/space)' })
+      end
 
       require('treesitter-modules').setup {
         ensure_installed = {
