@@ -7,8 +7,9 @@ return {
     mappings = {
       sidebar = {
         close_from_input = {
-          normal = '<C-c>',
+          normal = '<Esc>',
         },
+        close = { '<Esc>' },
       },
     },
     mode = 'legacy',
