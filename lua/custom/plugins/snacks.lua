@@ -66,6 +66,25 @@ return {
   opts = {
     image = {
       enabled = not vim.g.is_wsl,
+      convert = {
+        notify = true,
+        mermaid = function()
+          return {
+            '-i',
+            '{src}',
+            '-o',
+            '{file}',
+            '-b',
+            'transparent',
+            '-t',
+            'neutral',
+            '-s',
+            '{scale}',
+            '-p',
+            vim.fn.expand '~/.config/mermaid/puppeteer.json',
+          }
+        end,
+      },
     },
     gitbrowse = {
       enabled = true,
