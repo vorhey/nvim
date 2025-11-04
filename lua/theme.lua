@@ -160,6 +160,9 @@ return {
         ['@markup.list.unchecked'] = { fg = '#747991' },
         ['@markup.heading'] = { fg = '#747991', bold = true },
         ['@markup.quote'] = { fg = '#989898', italic = true },
+        -- Diff
+        ['@diff.plus'] = { fg = '#609E63' },
+        ['@diff.minus'] = { fg = '#e29eca' },
       },
     }
     vim.cmd.colorscheme 'oldworld'
