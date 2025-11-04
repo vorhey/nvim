@@ -64,6 +64,9 @@ return {
     })
   end,
   opts = {
+    gh = {
+      enabled = true,
+    },
     image = {
       enabled = not vim.g.is_wsl,
       convert = {
@@ -339,6 +342,34 @@ return {
         Snacks.gitbrowse()
       end,
       desc = 'git: browse',
+    },
+    {
+      '<leader>gi',
+      function()
+        Snacks.picker.gh_issue()
+      end,
+      desc = 'git: issues (open)',
+    },
+    {
+      '<leader>gI',
+      function()
+        Snacks.picker.gh_issue { state = 'all' }
+      end,
+      desc = 'git: issues (all)',
+    },
+    {
+      '<leader>ge',
+      function()
+        Snacks.picker.gh_pr()
+      end,
+      desc = 'git: pull requests (open)',
+    },
+    {
+      '<leader>gE',
+      function()
+        Snacks.picker.gh_pr { state = 'all' }
+      end,
+      desc = 'git: pull requests (all)',
     },
   },
 }
