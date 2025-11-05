@@ -2,6 +2,8 @@ return {
   '3rd/image.nvim',
   enabled = vim.g.is_wsl,
   build = false,
+  lazy = true,
+  event = 'VeryLazy',
   config = function()
     require('image').setup {
       backend = 'sixel',
