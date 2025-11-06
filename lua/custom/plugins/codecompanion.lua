@@ -39,6 +39,9 @@ return {
           end,
         },
       },
+      web_search_engine = {
+        provider = 'tavily',
+      },
     }
     vim.keymap.set({ 'n', 'v' }, '<C-b>', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true, desc = 'code companion: actions' })
     vim.keymap.set({ 'n', 'v' }, 'g;', '<cmd>CodeCompanionChat Toggle<cr>', { noremap = true, silent = true, desc = 'code companion: toggle' })
