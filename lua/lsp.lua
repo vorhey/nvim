@@ -92,7 +92,7 @@ return {
           [vim.diagnostic.severity.INFO] = '󰅺',
         },
       },
-      underline = false,
+      underline = true,
       severity_sort = true,
       float = {
         border = 'rounded',
@@ -592,6 +592,15 @@ return {
       cmd = { 'pyright-langserver', '--stdio' },
       filetypes = { 'python' },
       root_markers = { '.git', 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt' },
+      settings = {
+        pyright = {
+          diagnostics = {
+            unusedImports = 'warning',
+            undefinedVariable = 'warning',
+            reportUnusedVariable = 'warning',
+          },
+        },
+      },
     })
 
     vim.keymap.set({ 'v', 'n' }, '<leader>la', '<cmd>lua require("fastaction").code_action()<CR>', { desc = 'lsp: code actions' })
