@@ -1,4 +1,4 @@
-return {
+reaturn {
   'olimorris/codecompanion.nvim',
   keys = {
     { '<C-b>', mode = { 'n', 'v' } },
@@ -16,6 +16,18 @@ return {
       extensions = { history = { enabled = true } },
       strategies = {
         chat = {
+
+          slash_commands = {
+            ['git_diff'] = {
+              description = 'Insert current git diff',
+              callback = function(chat)
+                local handle = io.popen "git diff --no-index /dev/null /dev/null 2>/dev/null && git diff || echo 'Not a git repo'"
+                local result = handle:read '*a'
+                handle:close()
+                chat:add_context({ role = 'user', content = result }, 'git', '<git_diff>')
+              end,
+            },
+          },
           adapter = 'ollama',
           model = 'qwen3-coder:480b-cloud',
         },
@@ -24,6 +36,9 @@ return {
         http = {
           ollama = function()
             return require('codecompanion.adapters').extend('ollama', {
+              opts = {
+                vision = true,
+              },
               env = {
                 url = 'https://ollama.com',
                 api_key = 'OLLAMA_API_KEY',
