@@ -79,6 +79,7 @@ return {
         'vtsls',
         'yamlls',
         'jdtls',
+        'pyright',
       },
     }
 
@@ -582,21 +583,15 @@ return {
 
     -- Configure Ruff (Python linter/formatter)
     vim.lsp.config('ruff', {
-      cmd = { 'ruff', 'server' },
+      init_options = {
+        settings = {},
+      },
+    })
+
+    vim.lsp.config('pyright', {
+      cmd = { 'pyright-langserver', '--stdio' },
       filetypes = { 'python' },
-      root_markers = {
-        '.git',
-        'pyproject.toml',
-        'ruff.toml',
-        '.ruff.toml',
-        'setup.py',
-        'setup.cfg',
-        'requirements.txt',
-      },
-      settings = {
-        organizeImports = true,
-        fixAll = true,
-      },
+      root_markers = { '.git', 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt' },
     })
 
     vim.keymap.set({ 'v', 'n' }, '<leader>la', '<cmd>lua require("fastaction").code_action()<CR>', { desc = 'lsp: code actions' })
@@ -621,6 +616,7 @@ return {
       'intelephense',
       'jsonls',
       'lua_ls',
+      'ruff',
       'tailwindcss',
       'vtsls',
       'yamlls',
