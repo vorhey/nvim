@@ -439,9 +439,6 @@ return {
 
     -- Configure flutter
     require('flutter-tools').setup {}
-    local function format_buffer()
-      vim.lsp.buf.format { async = true }
-    end
 
     -- Configure Java
     local java_home = vim.env.JAVA_DEV_HOME or vim.env.JAVA_HOME
@@ -603,7 +600,9 @@ return {
     })
 
     vim.keymap.set({ 'v', 'n' }, '<leader>la', '<cmd>lua require("fastaction").code_action()<CR>', { desc = 'lsp: code actions' })
-    vim.keymap.set('n', '<leader>lf', format_buffer, { desc = 'lsp: format buffer' })
+    vim.keymap.set({ 'n', 'v' }, '<leader>lf', function()
+      vim.lsp.buf.format { async = true }
+    end, { desc = 'lsp: format' })
     vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, { desc = 'lsp: diagnostic messages' })
     vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = 'lsp: rename' })
     vim.keymap.set({ 'n', 'v' }, 'K', vim.lsp.buf.hover, { desc = 'lsp: hover documentation' })
