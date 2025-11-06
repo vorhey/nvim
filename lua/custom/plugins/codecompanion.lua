@@ -1,4 +1,4 @@
-reaturn {
+return {
   'olimorris/codecompanion.nvim',
   keys = {
     { '<C-b>', mode = { 'n', 'v' } },
