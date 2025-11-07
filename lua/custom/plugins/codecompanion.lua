@@ -6,6 +6,7 @@ return {
     { 'ga', mode = 'v' },
   },
   dependencies = {
+    'j-hui/fidget.nvim',
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
     'ravitemer/codecompanion-history.nvim',
@@ -25,17 +26,6 @@ return {
       extensions = { history = { enabled = true } },
       strategies = {
         chat = {
-          slash_commands = {
-            ['git_diff'] = {
-              description = 'Insert current git diff',
-              callback = function(chat)
-                local handle = io.popen "git diff --no-index /dev/null /dev/null 2>/dev/null && git diff || echo 'Not a git repo'"
-                local result = handle:read '*a'
-                handle:close()
-                chat:add_context({ role = 'user', content = result }, 'git', '<git_diff>')
-              end,
-            },
-          },
           adapter = 'ollama',
           model = 'qwen3-coder:480b-cloud',
         },
@@ -66,6 +56,34 @@ return {
         provider = 'tavily',
       },
     }
+    -- Fidget integration for progress indicator
+    local group = vim.api.nvim_create_augroup('CodeCompanionFidget', { clear = true })
+
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'CodeCompanionRequestStarted',
+      group = group,
+      callback = function()
+        if package.loaded.fidget then
+          require('fidget').notify('CodeCompanion request in progress...', vim.log.levels.INFO, {
+            annote = 'AI',
+            key = 'codecompanion',
+          })
+        end
+      end,
+    })
+
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'CodeCompanionRequestFinished',
+      group = group,
+      callback = function()
+        if package.loaded.fidget then
+          require('fidget').notify('CodeCompanion request completed', vim.log.levels.INFO, {
+            annote = 'AI',
+            key = 'codecompanion',
+          })
+        end
+      end,
+    })
     vim.keymap.set({ 'n', 'v' }, '<C-b>', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true, desc = 'code companion: actions' })
     vim.keymap.set({ 'n', 'v' }, 'g;', '<cmd>CodeCompanionChat Toggle<cr>', { noremap = true, silent = true, desc = 'code companion: toggle' })
     vim.keymap.set('v', 'ga', '<cmd>CodeCompanionChat Add<cr>', { noremap = true, silent = true, desc = 'code companion: chat add' })
