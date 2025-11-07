@@ -17,8 +17,9 @@ return {
         chat = {
           window = {
             full_height = false,
-            width = "auto",
+            width = 'auto',
           },
+          show_reasoning = false,
         },
       },
       extensions = { history = { enabled = true } },
