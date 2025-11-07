@@ -1,6 +1,6 @@
 return {
   enabled = true,
-  'dgox16/oldworld.nvim',
+  'vorhey/oldworld.nvim',
   lazy = false,
   priority = 1000,
   config = function()
