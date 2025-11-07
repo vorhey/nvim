@@ -24,6 +24,9 @@ return {
     -- DAP LOG LEVEL
     dap.set_log_level 'DEBUG'
 
+    -- Track current layout position
+    local dapui_position = 'bottom'
+
     local function setup_dapui()
       if not dapui then
         dapui = require 'dapui'
@@ -37,7 +40,7 @@ return {
                 { id = 'scopes', size = 0.5 },
                 { id = 'watches', size = 0.5 },
               },
-              position = 'bottom',
+              position = dapui_position,
               size = 10,
             },
           },
@@ -46,6 +49,46 @@ return {
           },
         }
       end
+    end
+
+    -- Function to toggle DAP UI position
+    local function toggle_dapui_position()
+      if not dapui then
+        setup_dapui()
+      end
+
+      -- Close current UI
+      dapui.close()
+
+      -- Toggle position
+      if dapui_position == 'bottom' then
+        dapui_position = 'left'
+      else
+        dapui_position = 'bottom'
+      end
+
+      -- Reconfigure with new position
+      dapui.setup {
+        controls = {
+          enabled = false,
+        },
+        layouts = {
+          {
+            elements = {
+              { id = 'scopes', size = 0.5 },
+              { id = 'watches', size = 0.5 },
+            },
+            position = dapui_position,
+            size = dapui_position == 'bottom' and 10 or 40,
+          },
+        },
+        render = {
+          max_value_lines = 1,
+        },
+      }
+
+      -- Reopen UI
+      dapui.open()
     end
 
     -- Keymaps helper functions
@@ -69,6 +112,7 @@ return {
     vim.keymap.set('n', '<leader>dB', breakpoint_condition, { desc = 'debug: conditional breakpoint' })
     vim.keymap.set('n', '<leader>di', toggle_dap_ui, { desc = 'debug: toggle interface' })
     vim.keymap.set('n', '<leader>dr', dap.clear_breakpoints, { desc = 'debug: clear breakpoints' })
+    vim.keymap.set('n', '<leader>dp', toggle_dapui_position, { desc = 'debug: toggle position' })
 
     -- Debuggers Setup
     -- c#
@@ -180,6 +224,45 @@ return {
       executable = {
         command = vim.fn.stdpath 'data' .. '/mason/bin/codelldb',
         args = { '--port', '${port}' },
+      },
+    }
+
+    -- Python debugger
+    dap.adapters.python = {
+      type = 'executable',
+      command = vim.fn.stdpath 'data' .. '/mason/bin/debugpy-adapter',
+      args = {},
+    }
+
+    dap.configurations.python = {
+      {
+        type = 'python',
+        request = 'launch',
+        name = 'Launch file',
+        program = '${file}',
+        pythonPath = function()
+          local venv_path = os.getenv 'VIRTUAL_ENV'
+          if venv_path then
+            return venv_path .. '/bin/python'
+          else
+            return 'python'
+          end
+        end,
+      },
+      {
+        type = 'python',
+        request = 'launch',
+        name = 'Launch module',
+        module = function()
+          return vim.fn.input 'Module: '
+        end,
+      },
+      {
+        type = 'python',
+        request = 'launch',
+        name = 'Launch test',
+        module = 'unittest',
+        args = { '-v', '${file}' },
       },
     }
 

@@ -21,6 +21,7 @@ return {
       'js-debug-adapter',
       'codelldb',
       'clang-format',
+      'debugpy',
     },
   },
   config = function(_, opts)
