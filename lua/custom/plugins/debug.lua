@@ -24,216 +24,178 @@ return {
     -- DAP LOG LEVEL
     dap.set_log_level 'DEBUG'
 
-    -- Track current layout position
-    local dapui_position = 'bottom'
-
+    -- Simplified DAP UI setup
     local function setup_dapui()
       if not dapui then
         dapui = require 'dapui'
         dapui.setup {
-          controls = {
-            enabled = false,
-          },
+          controls = { enabled = false },
           layouts = {
             {
               elements = {
-                { id = 'scopes', size = 0.5 },
-                { id = 'watches', size = 0.5 },
+                { id = 'scopes', size = 0.33 },
+                { id = 'watches', size = 0.33 },
+                { id = 'repl', size = 0.33 },
               },
-              position = dapui_position,
-              size = 10,
+              position = 'left',
+              size = 50,
             },
           },
-          render = {
-            max_value_lines = 1,
-          },
+          render = { max_value_lines = 1 },
         }
       end
     end
 
-    -- Function to toggle DAP UI position
-    local function toggle_dapui_position()
-      if not dapui then
-        setup_dapui()
-      end
+    -- Unified keymaps setup
+    local keymaps = {
+      { '<leader>dc', dap.continue, 'debug: start/continue (F5)' },
+      { '<F5>', dap.continue, 'debug: start/continue (F5)' },
+      { '<leader>dn', dap.step_over, 'debug: step over (F10)' },
+      { '<F10>', dap.step_over, 'debug: step over (F10)' },
+      { '<leader>ds', dap.close, 'debug: stop' },
+      { '<leader>dt', dap.terminate, 'debug: terminate (F6)' },
+      { '<F6>', dap.terminate, 'debug: terminate (F6)' },
+      { '<leader>db', dap.toggle_breakpoint, 'debug: toggle breakpoint (F9)' },
+      { '<F9>', dap.toggle_breakpoint, 'debug: toggle breakpoint (F9)' },
+      {
+        '<leader>dB',
+        function()
+          dap.set_breakpoint(vim.fn.input 'Debug: Breakpoint Condition: ')
+        end,
+        'debug: conditional breakpoint',
+      },
+      {
+        '<leader>di',
+        function()
+          setup_dapui()
+          dapui.toggle()
+        end,
+        'debug: toggle interface',
+      },
+      { '<leader>dr', dap.clear_breakpoints, 'debug: clear breakpoints' },
+    }
 
-      -- Close current UI
-      dapui.close()
+    for _, map in ipairs(keymaps) do
+      vim.keymap.set('n', map[1], map[2], { desc = map[3] })
+    end
 
-      -- Toggle position
-      if dapui_position == 'bottom' then
-        dapui_position = 'left'
-      else
-        dapui_position = 'bottom'
-      end
-
-      -- Reconfigure with new position
-      dapui.setup {
-        controls = {
-          enabled = false,
+    -- Debuggers configuration
+    local debuggers = {
+      -- C# debugger
+      cs = {
+        adapter = {
+          type = 'executable',
+          command = vim.fn.stdpath 'data' .. '/mason/bin/netcoredbg',
+          args = { '--interpreter=vscode' },
+          options = { detached = false },
         },
-        layouts = {
+        configurations = {
           {
-            elements = {
-              { id = 'scopes', size = 0.5 },
-              { id = 'watches', size = 0.5 },
+            type = 'coreclr',
+            name = 'console - netcoredbg',
+            request = 'launch',
+            program = function()
+              return utils.pick_file('dll', { 'obj/.*' })
+            end,
+          },
+          {
+            type = 'coreclr',
+            name = 'aspnetcore - netcoredbg',
+            request = 'launch',
+            program = function()
+              return vim.fn.input('Entry Point: ', vim.fn.getcwd() .. '/', 'file')
+            end,
+            env = {
+              ASPNETCORE_ENVIRONMENT = function()
+                return 'Development'
+              end,
+              ASPNETCORE_URLS = function()
+                return 'http://localhost:5283'
+              end,
             },
-            position = dapui_position,
-            size = dapui_position == 'bottom' and 10 or 40,
+            cwd = function()
+              return utils.pick_file('json', { 'obj/.*' })
+            end,
           },
         },
-        render = {
-          max_value_lines = 1,
+      },
+
+      -- Go debugger
+      go = {
+        adapter = {
+          type = 'server',
+          port = '${port}',
+          executable = {
+            command = vim.fn.stdpath 'data' .. '/mason/bin/dlv',
+            args = { 'dap', '-l', '127.0.0.1:${port}' },
+          },
         },
-      }
-
-      -- Reopen UI
-      dapui.open()
-    end
-
-    -- Keymaps helper functions
-    local breakpoint_condition = function()
-      dap.set_breakpoint(vim.fn.input 'Debug: Breakpoint Condition: ')
-    end
-    local toggle_dap_ui = function()
-      setup_dapui()
-      dapui.toggle()
-    end
-    -- Keymaps
-    vim.keymap.set('n', '<leader>dc', dap.continue, { desc = 'debug: start/continue (F5)' })
-    vim.keymap.set('n', '<F5>', dap.continue, { desc = 'debug: start/continue (F5)' })
-    vim.keymap.set('n', '<leader>dn', dap.step_over, { desc = 'debug: step over (F10)' })
-    vim.keymap.set('n', '<F10>', dap.step_over, { desc = 'debug: step over (F10)' })
-    vim.keymap.set('n', '<leader>ds', dap.close, { desc = 'debug: stop' })
-    vim.keymap.set('n', '<leader>dt', dap.terminate, { desc = 'debug: terminate (F6)' })
-    vim.keymap.set('n', '<F6>', dap.terminate, { desc = 'debug: terminate (F6)' })
-    vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'debug: toggle breakpoint (F9)' })
-    vim.keymap.set('n', '<F9>', dap.toggle_breakpoint, { desc = 'debug: toggle breakpoint (F9)' })
-    vim.keymap.set('n', '<leader>dB', breakpoint_condition, { desc = 'debug: conditional breakpoint' })
-    vim.keymap.set('n', '<leader>di', toggle_dap_ui, { desc = 'debug: toggle interface' })
-    vim.keymap.set('n', '<leader>dr', dap.clear_breakpoints, { desc = 'debug: clear breakpoints' })
-    vim.keymap.set('n', '<leader>dp', toggle_dapui_position, { desc = 'debug: toggle position' })
-
-    -- Debuggers Setup
-    -- c#
-    dap.adapters.coreclr = {
-      type = 'executable',
-      command = vim.fn.stdpath 'data' .. '/mason/bin/netcoredbg',
-      args = { '--interpreter=vscode' },
-      options = {
-        detached = false,
-      },
-    }
-    dap.configurations.cs = {
-      {
-        type = 'coreclr',
-        name = 'console - netcoredbg',
-        request = 'launch',
-        program = function()
-          return utils.pick_file('dll', { 'obj/.*' })
-        end,
-      },
-      {
-        type = 'coreclr',
-        name = 'aspnetcore - netcoredbg',
-        request = 'launch',
-        program = function()
-          return vim.fn.input('Entry Point: ', vim.fn.getcwd() .. '/', 'file')
-        end,
-        env = {
-          ASPNETCORE_ENVIRONMENT = function()
-            -- todo: request input from ui
-            return 'Development'
-          end,
-          ASPNETCORE_URLS = function()
-            -- todo: request input from ui
-            return 'http://localhost:5283'
-          end,
-        },
-        cwd = function()
-          return utils.pick_file('json', { 'obj/.*' })
-        end,
-      },
-    }
-    dap.adapters.go = {
-      type = 'server',
-      port = '${port}',
-      executable = {
-        command = vim.fn.stdpath 'data' .. '/mason/bin/dlv',
-        args = { 'dap', '-l', '127.0.0.1:${port}' },
-      },
-    }
-
-    dap.configurations.go = {
-      {
-        type = 'go',
-        name = 'Debug file',
-        request = 'launch',
-        program = '${file}',
-      },
-      {
-        type = 'go',
-        name = 'Debug workspace',
-        request = 'launch',
-        program = '${workspaceFolder}',
-      },
-      {
-        type = 'go',
-        name = 'Debug test',
-        request = 'launch',
-        mode = 'test',
-        program = '${file}',
-      },
-
-      {
-        type = 'go',
-        name = 'Debug test (go.mod)',
-        request = 'launch',
-        mode = 'test',
-        program = './${relativeFileDirname}',
-      },
-    }
-
-    dap.adapters['pwa-node'] = {
-      type = 'server',
-      host = 'localhost',
-      port = '${port}',
-      executable = {
-        command = 'js-debug-adapter',
-        args = {
-          '${port}',
+        configurations = {
+          { type = 'go', name = 'Debug file', request = 'launch', program = '${file}' },
+          { type = 'go', name = 'Debug workspace', request = 'launch', program = '${workspaceFolder}' },
+          { type = 'go', name = 'Debug test', request = 'launch', mode = 'test', program = '${file}' },
+          { type = 'go', name = 'Debug test (go.mod)', request = 'launch', mode = 'test', program = './${relativeFileDirname}' },
         },
       },
-    }
-    dap.adapters['pwa-chrome'] = {
-      type = 'server',
-      host = 'localhost',
-      port = '${port}',
-      executable = {
-        command = 'js-debug-adapter',
-        args = {
-          '${port}',
+
+      -- Node.js debuggers
+      node = {
+        adapter = {
+          type = 'server',
+          host = 'localhost',
+          port = '${port}',
+          executable = {
+            command = 'js-debug-adapter',
+            args = { '${port}' },
+          },
+        },
+      },
+
+      chrome = {
+        adapter = {
+          type = 'server',
+          host = 'localhost',
+          port = '${port}',
+          executable = {
+            command = 'js-debug-adapter',
+            args = { '${port}' },
+          },
+        },
+      },
+
+      -- C/C++ debugger
+      codelldb = {
+        adapter = {
+          type = 'server',
+          port = '${port}',
+          executable = {
+            command = vim.fn.stdpath 'data' .. '/mason/bin/codelldb',
+            args = { '--port', '${port}' },
+          },
+        },
+      },
+
+      -- Python debugger
+      python = {
+        adapter = {
+          type = 'executable',
+          command = vim.fn.stdpath 'data' .. '/mason/bin/debugpy-adapter',
+          args = {},
         },
       },
     }
 
-    -- C/C++ (clang/gcc) debugger using lldb or gdb
-    dap.adapters.codelldb = {
-      type = 'server',
-      port = '${port}',
-      executable = {
-        command = vim.fn.stdpath 'data' .. '/mason/bin/codelldb',
-        args = { '--port', '${port}' },
-      },
-    }
+    -- Apply debugger configurations
+    dap.adapters.coreclr = debuggers.cs.adapter
+    dap.configurations.cs = debuggers.cs.configurations
+    dap.adapters.go = debuggers.go.adapter
+    dap.configurations.go = debuggers.go.configurations
+    dap.adapters['pwa-node'] = debuggers.node.adapter
+    dap.adapters['pwa-chrome'] = debuggers.chrome.adapter
+    dap.adapters.codelldb = debuggers.codelldb.adapter
+    dap.adapters.python = debuggers.python.adapter
 
-    -- Python debugger
-    dap.adapters.python = {
-      type = 'executable',
-      command = vim.fn.stdpath 'data' .. '/mason/bin/debugpy-adapter',
-      args = {},
-    }
-
+    -- Python configurations
     dap.configurations.python = {
       {
         type = 'python',
@@ -242,11 +204,7 @@ return {
         program = '${file}',
         pythonPath = function()
           local venv_path = os.getenv 'VIRTUAL_ENV'
-          if venv_path then
-            return venv_path .. '/bin/python'
-          else
-            return 'python'
-          end
+          return venv_path and venv_path .. '/bin/python' or 'python'
         end,
       },
       {
@@ -327,107 +285,82 @@ return {
     -- Copy C configurations to C++
     dap.configurations.cpp = dap.configurations.c
 
+    -- JavaScript/TypeScript configurations
+    local js_configs = {
+      {
+        type = 'pwa-node',
+        request = 'launch',
+        name = 'Launch TypeScript File (bunx tsx)',
+        program = '${file}',
+        runtimeExecutable = 'bunx',
+        runtimeArgs = { 'tsx', '--no-cache', '--no-warnings', '${file}' },
+        cwd = '${workspaceFolder}',
+        sourceMaps = true,
+        resolveSourceMapLocations = { '${workspaceFolder}/**', '!**/node_modules/**' },
+        skipFiles = { '<node_internals>/**', '${workspaceFolder}/node_modules/**' },
+        console = 'integratedTerminal',
+      },
+      {
+        type = 'pwa-node',
+        request = 'launch',
+        name = 'Launch TypeScript File (ts-node installed locally)',
+        runtimeArgs = { '--require', 'ts-node/register' },
+        runtimeExecutable = 'node',
+        args = { '${file}' },
+        cwd = '${workspaceFolder}',
+        sourceMaps = true,
+        resolveSourceMapLocations = { '${workspaceFolder}/**', '!**/node_modules/.pnpm/**' },
+      },
+      {
+        type = 'pwa-node',
+        request = 'launch',
+        name = 'Launch TypeScript File (tsx installed locally)',
+        runtimeExecutable = '${workspaceFolder}/node_modules/.bin/tsx',
+        args = { '${file}' },
+        cwd = '${workspaceFolder}',
+        sourceMaps = true,
+        resolveSourceMapLocations = { '${workspaceFolder}/**', '!**/node_modules/.pnpm/**' },
+      },
+      {
+        type = 'pwa-node',
+        request = 'launch',
+        name = 'Launch TypeScript File (swc-node installed locally)',
+        runtimeExecutable = 'node',
+        runtimeArgs = { '--require', '@swc-node/register' },
+        args = { '${file}' },
+        cwd = '${workspaceFolder}',
+        sourceMaps = true,
+        resolveSourceMapLocations = { '${workspaceFolder}/**', '!**/node_modules/.pnpm/**' },
+      },
+      {
+        type = 'pwa-chrome',
+        name = 'Launch Chrome',
+        request = 'launch',
+        url = function()
+          local port = vim.fn.input('Port: ', '5173')
+          return 'http://localhost:' .. port
+        end,
+        webRoot = '${workspaceFolder}/src',
+      },
+    }
+
     for _, lang in ipairs { 'typescript', 'typescriptreact', 'javascript' } do
-      dap.configurations[lang] = {
-        {
-          type = 'pwa-node',
-          request = 'launch',
-          name = 'Launch TypeScript File (bunx tsx)',
-          program = '${file}',
-          runtimeExecutable = 'bunx',
-          runtimeArgs = { 'tsx', '--no-cache', '--no-warnings', '${file}' },
-          cwd = '${workspaceFolder}',
-          sourceMaps = true,
-          resolveSourceMapLocations = { '${workspaceFolder}/**', '!**/node_modules/**' },
-          skipFiles = {
-            '<node_internals>/**',
-            '${workspaceFolder}/node_modules/**',
-          },
-          console = 'integratedTerminal',
-        },
-        {
-          type = 'pwa-node',
-          request = 'launch',
-          name = 'Launch TypeScript File (ts-node installed locally)',
-          runtimeArgs = { '--require', 'ts-node/register' },
-          runtimeExecutable = 'node',
-          args = { '${file}' },
-          cwd = '${workspaceFolder}',
-          sourceMaps = true,
-          resolveSourceMapLocations = {
-            '${workspaceFolder}/**',
-            '!**/node_modules/.pnpm/**',
-          },
-        },
-        {
-          type = 'pwa-node',
-          request = 'launch',
-          name = 'Launch TypeScript File (tsx installed locally)',
-          runtimeExecutable = '${workspaceFolder}/node_modules/.bin/tsx',
-          args = { '${file}' },
-          cwd = '${workspaceFolder}',
-          sourceMaps = true,
-          resolveSourceMapLocations = {
-            '${workspaceFolder}/**',
-            '!**/node_modules/.pnpm/**',
-          },
-        },
-        {
-          type = 'pwa-node',
-          request = 'launch',
-          name = 'Launch TypeScript File (swc-node installed locally)',
-          runtimeExecutable = 'node',
-          runtimeArgs = { '--require', '@swc-node/register' },
-          args = { '${file}' },
-          cwd = '${workspaceFolder}',
-          sourceMaps = true,
-          resolveSourceMapLocations = {
-            '${workspaceFolder}/**',
-            '!**/node_modules/.pnpm/**',
-          },
-        },
-        {
-          type = 'pwa-chrome',
-          name = 'Launch Chrome',
-          request = 'launch',
-          url = function()
-            local port = vim.fn.input('Port: ', '5173')
-            return 'http://localhost:' .. port
-          end,
-          webRoot = '${workspaceFolder}/src',
-        },
-      }
+      dap.configurations[lang] = js_configs
     end
 
-    vim.fn.sign_define('DapBreakpoint', {
-      text = '',
-      texthl = 'DapBreakpoint',
-      linehl = '',
-      numhl = 'DapBreakpoint',
-    })
+    -- DAP signs
+    local dap_signs = {
+      DapBreakpoint = { text = '', texthl = 'DapBreakpoint', numhl = 'DapBreakpoint' },
+      DapBreakpointRejected = { text = '󰥔' },
+      DapLogPoint = { text = '', texthl = 'DapLogPoint', linehl = 'DapLogPoint', numhl = 'DapLogPoint' },
+      DapStopped = { text = '', texthl = 'DapStopped', linehl = 'DapStopped', numhl = 'DapStopped' },
+    }
 
-    vim.fn.sign_define('DapBreakpointRejected', {
-      text = '󰥔',
-      texthl = '',
-      linehl = '',
-      numhl = '',
-    })
+    for sign, config in pairs(dap_signs) do
+      vim.fn.sign_define(sign, config)
+    end
 
-    vim.fn.sign_define('DapLogPoint', {
-      text = '',
-      texthl = 'DapLogPoint',
-      linehl = 'DapLogPoint',
-      numhl = 'DapLogPoint',
-    })
-
-    vim.fn.sign_define('DapStopped', {
-      text = '',
-      texthl = 'DapStopped',
-      linehl = 'DapStopped',
-      numhl = 'DapStopped',
-    })
-
-    -- DAP UI open/close based on events
+    -- DAP UI event handlers
     dap.listeners.after.event_initialized['dapui_config'] = function()
       setup_dapui()
       dapui.open()

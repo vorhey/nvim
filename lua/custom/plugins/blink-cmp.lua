@@ -4,6 +4,7 @@ return {
   enabled = true,
   dependencies = {
     'onsails/lspkind.nvim',
+    'rcarriga/cmp-dap',
     {
       'saghen/blink.compat',
       opts = {},
@@ -70,6 +71,11 @@ return {
       },
       sources = {
         default = { 'lsp', 'path' },
+        per_filetype = {
+          ['dap-repl'] = { 'dap' },
+          dapui_watches = { 'dap' },
+          dapui_hover = { 'dap' },
+        },
         providers = {
           lsp = {
             name = 'LSP',
@@ -92,6 +98,13 @@ return {
           lazydev = {
             name = 'LazyDev',
             module = 'blink.compat.source',
+          },
+          dap = {
+            name = 'dap',
+            module = 'blink.compat.source',
+            opts = {
+              name = 'dap',
+            },
           },
         },
       },
