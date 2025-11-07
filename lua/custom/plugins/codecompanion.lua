@@ -13,10 +13,17 @@ return {
   },
   config = function()
     require('codecompanion').setup {
+      display = {
+        chat = {
+          window = {
+            full_height = false,
+            width = "auto",
+          },
+        },
+      },
       extensions = { history = { enabled = true } },
       strategies = {
         chat = {
-
           slash_commands = {
             ['git_diff'] = {
               description = 'Insert current git diff',
