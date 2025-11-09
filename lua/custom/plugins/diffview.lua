@@ -52,36 +52,36 @@ return {
       },
     },
   },
-    keys = {
-      { '<leader>gh', '<cmd>DiffviewFileHistory %<cr>', desc = 'git: file history (file)' },
-      { '<leader>gf', '<cmd>DiffviewFileHistory<cr>', desc = 'git: file history (repo)' },
-      { '<leader>gv', ":'<,'>DiffviewFileHistory<cr>", desc = 'git: history (visual)', mode = 'v' },
-      { '<leader>gL', '<cmd>DiffviewFileHistory --all<cr>', desc = 'git: log (all branches)' },
-      {
-        '<leader>gd',
-        '<cmd>DiffviewOpen<cr>',
-        desc = 'git: diff (working tree vs index)',
-      },
-      {
-        '<leader>gD',
-        function()
-          vim.ui.input({ prompt = 'Branch: ' }, function(branch)
-            if branch and branch ~= '' then
-              vim.cmd('DiffviewOpen ' .. branch .. ' -- %')
-            end
-          end)
-        end,
-        desc = 'git: diff against branch (current file)',
-      },
-      {
-        '<leader>gc',
-        function()
-          local commit = vim.fn.input 'Commit hash: '
-          if commit ~= '' then
-            vim.cmd('DiffviewOpen ' .. commit .. ' -- %')
-          end
-        end,
-        desc = 'git: compare commit vs current',
-      },
+  keys = {
+    { '<leader>gh', '<cmd>DiffviewFileHistory %<cr>', desc = 'git: file history (file)' },
+    { '<leader>gf', '<cmd>DiffviewFileHistory<cr>', desc = 'git: file history (repo)' },
+    { '<leader>gv', ":'<,'>DiffviewFileHistory<cr>", desc = 'git: history (visual)', mode = 'v' },
+    { '<leader>gL', '<cmd>DiffviewFileHistory --all<cr>', desc = 'git: log (all branches)' },
+    {
+      '<leader>gd',
+      '<cmd>DiffviewOpen<cr>',
+      desc = 'git: diff (working tree vs index)',
     },
+    {
+      '<leader>gD',
+      function()
+        vim.ui.input({ prompt = 'Branch: ' }, function(branch)
+          if branch and branch ~= '' then
+            vim.cmd('DiffviewOpen ' .. branch .. ' -- %')
+          end
+        end)
+      end,
+      desc = 'git: diff against branch (current file)',
+    },
+    {
+      '<leader>gc',
+      function()
+        local commit = vim.fn.input 'Commit hash: '
+        if commit ~= '' then
+          vim.cmd('DiffviewOpen ' .. commit .. ' -- %')
+        end
+      end,
+      desc = 'git: compare commit vs current',
+    },
+  },
 }
