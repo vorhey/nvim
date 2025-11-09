@@ -1,5 +1,6 @@
 return {
   'olimorris/codecompanion.nvim',
+  enabled = false,
   keys = {
     { '<C-b>', mode = { 'n', 'v' } },
     { 'g;', mode = { 'n', 'v' } },
