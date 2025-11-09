@@ -2,7 +2,6 @@ return {
   'olimorris/codecompanion.nvim',
   enabled = true,
   lazy = true,
-  event = 'VeryLazy',
   keys = {
     { '<C-b>', mode = { 'n', 'v' } },
     { 'g;', mode = { 'n', 'v' } },
