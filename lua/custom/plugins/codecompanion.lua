@@ -8,7 +8,6 @@ return {
     { 'ga', mode = 'v' },
   },
   dependencies = {
-    'j-hui/fidget.nvim',
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
     'ravitemer/codecompanion-history.nvim',
