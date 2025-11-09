@@ -1,6 +1,8 @@
 return {
   'olimorris/codecompanion.nvim',
-  enabled = false,
+  enabled = true,
+  lazy = true,
+  event = 'VeryLazy',
   keys = {
     { '<C-b>', mode = { 'n', 'v' } },
     { 'g;', mode = { 'n', 'v' } },
@@ -27,9 +29,13 @@ return {
       extensions = { history = { enabled = true } },
       strategies = {
         chat = {
-          adapter = 'ollama',
-          model = 'qwen3-coder:480b-cloud',
+          name = 'copilot',
+          model = 'gpt-4.1',
         },
+        -- chat = {
+        --   adapter = 'ollama',
+        --   model = 'qwen3-coder:480b-cloud',
+        -- },
       },
       adapters = {
         http = {
@@ -57,34 +63,6 @@ return {
         provider = 'tavily',
       },
     }
-    -- Fidget integration for progress indicator
-    local group = vim.api.nvim_create_augroup('CodeCompanionFidget', { clear = true })
-
-    vim.api.nvim_create_autocmd('User', {
-      pattern = 'CodeCompanionRequestStarted',
-      group = group,
-      callback = function()
-        if package.loaded.fidget then
-          require('fidget').notify('CodeCompanion request in progress...', vim.log.levels.INFO, {
-            annote = 'AI',
-            key = 'codecompanion',
-          })
-        end
-      end,
-    })
-
-    vim.api.nvim_create_autocmd('User', {
-      pattern = 'CodeCompanionRequestFinished',
-      group = group,
-      callback = function()
-        if package.loaded.fidget then
-          require('fidget').notify('CodeCompanion request completed', vim.log.levels.INFO, {
-            annote = 'AI',
-            key = 'codecompanion',
-          })
-        end
-      end,
-    })
     vim.keymap.set({ 'n', 'v' }, '<C-b>', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true, desc = 'code companion: actions' })
     vim.keymap.set({ 'n', 'v' }, 'g;', '<cmd>CodeCompanionChat Toggle<cr>', { noremap = true, silent = true, desc = 'code companion: toggle' })
     vim.keymap.set('v', 'ga', '<cmd>CodeCompanionChat Add<cr>', { noremap = true, silent = true, desc = 'code companion: chat add' })
