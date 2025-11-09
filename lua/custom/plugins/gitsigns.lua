@@ -38,23 +38,23 @@ return {
             target = 'all',
           })
         end, { buffer = buffer, desc = 'git: previous hunk' })
-        vim.keymap.set('n', '<leader>gd', gs.diffthis, { buffer = buffer, desc = 'git: toggle diff' })
-        vim.keymap.set('n', '<leader>gD', function()
-          vim.ui.input({ prompt = 'Branch: ' }, function(branch)
-            if branch then
-              gs.diffthis(branch, { vertical = true })
-            end
-          end)
-        end, { buffer = buffer, desc = 'git: diff against branch' })
-        vim.opt.diffopt = {
-          'internal',
-          'filler',
-          'closeoff',
-          'context:12',
-          'algorithm:histogram',
-          'linematch:200',
-          'indent-heuristic',
-        }
+        -- vim.keymap.set('n', '<leader>gd', gs.diffthis, { buffer = buffer, desc = 'git: toggle diff' })
+        -- vim.keymap.set('n', '<leader>gD', function()
+        --   vim.ui.input({ prompt = 'Branch: ' }, function(branch)
+        --     if branch then
+        --       gs.diffthis(branch, { vertical = true })
+        --     end
+        --   end)
+        -- end, { buffer = buffer, desc = 'git: diff against branch' })
+        -- vim.opt.diffopt = {
+        --   'internal',
+        --   'filler',
+        --   'closeoff',
+        --   'context:12',
+        --   'algorithm:histogram',
+        --   'linematch:200',
+        --   'indent-heuristic',
+        -- }
       end,
     }
   end,
