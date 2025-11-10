@@ -5,6 +5,8 @@ return {
   dependencies = {
     'onsails/lspkind.nvim',
     'rcarriga/cmp-dap',
+    'rafamadriz/friendly-snippets',
+    { 'L3MON4D3/LuaSnip', version = 'v2.*' },
     {
       'saghen/blink.compat',
       opts = {},
@@ -13,6 +15,7 @@ return {
   },
   version = '*',
   config = function()
+    require('luasnip.loaders.from_vscode').lazy_load()
     require('blink.cmp').setup {
       keymap = {
         preset = 'default',
@@ -70,7 +73,7 @@ return {
         enabled = false,
       },
       sources = {
-        default = { 'lsp', 'path' },
+        default = { 'lsp', 'path', 'snippets' },
         per_filetype = {
           ['dap-repl'] = { 'dap' },
           dapui_watches = { 'dap' },
@@ -108,22 +111,7 @@ return {
           },
         },
       },
-
-      snippets = {
-        expand = function(snippet)
-          vim.snippet.expand(snippet)
-        end,
-        active = function(filter)
-          if filter and filter.direction then
-            return vim.snippet.active { direction = filter.direction }
-          end
-          return vim.snippet.active()
-        end,
-        jump = function(direction)
-          vim.snippet.jump(direction)
-        end,
-      },
-
+      snippets = { preset = 'luasnip' },
       appearance = {
         use_nvim_cmp_as_default = false,
         nerd_font_variant = 'mono',
