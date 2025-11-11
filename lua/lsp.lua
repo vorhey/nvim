@@ -99,6 +99,7 @@ return {
       },
     }
 
+    vim.api.nvim_set_hl(0, 'DiagnosticUnnecessary', { undercurl = true, sp = '#888888', fg = '#888888' })
     -- Use blink.cmp capabilities instead of nvim-cmp
     local capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('blink.cmp').get_lsp_capabilities())
 
