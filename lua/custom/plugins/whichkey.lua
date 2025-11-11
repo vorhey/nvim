@@ -9,7 +9,6 @@ return {
       {
         { '<leader>o', icon = { icon = '󰅙', color = 'azure' } },
         { '<leader>O', icon = { icon = '󰅙', color = 'azure' } },
-        { '<leader>q', icon = { icon = '󰈆', color = 'azure' } },
         { '<leader>Q', icon = { icon = '󰈆', color = 'azure' } },
         { '<leader>e', icon = { icon = '󱏒', color = 'azure' } },
         { '<leader>u', desc = 'undo', icon = { icon = '', color = 'red' } },
@@ -24,6 +23,7 @@ return {
         { '<leader>l', group = 'lsp', icon = { icon = '', color = 'grey' } },
         { '<leader>n', group = 'neotest', icon = { icon = '', color = 'grey' } },
         { '<leader>m', group = 'multicursor/mermaid', icon = { icon = '󰇀', color = 'grey' } },
+        { '<leader>r', group = 'overseer', icon = { icon = '', color = 'grey' } },
         { '<leader>x', group = 'trouble', icon = { icon = '󰗶', color = 'grey' } },
         { '<leader>s', group = 'dadbod', icon = { icon = '󰆼', color = 'grey' } },
       },
