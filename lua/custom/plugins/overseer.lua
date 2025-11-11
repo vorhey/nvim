@@ -1,5 +1,11 @@
 return {
   'stevearc/overseer.nvim',
+  keys = {
+    { '<leader>rr', desc = 'Overseer: Run task' },
+    { '<leader>rt', desc = 'Overseer: Toggle task list' },
+  },
+  cmd = { 'OverseerRun', 'OverseerToggle', 'OverseerOpen', 'OverseerClose', 'OverseerBuild', 'OverseerQuickAction' },
+  event = { 'VeryLazy' },
   config = function()
     local overseer = require 'overseer'
     overseer.setup {
