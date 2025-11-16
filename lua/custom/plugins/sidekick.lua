@@ -27,7 +27,7 @@ return {
       desc = 'Sidekick: Toggle CLI',
     },
     {
-      '<leader>af', -- Send current file to Sidekick CLI (normal mode)
+      '<leader><leader>', -- Send current file to Sidekick CLI (normal mode)
       function()
         local ok, cli = pcall(require, 'sidekick.cli')
         if ok and cli then
@@ -40,7 +40,7 @@ return {
       desc = 'Sidekick: Send File',
     },
     {
-      '<leader>av', -- Send visual selection to Sidekick CLI (visual mode)
+      '<leader><leader>', -- Send visual selection to Sidekick CLI (visual mode)
       function()
         require('sidekick.cli').send { msg = '{selection}' }
       end,

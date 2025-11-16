@@ -14,7 +14,6 @@ return {
         { '<leader>u', desc = 'undo', icon = { icon = '', color = 'red' } },
         { '<leader><leader>', desc = 'add file', icon = { icon = '', color = 'red' } },
         { '<leader>a', group = 'sidekick', icon = { icon = '', color = 'grey' } },
-        { '<leader>c', group = 'code-bridge', icon = { icon = '󰘘', color = 'grey' } },
         { '<leader>d', group = 'debug', icon = { icon = '', color = 'grey' } },
         { '<leader>t', group = 'toggle', icon = { icon = '', color = 'grey' } },
         { '<leader>f', group = 'find', icon = { icon = '', color = 'grey' } },
