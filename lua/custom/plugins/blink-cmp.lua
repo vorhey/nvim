@@ -67,7 +67,6 @@ return {
         },
         documentation = {
           auto_show = false, -- Matches your auto_open = false
-          auto_show_delay_ms = 500,
           treesitter_highlighting = true,
           window = {
             border = 'rounded',
