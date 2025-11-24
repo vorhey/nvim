@@ -62,5 +62,12 @@ return {
       expr = true,
       desc = 'Sidekick: Goto/Apply Next Edit Suggestion',
     },
+    {
+      '<leader>as',
+      function()
+        require('sidekick.cli').select()
+      end,
+      desc = 'Select CLI Tool',
+    },
   },
 }
