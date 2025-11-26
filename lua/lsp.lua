@@ -165,6 +165,7 @@ return {
         vtsls = {
           enableMoveToFileCodeAction = true,
           experimental = {
+            disableSourceDefinition = true,
             maxInlayHintLength = 20,
             completion = {
               enableServerSideFuzzyMatch = true,
@@ -205,7 +206,7 @@ return {
           },
           referencesCodeLens = {
             enabled = true,
-            showOnAllFunctions = false,
+            showOnAllFunctions = true,
           },
           implementationsCodeLens = {
             enabled = true,
