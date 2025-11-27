@@ -603,6 +603,7 @@ return {
           },
         },
       },
+      hoverProvider = true,
     })
 
     vim.keymap.set({ 'v', 'n' }, '<leader>la', '<cmd>lua require("fastaction").code_action()<CR>', { desc = 'lsp: code actions' })
