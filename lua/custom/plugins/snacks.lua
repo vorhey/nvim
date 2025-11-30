@@ -204,6 +204,13 @@ return {
       desc = 'grep',
     },
     {
+      '<leader>fb',
+      function()
+        Snacks.picker.grep { files = { vim.api.nvim_buf_get_name(0) } }
+      end,
+      desc = 'grep in current buffer',
+    },
+    {
       '<leader>fd',
       function()
         Snacks.picker.git_status()
