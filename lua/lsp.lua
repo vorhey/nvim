@@ -586,6 +586,8 @@ return {
 
     -- Configure Ruff (Python linter/formatter)
     vim.lsp.config('ruff', {
+      cmd = { 'ruff', 'server', '--preview' },
+      filetypes = { 'python' },
       init_options = {
         settings = {},
       },
