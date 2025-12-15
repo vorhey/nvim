@@ -21,10 +21,11 @@ return {
         { '<leader>h', group = 'harvgate', icon = { icon = '󰁤', color = 'grey' } },
         { '<leader>l', group = 'lsp', icon = { icon = '', color = 'grey' } },
         { '<leader>n', group = 'neotest', icon = { icon = '', color = 'grey' } },
-        { '<leader>m', group = 'multicursor/mermaid', icon = { icon = '󰇀', color = 'grey' } },
+        { '<leader>m', group = 'multicursor', icon = { icon = '󰇀', color = 'grey' } },
         { '<leader>r', group = 'overseer', icon = { icon = '', color = 'grey' } },
         { '<leader>x', group = 'trouble', icon = { icon = '󰗶', color = 'grey' } },
-        { '<leader>s', group = 'dadbod', icon = { icon = '󰆼', color = 'grey' } },
+        { '<leader>z', group = 'dadbod', icon = { icon = '󰆼', color = 'grey' } },
+        { '<leader>s', group = 'sessions', icon = { icon = '', color = 'grey' } },
       },
     }
     wk.setup {

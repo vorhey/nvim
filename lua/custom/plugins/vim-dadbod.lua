@@ -25,7 +25,7 @@ return {
       desc = 'Toggle DB UI',
     },
     {
-      '<leader>ss',
+      '<leader>zs',
       function()
         local ts = vim.treesitter
         local cursor = vim.api.nvim_win_get_cursor(0)
@@ -115,7 +115,7 @@ return {
         local wk = require 'which-key'
         wk.add {
           buffer = vim.api.nvim_get_current_buf(),
-          { '<leader>ss', desc = 'Execute current SQL statement', icon = { icon = '󰜎', color = 'blue' }, mode = 'n' },
+          { '<leader>zs', desc = 'Execute current SQL statement', icon = { icon = '󰜎', color = 'blue' }, mode = 'n' },
           { '<leader>S', desc = 'Execute SQL buffer', icon = { icon = '󰌵', color = 'blue' }, mode = 'n' },
           { '<leader>W', desc = 'Save SQL buffer', icon = { icon = '󰈙', color = 'blue' }, mode = 'n' },
           { '<leader>R', desc = 'Toggle result layout', icon = { icon = '󰒲', color = 'blue' }, mode = 'n' },
