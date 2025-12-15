@@ -116,3 +116,8 @@ end, { desc = 'Put line above' })
 vim.keymap.set('n', ']p', function()
   vim.cmd 'put'
 end, { desc = 'Put line below' })
+
+if vim.g.neovide then
+  vim.keymap.set({ 'n', 'v' }, '<C-S-v>', '"+p', { desc = 'Paste from system clipboard' })
+  vim.keymap.set('i', '<C-S-v>', '<C-r>+', { desc = 'Paste from system clipboard' })
+end
