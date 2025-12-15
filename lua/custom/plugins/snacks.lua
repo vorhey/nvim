@@ -142,42 +142,6 @@ return {
             },
           },
         },
-        projects = {
-          dev = { '~/projects' },
-          patterns = { '.git', 'package.json', 'Makefile', 'Cargo.toml' },
-          recent = true,
-          confirm = function(picker, item)
-            -- Change to project directory
-            vim.cmd('tcd ' .. item.file)
-
-            -- Try to load a session for this project
-            local ok, MiniSessions = pcall(require, 'mini.sessions')
-            if ok then
-              local project_name = vim.fn.fnamemodify(item.file, ':t')
-
-              -- Check if a session exists for this project
-              if MiniSessions.detected[project_name] then
-                MiniSessions.read(project_name)
-                Snacks.notify('Loaded session: ' .. project_name)
-              else
-                Snacks.notify('Changed to: ' .. project_name)
-              end
-            else
-              Snacks.notify('Changed to: ' .. vim.fn.fnamemodify(item.file, ':t'))
-            end
-
-            picker:close()
-          end,
-          win = {
-            input = {
-              keys = {
-                ['<c-e>'] = { { 'tcd', 'picker_explorer' }, mode = { 'n', 'i' } },
-                ['<c-f>'] = { { 'tcd', 'picker_files' }, mode = { 'n', 'i' } },
-                ['<c-g>'] = { { 'tcd', 'picker_grep' }, mode = { 'n', 'i' } },
-              },
-            },
-          },
-        },
       },
     },
     scope = {
@@ -259,13 +223,6 @@ return {
         Snacks.picker.lsp_symbols()
       end,
       desc = 'lsp symbols',
-    },
-    {
-      '<leader>fs',
-      function()
-        Snacks.picker.projects()
-      end,
-      desc = 'projects',
     },
     {
       '<leader>fr',
