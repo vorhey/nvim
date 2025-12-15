@@ -1,6 +1,6 @@
 return {
   '3rd/image.nvim',
-  enabled = vim.g.is_wsl,
+  enabled = vim.g.is_wsl and not vim.g.neovide,
   build = false,
   lazy = true,
   event = 'VeryLazy',
