@@ -1,5 +1,5 @@
 return {
-  'echasnovski/mini.basics',
+  'nvim-mini/mini.basics',
   config = function()
     require('mini.basics').setup {
       mappings = {
