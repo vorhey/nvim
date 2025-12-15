@@ -65,5 +65,8 @@ vim.opt.shortmess:append { W = true, I = true, c = true, C = true }
 vim.cmd [[let &t_Cs = "\e[4:3m"]] -- Enable undercurl
 vim.cmd [[let &t_Ce = "\e[4:0m"]]
 
-vim.opt.winbar = "%=%{%v:lua.get_file_icon()%}%{%v:lua.require('utils').get_relative_filename()%}%="
+if vim.g.neovide == false then
+  vim.opt.winbar = "%=%{%v:lua.get_file_icon()%}%{%v:lua.require('utils').get_relative_filename()%}%="
+end
+
 vim.o.winborder = 'rounded'
