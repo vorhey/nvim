@@ -5,7 +5,7 @@ return {
   priority = 1000,
   config = function()
     local variant = 'light'
-    if vim.env.TERM_PROGRAM == 'WarpTerminal' then
+    if vim.env.TERM == 'foot' then
       variant = 'dark'
     end
     require('oldworld').setup {
