@@ -19,7 +19,7 @@ return {
         chat = {
           window = {
             full_height = false,
-            width = 'auto',
+            width = 0.5,
           },
           show_reasoning = false,
         },
