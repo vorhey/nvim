@@ -153,6 +153,7 @@ return {
               [80001] = true, -- Import can be automatically included
               [80006] = true, -- This may be converted to an async function
               [7044] = true, -- Parameter has implicitly 'any' type
+              [7000] = true, -- Parameter has implicitly 'any' type
             }
             result.diagnostics = vim.tbl_filter(function(diagnostic)
               return not IGNORED_DIAGNOSTIC_CODES[diagnostic.code]
