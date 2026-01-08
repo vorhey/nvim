@@ -154,6 +154,7 @@ return {
               [80006] = true, -- This may be converted to an async function
               [7044] = true, -- Parameter has implicitly 'any' type
               [7006] = true, -- Parameter has implicitly 'any' type
+              [7031] = true, -- Parameter has implicitly 'any' type
             }
             result.diagnostics = vim.tbl_filter(function(diagnostic)
               return not IGNORED_DIAGNOSTIC_CODES[diagnostic.code]
