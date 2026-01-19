@@ -9,11 +9,17 @@ return {
     end,
     config = function()
       require('catppuccin').setup {
-        transparent_background = false, -- disables setting the background color.
+        auto_integrations = true,
+        transparent_background = false,
         float = {
-          transparent = true, -- enable transparent floating windows
-          solid = true, -- use solid styling for floating windows, see |winborder|
+          transparent = true,
+          solid = true,
         },
+        custom_highlights = function(colors)
+          return {
+            BlinkCmpMenuBorder = { bg = colors.none },
+          }
+        end,
       }
       vim.cmd.colorscheme 'catppuccin'
     end,
