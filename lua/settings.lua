@@ -72,6 +72,7 @@ end
 vim.o.winborder = 'rounded'
 
 if vim.g.neovide then
+  vim.g.neovide_opacity = 0.9
   vim.g.neovide_refresh_rate = 144
   vim.o.guifont = 'RobotoMonoLigaturized Nerd Font'
 
