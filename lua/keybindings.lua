@@ -120,7 +120,7 @@ end, { desc = 'Put line below' })
 if vim.g.neovide then
   vim.keymap.set({ 'n', 'v' }, '<C-S-v>', '"+p', { desc = 'Paste from system clipboard' })
   vim.keymap.set('i', '<C-S-v>', '<C-r>+', { desc = 'Paste from system clipboard' })
-  vim.keymap.set({ 'n', 'i', 't' }, '<leader>T', function()
+  vim.keymap.set({ 'n', 't' }, '<leader>T', function()
     local name = vim.fn.input 'Terminal name: '
     vim.cmd 'terminal'
     if name ~= '' then

@@ -70,3 +70,22 @@ if not vim.g.neovide then
 end
 
 vim.o.winborder = 'rounded'
+
+if vim.g.neovide then
+  vim.g.neovide_refresh_rate = 144
+  vim.o.guifont = 'RobotoMonoLigaturized Nerd Font'
+
+  -- Cursor animation for smooth typing
+  vim.g.neovide_cursor_animation_length = 0.13
+  vim.g.neovide_cursor_short_animation_length = 0.06
+  vim.g.neovide_cursor_trail_size = 0.6
+  vim.g.neovide_cursor_animate_in_insert_mode = true
+  vim.g.neovide_cursor_smooth_blink = true
+
+  -- Scroll animation
+  vim.g.neovide_scroll_animation_length = 0.25
+  vim.g.neovide_scroll_animation_far_lines = 3
+
+  -- Window/split animations
+  vim.g.neovide_position_animation_length = 0.15
+end
