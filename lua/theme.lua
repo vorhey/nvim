@@ -1,27 +1,18 @@
 return {
   {
-    'catppuccin/nvim',
-    name = 'catppuccin',
+    'sainnhe/everforest',
     lazy = false,
     priority = 1000,
     cond = function()
       return vim.g.neovide
     end,
     config = function()
-      require('catppuccin').setup {
-        auto_integrations = true,
-        transparent_background = false,
-        float = {
-          transparent = true,
-          solid = true,
-        },
-        custom_highlights = function(colors)
-          return {
-            BlinkCmpMenuBorder = { bg = colors.none },
-          }
-        end,
-      }
-      vim.cmd.colorscheme 'catppuccin'
+      vim.g.everforest_background = 'hard'
+      vim.g.everforest_ui_contrast = 'high'
+      vim.g.everforest_float_style = 'blend'
+      vim.cmd.colorscheme 'everforest'
+      vim.api.nvim_set_hl(0, 'BlinkCmpMenuBorder', { bg = 'none' })
+      vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'none' })
     end,
   },
   {
@@ -40,6 +31,7 @@ return {
         variant = variant,
       }
       vim.cmd.colorscheme 'oldworld'
+      vim.api.nvim_set_hl(0, 'BlinkCmpMenuBorder', { bg = 'none' })
     end,
   },
 }
