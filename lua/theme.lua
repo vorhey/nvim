@@ -13,6 +13,7 @@ return {
       vim.cmd.colorscheme 'everforest'
       vim.api.nvim_set_hl(0, 'BlinkCmpMenuBorder', { bg = 'none' })
       vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'none' })
+      vim.api.nvim_set_hl(0, 'Red', { fg = '#ffdfb8' })
     end,
   },
   {
