@@ -72,8 +72,9 @@ end
 vim.o.winborder = 'rounded'
 
 if vim.g.neovide then
-  vim.g.neovide_opacity = 0.9
   vim.g.neovide_refresh_rate = 144
+  vim.g.neovide_floating_shadow = false
+  vim.g.neovide_floating_corner_radius = 0.0
 
   -- Cursor animation for smooth typing
   vim.g.neovide_cursor_animation_length = 0.13
