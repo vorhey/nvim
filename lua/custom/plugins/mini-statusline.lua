@@ -116,7 +116,17 @@ return {
           local search = MiniStatusline.section_searchcount { trunc_width = 75 }
           local selection = section_selection { trunc_width = 75 }
           local buffer_indicator = section_buffers { trunc_width = 120 }
-          local lsp = #vim.lsp.get_clients { bufnr = 0 } > 0 and '󰬓' or ''
+          local lsp_clients = vim.lsp.get_clients { bufnr = 0 }
+          local lsp = ''
+          local names = {}
+          for _, client in ipairs(lsp_clients) do
+            if client.name ~= 'copilot' then
+              table.insert(names, client.name)
+            end
+          end
+          if #names > 0 then
+            lsp = '󰬓 ' .. table.concat(names, ', ')
+          end
           local git_status = vim.b.minidiff_summary_string or vim.b.gitsigns_status
           local has_diff = git_status == '' and '' or ''
 
