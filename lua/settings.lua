@@ -83,8 +83,8 @@ if vim.g.neovide then
   vim.g.neovide_cursor_smooth_blink = true
 
   -- Scroll animation
-  vim.g.neovide_scroll_animation_length = 0.25
-  vim.g.neovide_scroll_animation_far_lines = 3
+  vim.g.neovide_scroll_animation_length = 0.35
+  vim.g.neovide_scroll_animation_far_lines = 1
 
   -- Window/split animations
   vim.g.neovide_position_animation_length = 0.15

@@ -118,8 +118,8 @@ vim.keymap.set('n', ']p', function()
 end, { desc = 'Put line below' })
 
 if vim.g.neovide then
-  vim.keymap.set({ 'n', 'v' }, '<C-S-v>', '"+p', { desc = 'Paste from system clipboard' })
-  vim.keymap.set('i', '<C-S-v>', '<C-r>+', { desc = 'Paste from system clipboard' })
+  -- vim.keymap.set({ 'n', 'v' }, '<C-S-v>', '"+p', { desc = 'Paste from system clipboard' })
+  -- vim.keymap.set('i', '<C-S-v>', '<C-r>+', { desc = 'Paste from system clipboard' })
   vim.keymap.set({ 'n' }, '<leader>T', function()
     local name = vim.fn.input 'Terminal name: '
     vim.cmd 'terminal'
@@ -128,4 +128,17 @@ if vim.g.neovide then
     end
     vim.cmd 'startinsert'
   end)
+  local function save()
+    vim.cmd.write()
+  end
+  local function copy()
+    vim.api.nvim_cmd({ cmd = 'yank', reg = '+' }, {})
+  end
+  local function paste()
+    vim.api.nvim_paste(vim.fn.getreg '+', true, -1)
+  end
+
+  vim.keymap.set({ 'n', 'i', 'v' }, '<D-s>', save, { desc = 'Save' })
+  vim.keymap.set('v', '<C-S-c>', copy, { silent = true, desc = 'Copy' })
+  vim.keymap.set({ 'n', 'i', 'v', 'c', 't' }, '<C-S-v>', paste, { silent = true, desc = 'Paste' })
 end

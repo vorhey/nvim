@@ -120,7 +120,7 @@ return {
           local lsp = ''
           local names = {}
           for _, client in ipairs(lsp_clients) do
-            if client.name ~= 'copilot' then
+            if not client.name:lower():find('copilot') then
               table.insert(names, client.name)
             end
           end
