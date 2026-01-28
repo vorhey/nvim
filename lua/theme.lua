@@ -10,6 +10,7 @@ return {
       vim.g.everforest_background = 'hard'
       vim.g.everforest_ui_contrast = 'high'
       vim.g.everforest_float_style = 'blend'
+      vim.g.everforest_colors_override = { bg1 = { 'none', 'none' } }
       vim.cmd.colorscheme 'everforest'
       vim.api.nvim_set_hl(0, 'BlinkCmpMenuBorder', { bg = 'none' })
       vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'none' })
