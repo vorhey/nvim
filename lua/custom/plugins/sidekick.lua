@@ -9,6 +9,7 @@ return {
         enabled = false,
       },
       tools = {},
+      win = { layout = 'float' },
     },
   },
   -- Keybindings for Sidekick features
@@ -46,6 +47,14 @@ return {
       end,
       mode = { 'x' },
       desc = 'Sidekick: Send Visual Selection',
+    },
+    {
+      '<m-.>',
+      function()
+        require('sidekick.cli').toggle()
+      end,
+      desc = 'Sidekick Toggle',
+      mode = { 'n', 't', 'i', 'x' },
     },
     {
       '<tab>', -- Jump/apply next edit suggestion or fallback to Tab (normal & insert mode)
