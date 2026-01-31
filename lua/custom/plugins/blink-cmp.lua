@@ -93,6 +93,12 @@ return {
             module = 'blink.cmp.sources.path',
             score_offset = -3,
           },
+          snippets = {
+            name = 'Snippets',
+            module = 'blink.cmp.sources.snippets',
+            score_offset = -10, -- Lower priority for snippets
+          },
+
           -- Using compat layer for html-css
           ['html-css'] = {
             name = 'HTML-CSS',
