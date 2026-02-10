@@ -110,9 +110,10 @@ return {
     require('mini.statusline').setup {
       content = {
         active = function()
-          local mode_hl = MiniStatusline.section_mode { trunc_width = 120 }
+          local mode, mode_hl = MiniStatusline.section_mode { trunc_width = 120 }
+          mode = mode:sub(1, 1) -- Show only first letter
           local diagnostics = MiniStatusline.section_diagnostics { trunc_width = 75 }
-          local has_diagnostics = diagnostics == '' and '' or ''
+          local has_diagnostics = diagnostics == '' and '' or ''
           local search = MiniStatusline.section_searchcount { trunc_width = 75 }
           local selection = section_selection { trunc_width = 75 }
           local buffer_indicator = section_buffers { trunc_width = 120 }
@@ -162,6 +163,7 @@ return {
 
           local groups = {}
 
+          table.insert(groups, { hl = mode_hl, strings = { mode, search, selection } })
           -- Add buffer dots
           if type(buffer_indicator) == 'table' then
             for _, dot in ipairs(buffer_indicator) do
@@ -177,7 +179,6 @@ return {
             hl = 'MiniStatuslineFileinfo',
             strings = { autoformat_indicator, lsp, spacing_info, has_diff, has_diagnostics, copilot },
           })
-          table.insert(groups, { hl = mode_hl, strings = { search, selection } })
 
           return MiniStatusline.combine_groups(groups)
         end,
