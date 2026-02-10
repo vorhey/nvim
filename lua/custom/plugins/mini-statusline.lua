@@ -110,7 +110,7 @@ return {
     require('mini.statusline').setup {
       content = {
         active = function()
-          local mode_hl = MiniStatusline.section_mode { trunc_width = 120 }
+          local mode, mode_hl = MiniStatusline.section_mode { trunc_width = 200 }
           local diagnostics = MiniStatusline.section_diagnostics { trunc_width = 75 }
           local has_diagnostics = diagnostics == '' and '' or ''
           local search = MiniStatusline.section_searchcount { trunc_width = 75 }
@@ -178,6 +178,7 @@ return {
             strings = { autoformat_indicator, lsp, spacing_info, has_diff, has_diagnostics, copilot },
           })
           table.insert(groups, { hl = mode_hl, strings = { search, selection } })
+          table.insert(groups, { hl = mode_hl, strings = { mode } })
 
           return MiniStatusline.combine_groups(groups)
         end,
