@@ -13,7 +13,6 @@ vim.opt.signcolumn = 'yes' -- Always show sign column
 vim.opt.showcmd = false -- Don't show command in status line
 vim.opt.ruler = false -- Disable ruler
 vim.opt.cmdheight = 1 -- Command line height
-vim.opt.guicursor = '' -- Use block cursor in all modes
 
 -- Window and split behavior
 vim.opt.splitright = true -- Open new splits to the right

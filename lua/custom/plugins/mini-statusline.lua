@@ -94,27 +94,11 @@ return {
       return dots
     end
 
-    -- Simple visual selection section following mini.statusline patterns
-    local function section_selection(args)
-      if MiniStatusline.is_truncated(args.trunc_width) then
-        return ''
-      end
-      local mode = vim.fn.mode()
-      if not mode:match '[vV]' then
-        return ''
-      end
-      local lines = math.abs(vim.fn.line '.' - vim.fn.line 'v') + 1
-      return string.format('(%dL)', lines)
-    end
-
     require('mini.statusline').setup {
       content = {
         active = function()
-          local mode, mode_hl = MiniStatusline.section_mode { trunc_width = 200 }
           local diagnostics = MiniStatusline.section_diagnostics { trunc_width = 75 }
           local has_diagnostics = diagnostics == '' and '' or ''
-          local search = MiniStatusline.section_searchcount { trunc_width = 75 }
-          local selection = section_selection { trunc_width = 75 }
           local buffer_indicator = section_buffers { trunc_width = 120 }
           local lsp_clients = vim.lsp.get_clients { bufnr = 0 }
           local lsp = ''
@@ -177,9 +161,6 @@ return {
             hl = 'MiniStatuslineFileinfo',
             strings = { autoformat_indicator, lsp, spacing_info, has_diff, has_diagnostics, copilot },
           })
-          table.insert(groups, { hl = mode_hl, strings = { search, selection } })
-          table.insert(groups, { hl = mode_hl, strings = { mode } })
-
           return MiniStatusline.combine_groups(groups)
         end,
       },
