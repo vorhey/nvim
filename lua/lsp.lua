@@ -91,7 +91,7 @@ return {
         'vtsls',
         'yamlls',
         'jdtls',
-        'pyright',
+        'pyrefly',
       },
     }
 
@@ -604,20 +604,19 @@ return {
       filetypes = { 'python' },
     })
 
-    vim.lsp.config('pyright', {
-      cmd = { 'pyright-langserver', '--stdio' },
+    vim.lsp.config('pyrefly', {
+      cmd = { 'pyrefly', 'lsp' },
       filetypes = { 'python' },
       root_markers = { '.git', 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt' },
       settings = {
-        pyright = {
-          diagnostics = {
-            unusedImports = 'warning',
-            undefinedVariable = 'warning',
-            reportUnusedVariable = 'warning',
+        python = {
+          analysis = {
+            typeCheckingMode = 'basic',
+            autoImportCompletions = true,
+            diagnosticMode = 'workspace',
           },
         },
       },
-      hoverProvider = true,
     })
 
     vim.keymap.set({ 'v', 'n' }, '<leader>la', '<cmd>lua require("fastaction").code_action()<CR>', { desc = 'lsp: code actions' })
@@ -642,6 +641,7 @@ return {
       'intelephense',
       'jsonls',
       'lua_ls',
+      'pyrefly',
       'ruff',
       'tailwindcss',
       'vtsls',
