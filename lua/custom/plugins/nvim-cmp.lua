@@ -66,6 +66,7 @@ return {
       { name = 'nvim_lsp' },
       { name = 'lazydev' },
       { name = 'path' },
+      { name = 'buffer' },
       { name = 'nvim_lsp_signature_help' },
       { name = 'html-css' },
     }
@@ -73,19 +74,17 @@ return {
     local formatting = {
       fields = { 'kind', 'abbr', 'menu' },
       format = function(entry, item)
+        local kind_name = item.kind
+        local icon, hl, _ = require('mini.icons').get('lsp', kind_name)
+        item.kind = ' ' .. icon .. ' '
+        item.kind_hl_group = hl
+        item.menu = '    ' .. kind_name
+
         if entry.source.name == 'path' then
           item.dup = 0
         end
 
-        local kind = require('lspkind').cmp_format {
-          mode = 'symbol_text',
-          maxwidth = 50,
-          ellipsis_char = '...',
-        }(entry, item)
-        local strings = vim.split(kind.kind, '%s', { trimempty = true })
-        kind.kind = ' ' .. (strings[1] or '') .. ' '
-        kind.menu = '    (' .. (strings[2] or '') .. ') [' .. entry.source.name .. ']'
-        return kind
+        return item
       end,
     }
 
@@ -112,7 +111,7 @@ return {
       },
       view = {
         docs = {
-          auto_open = false,
+          auto_open = true,
         },
       },
       completion = {
@@ -124,7 +123,7 @@ return {
         fetching_timeout = 500,
         confirm_resolve_timeout = 80,
         async_budget = 1,
-        max_view_entries = 5,
+        max_view_entries = 15,
         filtering_context_budget = 3,
       },
     }
