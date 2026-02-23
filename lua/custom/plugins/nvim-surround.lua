@@ -3,14 +3,19 @@ return {
   version = '*', -- Use for stability; omit to use `main` branch for the latest features
   event = 'VeryLazy',
   config = function()
-    require('nvim-surround').setup {
-      keymaps = {
-        normal = 'gs',
-        visual = 'S',
-        delete = 'ds',
-        change = 'cs',
-      },
-    }
+    vim.g.nvim_surround_no_normal_mappings = true
+    vim.g.nvim_surround_no_visual_mappings = true
+    vim.g.nvim_surround_no_insert_mappings = true
+
+    require('nvim-surround').setup {}
+
+    vim.keymap.set('n', 'gs', '<Plug>(nvim-surround-normal)', { desc = 'Add surrounding (normal)' })
+    vim.keymap.set('n', 'gss', '<Plug>(nvim-surround-normal-cur)', { desc = 'Add surrounding (line)' })
+    vim.keymap.set('x', 'S', '<Plug>(nvim-surround-visual)', { desc = 'Add surrounding (visual)' })
+    vim.keymap.set('x', 'gS', '<Plug>(nvim-surround-visual-line)', { desc = 'Add surrounding (visual line)' })
+    vim.keymap.set('n', 'ds', '<Plug>(nvim-surround-delete)', { desc = 'Delete surrounding' })
+    vim.keymap.set('n', 'cs', '<Plug>(nvim-surround-change)', { desc = 'Change surrounding' })
+    vim.keymap.set('n', 'cS', '<Plug>(nvim-surround-change-line)', { desc = 'Change surrounding (line)' })
   end,
 }
 
