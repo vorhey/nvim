@@ -6,7 +6,7 @@ _G.get_file_icon = function()
   if extension == '' then
     return ''
   end
-  local icon, _ = require('nvim-web-devicons').get_icon_by_filetype(extension, { default = true })
+  local icon, _ = require('mini.icons').get('extension', extension)
   return icon .. ' '
 end
 
