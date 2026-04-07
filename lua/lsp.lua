@@ -388,7 +388,7 @@ return {
               if vim.api.nvim_get_mode().mode == 'i' then
                 return
               end
-              vim.lsp.codelens.refresh { bufnr = bufnr }
+              vim.lsp.codelens.enable(true, { bufnr = bufnr })
               -- workaround for diagnostics not being triggered
               client:request('textDocument/diagnostic', {
                 textDocument = vim.lsp.util.make_text_document_params(),
