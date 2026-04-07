@@ -6,7 +6,6 @@ vim.g.have_nerd_font = true
 -- Display and UI settings
 vim.opt.number = true -- Enable line numbers
 vim.opt.relativenumber = true -- Enable relative line numbers
-vim.opt.showmode = false -- Don't show mode in command line
 vim.opt.termguicolors = true -- Enable terminal GUI colors
 vim.opt.cursorline = true -- Highlight current line
 vim.opt.signcolumn = 'yes' -- Always show sign column
@@ -70,23 +69,3 @@ if not vim.g.neovide then
 end
 
 vim.o.winborder = 'rounded'
-
-if vim.g.neovide then
-  vim.g.neovide_refresh_rate = 144
-  vim.g.neovide_floating_shadow = false
-  vim.g.neovide_floating_corner_radius = 0.0
-
-  -- Cursor animation for smooth typing
-  vim.g.neovide_cursor_animation_length = 0.13
-  vim.g.neovide_cursor_short_animation_length = 0.06
-  vim.g.neovide_cursor_trail_size = 0.6
-  vim.g.neovide_cursor_animate_in_insert_mode = true
-  vim.g.neovide_cursor_smooth_blink = true
-
-  -- Scroll animation
-  vim.g.neovide_scroll_animation_length = 0.35
-  vim.g.neovide_scroll_animation_far_lines = 1
-
-  -- Window/split animations
-  vim.g.neovide_position_animation_length = 0.15
-end

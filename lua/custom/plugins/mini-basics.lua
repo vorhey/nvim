@@ -1,5 +1,6 @@
 return {
   'nvim-mini/mini.basics',
+  enabled = true,
   config = function()
     require('mini.basics').setup {
       mappings = {
@@ -8,6 +9,7 @@ return {
       },
       silent = true,
     }
+    vim.opt.showmode = true
   end,
 }
 -- ==================================================
