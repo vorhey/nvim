@@ -7,8 +7,6 @@ return {
   dependencies = {
     'onsails/lspkind.nvim',
     'rcarriga/cmp-dap',
-    'rafamadriz/friendly-snippets',
-    { 'L3MON4D3/LuaSnip', version = 'v2.*' },
     {
       'saghen/blink.compat',
       opts = {},
@@ -17,12 +15,6 @@ return {
   },
   version = '*',
   config = function()
-    require('luasnip.loaders.from_vscode').lazy_load()
-    require('luasnip.loaders.from_vscode').lazy_load {
-      paths = {
-        vim.fn.stdpath 'config' .. '/snippets',
-      },
-    }
     require('blink.cmp').setup {
       keymap = {
         preset = 'default',
@@ -33,10 +25,7 @@ return {
         ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
         -- Use built-in show/hide documentation commands instead of custom function
         ['<C-d>'] = { 'show_documentation', 'hide_documentation' },
-        ['<Tab>'] = { 'select_and_accept', 'snippet_forward', 'fallback' },
-        -- Snippet navigation (equivalent to your C-h/C-l)
-        ['<C-h>'] = { 'snippet_backward', 'fallback' },
-        ['<C-l>'] = { 'snippet_forward', 'fallback' },
+        ['<Tab>'] = { 'select_and_accept', 'fallback' },
       },
 
       completion = {
@@ -79,7 +68,7 @@ return {
         enabled = false,
       },
       sources = {
-        default = { 'lsp', 'path', 'snippets' },
+        default = { 'lsp', 'path' },
         per_filetype = {
           ['dap-repl'] = { 'dap' },
           dapui_watches = { 'dap' },
@@ -95,12 +84,6 @@ return {
             module = 'blink.cmp.sources.path',
             score_offset = -3,
           },
-          snippets = {
-            name = 'Snippets',
-            module = 'blink.cmp.sources.snippets',
-            score_offset = -10, -- Lower priority for snippets
-          },
-
           -- Using compat layer for html-css
           ['html-css'] = {
             name = 'HTML-CSS',
@@ -123,7 +106,6 @@ return {
           },
         },
       },
-      snippets = { preset = 'luasnip' },
       appearance = {
         use_nvim_cmp_as_default = false,
         nerd_font_variant = 'mono',
