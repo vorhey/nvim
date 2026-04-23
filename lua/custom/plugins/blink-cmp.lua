@@ -17,7 +17,7 @@ return {
   config = function()
     require('blink.cmp').setup {
       keymap = {
-        preset = 'default',
+        preset = 'super-tab',
         ['<C-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
         ['<C-n>'] = { 'select_next', 'fallback' },
         ['<C-p>'] = { 'select_prev', 'fallback' },
@@ -25,7 +25,6 @@ return {
         ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
         -- Use built-in show/hide documentation commands instead of custom function
         ['<C-d>'] = { 'show_documentation', 'hide_documentation' },
-        ['<Tab>'] = { 'select_and_accept', 'fallback' },
       },
 
       completion = {
