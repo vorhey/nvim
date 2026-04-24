@@ -22,6 +22,7 @@ return {
       'codelldb',
       'clang-format',
       'debugpy',
+      'biome',
     },
   },
   config = function(_, opts)

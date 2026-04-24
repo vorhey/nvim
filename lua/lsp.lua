@@ -274,7 +274,7 @@ return {
     -- Configure JSON language server
     vim.lsp.config('jsonls', {
       cmd = { 'vscode-json-language-server', '--stdio' },
-      filetypes = { 'json' },
+      filetypes = { 'json', 'jsonc' },
       settings = {
         json = {
           schemas = require('schemastore').json.schemas(),

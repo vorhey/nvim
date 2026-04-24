@@ -62,6 +62,7 @@ return {
           'javascript',
           'jsdoc',
           'json',
+          'json5',
           'kotlin',
           'lua',
           'luadoc',

@@ -15,6 +15,7 @@ return {
       javascriptreact = { 'prettierd' },
       css = { 'prettierd' },
       json = { 'prettierd' },
+      jsonc = { 'biome' },
       scss = { 'prettierd' },
       sh = { 'shfmt' },
       bash = { 'shfmt' },
