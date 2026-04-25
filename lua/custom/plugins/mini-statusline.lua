@@ -27,6 +27,16 @@ return {
       return unsaved_count
     end
 
+    local function selection_count()
+      local mode = vim.fn.mode(1):sub(1, 1)
+      if mode ~= 'v' and mode ~= 'V' and mode ~= '\22' then
+        return ''
+      end
+
+      local chars = vim.fn.wordcount().visual_chars
+      return chars and (chars .. 'C') or ''
+    end
+
     -- Rainbow buffer dots section
     local function section_buffers(args)
       if MiniStatusline.is_truncated(args.trunc_width) then
@@ -100,6 +110,7 @@ return {
           local diagnostics = MiniStatusline.section_diagnostics { trunc_width = 75 }
           local has_diagnostics = diagnostics == '' and '' or ''
           local buffer_indicator = section_buffers { trunc_width = 120 }
+          local visual_count = selection_count()
           local lsp_clients = vim.lsp.get_clients { bufnr = 0 }
           local lsp = ''
           local names = {}
@@ -159,7 +170,7 @@ return {
           table.insert(groups, { hl = 'WarningMsg', strings = { unsaved_indicator } })
           table.insert(groups, {
             hl = 'MiniStatuslineFileinfo',
-            strings = { autoformat_indicator, lsp, spacing_info, has_diff, has_diagnostics, copilot },
+            strings = { autoformat_indicator, lsp, visual_count, spacing_info, has_diff, has_diagnostics, copilot },
           })
           return MiniStatusline.combine_groups(groups)
         end,
