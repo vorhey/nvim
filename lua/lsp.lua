@@ -422,13 +422,6 @@ return {
       extension = { axaml = 'xml' },
     }
 
-    -- install: https://github.com/eugenenoble2005/avalonia-ls
-    -- vim.lsp.config('avalonia', {
-    --   cmd = { 'avalonia-ls' },
-    --   filetypes = { 'xml' },
-    --   root_markers = { '.git', '*.sln', '*.csproj' },
-    -- })
-
     vim.lsp.config('yamlls', {
       cmd = { 'yaml-language-server', '--stdio' },
       filetypes = { 'yml', 'yaml', 'yaml.docker-compose', 'yaml.gitlab' },
@@ -458,9 +451,6 @@ return {
         on_dir(root and vim.fs.relpath(cwd, root) and cwd)
       end,
     })
-
-    -- Configure flutter
-    require('flutter-tools').setup {}
 
     -- Configure Java
     local java_home = vim.env.JAVA_DEV_HOME or vim.env.JAVA_HOME
@@ -626,7 +616,6 @@ return {
 
     -- Enable the server
     vim.lsp.enable {
-      -- 'avalonia',
       'bashls',
       'clangd',
       'cssls',

@@ -10,10 +10,6 @@ vim.keymap.set('i', '<C-r>"', '<C-r><C-p>"', { desc = 'paste default register wi
 
 vim.keymap.set('n', '<C-U>', '11kzz')
 vim.keymap.set('n', '<C-D>', '11jzz')
--- vim.keymap.set('n', 'j', 'jzz')
--- vim.keymap.set('n', 'k', 'kzz')
--- vim.keymap.set('n', '#', '#zz')
--- vim.keymap.set('n', '*', '*zz')
 vim.keymap.set('n', 'n', 'nzz')
 vim.keymap.set('n', 'N', 'Nzz')
 vim.keymap.set('n', '<C-o>', '<C-o>zz')
@@ -88,8 +84,6 @@ vim.keymap.set('n', ']p', function()
 end, { desc = 'Put line below' })
 
 if vim.g.neovide then
-  -- vim.keymap.set({ 'n', 'v' }, '<C-S-v>', '"+p', { desc = 'Paste from system clipboard' })
-  -- vim.keymap.set('i', '<C-S-v>', '<C-r>+', { desc = 'Paste from system clipboard' })
   vim.keymap.set({ 'n' }, '<leader>T', function()
     local name = vim.fn.input 'Terminal name: '
     vim.cmd 'terminal'
