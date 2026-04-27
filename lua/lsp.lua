@@ -596,6 +596,9 @@ return {
     vim.lsp.config('ruff', {
       cmd = { 'ruff', 'server', '--preview' },
       filetypes = { 'python' },
+      on_attach = function(client)
+        client.server_capabilities.diagnosticProvider = nil
+      end,
     })
 
     vim.lsp.config('pyrefly', {
