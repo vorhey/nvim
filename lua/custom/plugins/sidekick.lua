@@ -1,3 +1,20 @@
+local function copy_sidekick_context(msg, success)
+  local ok, cli = pcall(require, 'sidekick.cli')
+  if not ok or not cli then
+    vim.notify('Sidekick CLI not available', vim.log.levels.WARN)
+    return
+  end
+
+  local rendered = cli.render { msg = msg }
+  if not rendered or rendered == '' then
+    vim.notify('Nothing to copy', vim.log.levels.WARN)
+    return
+  end
+
+  vim.fn.setreg('+', rendered)
+  vim.notify(success, vim.log.levels.INFO)
+end
+
 return {
   'folke/sidekick.nvim',
   -- Plugin options
@@ -28,25 +45,20 @@ return {
       desc = 'Sidekick: Toggle CLI',
     },
     {
-      '<leader><leader>', -- Send current file to Sidekick CLI (normal mode)
+      '<leader><leader>',
       function()
-        local ok, cli = pcall(require, 'sidekick.cli')
-        if ok and cli then
-          cli.send { msg = '{file}' }
-        else
-          vim.notify('Sidekick CLI not available', vim.log.levels.WARN)
-        end
+        copy_sidekick_context('{file}', 'Copied file context to clipboard')
       end,
       mode = { 'n' },
-      desc = 'Sidekick: Send File',
+      desc = 'Sidekick: Copy File Context',
     },
     {
-      '<leader><leader>', -- Send visual selection to Sidekick CLI (visual mode)
+      '<leader><leader>',
       function()
-        require('sidekick.cli').send { msg = '{selection}' }
+        copy_sidekick_context('{selection}', 'Copied selection to clipboard')
       end,
       mode = { 'x' },
-      desc = 'Sidekick: Send Visual Selection',
+      desc = 'Sidekick: Copy Selection Context',
     },
     {
       '<m-.>',
