@@ -64,9 +64,6 @@ return {
     })
   end,
   opts = {
-    scroll = {
-      enabled = true,
-    },
     gh = {
       enabled = true,
     },
