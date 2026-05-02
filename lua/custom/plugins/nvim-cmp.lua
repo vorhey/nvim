@@ -114,9 +114,6 @@ return {
           auto_open = true,
         },
       },
-      completion = {
-        keyword_length = 2,
-      },
       performance = {
         debounce = 100,
         throttle = 50,
