@@ -83,6 +83,8 @@ vim.keymap.set('n', ']p', function()
   vim.cmd 'put'
 end, { desc = 'Put line below' })
 
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'exit terminal mode' })
+
 if vim.g.neovide then
   vim.keymap.set({ 'n' }, '<leader>T', function()
     local name = vim.fn.input 'Terminal name: '
