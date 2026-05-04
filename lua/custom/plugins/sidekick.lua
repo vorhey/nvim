@@ -1,18 +1,23 @@
-local function copy_sidekick_context(msg, success)
+local function send_sidekick_context(msg, fallback)
   local ok, cli = pcall(require, 'sidekick.cli')
   if not ok or not cli then
     vim.notify('Sidekick CLI not available', vim.log.levels.WARN)
     return
   end
 
+  local sent, err = pcall(cli.send, { msg = msg })
+  if sent then
+    return
+  end
+
   local rendered = cli.render { msg = msg }
   if not rendered or rendered == '' then
-    vim.notify('Nothing to copy', vim.log.levels.WARN)
+    vim.notify(('Sidekick send failed: %s'):format(err), vim.log.levels.WARN)
     return
   end
 
   vim.fn.setreg('+', rendered)
-  vim.notify(success, vim.log.levels.INFO)
+  vim.notify(('Sidekick send failed; %s'):format(fallback), vim.log.levels.WARN)
 end
 
 return {
@@ -47,18 +52,18 @@ return {
     {
       '<leader><leader>',
       function()
-        copy_sidekick_context('{file}', 'Copied file context to clipboard')
+        send_sidekick_context('{file}', 'copied file context to clipboard')
       end,
       mode = { 'n' },
-      desc = 'Sidekick: Copy File Context',
+      desc = 'Sidekick: Send File Context',
     },
     {
       '<leader><leader>',
       function()
-        copy_sidekick_context('{selection}', 'Copied selection to clipboard')
+        send_sidekick_context('{selection}', 'copied selection context to clipboard')
       end,
       mode = { 'x' },
-      desc = 'Sidekick: Copy Selection Context',
+      desc = 'Sidekick: Send Selection Context',
     },
     {
       '<m-.>',
