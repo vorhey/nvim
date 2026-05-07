@@ -68,4 +68,11 @@ if not vim.g.neovide then
   vim.opt.winbar = "%=%{%v:lua.get_file_icon()%}%{%v:lua.require('utils').get_relative_filename()%}%="
 end
 
+if vim.g.neovide then
+  vim.g.neovide_position_animation_length = 0.08
+  vim.g.neovide_scroll_animation_length = 0.08
+  vim.g.neovide_cursor_animation_length = 0.04
+  vim.g.neovide_cursor_trail_size = 0.0
+end
+
 vim.o.winborder = 'rounded'
