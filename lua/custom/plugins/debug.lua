@@ -195,6 +195,38 @@ return {
     dap.adapters.codelldb = debuggers.codelldb.adapter
     dap.adapters.python = debuggers.python.adapter
 
+    local function resolve_python_path()
+      local venv_path = vim.env.VIRTUAL_ENV
+      if venv_path then
+        local python = venv_path .. '/bin/python'
+        if vim.fn.executable(python) == 1 then
+          return python
+        end
+      end
+
+      local current_dir = vim.fn.expand '%:p:h'
+      if current_dir == '' then
+        current_dir = vim.fn.getcwd()
+      end
+      for _, name in ipairs { '.venv', 'venv', 'env' } do
+        local match = vim.fs.find(name, {
+          path = current_dir,
+          upward = true,
+          type = 'directory',
+          limit = 1,
+        })[1]
+        if match then
+          local python = vim.fs.joinpath(match, 'bin', 'python')
+          if vim.fn.executable(python) == 1 then
+            return python
+          end
+        end
+      end
+
+      local python = vim.fn.exepath 'python3'
+      return python ~= '' and python or 'python'
+    end
+
     -- Python configurations
     dap.configurations.python = {
       {
@@ -202,10 +234,7 @@ return {
         request = 'launch',
         name = 'Launch file',
         program = '${file}',
-        pythonPath = function()
-          local venv_path = os.getenv 'VIRTUAL_ENV'
-          return venv_path and venv_path .. '/bin/python' or 'python'
-        end,
+        pythonPath = resolve_python_path,
       },
       {
         type = 'python',
@@ -214,6 +243,7 @@ return {
         module = function()
           return vim.fn.input 'Module: '
         end,
+        pythonPath = resolve_python_path,
       },
       {
         type = 'python',
@@ -221,6 +251,7 @@ return {
         name = 'Launch test',
         module = 'unittest',
         args = { '-v', '${file}' },
+        pythonPath = resolve_python_path,
       },
     }
 
