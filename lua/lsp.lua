@@ -26,6 +26,7 @@ return {
       ft = { 'dart' }, -- Load only for Dart filetypes
       dependencies = {
         'nvim-lua/plenary.nvim',
+        'dart-lang/dart-vim-plugin',
       },
       config = function()
         require('flutter-tools').setup {}

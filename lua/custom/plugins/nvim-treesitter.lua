@@ -103,6 +103,7 @@ return {
         },
         indent = {
           enable = true,
+          disable = { 'dart' },
         },
         incremental_selection = {
           enable = true,
