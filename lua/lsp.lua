@@ -113,12 +113,7 @@ return {
     }
 
     vim.api.nvim_set_hl(0, 'DiagnosticUnnecessary', { undercurl = true, sp = '#888888', fg = '#888888' })
-    local capabilities
-    if vim.g.neovide then
-      capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('cmp_nvim_lsp').default_capabilities())
-    else
-      capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('blink.cmp').get_lsp_capabilities())
-    end
+    local capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('blink.cmp').get_lsp_capabilities())
 
     -- Set default LSP configuration
     vim.lsp.config('*', {

@@ -1,9 +1,7 @@
 return {
   'saghen/blink.cmp',
   event = { 'InsertEnter', 'CmdlineEnter' },
-  enabled = function()
-    return not vim.g.neovide
-  end,
+  enabled = true,
   dependencies = {
     'onsails/lspkind.nvim',
     'rcarriga/cmp-dap',
