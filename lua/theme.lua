@@ -44,7 +44,7 @@ return {
     'vorhey/oldworld.nvim',
     lazy = false,
     cond = function()
-      return vim.env.TERM_COLOR ~= 'dark'
+      return vim.env.TERM_COLOR == 'light'
     end,
     config = function()
       require('oldworld').setup {
