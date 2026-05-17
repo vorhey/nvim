@@ -37,18 +37,6 @@ return {
           :map '<leader>tf'
         Snacks.toggle
           .new({
-            id = 'copilot',
-            name = 'Copilot',
-            get = function()
-              return vim.g.copilot_enabled
-            end,
-            set = function()
-              vim.g.copilot_enabled = not vim.g.copilot_enabled
-            end,
-          })
-          :map '<leader>tc'
-        Snacks.toggle
-          .new({
             id = 'gitsigns_column',
             name = 'Git Signs Column',
             get = function()
