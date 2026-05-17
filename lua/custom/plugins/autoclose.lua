@@ -1,5 +1,5 @@
 return {
-  'm4xshen/autoclose.nvim',
+  'vorhey/autoclose.nvim',
   event = 'InsertEnter',
   config = function()
     require('autoclose').setup {
