@@ -31,19 +31,24 @@ return {
     end,
   },
   {
-    'vorhey/oldworld.nvim',
+    'vorhey/ember.nvim',
     lazy = false,
-    priority = 1000,
     cond = function()
-      return not vim.g.neovide
+      return vim.env.TERM_COLOR == 'dark'
     end,
     config = function()
-      local variant = 'light'
-      if vim.env.TERM == 'foot' or vim.env.TERM_COLOR == 'dark' then
-        variant = 'dark'
-      end
+      vim.cmd.colorscheme 'ember'
+    end,
+  },
+  {
+    'vorhey/oldworld.nvim',
+    lazy = false,
+    cond = function()
+      return vim.env.TERM_COLOR ~= 'dark'
+    end,
+    config = function()
       require('oldworld').setup {
-        variant = variant,
+        variant = 'light',
       }
       vim.cmd.colorscheme 'oldworld'
       vim.api.nvim_set_hl(0, 'BlinkCmpMenuBorder', { bg = 'none' })
