@@ -115,7 +115,9 @@ return {
           local lsp = ''
           local names = {}
           for _, client in ipairs(lsp_clients) do
-            table.insert(names, client.name)
+            if not client.name:lower():find 'copilot' then
+              table.insert(names, client.name)
+            end
           end
           if #names > 0 then
             lsp = '󰬓 ' .. table.concat(names, ', ')
@@ -147,6 +149,12 @@ return {
 
           local autoformat_indicator = is_autoformat_enabled() and '󰗴' or '󰉥'
 
+          local is_copilot_enabled = function()
+            return vim.g.copilot_enabled == true
+          end
+
+          local copilot = is_copilot_enabled() and '  ' or '  '
+
           local groups = {}
 
           -- Add buffer dots
@@ -162,7 +170,7 @@ return {
           table.insert(groups, { hl = 'WarningMsg', strings = { unsaved_indicator } })
           table.insert(groups, {
             hl = 'MiniStatuslineFileinfo',
-            strings = { autoformat_indicator, lsp, visual_count, spacing_info, has_diff, has_diagnostics },
+            strings = { autoformat_indicator, lsp, visual_count, spacing_info, has_diff, has_diagnostics, copilot },
           })
           return MiniStatusline.combine_groups(groups)
         end,
