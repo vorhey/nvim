@@ -7,6 +7,11 @@ return {
     vim.api.nvim_create_autocmd('User', {
       pattern = 'VeryLazy',
       callback = function()
+        vim.keymap.set('n', '<Tab>', function()
+          if not require('sidekick').nes_jump_or_apply() then
+            return '<Tab>'
+          end
+        end, { expr = true, desc = 'Sidekick: Goto/Apply Next Edit Suggestion' })
         Snacks.toggle.option('spell', { name = 'Spelling' }):map '<leader>ts'
         Snacks.toggle.zen():map '<leader>tz'
         Snacks.toggle.inlay_hints():map '<leader>th'

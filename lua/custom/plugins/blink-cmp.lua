@@ -16,6 +16,19 @@ return {
     require('blink.cmp').setup {
       keymap = {
         preset = 'super-tab',
+        ['<Tab>'] = {
+          function(cmp)
+            if cmp.snippet_active { direction = 1 } then
+              return cmp.accept()
+            end
+            if require('sidekick').nes_jump_or_apply() then
+              return true
+            end
+            return cmp.select_and_accept()
+          end,
+          'snippet_forward',
+          'fallback',
+        },
         ['<C-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
         ['<C-n>'] = { 'select_next', 'fallback' },
         ['<C-p>'] = { 'select_prev', 'fallback' },
