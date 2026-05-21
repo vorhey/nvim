@@ -24,7 +24,7 @@ return {
         end
       end,
       mode = { 'n' },
-      desc = 'Sidekick: Toggle CLI',
+      desc = 'sidekick: toggle CLI',
     },
     {
       '<leader><leader>',
@@ -45,7 +45,7 @@ return {
         require('sidekick.cli').send { msg = '{selection}' }
       end,
       mode = { 'x' },
-      desc = 'Sidekick: Send Visual Selection',
+      desc = 'sidekick: send selection',
     },
     {
       '<m-.>',
@@ -60,7 +60,7 @@ return {
       function()
         require('sidekick.cli').select()
       end,
-      desc = 'Select CLI Tool',
+      desc = 'sidekick: select CLI tool',
     },
   },
 }

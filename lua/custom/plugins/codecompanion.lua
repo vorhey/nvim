@@ -7,7 +7,7 @@ return {
       '<leader>ae',
       ':CodeCompanion<CR>',
       mode = 'x',
-      desc = 'CodeCompanion: Inline with selection',
+      desc = 'codecompanion: prompt',
       noremap = true,
       silent = true,
     },

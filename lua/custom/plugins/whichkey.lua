@@ -11,9 +11,8 @@ return {
         { '<leader>O', icon = { icon = '󰅙', color = 'azure' } },
         { '<leader>Q', icon = { icon = '󰈆', color = 'azure' } },
         { '<leader>e', icon = { icon = '󱏒', color = 'azure' } },
-
-        { '<leader><leader>', desc = 'add file', icon = { icon = '', color = 'red' } },
-        { '<leader>a', group = 'sidekick', icon = { icon = '', color = 'grey' } },
+        { '<leader><leader>', desc = 'sidekick: add file', icon = { icon = '', color = 'red' } },
+        { '<leader>a', group = 'sidekick', icon = { icon = '󰯉', color = 'grey' } },
         { '<leader>d', group = 'debug', icon = { icon = '', color = 'grey' } },
         { '<leader>t', group = 'toggle', icon = { icon = '', color = 'grey' } },
         { '<leader>f', group = 'find', icon = { icon = '', color = 'grey' } },
@@ -22,6 +21,17 @@ return {
         { '<leader>m', group = 'multicursor', icon = { icon = '󰇀', color = 'grey' } },
         { '<leader>x', group = 'trouble', icon = { icon = '󰗶', color = 'grey' } },
         { '<leader>s', group = 'sessions', icon = { icon = '', color = 'grey' } },
+      },
+    }
+    wk.add {
+      mode = { 'v', 'x' },
+      {
+        { '<leader>f', group = 'find' },
+        { '<leader>a', group = 'ai' },
+        { '<leader>g', group = 'git' },
+        { '<leader>m', group = 'multicursor' },
+        { '<leader>l', group = 'lsp', icon = { icon = '', color = 'grey' } },
+        { '<leader><leader>', desc = 'sidekick: send selection', icon = { icon = '󰯉', color = 'grey' } },
       },
     }
     wk.setup {
