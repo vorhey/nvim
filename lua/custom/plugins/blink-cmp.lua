@@ -78,7 +78,7 @@ return {
         enabled = false,
       },
       sources = {
-        default = { 'lsp', 'path', 'filemention' },
+        default = { 'lsp', 'path', 'snippets' },
         per_filetype = {
           ['dap-repl'] = { 'dap' },
           dapui_watches = { 'dap' },
@@ -113,10 +113,6 @@ return {
             opts = {
               name = 'dap',
             },
-          },
-          filemention = {
-            name = 'filemention',
-            module = 'filemention.sources.blink',
           },
         },
       },
