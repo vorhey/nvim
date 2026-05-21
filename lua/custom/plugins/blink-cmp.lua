@@ -3,7 +3,6 @@ return {
   event = { 'InsertEnter', 'CmdlineEnter' },
   enabled = true,
   dependencies = {
-    'onsails/lspkind.nvim',
     'rcarriga/cmp-dap',
     {
       'saghen/blink.compat',
@@ -17,16 +16,11 @@ return {
       keymap = {
         preset = 'super-tab',
         ['<Tab>'] = {
+          require('blink.cmp.keymap.presets').get('super-tab')['<Tab>'][1],
           function(cmp)
-            if cmp.snippet_active { direction = 1 } then
-              return cmp.accept()
-            end
-            if require('sidekick').nes_jump_or_apply() then
-              return true
-            end
-            return cmp.select_and_accept()
+            if cmp.snippet_forward() then return true end
+            if require('sidekick').nes_jump_or_apply() then return true end
           end,
-          'snippet_forward',
           'fallback',
         },
         ['<C-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
@@ -34,7 +28,6 @@ return {
         ['<C-p>'] = { 'select_prev', 'fallback' },
         ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
         ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
-        -- Use built-in show/hide documentation commands instead of custom function
         ['<C-d>'] = { 'show_documentation', 'hide_documentation' },
       },
 
@@ -67,12 +60,15 @@ return {
           },
         },
         documentation = {
-          auto_show = false, -- Matches your auto_open = false
+          auto_show = false,
           treesitter_highlighting = true,
           window = {
             border = 'rounded',
           },
         },
+      },
+      snippets = {
+        preset = 'mini_snippets',
       },
       signature = {
         enabled = false,
@@ -80,6 +76,11 @@ return {
       sources = {
         default = { 'lsp', 'path', 'snippets' },
         per_filetype = {
+          lua = { 'lsp', 'path', 'snippets', 'lazydev' },
+          html = { 'lsp', 'path', 'snippets', 'html-css' },
+          htmldjango = { 'lsp', 'path', 'snippets', 'html-css' },
+          jsx = { 'lsp', 'path', 'snippets', 'html-css' },
+          tsx = { 'lsp', 'path', 'snippets', 'html-css' },
           ['dap-repl'] = { 'dap' },
           dapui_watches = { 'dap' },
           dapui_hover = { 'dap' },
@@ -94,17 +95,13 @@ return {
             module = 'blink.cmp.sources.path',
             score_offset = -3,
           },
-          -- Using compat layer for html-css
-          ['html-css'] = {
-            name = 'HTML-CSS',
-            module = 'blink.compat.source',
-            opts = {
-              enable_on = { 'html', 'jsx', 'tsx' },
-            },
-          },
-          -- Using compat layer for lazydev
           lazydev = {
             name = 'LazyDev',
+            module = 'lazydev.integrations.blink',
+            score_offset = 100,
+          },
+          ['html-css'] = {
+            name = 'HTML-CSS',
             module = 'blink.compat.source',
           },
           dap = {
