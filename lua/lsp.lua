@@ -84,6 +84,7 @@ return {
         'dockerls',
         'eslint',
         'gopls',
+        'html',
         'intelephense',
         'jsonls',
         'lua_ls',
@@ -299,6 +300,15 @@ return {
             rangeVariableTypes = true,
           },
         },
+      },
+    })
+
+    -- Configure HTML language server
+    vim.lsp.config('html', {
+      cmd = { 'vscode-html-language-server', '--stdio' },
+      filetypes = { 'html', 'htmldjango', 'templ' },
+      init_options = {
+        provideFormatter = true,
       },
     })
 
@@ -621,6 +631,7 @@ return {
       'dockerls',
       'eslint',
       'gopls',
+      'html',
       'intelephense',
       'jsonls',
       'lua_ls',
