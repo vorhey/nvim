@@ -67,9 +67,6 @@ return {
           },
         },
       },
-      snippets = {
-        preset = 'mini_snippets',
-      },
       signature = {
         enabled = false,
       },
