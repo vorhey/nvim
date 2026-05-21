@@ -14,19 +14,6 @@ return {
   -- Keybindings for Sidekick features
   keys = {
     {
-      '<leader>aa', -- Toggle Sidekick CLI (normal mode)
-      function()
-        local ok, cli = pcall(require, 'sidekick.cli')
-        if ok and cli then
-          cli.toggle()
-        else
-          vim.notify('Sidekick CLI not available', vim.log.levels.WARN)
-        end
-      end,
-      mode = { 'n' },
-      desc = 'sidekick: toggle CLI',
-    },
-    {
       '<leader><leader>',
       function()
         local ok, cli = pcall(require, 'sidekick.cli')

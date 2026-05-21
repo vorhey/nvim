@@ -11,6 +11,27 @@ return {
       noremap = true,
       silent = true,
     },
+    {
+      '<leader>ac',
+      ':CodeCompanionChat Toggle<CR>',
+      desc = 'codecompanion: toggle chat',
+      noremap = true,
+      silent = true,
+    },
+    {
+      '<leader>aa',
+      ':CodeCompanionActions<CR>',
+      desc = 'codecompanion: actions',
+      noremap = true,
+      silent = true,
+    },
+    {
+      '<leader>an',
+      ':CodeCompanionChat<CR>',
+      desc = 'codecompanion: new chat',
+      noremap = true,
+      silent = true,
+    },
   },
   dependencies = {
     'nvim-lua/plenary.nvim',
