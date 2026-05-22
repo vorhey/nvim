@@ -158,6 +158,20 @@ return {
   },
   keys = {
     {
+      '<leader>.',
+      function()
+        Snacks.scratch()
+      end,
+      desc = 'scratch: toggle',
+    },
+    {
+      '<leader>S',
+      function()
+        Snacks.scratch.select()
+      end,
+      desc = 'scratch: select',
+    },
+    {
       '<leader>ff',
       function()
         Snacks.picker.smart {
