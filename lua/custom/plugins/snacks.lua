@@ -69,6 +69,11 @@ return {
     })
   end,
   opts = {
+    scratch = {
+      ft = function()
+        return 'markdown'
+      end,
+    },
     gh = {
       enabled = true,
     },
