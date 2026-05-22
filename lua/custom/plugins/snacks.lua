@@ -128,6 +128,20 @@ return {
         },
       },
       sources = {
+        scratch = {
+          win = {
+            input = {
+              keys = {
+                ['<c-n>'] = { 'list_down', mode = { 'n', 'i' } },
+              },
+            },
+            list = {
+              keys = {
+                ['<c-n>'] = { 'list_down', mode = { 'n', 'i' } },
+              },
+            },
+          },
+        },
         buffers = {
           preview = false,
           format = 'buffer',
