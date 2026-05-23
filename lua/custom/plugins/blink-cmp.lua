@@ -18,8 +18,12 @@ return {
         ['<Tab>'] = {
           require('blink.cmp.keymap.presets').get('super-tab')['<Tab>'][1],
           function(cmp)
-            if cmp.snippet_forward() then return true end
-            if require('sidekick').nes_jump_or_apply() then return true end
+            if cmp.snippet_forward() then
+              return true
+            end
+            if require('sidekick').nes_jump_or_apply() then
+              return true
+            end
           end,
           'fallback',
         },
@@ -76,8 +80,8 @@ return {
           lua = { 'lsp', 'path', 'snippets', 'lazydev' },
           html = { 'lsp', 'path', 'snippets', 'html-css' },
           htmldjango = { 'lsp', 'path', 'snippets', 'html-css' },
-          jsx = { 'lsp', 'path', 'snippets', 'html-css' },
-          tsx = { 'lsp', 'path', 'snippets', 'html-css' },
+          javascriptreact = { 'lsp', 'path', 'snippets', 'html-css' },
+          typescriptreact = { 'lsp', 'path', 'snippets', 'html-css' },
           ['dap-repl'] = { 'dap' },
           dapui_watches = { 'dap' },
           dapui_hover = { 'dap' },

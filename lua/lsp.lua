@@ -6,7 +6,7 @@ return {
     { 'b0o/schemastore.nvim', lazy = true },
     { 'williamboman/mason-lspconfig.nvim', lazy = true },
     { 'seblj/roslyn.nvim', lazy = true, ft = { 'cs' }, opts = {} },
-    { 'luckasRanarison/tailwind-tools.nvim', lazy = true, ft = { 'js', 'jsx', 'ts', 'tsx' } },
+    { 'luckasRanarison/tailwind-tools.nvim', lazy = true, ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' } },
     { 'yioneko/nvim-vtsls', lazy = true, ft = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' } },
     {
       'folke/lazydev.nvim',
@@ -326,6 +326,7 @@ return {
     -- Configure Tailwind CSS server
     vim.lsp.config('tailwindcss', {
       cmd = { 'tailwindcss-language-server', '--stdio' },
+      root_markers = { 'tailwind.config.js', 'tailwind.config.ts', 'tailwind.config.cjs', 'tailwind.config.mjs', 'postcss.config.js', 'package.json', '.git' },
       filetypes = {
         'aspnetcorerazor',
         'astro',
