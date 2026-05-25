@@ -39,7 +39,7 @@ return {
         accept = {
           auto_brackets = {
             enabled = true,
-            blocked_filetypes = { 'cs' },
+            blocked_filetypes = { 'cs', 'tsx', 'typescriptreact' },
           },
         },
         trigger = {
