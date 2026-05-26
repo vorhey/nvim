@@ -8,7 +8,6 @@ return {
         enabled = false,
       },
       tools = {},
-      win = { layout = 'float' },
     },
   },
   -- Keybindings for Sidekick features
@@ -35,7 +34,7 @@ return {
       desc = 'sidekick: send selection',
     },
     {
-      '<m-.>',
+      '<M-.>',
       function()
         require('sidekick.cli').toggle()
       end,
