@@ -38,8 +38,8 @@ return {
       completion = {
         accept = {
           auto_brackets = {
-            enabled = true,
-            blocked_filetypes = { 'cs', 'tsx', 'typescriptreact' },
+            enabled = false,
+            blocked_filetypes = { 'cs', 'tsx', 'typescriptreact', 'typescript', 'ts' },
           },
         },
         trigger = {
