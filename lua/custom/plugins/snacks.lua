@@ -174,8 +174,19 @@ return {
     words = {
       enabled = true,
     },
+    terminal = {
+      enabled = true,
+    },
   },
   keys = {
+    {
+      '<M-,>',
+      function()
+        Snacks.terminal.toggle()
+      end,
+      desc = 'terminal: toggle',
+      mode = { 'n', 't' },
+    },
     {
       '<leader>.',
       function()
