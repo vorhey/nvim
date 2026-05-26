@@ -42,11 +42,11 @@ return {
       mode = { 'n', 't', 'i', 'x' },
     },
     {
-      '<leader>as',
+      '<leader>s',
       function()
         require('sidekick.cli').select()
       end,
-      desc = 'sidekick: select CLI tool',
+      desc = 'sidekick: select',
     },
   },
 }
