@@ -19,7 +19,6 @@ return {
         { '<leader>l', group = 'lsp', icon = { icon = '', color = 'grey' } },
         { '<leader>m', group = 'multicursor', icon = { icon = '󰇀', color = 'grey' } },
         { '<leader>x', group = 'trouble', icon = { icon = '󰗶', color = 'grey' } },
-        { '<leader>s', group = 'sessions', icon = { icon = '', color = 'grey' } },
       },
     }
     wk.add {
