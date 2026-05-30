@@ -53,6 +53,8 @@ vim.opt.foldcolumn = 'auto:1'
 -- Performance and technical settings
 vim.opt.updatetime = 250 -- Faster completion
 vim.opt.timeoutlen = 300 -- Time to wait for mapped sequence
+vim.opt.lazyredraw = true -- Don't redraw during macros/batch commands
+vim.o.redrawtime = 1500 -- More time for syntax highlighting in large files
 vim.opt.undofile = true -- Save undo history
 vim.opt.backupcopy = 'yes' -- Backup file copying method
 vim.opt.mouse = 'a' -- Enable mouse support
@@ -69,10 +71,15 @@ if not vim.g.neovide then
 end
 
 if vim.g.neovide then
-  vim.g.neovide_position_animation_length = 0.08
-  vim.g.neovide_scroll_animation_length = 0.08
-  vim.g.neovide_cursor_animation_length = 0.04
-  vim.g.neovide_cursor_trail_size = 0.0
+  vim.g.neovide_position_animation_length = 0.15
+  vim.g.neovide_scroll_animation_length = 0.5
+  vim.g.neovide_cursor_animation_length = 0.5
+  vim.g.neovide_cursor_trail_size = 0.5
+  vim.g.neovide_cursor_animate_in_insert_mode = true
+  vim.g.neovide_cursor_animate_command_line = true
+  vim.g.neovide_refresh_rate = 144
+  vim.g.neovide_refresh_rate_idle = 5
+  vim.g.neovide_idle = false
 end
 
 vim.o.winborder = 'rounded'
