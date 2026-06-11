@@ -94,6 +94,7 @@ return {
         'yamlls',
         'jdtls',
         'pyrefly',
+        'rust_analyzer',
       },
     }
 
@@ -562,6 +563,35 @@ return {
       vim.notify('JAVA_HOME or JAVA_DEV_HOME not set. jdtls will not be configured.', vim.log.levels.WARN)
     end
 
+    -- Configure Rust language server
+    vim.lsp.config('rust_analyzer', {
+      cmd = { 'rust-analyzer' },
+      filetypes = { 'rust' },
+      root_markers = { 'Cargo.toml', 'Cargo.lock', '.git' },
+      settings = {
+        ['rust-analyzer'] = {
+          cargo = {
+            allFeatures = true,
+            loadOutDirsFromCheck = true,
+          },
+          checkOnSave = true,
+          check = {
+            command = 'clippy',
+          },
+          inlayHints = {
+            bindingModeHints = { enable = true },
+            closureCaptureHints = { enable = true },
+            closureReturnTypeHints = { enable = 'always' },
+            parameterHints = { enable = true },
+            typeHints = { enable = true },
+          },
+          procMacro = {
+            enable = true,
+          },
+        },
+      },
+    })
+
     -- Configure C/C++ language server
     vim.lsp.config('clangd', {
       cmd = {
@@ -638,6 +668,7 @@ return {
       'lua_ls',
       'pyrefly',
       'ruff',
+      'rust_analyzer',
       'tailwindcss',
       'vtsls',
       'yamlls',
