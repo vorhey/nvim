@@ -73,6 +73,9 @@ return {
         'github:mason-org/mason-registry',
         'github:Crashdummyy/mason-registry',
       },
+      firewall = {
+        enabled = true,
+      },
     }
 
     -- Mason LSP configuration
