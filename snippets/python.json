@@ -2,7 +2,7 @@
   "Python constructor with super": {
     "prefix": ["init"],
     "body": [
-      "def __init__(self${1:, ${2:params}}):",
+      "def __init__(self${1:, params}):",
       "    super().__init__(${3})",
       "    ${0}"
     ],
