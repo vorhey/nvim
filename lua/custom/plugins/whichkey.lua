@@ -18,6 +18,7 @@ return {
         { '<leader>g', group = 'git', icon = { icon = '󰊢', color = 'grey' } },
         { '<leader>l', group = 'lsp', icon = { icon = '', color = 'grey' } },
         { '<leader>m', group = 'multicursor', icon = { icon = '󰇀', color = 'grey' } },
+        { '<leader>s', group = 'sidekick', icon = { icon = '󰚇', color = 'cyan' } },
         { '<leader>x', group = 'trouble', icon = { icon = '󰗶', color = 'grey' } },
       },
     }

@@ -42,11 +42,28 @@ return {
       mode = { 'n', 't', 'i', 'x' },
     },
     {
-      '<leader>s',
+      '<leader>ss',
       function()
         require('sidekick.cli').select()
       end,
       desc = 'sidekick: select',
+      mode = { 'n' },
+    },
+    {
+      '<leader>sd',
+      function()
+        require('sidekick.cli').send { prompt = 'diagnostics' }
+      end,
+      desc = 'sidekick: send buffer diagnostics',
+      mode = { 'n' },
+    },
+    {
+      '<leader>sD',
+      function()
+        require('sidekick.cli').send { prompt = 'diagnostics_all' }
+      end,
+      desc = 'sidekick: send all diagnostics',
+      mode = { 'n' },
     },
   },
 }
