@@ -37,7 +37,7 @@ return {
       stdin = false,
       inherit = false,
       cwd = function()
-        return vim.fn.finddir('.git/..', vim.fn.expand '%:p:h' .. ';')
+        return vim.fs.root(0, '.git')
       end,
     }
 
