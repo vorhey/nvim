@@ -141,7 +141,7 @@ return {
             path = vim.split(package.path, ';'),
           },
           diagnostics = {
-            globals = { 'vim', 'use' },
+            globals = { 'vim', 'use', 'require' },
             disable = { 'missing-parameter' },
           },
           workspace = {
