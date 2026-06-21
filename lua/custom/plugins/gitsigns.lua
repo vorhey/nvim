@@ -29,11 +29,13 @@ return {
         end, { buffer = buffer, desc = 'git: blame line' })
         vim.keymap.set('n', '<leader>gB', gs.toggle_current_line_blame, { buffer = buffer, desc = 'git: toggle blame' })
         vim.keymap.set('n', ']h', function()
+          ---@diagnostic disable-next-line: missing-fields
           gs.nav_hunk('next', {
             target = 'all',
           })
         end, { buffer = buffer, desc = 'git: next hunk' })
         vim.keymap.set('n', '[h', function()
+          ---@diagnostic disable-next-line: missing-fields
           gs.nav_hunk('prev', {
             target = 'all',
           })
