@@ -1,0 +1,21 @@
+return {
+  'stevearc/oil.nvim',
+  ---@module 'oil'
+  ---@type oil.SetupOpts
+  opts = {
+    keymaps = {
+      ['<Esc>'] = 'actions.close',
+    },
+  },
+  dependencies = { 'nvim-mini/mini.icons' },
+  lazy = false,
+  keys = {
+    {
+      '<leader>e',
+      function()
+        require('oil').open()
+      end,
+      desc = 'explorer',
+    },
+  },
+}
