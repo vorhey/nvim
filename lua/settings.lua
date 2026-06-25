@@ -71,7 +71,7 @@ if not vim.g.neovide then
 end
 
 if vim.g.neovide then
-  vim.opt.lazyredraw = false
+  vim.g.neovide_opacity = 0.5
   vim.g.neovide_cursor_trail_size = 0.5
   vim.g.neovide_refresh_rate = 144
 end
