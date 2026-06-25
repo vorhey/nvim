@@ -192,13 +192,16 @@ return {
     {
       '<leader>fp',
       function()
-        if not vim.g.neovide then return end
+        if not vim.g.neovide then
+          return
+        end
         Snacks.picker.projects {
           confirm = function(picker, item)
             picker:close()
-            if not item then return end
-            local is_initial_tab = #vim.api.nvim_list_tabpages() == 1
-              and vim.fn.getcwd() == vim.fn.expand '~'
+            if not item then
+              return
+            end
+            local is_initial_tab = #vim.api.nvim_list_tabpages() == 1 and vim.fn.getcwd() == vim.fn.expand '~'
             if not is_initial_tab then
               vim.cmd 'tabnew'
             end
