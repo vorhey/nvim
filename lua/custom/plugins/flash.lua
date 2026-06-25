@@ -2,7 +2,12 @@ return {
   'folke/flash.nvim',
   event = 'VeryLazy',
   ---@type Flash.Config
-  opts = {},
+  opts = {
+    action = function(match, _)
+      vim.api.nvim_win_set_cursor(match.win, match.pos)
+      vim.cmd 'normal! zz'
+    end,
+  },
   keys = {
     {
       '<CR>',
