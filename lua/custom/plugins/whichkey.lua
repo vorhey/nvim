@@ -20,6 +20,7 @@ return {
         { '<leader>m', group = 'multicursor', icon = { icon = '󰇀', color = 'grey' } },
         { '<leader>s', group = 'sidekick', icon = { icon = '󰚇', color = 'cyan' } },
         { '<leader>x', group = 'trouble', icon = { icon = '󰗶', color = 'grey' } },
+        { '<leader>a', group = 'ai', icon = { icon = '󰚇', color = 'cyan' } },
       },
     }
     wk.add {
