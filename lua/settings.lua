@@ -71,8 +71,8 @@ if not vim.g.neovide then
 end
 
 if vim.g.neovide then
-  vim.g.neovide_opacity = 0.5
   vim.g.neovide_cursor_trail_size = 0.5
+  vim.g.neovide_floating_shadow = false
   vim.g.neovide_refresh_rate = 144
 end
 
