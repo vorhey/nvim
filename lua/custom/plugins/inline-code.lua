@@ -1,6 +1,5 @@
 return {
   'vorhey/inline-code.nvim',
-  dir = '/home/jorge/repos/lua/inline-code.nvim',
   cmd = 'InlineCode',
   keys = {
     { '<leader>aa', '<cmd>InlineCode analyze<cr>', desc = 'inline-code: analyze buffer' },
