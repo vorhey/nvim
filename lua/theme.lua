@@ -3,7 +3,7 @@ return {
     'vorhey/ember.nvim',
     lazy = false,
     cond = function()
-      return vim.env.TERM_COLOR == 'dark'
+      return vim.env.TERM_COLOR == 'dark' or vim.g.neovide
     end,
     config = function()
       vim.cmd.colorscheme 'ember'
