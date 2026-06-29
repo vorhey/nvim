@@ -90,6 +90,7 @@ return {
           lsp = {
             name = 'LSP',
             module = 'blink.cmp.sources.lsp',
+            async = true,
           },
           path = {
             name = 'Path',
