@@ -96,7 +96,7 @@ return {
         'vtsls',
         'yamlls',
         'jdtls',
-        'pyrefly',
+        'basedpyright',
         'rust_analyzer',
       },
     }
@@ -641,10 +641,19 @@ return {
       end,
     })
 
-    vim.lsp.config('pyrefly', {
-      cmd = { 'pyrefly', 'lsp' },
+    vim.lsp.config('basedpyright', {
+      cmd = { 'basedpyright-langserver', '--stdio' },
       filetypes = { 'python' },
-      root_markers = { '.git', 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt' },
+      root_markers = { '.git', 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'pyrightconfig.json' },
+      settings = {
+        basedpyright = {
+          analysis = {
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+            diagnosticMode = 'openFilesOnly',
+          },
+        },
+      },
     })
 
     vim.keymap.set({ 'v', 'n' }, '<leader>la', '<cmd>lua require("fastaction").code_action()<CR>', { desc = 'lsp: code actions' })
@@ -669,7 +678,7 @@ return {
       'intelephense',
       'jsonls',
       'lua_ls',
-      'pyrefly',
+      'basedpyright',
       'ruff',
       'rust_analyzer',
       'tailwindcss',
