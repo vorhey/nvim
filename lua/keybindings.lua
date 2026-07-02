@@ -85,6 +85,11 @@ end, { desc = 'Put line below' })
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'exit terminal mode' })
 
+vim.keymap.set('t', '<C-h>', '<C-\\><C-n><C-w>h', { desc = 'move focus to the left window' })
+vim.keymap.set('t', '<C-j>', '<C-\\><C-n><C-w>j', { desc = 'move focus to the lower window' })
+vim.keymap.set('t', '<C-k>', '<C-\\><C-n><C-w>k', { desc = 'move focus to the upper window' })
+vim.keymap.set('t', '<C-l>', '<C-\\><C-n><C-w>l', { desc = 'move focus to the right window' })
+
 if vim.g.neovide then
   vim.keymap.set({ 'n' }, '<leader>T', function()
     local name = vim.fn.input 'Terminal name: '

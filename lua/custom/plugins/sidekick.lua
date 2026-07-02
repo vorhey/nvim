@@ -3,6 +3,11 @@ return {
   -- Plugin options
   opts = {
     cli = {
+      win = {
+        split = {
+          width = 0, -- 0 = auto split width (evenly divides existing columns)
+        },
+      },
       mux = {
         backend = 'tmux',
         enabled = false,
