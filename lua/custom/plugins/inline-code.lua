@@ -15,7 +15,7 @@ return {
       max_lines = 2000,
       timeout = 60000,
       preset = 'modern',
-      overflow = 'wrap',
+      overflow = 'expand',
       show_label = true,
       show_suggestion = true,
       disabled_ft = {},
