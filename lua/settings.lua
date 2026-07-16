@@ -73,6 +73,7 @@ end
 if vim.g.neovide then
   vim.g.neovide_cursor_trail_size = 0.5
   vim.g.neovide_floating_shadow = false
+  vim.g.neovide_progress_bar_enabled = false
   vim.g.neovide_refresh_rate = 144
   vim.o.shell = 'zsh'
   vim.o.shellcmdflag = '-lc'
