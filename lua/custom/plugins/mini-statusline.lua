@@ -79,25 +79,10 @@ return {
         local hl_group = rainbow_colors[color_index]
         local buf_name = vim.api.nvim_buf_get_name(buf)
 
-        -- Check if this buffer is tagged (access global tagged_files)
-        local tag_letter = nil
-        local jump_letters = { 'q', 'w', 'e', 'r' }
-        if _G.tagged_files then
-          for slot = 1, 4 do
-            if _G.tagged_files[slot] == buf_name then
-              tag_letter = '[' .. jump_letters[slot] .. ']'
-              break
-            end
-          end
-        end
-
-        -- Highlight current buffer with different symbol and color
         if buf == current_buf then
-          local symbol = tag_letter and ('●' .. tag_letter .. '°') or '●°'
-          table.insert(dots, { hl = 'Title', strings = { symbol } })
+          table.insert(dots, { hl = 'Title', strings = { '●°' } })
         else
-          local symbol = tag_letter and ('●' .. tag_letter) or '●'
-          table.insert(dots, { hl = hl_group, strings = { symbol } })
+          table.insert(dots, { hl = hl_group, strings = { '●' } })
         end
       end
 
