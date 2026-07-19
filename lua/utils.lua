@@ -39,7 +39,11 @@ end
 -- get_relative_filename (used externally)
 function M.get_relative_filename()
   local root_patterns = { '.git' }
-  local root_path = vim.fs.dirname(vim.fs.find(root_patterns, { upward = true })[1])
+  local found = vim.fs.find(root_patterns, { upward = true })[1]
+  if not found then
+    return '%f'
+  end
+  local root_path = vim.fs.dirname(found)
   if root_path then
     local full_path = vim.fn.expand '%:p'
     root_path = root_path:gsub('/$', '') .. '/'
@@ -62,7 +66,7 @@ M.ignore_patterns = {
   'build',
   'coverage',
   '__snapshots__',
-  '**pycache**',
+  '__pycache__',
   '.venv',
   '.pytest_cache',
   '.mypy_cache',
