@@ -1,5 +1,5 @@
 return {
-  'folke/sidekick.nvim',
+  'vorhey/sidekick.nvim',
   -- Plugin options
   opts = {
     cli = {
@@ -7,10 +7,6 @@ return {
         split = {
           width = 0, -- 0 = auto split width (evenly divides existing columns)
         },
-      },
-      mux = {
-        backend = 'tmux',
-        enabled = false,
       },
       tools = {},
     },
