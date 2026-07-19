@@ -10,8 +10,6 @@ vim.keymap.set('i', '<C-r>"', '<C-r><C-p>"', { desc = 'paste default register wi
 
 vim.keymap.set('n', '<C-U>', '11kzz')
 vim.keymap.set('n', '<C-D>', '11jzz')
-vim.keymap.set('n', 'n', 'nzz')
-vim.keymap.set('n', 'N', 'Nzz')
 vim.keymap.set('n', '<C-o>', '<C-o>zz')
 vim.keymap.set('n', '<C-i>', '<C-i>zz')
 vim.keymap.set('i', '<M-;>', function()
