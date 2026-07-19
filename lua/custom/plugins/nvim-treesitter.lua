@@ -85,7 +85,6 @@ return {
           'terraform',
           'toml',
           'tsx',
-          'tmux',
           'typescript',
           'vim',
           'vimdoc',
