@@ -1,6 +1,6 @@
 local general = vim.api.nvim_create_augroup('General', { clear = true })
 
-vim.api.nvim_create_autocmd('Bufenter', {
+vim.api.nvim_create_autocmd('BufEnter', {
   callback = function()
     vim.opt.formatoptions:remove { 'c', 'r', 'o' }
   end,
