@@ -53,7 +53,6 @@ vim.opt.foldcolumn = 'auto:1'
 -- Performance and technical settings
 vim.opt.updatetime = 100 -- Faster completion (lower = more responsive)
 vim.opt.timeoutlen = 300 -- Time to wait for mapped sequence
-vim.opt.lazyredraw = true -- Don't redraw during macros/batch commands
 vim.o.redrawtime = 1500 -- More time for syntax highlighting in large files
 vim.opt.undofile = true -- Save undo history
 vim.opt.backupcopy = 'yes' -- Backup file copying method
