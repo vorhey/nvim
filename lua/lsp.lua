@@ -32,7 +32,6 @@ return {
         require('flutter-tools').setup {}
       end,
     },
-    { 'p00f/clangd_extensions.nvim', opts = {}, lazy = true },
     {
       'Jezda1337/nvim-html-css',
       opts = {
