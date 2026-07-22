@@ -94,7 +94,6 @@ return {
         'tailwindcss',
         'vtsls',
         'yamlls',
-        'jdtls',
         'basedpyright',
         'rust_analyzer',
       },
@@ -458,109 +457,6 @@ return {
         on_dir(root or vim.uv.cwd())
       end,
     })
-
-    -- Configure Java
-    local java_home = vim.env.JAVA_DEV_HOME or vim.env.JAVA_HOME
-    if java_home then
-      vim.lsp.config('jdtls', {
-        cmd = {
-          'jdtls',
-          '--java-executable=' .. java_home .. '/bin/java',
-          '--jvm-arg=-javaagent:' .. vim.fn.expand '~/.local/share/nvim/mason/packages/jdtls/lombok.jar',
-          '--add-modules=ALL-SYSTEM',
-          '--add-opens',
-          'java.base/java.util=ALL-UNNAMED',
-          '--add-opens',
-          'java.base/java.lang=ALL-UNNAMED',
-        },
-        filetypes = { 'java' },
-        root_markers = { '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle', 'build.gradle.kts' },
-        init_options = {
-          jvm_args = {},
-          workspace = vim.fn.expand '~/.cache/jdtls/workspace/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t'),
-        },
-        settings = {
-          java = {
-            home = java_home,
-            eclipse = {
-              downloadSources = true,
-            },
-            configuration = {
-              updateBuildConfiguration = 'interactive',
-              runtimes = vim.env.JAVA_DEV_HOME and {
-                {
-                  name = 'JavaSE-21',
-                  path = vim.env.JAVA_DEV_HOME,
-                },
-              } or {},
-            },
-            maven = {
-              downloadSources = true,
-            },
-            implementationsCodeLens = {
-              enabled = true,
-            },
-            referencesCodeLens = {
-              enabled = true,
-            },
-            references = {
-              includeDecompiledSources = true,
-            },
-            format = {
-              enabled = false,
-              settings = {
-                url = vim.fn.stdpath 'config' .. '/lang-servers/intellij-java-google-style.xml',
-                profile = 'GoogleStyle',
-              },
-            },
-            signatureHelp = { enabled = true },
-            sources = {
-              organizeImports = {
-                starThreshold = 9999,
-                staticStarThreshold = 9999,
-              },
-            },
-            codeGeneration = {
-              toString = {
-                template = '${object.className}{${member.name()}=${member.value}, ${otherMembers}}',
-              },
-              useBlocks = true,
-            },
-            completion = {
-              favoriteStaticMembers = {
-                'org.hamcrest.MatcherAssert.assertThat',
-                'org.hamcrest.Matchers.*',
-                'org.hamcrest.CoreMatchers.*',
-                'org.junit.jupiter.api.Assertions.*',
-                'java.util.Objects.requireNonNull',
-                'java.util.Objects.requireNonNullElse',
-                'org.mockito.Mockito.*',
-              },
-              importOrder = {
-                'java',
-                'javax',
-                'com',
-                'org',
-              },
-            },
-            contentProvider = { preferred = 'fernflower' },
-            extendedClientCapabilities = {
-              progressReportsSupport = true,
-              classFileContentsSupport = true,
-              generateToStringPromptSupport = true,
-              hashCodeEqualsPromptSupport = true,
-              advancedExtractRefactoringSupport = true,
-              advancedOrganizeImportsSupport = true,
-              generateConstructorsPromptSupport = true,
-              generateDelegateMethodsPromptSupport = true,
-              moveRefactoringSupport = true,
-            },
-          },
-        },
-      })
-    else
-      vim.notify('JAVA_HOME or JAVA_DEV_HOME not set. jdtls will not be configured.', vim.log.levels.WARN)
-    end
 
     -- Configure Rust language server
     vim.lsp.config('rust_analyzer', {
