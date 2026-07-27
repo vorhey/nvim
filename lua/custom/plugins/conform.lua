@@ -5,16 +5,23 @@ return {
     'williamboman/mason.nvim',
   },
   config = function()
+    local web_formatters = function(bufnr)
+      if vim.fs.root(bufnr, 'biome.json') or vim.fs.root(bufnr, 'biome.jsonc') then
+        return { 'biome' }
+      end
+      return { 'prettierd' }
+    end
+
     local formatters_by_ft = {
       lua = { 'stylua' },
       html = { 'prettier' },
       go = { 'goimports' },
-      javascript = { 'prettierd' },
-      typescript = { 'prettierd' },
-      typescriptreact = { 'prettierd' },
-      javascriptreact = { 'prettierd' },
+      javascript = web_formatters,
+      typescript = web_formatters,
+      typescriptreact = web_formatters,
+      javascriptreact = web_formatters,
       css = { 'prettierd' },
-      json = { 'prettierd' },
+      json = web_formatters,
       jsonc = { 'biome' },
       scss = { 'prettierd' },
       sh = { 'shfmt' },
