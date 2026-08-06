@@ -328,7 +328,27 @@ return {
     -- Configure Tailwind CSS server
     vim.lsp.config('tailwindcss', {
       cmd = { 'tailwindcss-language-server', '--stdio' },
-      root_markers = { 'tailwind.config.js', 'tailwind.config.ts', 'tailwind.config.cjs', 'tailwind.config.mjs', 'postcss.config.js', 'package.json', '.git' },
+      cmd_env = { NODE_OPTIONS = '--max-old-space-size=8192' },
+      root_markers = { 'tailwind.config.js', 'tailwind.config.ts', 'tailwind.config.cjs', 'tailwind.config.mjs', 'tailwind.config.mts' },
+      workspace_required = true,
+      settings = {
+        tailwindCSS = {
+          files = {
+            exclude = {
+              '**/.git/**',
+              '**/node_modules/**',
+              '**/.next/**',
+              '**/.nuxt/**',
+              '**/dist/**',
+              '**/build/**',
+              '**/out/**',
+              '**/coverage/**',
+              '**/.turbo/**',
+              '**/.cache/**',
+            },
+          },
+        },
+      },
       filetypes = {
         'aspnetcorerazor',
         'astro',
