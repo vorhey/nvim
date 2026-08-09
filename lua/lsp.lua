@@ -574,6 +574,7 @@ return {
     end, { desc = 'lsp: format' })
     vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, { desc = 'lsp: diagnostic messages' })
     vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = 'lsp: rename' })
+    vim.keymap.set('n', '<leader>lR', '<cmd>lsp restart<cr>', { desc = 'lsp: restart clients' })
     vim.keymap.set({ 'n', 'v' }, 'K', vim.lsp.buf.hover, { desc = 'lsp: hover documentation' })
     vim.keymap.set('n', 'gR', vim.lsp.buf.references, { desc = 'lsp: native references' })
     vim.keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, { desc = 'lsp: signature help' })
