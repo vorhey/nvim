@@ -20,6 +20,8 @@ return {
     config = function(_, opts)
       -- Setup nvim-treesitter
       require('nvim-treesitter').setup(opts)
+      -- Let user query overrides take precedence over installed queries.
+      vim.opt.rtp:prepend(vim.fn.stdpath 'config')
       -- Setup textobjects using the correct module
       require('nvim-treesitter-textobjects').setup {
         select = {
