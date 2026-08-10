@@ -405,11 +405,6 @@ return {
     -- Configure Roslyn language server
     vim.lsp.config('roslyn', {
       filetypes = { 'cs' },
-      on_init = function(client)
-        client.server_capabilities.diagnosticProvider = client.server_capabilities.diagnosticProvider or {}
-        client.server_capabilities.diagnosticProvider.workspaceDiagnostics = true
-        vim.lsp.buf.workspace_diagnostics()
-      end,
       on_attach = function(_, bufnr)
         vim.bo[bufnr].tabstop = 4
         vim.bo[bufnr].shiftwidth = 4
