@@ -5,7 +5,7 @@ return {
   dependencies = {
     { 'b0o/schemastore.nvim', lazy = true },
     { 'williamboman/mason-lspconfig.nvim', lazy = true },
-    { 'seblj/roslyn.nvim', lazy = true, ft = { 'cs' }, opts = {} },
+    { 'seblj/roslyn.nvim', lazy = true, ft = { 'cs' }, opts = { filewatching = 'roslyn' } },
     { 'luckasRanarison/tailwind-tools.nvim', lazy = true, ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' } },
     { 'yioneko/nvim-vtsls', lazy = true, ft = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' } },
     {
@@ -405,28 +405,23 @@ return {
     -- Configure Roslyn language server
     vim.lsp.config('roslyn', {
       filetypes = { 'cs' },
-      on_attach = function(client, bufnr)
+      on_init = function(client)
+        client.server_capabilities.diagnosticProvider = client.server_capabilities.diagnosticProvider or {}
+        client.server_capabilities.diagnosticProvider.workspaceDiagnostics = true
+        vim.lsp.buf.workspace_diagnostics()
+      end,
+      on_attach = function(_, bufnr)
         vim.bo[bufnr].tabstop = 4
         vim.bo[bufnr].shiftwidth = 4
         vim.bo[bufnr].expandtab = true
         vim.bo[bufnr].softtabstop = 4
-        vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertLeave' }, {
-          buffer = bufnr,
-          callback = function()
-            vim.defer_fn(function()
-              if vim.api.nvim_get_mode().mode == 'i' then
-                return
-              end
-              vim.lsp.codelens.enable(true, { bufnr = bufnr })
-              -- workaround for diagnostics not being triggered
-              client:request('textDocument/diagnostic', {
-                textDocument = vim.lsp.util.make_text_document_params(),
-              }, nil, bufnr)
-            end, 20)
-          end,
-        })
+        vim.lsp.codelens.enable(true, { bufnr = bufnr })
       end,
       settings = {
+        ['csharp|background_analysis'] = {
+          dotnet_analyzer_diagnostics_scope = 'fullSolution',
+          dotnet_compiler_diagnostics_scope = 'fullSolution',
+        },
         ['csharp|inlay_hints'] = {
           csharp_enable_inlay_hints_for_implicit_object_creation = true,
           csharp_enable_inlay_hints_for_implicit_variable_types = true,
