@@ -66,7 +66,7 @@ return {
       enabled = true,
     },
     image = {
-      enabled = not vim.g.is_wsl,
+      enabled = vim.env.TERM_PROGRAM == 'rio',
       convert = {
         notify = true,
         mermaid = function()
