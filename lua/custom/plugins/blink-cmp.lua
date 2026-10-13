@@ -3,6 +3,11 @@ return {
   event = { 'InsertEnter', 'CmdlineEnter' },
   enabled = true,
   dependencies = {
+    {
+      'L3MON4D3/LuaSnip',
+      version = 'v2.*',
+      opts = {},
+    },
     'rcarriga/cmp-dap',
     {
       'saghen/blink.compat',
@@ -13,6 +18,7 @@ return {
   version = '*',
   config = function()
     require('blink.cmp').setup {
+      snippets = { preset = 'luasnip' },
       keymap = {
         preset = 'super-tab',
         ['<Tab>'] = {
