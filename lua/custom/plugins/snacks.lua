@@ -57,6 +57,9 @@ return {
     })
   end,
   opts = {
+    explorer = {
+      enabled = true,
+    },
     scratch = {
       ft = function()
         return 'markdown'
@@ -167,6 +170,13 @@ return {
     },
   },
   keys = {
+    {
+      '<leader>E',
+      function()
+        Snacks.explorer()
+      end,
+      desc = 'sidebar explorer',
+    },
     {
       '<M-,>',
       function()

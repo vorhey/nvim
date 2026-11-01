@@ -11,6 +11,7 @@ return {
         { '<leader>O', icon = { icon = '󰅙', color = 'azure' } },
         { '<leader>Q', icon = { icon = '󰈆', color = 'azure' } },
         { '<leader>e', icon = { icon = '󱏒', color = 'azure' } },
+        { '<leader>E', icon = { icon = '󱏒', color = 'azure' } },
         { '<leader><leader>', desc = 'sidekick: add file', icon = { icon = '', color = 'red' } },
         { '<leader>d', group = 'debug', icon = { icon = '', color = 'grey' } },
         { '<leader>t', group = 'toggle', icon = { icon = '', color = 'grey' } },
