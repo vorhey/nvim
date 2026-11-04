@@ -69,7 +69,8 @@ return {
       enabled = true,
     },
     image = {
-      enabled = vim.env.TERM_PROGRAM == 'rio',
+      enabled = true,
+      force = true,
       convert = {
         notify = true,
         mermaid = function()
