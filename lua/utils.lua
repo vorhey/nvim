@@ -54,42 +54,4 @@ function M.get_relative_filename()
   end
 end
 
--- ignore_patterns (used externally)
-M.ignore_patterns = {
-  '.git',
-  'node_modules',
-  '.next',
-  '.npm',
-  '.yarn',
-  'dist',
-  'target',
-  'build',
-  'coverage',
-  '__snapshots__',
-  '__pycache__',
-  '.venv',
-  '.pytest_cache',
-  '.mypy_cache',
-  '.ruff_cache',
-  'bin',
-  'obj',
-  'Debug',
-  'Release',
-  '.vs',
-  'packages',
-  'TestResults',
-  '.idea',
-  '.vscode',
-  'vendor',
-  '.bundle',
-  '.cargo',
-  '.cache',
-  'tmp',
-  'temp',
-  'logs',
-  '.terraform',
-  '.gradle',
-  '.DS_Store',
-}
-
 return M
