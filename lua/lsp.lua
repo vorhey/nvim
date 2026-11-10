@@ -237,6 +237,23 @@ return {
       cmd = { 'vscode-eslint-language-server', '--stdio' },
       filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'vue', 'svelte', 'astro' },
       root_markers = { '.git', '.eslintrc.js', '.eslintrc.cjs', '.eslintrc.json', 'package.json' }, -- Added package.json
+      handlers = {
+        ['eslint/noLibrary'] = function()
+          return {}
+        end,
+        ['eslint/openDoc'] = function(_, result)
+          if result then
+            vim.ui.open(result.url)
+          end
+          return {}
+        end,
+        ['eslint/probeFailed'] = function()
+          return {}
+        end,
+        ['eslint/confirmESLintExecution'] = function()
+          return 4 -- allow
+        end,
+      },
       settings = {
         codeAction = {
           disableRuleComment = {
